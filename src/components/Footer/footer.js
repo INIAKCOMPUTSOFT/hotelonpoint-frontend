@@ -1,8 +1,7 @@
+import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import './footer.css'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons'
 
 function Footer(){
 
@@ -14,11 +13,11 @@ return(
     <div className="bg-secondary mt-3">
     <div className="bg-dark p-3">
     <div className="row ">
-    <div className="col-4">
+    <div className="col-md-4">
     <h3 className="text-light mt-4">HOTEL-ON-POINTS</h3>
     </div>
 
-    <div className="col-4">
+    <div className="col-md-4">
     <label className="label text-center">Subscribe to get the latest of deals</label>
     <div class="input-group">
     <input type="email"
@@ -35,7 +34,7 @@ return(
        </div>
     </div>
 
-  <div className="col-4">
+  <div className="col-md-4">
   <div className="mt-4">
   <FontAwesomeIcon className="icon" icon={faFacebook} />
   <FontAwesomeIcon className="icon" icon={faInstagram} />

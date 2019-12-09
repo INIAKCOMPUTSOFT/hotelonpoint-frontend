@@ -1,6 +1,6 @@
-import React from 'react'
-import './searchbar.css'
+import './searchbar.css';
 
+import React from 'react';
 
 class SearchBar extends React.Component{
   constructor(props) {
@@ -41,12 +41,12 @@ return(
 
 <div className="col-md-3">
     <div className="input-group">
-      <input className="form-control"
+      <input type='date' className="form-control"
        value={this.state.value}
       onChange={this.handleChange}
        placeholder="check in date"/>
        
-      <input className="form-control" 
+      <input type='date' className="form-control" 
       value={this.state.value}
       onChange={this.handleChange}
       placeholder="check out date"/>
