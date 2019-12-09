@@ -1,0 +1,292 @@
+.rowh{
+  margin-top:3%;
+}
+.jumbotron6{
+  margin-top:3%;
+  padding-top:0px;
+  padding-bottom:0px;
+  padding-left:0px;
+  padding-right:0px;
+  margin-right:0px;
+  }
+.jumbotron7{
+  padding-top:0px;
+  padding-bottom:0px;
+  padding-left:0px;
+  padding-right:0px;
+  margin-right:0px;
+}
+.pics3{
+  height: 75%;
+  width:100%;
+}
+
+.footer-text{
+  line-height:-1;  
+  color:white;
+}
+
+.social{
+margin-left:90%;
+
+}
+
+.rowh{
+  margin-top:3%;
+}
+.jumbotron{
+  padding-top:0px;
+  padding-bottom:0px;
+  padding-left:0px;
+  padding-right:0px;
+  margin-right:0px;
+  }
+
+  .searchj{
+    background-color:red;
+    text-align: center;
+    -moz-box-shadow: 0 0 10px #9c9a9a;
+    -webkit-box-shadow: 0 0 10px #9c9a9a;
+    box-shadow: 0 0 10px #9c9a9a;
+}
+.sh2{
+  font-size: 40px;
+  padding-top:3%;
+  color:white;  
+  font-family: Verdana, Geneva, Tahoma, sans-serif  
+}
+.sh3{
+  color:white;  
+  font-family: Verdana, Geneva, Tahoma, sans-serif  
+}
+
+.filter{
+  padding-left:5px;
+  padding-right:5px;
+}
+.content-text{
+  margin-top:-5%;
+}
+.margin{
+  margin-top:2%;
+}
+.mmargin{
+  padding-bottom:-5%;
+}
+.jumbotron{
+padding-top:0px;
+padding-bottom:0px;
+padding-left:0px;
+padding-right:0px;
+margin-right:0px;
+}
+.jumbotron2{
+-moz-box-shadow: 0 0 10px #9c9a9a;
+-webkit-box-shadow: 0 0 10px #9c9a9a;
+box-shadow: 0 0 10px #9c9a9a;
+}
+.jumbotron2:hover{
+  border-width: 2px;
+  border-style:solid;
+  border-color: rgb(60, 163, 247);
+  transition: 0.2s;
+}
+.pic{
+  width:100%;
+  height:100%;
+}
+
+.jumbp{    
+margin-left:2.5%;
+margin-right:2.5%;
+background-color: white;
+}
+.card{
+  border-radius:0;
+  border:none;
+  height:100%;
+  width:100%;
+}
+.breakfast{
+  background-color:rgb(24, 192, 60);
+  border-color: rgb(24, 192, 60);
+  margin-top: -5%;
+}
+.locate{
+  margin-top:3%;
+}
+a.wifi{
+  margin-left:2%;
+  background-color:rgb(24, 192, 60);
+  border-color: rgb(24, 192, 60);
+  margin-top:-5%;
+}
+.reserve{
+  background-color:red;
+}
+h6.veiws{
+  font-size:23px;
+  margin-top: -8%;
+}
+.vie{
+  margin-top:-5%;
+}
+.veiw{
+  background-color:rgb(8, 146, 226);
+  text-align: center;
+  border-top-right-radius: 35%;
+  border-bottom-left-radius: 35%;
+  padding:5px 7px 5px 7px;
+}
+i.logo{
+  color:rgb(243, 22, 22);
+}
+.price{
+  margin-top: -5%;
+  font-size: 30px;
+  font-weight:20%;
+}
+.price2{
+  margin-top: -20%;
+  font-size: 15px;
+}
+.pernight{
+  margin-top:-5%;
+}
+.pprice{
+  margin-top: -30%;
+  margin-left:1%;
+}
+.rates{
+  margin-top:-2%;
+  color:gold;
+}
+.cheker{
+  margin-top:-9%;
+}
+.title2{
+  font-size:30px;
+  text-align: center;
+  color:white;
+}
+.logo2{
+  margin-left:45%;
+  margin-right:45%;
+  color:white;
+}
+.text2{
+  text-align:center;
+  color:white;
+}
+.button2{
+  margin-left:33%;
+  margin-right:30%;
+}
+.cbody{
+  background-color:rgb(4, 25, 211);
+}
+.card2{
+  -moz-box-shadow: 0 0 10px #9c9a9a;
+  -webkit-box-shadow: 0 0 10px #9c9a9a;
+  box-shadow: 0 0 10px #9c9a9a;
+}
+.toph{
+  text-align:center;
+  font-size:33px ;
+  font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+.toph2{
+  text-align:center;
+  font-size:25px ;
+  font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+.logo3{
+  color:rgb(252, 249, 249);
+  margin-left:1%;
+}
+.searchj{
+  background-color:red;
+  text-align: center;
+  -moz-box-shadow: 0 0 10px #9c9a9a;
+  -webkit-box-shadow: 0 0 10px #9c9a9a;
+  box-shadow: 0 0 10px #9c9a9a;
+}
+.sh2{
+  font-size: 40px;
+  padding-top:3%;
+  color:white;  
+  font-family: Verdana, Geneva, Tahoma, sans-serif  
+}
+.sh3{
+  color:white;  
+  font-family: Verdana, Geneva, Tahoma, sans-serif  
+}
+.insh{
+  width:70%;
+  margin-left:15%;
+  border-radius:10px;
+  border-width:1px;
+  border-color:rgb(0, 102, 255);
+  padding-bottom:4%;
+}
+.buts{
+  color: aliceblue;
+  border:none;
+  background-color:rgb(0, 153, 255);
+}
+.mobilefilter{
+  display:none;
+}
+
+
+@media(max-width:768px){
+ .content-text{
+     text-align:justify;
+     margin-top:1%;
+ } 
+
+ .props{
+     margin-left:70%;
+     margin-top:-10%;
+ }
+ .cheker{
+  display:none; 
+ }
+ .price{
+     margin-left:60%;
+     font-size:25px;
+   margin-top:-20%;
+   margin-bottom:2%;
+ }  
+ .pernight{
+   margin-left:60%; 
+ }
+ .veiws{
+     margin-top:-10%;
+     color:red;
+ }
+ .rateing{
+  margin-left:60%;
+  margin-top:-5%; 
+ }
+
+ .locate{
+     margin-top:0%;
+ }
+ .filter{
+     display:none;
+ }
+ .filternav{
+     display:none;
+ }
+ .mobilefilter{
+     display:block;
+   position:fixed;
+   z-index:3;
+   margin-left:25%;
+   margin-top:80%;
+ }
+
+}
+
+

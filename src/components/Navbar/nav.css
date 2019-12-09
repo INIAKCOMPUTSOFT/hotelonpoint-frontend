@@ -1,0 +1,25 @@
+.navigation{
+    color:red;
+}
+.nav-link{
+    font-size:15px;
+    color:black;
+}
+.wicon{
+    font-size:30px;
+    color:green;
+}
+.number{
+    color:white;
+}
+.menuicon{
+    color:black;
+    font-size:15px;
+    margin-right:5px;
+}
+@media(min-width:740px){
+    .navbar-toggler{
+        margin-top:-10% !important;
+    }
+
+}
