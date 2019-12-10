@@ -24,3 +24,13 @@
     height:10px !important;
     padding:5px;
 }
+.unlock{
+    color:black;
+    font-family:'Anton', sans-serif;
+    text-align: center
+}
+
+.unique {
+    color: #0069d9;
+
+}

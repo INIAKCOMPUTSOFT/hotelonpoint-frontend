@@ -1,15 +1,16 @@
-import React from 'react'
-import './searchbar.css'
-import background from './searchbackgroundimages/picture1.jpg'
-import { faSearch} from "@fortawesome/free-solid-svg-icons";
+import './searchbar.css';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import background from './searchbackgroundimages/hoomage.jpg';
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 var sectionStyle = {
   width: "100%",
-  height: "400px",
+  height: "auto",
   padding:'45px',
   backgroundImage: `url(${background})`,
-  backgroundSize: 'auto',
+  backgroundSize: 'cover',
   marginBottom:'80px'
 };
 
@@ -39,8 +40,10 @@ class SearchBar extends React.Component{
 render(){
 return(
 <div style={sectionStyle}>
+ 
 <div className=" container p-3 search">
 <form>
+<h1 className="unlock"><span className='unique'>UNLOCK</span> EXCLUSIVE HOTEL DEALS <span className='unique'>!!!!</span></h1>
 <div className="row">
     <div className="col-md-3">
       <div className="card s-card">
