@@ -1,0 +1,9 @@
+.titleback{
+    opacity:0.8;
+    background-color:grey;
+    z-index: 1;
+}
+.card-title{
+    color:white;
+    z-index:3;
+}

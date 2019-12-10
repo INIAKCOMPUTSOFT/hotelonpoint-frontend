@@ -7,7 +7,7 @@ import './advert.css'
 function Advert(){
 
 return(
-    <div class="card bg-dark text-white mb-3">
+    <div class="card border-0 bg-dark text-white mb-3">
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>

@@ -17,9 +17,16 @@
     font-size:15px;
     margin-right:5px;
 }
-@media(min-width:740px){
-    .navbar-toggler{
-        margin-top:-10% !important;
-    }
-
+.navbar-expand-lg{
+    z-index:3px;
+}
+.navbar{
+    background-color:black !important;
+}
+.navbar-toggler{
+    border-color:white !important;
+    margin-bottom: 10px;
+}
+.navbar-toggler-icon{
+    color:white;
 }
