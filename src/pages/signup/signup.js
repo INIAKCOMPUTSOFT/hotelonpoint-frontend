@@ -1,5 +1,5 @@
 import React from 'react'
-import Input from '../../components/inputs/input1'
+import {Input} from '../../components/inputs/input1'
 import './signup.css';
 
 export default class Singup extends React.Component{

@@ -1,17 +1,7 @@
 import React from 'react'
 import './searchbar.css'
-import background from './searchbackgroundimages/picture1.jpg'
 import { faSearch} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-var sectionStyle = {
-  width: "100%",
-  height: "400px",
-  padding:'45px',
-  backgroundImage: `url(${background})`,
-  backgroundSize: 'auto',
-  marginBottom:'80px'
-};
 
 
 class SearchBar extends React.Component{
@@ -38,7 +28,7 @@ class SearchBar extends React.Component{
    
 render(){
 return(
-<div style={sectionStyle}>
+<div className={this.props.className}>
 <div className=" container p-3 search">
 <form>
 <div className="row">

@@ -23,12 +23,7 @@ async componentDidMount() {
 
   render(){
       return(
-          <div className="container">
-        <div className="row">
-            <div className="col-md-3">
-            </div>
-            <div className="col-md-9">
-
+          <div className="mt-2">
             <div class="mobilefilter mb-2">
             <button class="btn btn-light jumbotron2">Filter</button>
             <button class="btn btn-light jumbotron2">Sort</button>
@@ -57,14 +52,14 @@ async componentDidMount() {
 <div>
     <div className="row no-gutters">
       <div className="col-md-4">
-          <div className="card">
+          <div className="card border-0">
               <div className="card-body">
                 <img src={`https://ota.iniakcomputsoft.com.ng/${hotels.HImages[0]['filePath']}`} className="pic" />
               </div>
             </div>
       </div>
       <div className="col-md-5">
-          <div className="card" >
+          <div className="card border-0" >
               <div className="card-body">
                 <h5 className="card-title">{hotels.HName}</h5>
                 <p className="card-text content-text">350 m from beach  <br/>
@@ -82,7 +77,7 @@ async componentDidMount() {
             </div>
       </div>
       <div className="col-md-3">
-          <div className="card">
+          <div className="card border-0">
               <div className="card-body">
             
                 <h6 className="mb-2 text-muted veiws">2,098</h6>
@@ -109,12 +104,7 @@ async componentDidMount() {
     </div>
   </div>
 </div>
-            ))}
-            </div>
-        </div>
-        </div>
-      )
-  }
-
-}
+))}
+</div>
+)}}
 export default HotelList
