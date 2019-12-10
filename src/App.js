@@ -17,6 +17,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import $ from 'jquery'
 import Login from './pages/login';
+import Signup from './pages/signup/signup';
 
 
 
@@ -30,6 +31,7 @@ function App() {
     <Route exact path='/pages/Blogpages/singleblog:blog' component={Singleblog}/>
     <Route exact path='/' component={HotelHome}/>
     <Route exact path='/login' component={Login} />
+    <Route exact path='/signup' component={Signup} />
     <Footer />
     </Router>
   );

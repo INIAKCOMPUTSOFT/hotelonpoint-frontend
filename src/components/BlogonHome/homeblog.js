@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
+import './homeblog.css'
 
 
 class HomeBlog extends Component {
@@ -38,14 +39,15 @@ class HomeBlog extends Component {
       {this.state.blogs.slice(0,2).map((blog,i)=>(
         
       <div className="card bg-dark text-white" key={blog.id}>
-      <img src={`https://ota.iniakcomputsoft.com.ng/${blog.blogPhotos[0]['filePath']}`} className="card-img" alt="..." width='200' height='200' />
+      <img src={`https://ota.iniakcomputsoft.com.ng/${blog.blogPhotos[0]['filePath']}`} className="card-img" alt="..." width='200' height='300' />
       <div className="card-img-overlay">
-        <h5 className="card-title text-light">{blog.blogTitle}</h5>
+        <div className="titleback p-3"><h5 className="card-title text-light text-center">{blog.blogTitle}</h5></div>
       </div>
     </div>
    
             ))}             
           </div>
+          <p className="text-black ml-auto">Read more of our insparing blogs</p>
           </div>
     )}
 

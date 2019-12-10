@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { faHotel, faTaxi, faPlane,faShip } from "@fortawesome/free-solid-svg-icons";
+import { faHotel, faTaxi, faPlaneDeparture,faShip} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {  faWhatsapp} from '@fortawesome/free-brands-svg-icons'
 import './nav.css'
@@ -8,13 +8,13 @@ import './nav.css'
 function Navbar(){
 return(
   <div>
-  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-  <button className="mr-auto navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
+  <nav class="navbar navbar-expand-lg navbar-light">
+  <button className="mr-auto  navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon text-light"></span>
     </button>
      <Link to="./" class="navbar-brand text-light" href="#">Hotel-on-points</Link>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+  <button class="navbar-toggler "  type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon text-light"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
    
@@ -25,7 +25,7 @@ return(
                         
                          <div className="btn-group" role="group">
                           <button id="btnGroupDrop2" type="button" className="btn btn-sm btn-outline-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                communicate with us
+                                Talk to us
                           </button>
                         
                            
@@ -73,7 +73,7 @@ return(
   </div>
 </nav>
 
-<nav className="navbar-expand-lg navbar-light bg-white mb-3 shadow p-1 mb-5">
+<nav className="navbar-expand-lg navbar-light bg-white shadow   ">
   
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="nav">
@@ -92,13 +92,19 @@ return(
         <li className="nav-item">
             <Link to='/Airportshuttle/' className="nav-link">
             <FontAwesomeIcon className="menuicon" icon={faShip} />
-              Tours
+              Tours&Ticket
               </Link>
         </li>
         <li className="nav-item">
           <Link to='/flight/' className="nav-link">
-          <FontAwesomeIcon className="menuicon" icon={faPlane} />
+          <FontAwesomeIcon className="menuicon" icon={faPlaneDeparture} />
             Flight
+            </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to='/flight/' className="nav-link">
+            Visa
             </Link>
         </li>
       </ul> 

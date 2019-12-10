@@ -1,3 +1,26 @@
 .form-control{
     height:50px !important;
 }
+.search{
+    margin-top:21%;
+    background-color:rgb(247, 241, 212);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 20px 30px 0 rgba(0, 0, 0, 0.19);  
+}
+.searchicon{
+    font-size: 20px;
+    color:white;
+}
+
+.s-card{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 20px 30px 0 rgba(0, 0, 0, 0.19);
+    padding:10px;
+}
+.b{
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.2), 0 20px 30px 0 rgba(0, 0, 0, 0.19);
+    margin-top:10px;
+    width:100%;
+}
+.search-btn{
+    height:10px !important;
+    padding:5px;
+}

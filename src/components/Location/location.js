@@ -1,4 +1,5 @@
 import React from 'react'
+import './location.css'
 
 class HotelLocationDisplay extends React.Component{
 constructor(){
@@ -27,17 +28,19 @@ render(){
 <h4>Best Locations in the world</h4> 
 <div className="card-deck mb-3"> 
 {this.state.locations.slice(0,4).map((location,i)=>(
-  <div className="card rounded-bottom"  key={location.id}>
+  <div className="card shadow rounded-bottom"  key={location.id}>
   
   <div className="card-body">
-    <h5 className="card-title">{location.city}</h5>
+    <h5 className="card-title text-dark">{location.city}</h5>
     <p className="card-text"> about {location.hotels.lenght}</p>
+   
   </div>
 </div>
-))}     
+
+))}      
 </div> 
-           
-    </div>
+<p className="readmoretext">Read more</p>  
+</div>
 
     )
 }

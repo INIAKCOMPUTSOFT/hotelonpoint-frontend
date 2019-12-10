@@ -14,18 +14,15 @@ function HotelHome (){
 
 
 return(
-
-<div className="container">
+<div>
 <SearchBar />
+<div className="container">
 <Advert />
 <HomeHotelDisplay/>
 <HomeBlog/>
 <HotelLocationDisplay/>
-
-
-
 </div>
-
+</div>
 )
 }
 
