@@ -41,8 +41,7 @@ render(){
 </div> 
 <p className="readmoretext">Read more</p>  
 </div>
-
-    )
+)
 }
 
 }

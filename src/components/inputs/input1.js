@@ -10,4 +10,14 @@ return(
 )
 
 }
-export default Input
+
+function Input2(props){
+    return(
+<div>
+<input class="form-check-input" type={props.type} value={props.value} onChange={props.onChange} />
+<label class="form-check-label h6">{props.range}</label>
+</div>
+    )
+
+}
+export { Input, Input2}

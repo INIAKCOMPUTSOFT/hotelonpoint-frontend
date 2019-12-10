@@ -1,6 +1,6 @@
 import React from 'react'
 import HomeHotelDisplay from '../../components/HomepageHotels/Homehoteldisplay'
-import SearchBar from '../../components/SearchBar/searchbar'
+import Background from '../../components/background/background'
 //import {Link} from 'react-router-dom'
 import HomeBlog from '../../components/BlogonHome/homeblog'
 //import HomeAdvert from '../../components/homeadvert'
@@ -15,7 +15,7 @@ function HotelHome (){
 
 return(
 <div>
-<SearchBar />
+<Background />
 <div className="container">
 <Advert />
 <HomeHotelDisplay/>
