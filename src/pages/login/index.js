@@ -1,6 +1,6 @@
 import React from 'react'
 //import {Link} from 'react-router-dom'
-import Input from '../../components/inputs/input1'
+import {Input} from '../../components/inputs/input1'
 import './login.css';
 
 

@@ -9,7 +9,6 @@ import Blogapi from './components/Multiblog/blogapi'
 import Navbar from './components/Navbar/navbar'
 import HotelHome from './pages/Hotelpages/Accomodation'
 import Footer from './components/Footer/footer'
-import HotelList from './components/HotelList/listings'
 //import Login from './pages/login/index'
 
 import './App.css';
@@ -18,6 +17,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import $ from 'jquery'
 import Login from './pages/login';
 import Signup from './pages/signup/signup';
+import MultiListing from './pages/Hotelpages/multilisting' 
 
 
 
@@ -26,12 +26,12 @@ function App() {
 
     <Router>
     <Navbar />
-    <Route exact path='/listings' component={HotelList}/>    
     <Route exact path='/blogapi' component={Blogapi}/>
     <Route exact path='/pages/Blogpages/singleblog:blog' component={Singleblog}/>
     <Route exact path='/' component={HotelHome}/>
     <Route exact path='/login' component={Login} />
     <Route exact path='/signup' component={Signup} />
+    <Route exact path='/multilisting' component={MultiListing} />
     <Footer />
     </Router>
   );
