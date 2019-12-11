@@ -1,8 +1,22 @@
-import React from 'react'
-//import {Link} from 'react-router-dom'
-import {Input} from '../../components/inputs/input1'
 import './login.css';
 
+import { Input } from '../../components/inputs/input1';
+import React from 'react';
+import background from './bacground-pic/blue.jfif';
+
+//import {Link} from 'react-router-dom'
+
+
+
+
+
+var sectionStyle = {
+    width: "100%",
+    height: "auto",
+    padding:'45px',
+    backgroundImage: `url(${background})`,
+    backgroundSize: 'cover',
+  };
 
 class Login extends React.Component{
 
@@ -51,17 +65,18 @@ fetch(url, {
 render(){
 
     return (
-     <div>
+     <div style={sectionStyle}>
           <div className="container mt-3 mb-3">
       <div className="row">
-          <div className="col-md-4">
-      </div>
+          <div className="col-md-4 text-white">
+            <h1>We are reliable and trust Worthy</h1>
+          </div>
 
       <div className="col-md-4 ">
             <div className="card  mb-3 shadow login-card">
                     <div className="card-body text-dark ">
                       <div>
-                          <h5 className="card-title">ARIDOLPH HOTELS</h5>
+                          <h5 className="card-title text-dark text-center">Hotel-on-points</h5>
                         <div className="form-group">
 
                           <Input type="email"
@@ -77,18 +92,18 @@ render(){
 
                         <div className="form-group">  
                         <Input 
-                           type="email"
-                           name="email" 
-                           value={this.state.email}
+                           type="password"
+                           name="password" 
+                           value={this.state.password}
                            onChange={this.handleForm} 
                            className="form-control" 
-                           placeholder="Enter Username"
-                           Label="Email:"
+                           placeholder="Enter password"
+                           Label="Password:"
                            small="your details are safe with us."
                            />
                         </div>
 
-                        <button type="submit" className="btn btn-block btn-success"  onClick={this.handlesubmit}>login</button>
+                        <button type="submit" className="btn btn-block btin"  onClick={this.handlesubmit}>Login</button>
                       </div>
                       <p>No account sign up </p>
                     </div>

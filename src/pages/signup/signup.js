@@ -1,6 +1,16 @@
-import React from 'react'
-import {Input} from '../../components/inputs/input1'
 import './signup.css';
+
+import { Input } from '../../components/inputs/input1';
+import React from 'react';
+import background from './backgimage/blue.jfif';
+
+var sectionStyle = {
+    width: "100%",
+    height: "auto",
+    padding:'45px',
+    backgroundImage: `url(${background})`,
+    backgroundSize: 'cover',
+  };
 
 export default class Singup extends React.Component{
 
@@ -47,21 +57,26 @@ fetch(url, {
 render(){
 
     return(
-        <div>
+        <div style={sectionStyle} >
         <div className="container mt-3 mb-3">
     <div className="row">
-        <div className="col-md-4">
+        <div className="col-md-4 text-white">
+         <h1> Welcome</h1>
+         <h1>{this.state.fullname}</h1>
+         <h1>Finish filling the form</h1>
+         <h1>To unlock Greate Deals</h1>   
     </div>
 
     <div className="col-md-4 ">
           <div className="card  mb-3 shadow signup-card">
+          
                   <div className="card-body text-dark ">
-                  <h5 className="card-title">Hotel-on-points</h5>
+                  <h5 className="card-title text-dark">Hotel-on-points</h5>
                     <div>
                         <div className="form-group">
                         <Input type="fullname"
                          name="fullname" 
-                         value={this.state.firstname}
+                         value={this.state.fullname}
                          onChange={this.handleForm} 
                          className="form-control" 
                          placeholder="Enter your Fullname"
@@ -106,7 +121,7 @@ render(){
                          />
                       </div>
 
-                      <button type="submit" className="btn btn-block btn-success"  onClick={this.handlesubmit}>login</button>
+                      <button type="submit" className="btin btn-block "  onClick={this.handlesubmit}>Signup</button>
                     </div>
                   </div>
                 </div>

@@ -1,11 +1,9 @@
 import './nav.css';
 
-import { faCcVisa, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import { faHotel, faPlaneDeparture, faShip, faTaxi } from "@fortawesome/free-solid-svg-icons";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from 'react-router-dom';
 import React from 'react';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 function Navbar(){
 return(
@@ -63,13 +61,11 @@ return(
                 </Link>
           </li>
           <li className="nav-item mr-1">
-                <Link to='/Signup/'><button className="botin">
-                        Sign up       
-                </button></Link>
+               <span className="pic"></span>
           </li>
           <li className="nav-item mr-1">
               <Link to='/Login/'><button className="botin">
-                  Login
+                  Log out
               </button></Link>
           </li>
           <li className="nav-item mr-1">
@@ -89,32 +85,29 @@ return(
       <ul className="nav">
         <li className="nav-item">    
           <Link to='/' className="nav-link">
-          <FontAwesomeIcon className="menuicon" icon={faHotel} />
-            Acommodation
+          Bookings
             </Link>
         </li>
         <li className="nav-item">
           <Link to='/Taxishome/' className="nav-link">
-          <FontAwesomeIcon className="menuicon" icon={faTaxi} />
-            Taxis
+            My Reviews
             </Link>
         </li>
         <li className="nav-item">
             <Link to='/Airportshuttle/' className="nav-link">
-            <FontAwesomeIcon className="menuicon" icon={faShip} />
-              Tours&Ticket
+                My Lists
               </Link>
         </li>
         <li className="nav-item">
           <Link to='/flight/' className="nav-link">
-          <FontAwesomeIcon className="menuicon" icon={faPlaneDeparture} />
+          Customer Service Help
             Flight
             </Link>
         </li>
 
         <li className="nav-item">
           <Link to='/flight/' className="nav-link">
-          <FontAwesomeIcon className="menuicon" icon={faCcVisa} />Visa
+          Settings
             </Link>
         </li>
       </ul> 

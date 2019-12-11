@@ -17,6 +17,10 @@ function Background(){
 
     return(
         <div style={sectionStyle}>
+    <h1 className="unlock">
+        <span className='unique'>Unlock </span>
+          exclusive hotel deals  
+         <span className='unique'> !!!!</span></h1>
         <SearchBar className="sbar" />
         </div> 
     )

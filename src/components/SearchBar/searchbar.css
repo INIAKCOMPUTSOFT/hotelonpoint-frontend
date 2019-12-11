@@ -2,7 +2,7 @@
     height:50px !important;
 }
 .search{
-    background-color:rgb(247, 241, 212);
+    background-color:#C4BDA3;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 20px 30px 0 rgba(0, 0, 0, 0.19);  
 }
 .searchicon{
@@ -22,14 +22,4 @@
 .search-btn{
     height:10px !important;
     padding:5px;
-}
-.unlock{
-    color:black;
-    font-family:'Anton', sans-serif;
-    text-align: center
-}
-
-.unique {
-    color: #0069d9;
-
 }

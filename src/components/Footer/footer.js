@@ -1,13 +1,13 @@
 import "./footer.css";
 
-import { faFacebook, faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faCcMastercard, faCcVisa, faFacebook, faInstagram, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 function Footer() {
   return (
-    <div className=" footer-back mt-3">
+    <div className=" footer-back">
       <div className="p-3">
         <div className="row ">
           <div className="col-md-4">
@@ -40,14 +40,16 @@ function Footer() {
               <FontAwesomeIcon className="icon" icon={faFacebook} />
               <FontAwesomeIcon className="icon" icon={faInstagram} />
               <FontAwesomeIcon className="icon" icon={faTwitter} />
+              <FontAwesomeIcon className="icon" icon={faYoutube} />
             </div>
           </div>
         </div>
       </div>
-      <div className="container">
+      <div className="container secondsec">
         <div className="text-light">
           <div className="row">
             <div className="col-4">
+              <div className="mb-3">
               <h5>Contact us:</h5>
               <p>
                 Website Feedback
@@ -56,6 +58,12 @@ function Footer() {
                 <br />
                 phone No
               </p>
+              </div>
+              <div>
+            <h5>Our payment methods:</h5>
+            <FontAwesomeIcon className="icon" icon={faCcMastercard} />
+            <FontAwesomeIcon className="icon" icon={faCcVisa} />
+            </div>
             </div>
             <div className="col-4">
               <h5>Get to know us:</h5>

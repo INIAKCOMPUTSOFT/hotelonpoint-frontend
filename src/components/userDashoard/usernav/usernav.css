@@ -50,3 +50,9 @@
 .bg2{
     background-color:#C4BDA3;
 }
+
+.pic{
+    height:5px;
+    width:10px;
+    border-radius:50%;
+}
