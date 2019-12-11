@@ -13,22 +13,22 @@ class HomeHotelDisplay extends Component {
   }
  
 
-  async componentDidMount() {
-    const url='https://ota.iniakcomputsoft.com.ng/api/hotels/';           
+  // async componentDidMount() {
+  //   // const url='https://ota.iniakcomputsoft.com.ng/api/hotels/';           
                       
-    const response = await fetch(url,
-      {
-        methods:'GET',
-        headers:{
-          'Content-type' : 'Application/json'
-        }
-      }
-      )
-    const data= await response.json();
-    this.setState({Hotels : data['hydra:member'], loading:false})
-  console.log(data)
+  //   const response = await fetch(url,
+  //     {
+  //       methods:'GET',
+  //       headers:{
+  //         'Content-type' : 'Application/json'
+  //       }
+  //     }
+  //     )
+  //   const data= await response.json();
+  //   this.setState({Hotels : data['hydra:member'], loading:false})
+  // console.log(data)
     
-    }
+  //   }
 
   
   render(){
@@ -38,11 +38,8 @@ class HomeHotelDisplay extends Component {
         <span className="sr-only ">Loading...</span>
       </div></div>
     }
-
-      
-    return(
-      
-<div className="mb-3">
+      const view = this.state.Hotels[0] ? (
+        <div className="mb-3">
 <h4>More than just hotels… discover pure comfort with homes & apartments</h4> 
 <div className="card-deck mb-3"> 
 {this.state.Hotels.slice(0,4).map((hotel,i)=>(
@@ -57,7 +54,10 @@ class HomeHotelDisplay extends Component {
 </div> 
            
     </div>
-    )}
+      ) : (<p>Loading...</p>)
+
+      return ({view})
+    }
 
   }
 

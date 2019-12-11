@@ -1,23 +1,36 @@
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import './App.css';
+
+import { Route, BrowserRouter as Router } from 'react-router-dom';
+
+import Blogapi from './components/Multiblog/blogapi';
+import Date from './components/data/Dates';
+import Footer from './components/Footer/footer';
+import HotelHome from './pages/Hotelpages/Accomodation';
+import Login from './pages/login';
+import MultiListing from './pages/Hotelpages/multilisting';
+import Navbar from './components/Navbar/navbar';
 import React from 'react';
+import Signup from './pages/signup/signup';
+import Singleblog from './pages/Blogpages/singleblog';
+
 //import logo from './logo.svg';
 //import Api3 from './components/api3'
 //import Blogap from './components/blogapi'
 //import { render } from 'react-dom'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Singleblog from './pages/Blogpages/singleblog'
-import Blogapi from './components/Multiblog/blogapi'
-import Navbar from './components/Navbar/navbar'
-import HotelHome from './pages/Hotelpages/Accomodation'
-import Footer from './components/Footer/footer'
+
 //import Login from './pages/login/index'
 
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-import $ from 'jquery'
-import Login from './pages/login';
-import Signup from './pages/signup/signup';
-import MultiListing from './pages/Hotelpages/multilisting' 
+
+
+
+
+
+
+
+
+
 
 
 
@@ -32,6 +45,7 @@ function App() {
     <Route exact path='/login' component={Login} />
     <Route exact path='/signup' component={Signup} />
     <Route exact path='/multilisting' component={MultiListing} />
+    <Route exact path='/date' component={Date} />
     <Footer />
     </Router>
   );

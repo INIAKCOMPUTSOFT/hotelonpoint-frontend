@@ -13,7 +13,7 @@ import background from './bacground-pic/blue.jfif';
 var sectionStyle = {
     width: "100%",
     height: "auto",
-    padding:'45px',
+    padding:'10px',
     backgroundImage: `url(${background})`,
     backgroundSize: 'cover',
   };

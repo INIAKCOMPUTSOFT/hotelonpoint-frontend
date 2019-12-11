@@ -6,15 +6,13 @@ import { faHotel, faPlaneDeparture, faShip, faTaxi } from "@fortawesome/free-sol
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from 'react-router-dom';
 import React from 'react';
+import logo from '../../logo/logo.svg';
 
 function Navbar(){
 return(
   <div>
   <nav class="navbar navbar-expand-lg navbar-light">
-  <button className="mr-auto  navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon bg-light"></span>
-    </button>
-     <Link to="./" class="navbar-brand text-light" href="#">Hotel-on-points</Link>
+  <a className='navbar-brand'><img src={logo} width="45" alt=""/></a>
   <button class="navbar-toggler "  type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon bg-light"></span>
   </button>
@@ -43,7 +41,7 @@ return(
                 <div className="btn-group mr-1 btn-group-sm" role="group" aria-label="Button group with nested dropdown">                                                                                    
                          <div className="btn-group" role="group">
                           <button id="btnGroupDrop1" type="button" className="botin dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                lang
+                                EN
                           </button>
                         
                            
@@ -58,7 +56,7 @@ return(
           <li className="nav-item mr-1">
                 <Link to='/Uploadhotel/'>
                   <button className="botin">
-                        Upload your property
+                        Add your property
                     </button>
                 </Link>
           </li>
@@ -72,20 +70,13 @@ return(
                   Login
               </button></Link>
           </li>
-          <li className="nav-item mr-1">
-                <Link to='/Uploadhotel/'>
-                  <button className="botin">
-                       Attractions
-                    </button>
-                </Link>
-          </li>
       </ul>
   </div>
 </nav>
 
 <nav className="navbar-expand-lg navbar-light bg2 shadow   ">
   
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+   
       <ul className="nav">
         <li className="nav-item">    
           <Link to='/' className="nav-link">
@@ -117,11 +108,16 @@ return(
           <FontAwesomeIcon className="menuicon" icon={faCcVisa} />Visa
             </Link>
         </li>
+        <li className="nav-item">
+          <Link to='/Attraction' className="nav-link">
+          Attractions
+            </Link>
+        </li>
       </ul> 
-      </div>
     </nav>
+  </div>
 
-</div>
+
 
 )
 }

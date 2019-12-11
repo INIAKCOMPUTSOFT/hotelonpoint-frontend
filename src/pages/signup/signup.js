@@ -7,7 +7,7 @@ import background from './backgimage/blue.jfif';
 var sectionStyle = {
     width: "100%",
     height: "auto",
-    padding:'45px',
+    padding:'10px',
     backgroundImage: `url(${background})`,
     backgroundSize: 'cover',
   };
@@ -58,17 +58,17 @@ render(){
 
     return(
         <div style={sectionStyle} >
-        <div className="container mt-3 mb-3">
-    <div className="row">
-        <div className="col-md-4 text-white">
-         <h1> Welcome</h1>
-         <h1>{this.state.fullname}</h1>
-         <h1>Finish filling the form</h1>
-         <h1>To unlock Greate Deals</h1>   
+        <div className="container-fluid mt-3 mb-3">
+    <div className="row ">
+
+    <div className="col-md-6 text-white d-lg-none d-md-block" style={{letterSpacing: 3, lineHeight: 5}}>
+         <h1 style={{fontWeight: 40}}> <span style={{color: "gold"}}>W</span>elcome <span style={{color: "gold"}}>.</span></h1>
+         <h1 style={{textTransform: "capitalize"}}>{this.state.fullname}</h1>  
     </div>
 
-    <div className="col-md-4 ">
-          <div className="card  mb-3 shadow signup-card">
+    <div className="col-md-6  ">
+        <div className="signup-card">
+          <div className="card  mb-3 shadow ">
           
                   <div className="card-body text-dark ">
                   <h5 className="card-title text-dark">Hotel-on-points</h5>
@@ -79,8 +79,8 @@ render(){
                          value={this.state.fullname}
                          onChange={this.handleForm} 
                          className="form-control" 
-                         placeholder="Enter your Fullname"
-                         Label="Fullname"
+                         placeholder="Enter your Full name"
+                         Label="Full name"
                          />
                       </div>
                       <div className="form-group">
@@ -91,7 +91,6 @@ render(){
                          className="form-control" 
                          placeholder="Enter Username"
                          Label="Email"
-                         smallText="your details are safe with us."
                          />
                       </div>
 
@@ -108,7 +107,7 @@ render(){
                          />
                       </div>
 
-                      <div className="form-group">  
+                      <div className="form-group">
                       <Input 
                          type="password"
                          name="confirmPassword" 
@@ -117,7 +116,6 @@ render(){
                          className="form-control" 
                          placeholder="Enter your password again"
                          Label="Confirm Password:"
-                         smallText="your details are safe with us."
                          />
                       </div>
 
@@ -126,9 +124,15 @@ render(){
                   </div>
                 </div>
       </div>
+      </div>
 
-      <div className="col-md-4">
-          </div>
+      <div className="col-md-6 text-white d-none d-lg-block" style={{letterSpacing: 3, lineHeight: 5}}>
+         <h1 style={{fontWeight: 40}}> <span style={{color: "gold"}}>W</span>elcome <span style={{color: "gold"}}>.</span></h1>
+         <h1 style={{textTransform: "capitalize"}}>{this.state.fullname}</h1>
+         <h1>Finish filling the form</h1>
+         <h1>To unlock Great Deals</h1>   
+    </div>
+
     </div>
     </div> 
   </div>

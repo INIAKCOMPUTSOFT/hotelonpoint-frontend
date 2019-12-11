@@ -1,8 +1,12 @@
-.singup-card{
-    padding:50px 5px 50px 5px;
-    background-color:white;
-    box-shadow: 0 2px 4px 0 white, 0 3px 10px white;
+.signup-card{
+    padding-left:20%;
+    padding-right:10px;
     
+  }
+  @media(max-width:998px){
+    .signup-card{
+      padding:0px;
+    }
   }
   .container{
     padding-top:20px;
@@ -18,3 +22,4 @@
   font-weight:bold;
   
 }
+

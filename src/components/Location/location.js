@@ -1,5 +1,6 @@
-import React from 'react'
-import './location.css'
+import './location.css';
+
+import React from 'react';
 
 class HotelLocationDisplay extends React.Component{
 constructor(){
@@ -32,7 +33,7 @@ render(){
   
   <div className="card-body">
     <h5 className="card-title text-dark">{location.city}</h5>
-    <p className="card-text"> about {location.hotels.lenght}</p>
+    {/* <p className="card-text"> about {location.hotels.lenght}</p> */}
    
   </div>
 </div>

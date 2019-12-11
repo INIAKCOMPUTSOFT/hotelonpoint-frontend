@@ -48,7 +48,7 @@ function Footer() {
       <div className="container secondsec">
         <div className="text-light">
           <div className="row">
-            <div className="col-4">
+            <div className="col-3">
               <div className="mb-3">
               <h5>Contact us:</h5>
               <p>
@@ -59,13 +59,8 @@ function Footer() {
                 phone No
               </p>
               </div>
-              <div>
-            <h5>Our payment methods:</h5>
-            <FontAwesomeIcon className="icon" icon={faCcMastercard} />
-            <FontAwesomeIcon className="icon" icon={faCcVisa} />
             </div>
-            </div>
-            <div className="col-4">
+            <div className="col-3">
               <h5>Get to know us:</h5>
               <p>
                 About us
@@ -81,7 +76,7 @@ function Footer() {
                 FAQ
               </p>
             </div>
-            <div className="col-4">
+            <div className="col-3">
               <h5>Other services:</h5>
               <p>
                 List your property
@@ -92,6 +87,12 @@ function Footer() {
                 <br />
                 Visa Assistance
               </p>
+            </div>
+
+            <div className="col-3">
+            <h5>Our payment methods:</h5>
+            <FontAwesomeIcon className="icon" icon={faCcMastercard} />
+            <FontAwesomeIcon className="icon" icon={faCcVisa} />
             </div>
           </div>
         </div>
