@@ -1,12 +1,12 @@
 import "react-toastify/dist/ReactToastify.css";
 import "./signup.css";
 
-import { ToastContainer, toast } from "react-toastify";
 import { getUser, signupUser } from "../../redux/actions/userActions";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { Input } from "../../components/inputs/input1";
 import React from "react";
+import { ToastContainer } from "react-toastify";
 import background from "./backgimage/blue.jfif";
 import { connect } from 'react-redux';
 
@@ -25,29 +25,12 @@ class SignUp extends React.Component {
       email: "",
       password: "",
       fullname: "",
-      confirmpassword: ""
+      confirmpassword: "",
+      isHotelOwner: true
     };
     this.handleForm = this.handleForm.bind(this);
     this.handlesubmit = this.handlesubmit.bind(this);
   }
-
-  showToast = () => {
-    const options = {
-      hideProgressBar: true,
-      // and so on ...
-  };
-    const names = ["ade", "mohamed", "mosalah", "viktor", "ahmed", "eunice", "samael"]
-    const deeds = ["just Booked a hotel", "just listed there property", "just booked a flight", "just got a visa", "just Booked a taxi"]
-    const rand = names[Math.floor(Math.random() * names.length)]
-    const rand2 = deeds[Math.floor(Math.random() * deeds.length)]
-    toast.info(`${rand} ${rand2} `, options)
-  }
-  componentDidMount () {
-    const interval = [20000, 10000, 40000, 80000, 60000, 10000, 10000, 10000]
-    const rand3 = interval[Math.floor(Math.random() * interval.length)]
-    setInterval(this.showToast, rand3)
-  }
-
   handleForm(event) {
     console.log(this.state);
     event.preventDefault();
@@ -62,7 +45,8 @@ class SignUp extends React.Component {
       email: this.state.email,
       password: this.state.password,
       fullName: this.state.fullname,
-      confirmPassword: this.state.confirmpassword
+      confirmPassword: this.state.confirmpassword,
+      isHotelOwner: this.state.isHotelOwner
     };
     this.props.signupUser(data);
   }
