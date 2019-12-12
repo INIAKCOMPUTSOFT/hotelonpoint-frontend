@@ -69,11 +69,12 @@ class SearchBar extends React.Component {
     return (
       <div>
         <div className={this.props.className}>
-          <div className=" container p-3 ">
+          <div className=" container digi p-3 ">
             <div className="search">
+            <h5 className="caption">Unlock great hotels deals...</h5>
               <form>
                 <div className="row no-gutters brow ">
-                  <div className="col-md-3">
+                  <div className="col-md-3 c">
                     <label className="lab">
                       <span classsName="desc">Places, Hotels and Aiports</span>
                       <span className="inpSpan">
@@ -91,7 +92,7 @@ class SearchBar extends React.Component {
                     </label>
                   </div>
 
-                  <div className="col-md-3 text-center" >
+                  <div className="col-md-4 c text-center" >
                     <div>
                       <small className="mt-1" style={{marginBottom: 0}}>Check-in  -  Check-out</small>
                     <DateRangePicker
@@ -115,10 +116,10 @@ class SearchBar extends React.Component {
                     </div>
                   </div>
 
-                  <div className="col-md-3">
-                    <label>Room, Adult, Children</label>
+                  <div className="col-md-4 c">
+                  <label className="bb">Room and Guest</label>
 
-                      <div className="control" data-toggle="modal" data-target="#exampleModal">
+                      <div className="control bb" data-toggle="modal" data-target="#exampleModal">
                         <span>Room {this.state.rooms}</span>{" "}
                         <span> Adult {this.state.adults}</span>{" "}
                         <span> Children {this.state.children}</span>
@@ -139,7 +140,7 @@ class SearchBar extends React.Component {
                               <select
                                 name="rooms"
                                 onChange={this.handleChange}
-                                className="form-control"
+                                className="inp"
                               >
                                 <option value="0">Number of Room</option>
                                 <option value="1">1</option>
@@ -153,7 +154,7 @@ class SearchBar extends React.Component {
                               <select
                                 name="adults"
                                 onChange={this.handleChange}
-                                className="form-control"
+                                className="inp"
                               >
                                 <option value="0"> Number of Adults</option>
                                 <option value="1">1</option>
@@ -167,7 +168,7 @@ class SearchBar extends React.Component {
                               <select
                                 name="children"
                                 onChange={this.handleChange}
-                                className="form-control"
+                                className="inp"
                               >
                                 <option value="0">Number of Children</option>
                                 <option value="1">1</option>

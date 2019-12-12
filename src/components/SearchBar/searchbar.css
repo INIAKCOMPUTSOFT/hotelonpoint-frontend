@@ -1,11 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script&display=swap');
 .form-control{
-    height:50px !important;
+    height:40px !important;
+}
+.caption{
+    font-family:'Dancing Script', cursive;
+    font-size:30px;
+    color:black;
 }
 
-.search{
+.digi{
     background-color:#C4BDA3;
-    height: "490px";
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 20px 30px 0 rgba(0, 0, 0, 0.19);  
+    height:200px;
 }
 .searchicon{
     font-size: 20px;
@@ -26,6 +31,7 @@
 .brow{
     background-color:white;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    margin-top:2%;
 }
 .unlock{
     color:white;
@@ -70,7 +76,7 @@
   }
 
   .desc {
-    font-size: 12px;
+    font-size: 15px;
     color: #999999;
     vertical-align: bottom;
     display: inline-block;
@@ -83,3 +89,15 @@
   .inpSpan {
       display: block;
   }
+@media screen and (max-width:689px){
+
+    .digi{
+        height:300px;
+    }
+    .bb{
+        margin-left:20px;
+    }
+    .c{
+        border: 2px solid #C4BDA3;
+    }
+}

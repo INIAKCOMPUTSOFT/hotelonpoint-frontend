@@ -9,7 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import history from '../../history';
-import logo from "../../logo/logo.svg";
+import logo from '../../logo/HOP.svg';
+
 
 class Navbar extends Component {
 
@@ -29,9 +30,7 @@ class Navbar extends Component {
         {authenticated ? (
           <div>
             <nav class="navbar navbar-expand-lg navbar-light">
-              <a className="navbar-brand">
-                <img src={logo} width="45" alt="" />
-              </a>
+            <span className='navbar-brand'><img src={logo} width="200" alt=""/></span>
               <button
                 class="navbar-toggler "
                 type="button"
@@ -122,8 +121,8 @@ class Navbar extends Component {
                     </Link>
                   </li>)}
                   {userData && (<li className="nav-item mr-1">
-                    <div className="botin">
-                      Welcome {userData.fullName}
+                    <div>
+                    <img src={userData.ImageUrl} alt="..." class="rounded-circle"/> {userData.fullName}
                     </div>
                   </li>)}
                   
@@ -183,9 +182,7 @@ class Navbar extends Component {
         ) : (
           <div>
             <nav class="navbar navbar-expand-lg navbar-light">
-              <a className="navbar-brand">
-                <img src={logo} width="45" alt="" />
-              </a>
+            <span className='navbar-brand'><img src={logo} width="200" alt=""/></span>
               <button
                 class="navbar-toggler "
                 type="button"

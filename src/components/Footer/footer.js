@@ -1,4 +1,5 @@
 import "./footer.css";
+import logo from '../../logo/HOP.svg';
 
 import { faCcMastercard, faCcVisa, faFacebook, faInstagram, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 
@@ -11,7 +12,7 @@ function Footer() {
       <div className="p-3">
         <div className="row ">
           <div className="col-md-4">
-            <h3 className="logo">HOTEL-ON-POINTS</h3>
+          <h1 className='logo'><img src={logo} width="300" alt=""/></h1>
           </div>
 
           <div className="col-md-4">
