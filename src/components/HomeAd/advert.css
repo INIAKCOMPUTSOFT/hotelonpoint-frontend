@@ -7,3 +7,9 @@
     font-family:'Anton', sans-serif;
     color:black;
 }
+
+@media screen and (max-width:680px){
+    .ag{
+        margin-top:100px; 
+    }
+}

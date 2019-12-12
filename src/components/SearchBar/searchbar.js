@@ -5,10 +5,14 @@ import "./searchbar.css";
 import { addDays, format } from "date-fns";
 
 import { DateRangePicker } from "react-dates";
+import DefaultTheme from 'react-dates/lib/theme/DefaultTheme';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import ThemedStyleSheet from 'react-with-styles/lib/ThemedStyleSheet';
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import moment from 'moment';
+
+ThemedStyleSheet.registerTheme(DefaultTheme);
 
 class SearchBar extends React.Component {
   constructor(props) {

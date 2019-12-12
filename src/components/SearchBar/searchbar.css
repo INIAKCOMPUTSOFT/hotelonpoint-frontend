@@ -44,7 +44,7 @@
 
 }
 
-@media only screen and (max-width: 689px) {
+@media only screen and (max-width: 998px) {
     /* For desktop: */
     .unlock{
         color:white;
@@ -89,10 +89,13 @@
   .inpSpan {
       display: block;
   }
-@media screen and (max-width:689px){
+@media screen and (max-width:998px){
 
     .digi{
-        height:300px;
+        height:400px;
+        padding-bottom:5px;
+        margin-bottom:10px;
+        z-index:0.4;
     }
     .bb{
         margin-left:20px;
@@ -100,4 +103,13 @@
     .c{
         border: 2px solid #C4BDA3;
     }
+}
+
+@media screen and (max-width:300px){
+    .digi{
+        height:400px;
+        z-index: inherit 2;
+        
+    }
+
 }

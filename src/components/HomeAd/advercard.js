@@ -1,12 +1,14 @@
+import './advert.css'
+
 import React from 'react'
 import image1 from './adverphotos/abujahotel.jpg'
 import image2 from './adverphotos/hoteloutside.jpg'
 import image3 from './adverphotos/presidenthotel.jpg'
-import './advert.css'
 
 function Advert(){
 
 return(
+  <div className="ag">
     <div class="card border-0 bg-dark text-white mb-3">
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
@@ -67,6 +69,7 @@ return(
   </div>
 </div>
   </div> 
+  </div>
 )
 
 }
