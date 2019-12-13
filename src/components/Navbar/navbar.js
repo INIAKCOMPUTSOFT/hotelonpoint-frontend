@@ -31,7 +31,7 @@ class Navbar extends Component {
         {authenticated ? (
           <div>
             <nav class="navbar navbar-expand-lg navbar-light">
-            <span className='navbar-brand'><img src={logo} width="200" alt=""/></span>
+            <Link to="/"><span className='navbar-brand'><img src={logo} width="200" alt=""/></span></Link>
               <button
                 class="navbar-toggler "
                 type="button"

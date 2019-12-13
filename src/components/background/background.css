@@ -1,3 +1,9 @@
 .sbar {
-    margin-top:50px;
+    margin-top:150px;
+}
+
+@media(max-width:689px){
+    .sbar {
+        margin-top:50px;
+    } 
 }

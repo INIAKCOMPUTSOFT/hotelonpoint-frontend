@@ -1,0 +1,14 @@
+.scrollcontainer {
+    background-color: grey;
+    overflow:auto;
+    white-space: nowrap;
+  }
+  
+  .box {
+    display: inline-block;
+    text-align: center;
+    padding: 14px;
+  }
+  .box:hover {
+    background-color: #777;
+  }

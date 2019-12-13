@@ -71,7 +71,7 @@ class SearchBar extends React.Component {
         <div className={this.props.className}>
           <div className=" container digi">
             <div className="search">
-            <h5 className="caption">Unlock great hotels deals...</h5>
+    <h5 className="caption">{this.props.title}</h5>
               <form>
                 <div className="row no-gutters brow ">
                   <div className="col-md-3 sc">

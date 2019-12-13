@@ -1,15 +1,15 @@
+import CircularProgress from '@material-ui/core/CircularProgress';
+import React from "react";
+import { connect } from "react-redux";
+import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { Input } from "../../components/inputs/input1";
+import history from '../../history';
+import { getUser, loginUser } from "../../redux/actions/userActions";
+import background from "./bacground-pic/blue.jfif";
 import "./login.css";
 
-import { getUser, loginUser } from "../../redux/actions/userActions";
 
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { Input } from "../../components/inputs/input1";
-import React from "react";
-import { ToastContainer } from 'react-toastify';
-import background from "./bacground-pic/blue.jfif";
-import { connect } from "react-redux";
-import history from '../../history';
 
 //import {Link} from 'react-router-dom'
 

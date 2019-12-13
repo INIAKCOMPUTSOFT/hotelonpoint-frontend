@@ -1,14 +1,14 @@
 import React from 'react'
-import SearchBar from '../../components/SearchBar/searchbar'
-import HotelList from '../../components/HotelList/listings'
 import Filter from '../../components/HotelList/filter'
+import HotelList from '../../components/HotelList/listings'
+import SearchBar from '../../components/SearchBar/searchbar'
 
 class MultiListing extends React.Component{
 render(){
 return(
 <div className="container">
     <div>
-        <SearchBar/>
+        <SearchBar title="Unlease greate and outstanding Hotel deals....."/>
     <div className="row">
             <div className="col-md-3">
             <Filter />

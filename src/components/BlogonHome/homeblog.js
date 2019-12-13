@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './homeblog.css';
 
 
@@ -34,8 +33,8 @@ class HomeBlog extends Component {
   )
 
   renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to='/blogapi' />
+    if (this.handleclick) {
+     return<Redirect to='/blogapi' />
     }
   }
   

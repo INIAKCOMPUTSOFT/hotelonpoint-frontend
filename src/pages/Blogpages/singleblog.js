@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Blogsingle from '../../components/SingleBlog/blogsingle'
-import Commentdisplay from '../../components/BlogComment/comment'
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
+import Commentdisplay from '../../components/BlogComment/comment';
+import Blogsingle from '../../components/SingleBlog/blogsingle';
 
 const pics={};
 
@@ -34,9 +34,9 @@ this.setState({blogs : data, loading:false})
 
 console.log(this.state.blogs);
 
-const thirdurl=`https://ota.iniakcomputsoft.com.ng/api/blogs/${blo}/blog_coments`;
-const thirdresponse = await fetch(thirdurl,{
-  headers:{
+const thirdurl=`https://ota.iniakcomputsoft.com.ng/api/blogs/${blo}/
+  heblog_coments`;
+const thirdresponse = await fetch(thirdurl,{aders:{
     methods:'GET',
     'Content-type':'Application/json'
   }

@@ -1,8 +1,8 @@
-import './background.css';
-
 import React from 'react';
 import SearchBar from '../SearchBar/searchbar';
+import './background.css';
 import background from './searchbackgroundimages/hoomage.jpg';
+
 
 var sectionStyle = {
     width: "100%",
@@ -17,7 +17,7 @@ function Background(){
 
     return(
         <div style={sectionStyle}>
-        <SearchBar className="sbar" />
+        <SearchBar className="sbar" title="Unlock great hotels deals..."/>
         </div> 
     )
 

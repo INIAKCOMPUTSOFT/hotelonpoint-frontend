@@ -1,10 +1,11 @@
-import "./footer.css";
-import logo from '../../logo/HOP.svg';
-
 import { faCcMastercard, faCcVisa, faFacebook, faInstagram, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { Link } from 'react-router-dom';
+import logo from '../../logo/HOP.svg';
+import "./footer.css";
+
+
 
 function Footer() {
   return (
@@ -12,7 +13,7 @@ function Footer() {
       <div className="p-3">
         <div className="row ">
           <div className="col-md-4">
-          <h1 className='logo'><img src={logo} width="300" alt=""/></h1>
+          <Link to="/"><h1 className='logo'><img src={logo} width="300" alt=""/></h1></Link>
           </div>
 
           <div className="col-md-4">

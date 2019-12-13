@@ -10,6 +10,7 @@
 
 .digi{
     background-color:#C4BDA3;
+    box-shadow: 2px 2px 2px 2px grey, 2px 2px 2px 2px grey;
     height:200px;
 }
 .searchicon{
@@ -43,7 +44,7 @@
 
 }
 
-@media only screen and (max-width: px) {
+@media only screen and (max-width: 689px) {
     /* For desktop: */
     .unlock{
         color:white;
@@ -92,7 +93,7 @@
 
 @media screen and (max-width:689px){
     .digi{
-        height:300px;
+        height:400px;
         z-index: inherit 2;
         
     }
