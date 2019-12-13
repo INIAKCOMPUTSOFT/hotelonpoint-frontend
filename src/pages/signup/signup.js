@@ -1,14 +1,14 @@
+import CircularProgress from "@material-ui/core/CircularProgress";
+import React from "react";
+import { connect } from 'react-redux';
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Input } from "../../components/inputs/input1";
+import { getUser, signupUser } from "../../redux/actions/userActions";
+import background from "./backgimage/blue.jfif";
 import "./signup.css";
 
-import { ToastContainer, toast } from "react-toastify";
-import { getUser, signupUser } from "../../redux/actions/userActions";
 
-import CircularProgress from "@material-ui/core/CircularProgress";
-import { Input } from "../../components/inputs/input1";
-import React from "react";
-import background from "./backgimage/blue.jfif";
-import { connect } from 'react-redux';
 
 var sectionStyle = {
   width: "100%",
@@ -40,7 +40,10 @@ class SignUp extends React.Component {
     const deeds = ["just Booked a hotel", "just listed there property", "just booked a flight", "just got a visa", "just Booked a taxi"]
     const rand = names[Math.floor(Math.random() * names.length)]
     const rand2 = deeds[Math.floor(Math.random() * deeds.length)]
-    toast.info(`${rand} ${rand2} `, options)
+    toast.info(`${rand} ${rand2} `, {
+      hideProgressBar: true,
+      position: toast.POSITION.BOTTOM_CENTER
+    })
   }
   componentDidMount () {
     const interval = [20000, 10000, 40000, 80000, 60000, 10000, 10000, 10000]
@@ -145,7 +148,7 @@ class SignUp extends React.Component {
                           placeholder="Enter your password again"
                           Label="Confirm Password:"
                         />
-                        {errors && errors.confirmPassword ? (<small className='text-danger'>{errors.password}</small>) : null}
+                        {errors && errors.confirmPassword ? (<small className='text-danger'>{errors.confirmPassword}</small>) : null}
                       </div>
                       <button
                         type="submit"

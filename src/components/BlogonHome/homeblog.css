@@ -7,3 +7,10 @@
     color:white;
     z-index:3;
 }
+.imgd{
+    width:50px;
+     height:10px;
+}
+.btitle{
+    text-transform: capitalize;
+}

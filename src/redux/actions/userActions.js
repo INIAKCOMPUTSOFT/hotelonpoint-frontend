@@ -1,8 +1,8 @@
-import { CLEAR_ERRORS, LOADING_UI, LOADING_USER, SET_ERRORS, SET_UNAUTHENTICATED, SET_USER } from '../type';
-
 import axios from 'axios';
-import history from '../../history';
 import { toast } from "react-toastify";
+import history from '../../history';
+import { CLEAR_ERRORS, LOADING_BLOG, LOADING_UI, LOADING_USER, SET_BLOG, SET_ERRORS, SET_UNAUTHENTICATED, SET_USER } from '../type';
+
 
 const url = 'https://calm-anchorage-14244.herokuapp.com'
 
@@ -22,7 +22,9 @@ export const loginUser = (data, history) => (dispatch) => {
               type: SET_ERRORS,
               payload: err.response.data
           });
-          toast.error(err.response.data.message)
+          toast.error(err.response.data.message, {
+            position: toast.POSITION.BOTTOM_CENTER
+          })
       })
 }
 
@@ -42,7 +44,6 @@ export const getUser = (history) => (dispatch) => {
             type: SET_ERRORS,
             payload: err
         })
-        dispatch(logoutUser(history))
     })
 }
 
@@ -62,7 +63,9 @@ export const signupUser = (newUserData) => (dispatch) => {
               type: SET_ERRORS,
               payload: err.response.data
           })
-          toast.error(err.response.data.message)
+          toast.error(err.response.data.message, {
+            position: toast.POSITION.BOTTOM_CENTER
+          })
       })
 }
 
@@ -81,6 +84,52 @@ export const uploadImage = (FormData) => (dispatch) => {
         dispatch(getUser())
     })
     .catch(err => console.log(err))
+}
+
+export const sendABlog = (data) => dispatch => {
+    dispatch({type : LOADING_BLOG})
+    axios.post(`${url}/blog`, data).then(res => {
+        dispatch({
+            type: SET_BLOG,
+            payload: res.data
+        })
+        
+        history.push('/')
+        toast.success(res.data.message, {
+            position: toast.POSITION.BOTTOM_CENTER
+        })
+    }).catch(err => {
+        console.log(err)
+        dispatch({
+            type: SET_ERRORS,
+            payload: err
+        })
+        toast.error(err.response.data.message, {
+            position: toast.POSITION.BOTTOM_CENTER
+        })
+    })
+}
+
+export const getBlogs = () => dispatch => {
+    dispatch({type: LOADING_BLOG})
+    axios.get(`${url}/blog`)
+    .then(res => {
+        console.log('from A',res.data)
+        dispatch({
+            type: SET_BLOG,
+            payload: res.data
+        })
+        toast.success(res.data.message, {
+            position: toast.POSITION.BOTTOM_CENTER
+        })
+    })
+    .catch(err => {
+        console.log(err)
+        dispatch({
+            type: SET_ERRORS,
+            payload: err
+        })
+    })
 }
 
 const setAuthorizationHeader = (token) => {

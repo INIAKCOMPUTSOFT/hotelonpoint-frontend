@@ -9,4 +9,6 @@ export const SET_ERRORS = 'SET_ERRORS'
 export const LOADING_UI = 'LOADING_UI'
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 
-//data reducers types
+//blog reducers types
+export const SET_BLOG = 'SET_BLOG' 
+export const LOADING_BLOG = 'LOADING_BLOG'

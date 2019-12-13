@@ -1,15 +1,15 @@
-import "./nav.css";
-
-import React, { Component } from "react";
 import { faCcVisa, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { faHotel, faPlaneDeparture, faShip, faTaxi } from "@fortawesome/free-solid-svg-icons";
-import { getUser, logoutUser } from "../../redux/actions/userActions";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import history from '../../history';
 import logo from '../../logo/HOP.svg';
+import { getUser, logoutUser } from "../../redux/actions/userActions";
+import "./nav.css";
+
+
 
 
 class Navbar extends Component {
@@ -26,6 +26,7 @@ class Navbar extends Component {
     const {user: {authenticated, userData}} = this.props
     return (
       <div>
+        <div>
         
         {authenticated ? (
           <div>
@@ -122,7 +123,7 @@ class Navbar extends Component {
                   </li>)}
                   {userData && (<li className="nav-item mr-1">
                     <div>
-                    <img src={userData.ImageUrl} alt="..." class="rounded-circle"/> {userData.fullName}
+                    <img src={userData.imageUrl} alt="..." style={{width: 40, height: 40, marginLeft: 10, marginRight: 10}} className="rounded-circle"/> <span style={{color: "white", marginRight: 10}}>{userData.fullName}</span>
                     </div>
                   </li>)}
                   
@@ -327,6 +328,8 @@ class Navbar extends Component {
             </nav>
           </div>
         )}
+      </div>
+      {this.props.children}
       </div>
     );
   }

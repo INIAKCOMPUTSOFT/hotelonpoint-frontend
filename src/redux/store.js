@@ -1,8 +1,9 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
-
 import thunk from "redux-thunk";
+import blogReducer from './reducers/blogReducers';
 import uiReducers from "./reducers/uiReducers";
 import userReducer from "./reducers/userReducer";
+
 
 const initialState = {};
 
@@ -10,7 +11,8 @@ const middleware = [thunk];
 
 const reducer = combineReducers({
   user: userReducer,
-  UI: uiReducers
+  UI: uiReducers,
+  blog: blogReducer
 });
 
 const composeEnhancer = typeof window == 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?   

@@ -1,18 +1,14 @@
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { addDays, format } from "date-fns";
+import moment from 'moment';
+import React from "react";
+import { DateRangePicker } from "react-dates";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./searchbar.css";
 
-import { addDays, format } from "date-fns";
 
-import { DateRangePicker } from "react-dates";
-import DefaultTheme from 'react-dates/lib/theme/DefaultTheme';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import ThemedStyleSheet from 'react-with-styles/lib/ThemedStyleSheet';
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import moment from 'moment';
-
-ThemedStyleSheet.registerTheme(DefaultTheme);
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -73,12 +69,12 @@ class SearchBar extends React.Component {
     return (
       <div>
         <div className={this.props.className}>
-          <div className=" container digi p-3 ">
+          <div className=" container digi">
             <div className="search">
             <h5 className="caption">Unlock great hotels deals...</h5>
               <form>
                 <div className="row no-gutters brow ">
-                  <div className="col-md-3 c">
+                  <div className="col-md-3 sc">
                     <label className="lab">
                       <span classsName="desc">Places, Hotels and Aiports</span>
                       <span className="inpSpan">
@@ -96,7 +92,7 @@ class SearchBar extends React.Component {
                     </label>
                   </div>
 
-                  <div className="col-md-4 c text-center" >
+                  <div className="col-md-4 sc text-center" >
                     <div>
                       <small className="mt-1" style={{marginBottom: 0}}>Check-in  -  Check-out</small>
                     <DateRangePicker
@@ -120,7 +116,7 @@ class SearchBar extends React.Component {
                     </div>
                   </div>
 
-                  <div className="col-md-4 c">
+                  <div className="col-md-4 sc">
                   <label className="bb">Room and Guest</label>
 
                       <div className="control bb" data-toggle="modal" data-target="#exampleModal">
@@ -192,7 +188,7 @@ class SearchBar extends React.Component {
         </div>
 
                     </div>
-                  <div className="col-md-1">
+                  <div className="col-md-1 ">
                     <button
                       type="submit"
                       onClick={this.handleSubmit}
