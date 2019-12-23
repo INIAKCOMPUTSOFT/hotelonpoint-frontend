@@ -32,7 +32,6 @@ export const getUser = (history) => (dispatch) => {
     dispatch({type: LOADING_USER})
     axios.get(`${url}/user/me`)
     .then(res => {
-        console.log('from A',res.data)
         dispatch({
             type: SET_USER,
             payload: res.data

@@ -1,6 +1,5 @@
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import Axios from "axios";
 import { addDays, format } from "date-fns";
 import moment from 'moment';
@@ -8,7 +7,6 @@ import React from "react";
 import { DateRangePicker } from "react-dates";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
-import { Redirect } from 'react-router-dom';
 import "./searchbar.css";
 
 
@@ -55,6 +53,8 @@ class SearchBar extends React.Component {
     console.log(this.state);
   }
 
+  onSe
+
   handleSubmit(event) {
     event.preventDefault();
     const {result, description, rooms} = this.state;
@@ -82,28 +82,24 @@ class SearchBar extends React.Component {
   };
 
   render() {
-    const {result}=this.state
-    console.log('testting result',result)
+    const {result, description, rooms} = this.state;
+    const filteredResults = result.filter(robot =>{
+      return robot.rooms.length == Number(rooms) || robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase())
+    })
     return (
       <div>
         <div className={this.props.className}>
           <div className=" container digi">
             <div className="search">
-              <h5 className="caption">{this.props.title}</h5>
+    <h5 className="caption">{this.props.title}</h5>
               <form>
                 <div className="row no-gutters brow ">
                   <div className="col-md-3 sc">
-                  <Autocomplete
-                 id="combo-box-demo"
-                    options={result}
-                     getOptionLabel={option => option.propertyInfo.hotelName}
-                      renderInput={params => (
                     <label className="lab">
                       <span classsName="desc">Places, Hotels and Aiports</span>
                       <span className="inpSpan">
                         <input
                           type="text"
-                          {...params}
                           value={this.state.description}
                           onChange={this.handleChange}
                           name="description"
@@ -114,8 +110,6 @@ class SearchBar extends React.Component {
                         />
                       </span>
                     </label>
-                       )}
-                       />
                   </div>
 
                   <div className="col-md-4 sc text-center" >
@@ -227,10 +221,7 @@ class SearchBar extends React.Component {
               </form>
             </div>
             {this.state.searchResult.length > 0 &&
-          <Redirect to={{
-            pathname: '/multilisting',
-            state: {searchResult: this.state.searchResult}
-          }}/>
+          this.props.getFilter(filteredResults)
         }
           </div>
         </div>

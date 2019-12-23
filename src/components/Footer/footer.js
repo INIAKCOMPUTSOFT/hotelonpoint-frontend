@@ -52,7 +52,7 @@ function Footer() {
           <div className="row">
             <div className="col-3">
               <div className="mb-3">
-              <h5>Contact us:</h5>
+              <h5><Link to="/contact" className="link">Contact us:</Link></h5>
               <p>
                 Website Feedback
                 <br />

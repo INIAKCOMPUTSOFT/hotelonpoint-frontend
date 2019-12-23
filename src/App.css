@@ -1,3 +1,27 @@
+.custom-shadow {
+  box-shadow: 0px 0px 1rem rgba(black, 0.3);
+}
+
+.gold {
+  color: #C4BDA3;
+  font-size: 2rem;
+}
+.form-field {
+  outline-color: #C4BDA3 !important;
+}
+Link{
+color:white;
+}
+.wrapper {
+  min-height: 60vh;
+}
+
+.button-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .rowh{
   margin-top:3%;
 }

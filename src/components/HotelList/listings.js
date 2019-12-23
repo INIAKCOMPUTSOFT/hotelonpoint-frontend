@@ -1,28 +1,241 @@
+import { faMapMarker, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Axios from "axios";
+import { addDays } from "date-fns";
+import moment from 'moment';
 import React from "react";
+import { DateRangePicker } from "react-dates";
+import "react-dates/initialize";
+import "react-dates/lib/css/_datepicker.css";
+import { Link } from 'react-router-dom';
+import "./searchbar.css";
+
 
 class HotelList extends React.Component {
   constructor() {
     super();
     this.state = {
-      HotelL: []
-    };
-  }
-
-  async componentDidMount() {
-    const url = "https://ota.iniakcomputsoft.com.ng/api/hotels/";
-    const response = await fetch(url, {
-      methods: "GET",
-      headers: {
-        "Content-type": "Application/json"
+      pagehotel: [],
+      result: [],
+      description: "",
+      checkin: "",
+      rooms: 0,
+      adults: "",
+      startDate: null,
+      endDate: null,
+      children: "",
+      dateRangePickerI: {
+        selection: {
+          startDate: new Date(),
+          endDate: null,
+          key: "selection"
+        },
+        compare: {
+          startDate: new Date(),
+          endDate: addDays(new Date(), 3),
+          key: "compare"
+        }
       }
-    });
-    const data = await response.json();
-    this.setState({ HotelL: data["hydra:member"], loading: false });
-    console.log(this.state.HotelL);
-  }
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    }
+  
+    componentDidMount() {
+      Axios.get('https://calm-anchorage-14244.herokuapp.com/hotel')
+      .then(result => this.setState({result : result.data.data}))
+    }
+  
+    handleChange(event) {
+      event.preventDefault();
+      const { name, value } = event.target;
+      this.setState({ [name]: value });
+      console.log(this.state);
+    }
+  
+    handleSubmit(event) {
+      event.preventDefault();
+      const {result, description, rooms} = this.state;
+      console.log('3213', Number(rooms))
+      console.log('12345', result)
+      const filteredHotel = result.filter(robot =>{
+        return robot.rooms.length == Number(rooms) || robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase())
+      })
+      console.log('123456', filteredHotel)
+      this.setState({ pagehotel: filteredHotel})
+    }
+
+    handleClick=()=>{
+    
+    }
 
   render() {
+    const {result, description, rooms} = this.state;
+    const samepage = this.state.pagehotel
+    const searchedHotel = this.props.location.state.searchResult
+    console.log('123456789', searchedHotel)
+    console.log('same page',this.state.pagehotel)
+    //algo to convert to usable arr
+    const roomss = []
+    searchedHotel.map(hotel => {
+      return hotel.rooms.forEach(room => {
+        roomss.push(JSON.parse(room))
+      })
+    })
+    const filteredHotel = result.filter(robot =>{
+      return robot.rooms.length == Number(rooms) || robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase())
+    })
+    console.log('new', roomss)
     return (
+    <>
+      {/* this is the searchbar */}
+
+<div className="">
+    <div>
+      <div>
+        <div className={this.props.className}>
+          <div className=" container digi">
+            <div className="search">
+    <h5 className="caption">ulease Greate Hotel Deals</h5>
+              <form>
+                <div className="row no-gutters brow ">
+                  <div className="col-md-3 sc">
+                    <label className="lab">
+                      <span classsName="desc">Places, Hotels and Aiports</span>
+                      <span className="inpSpan">
+                        <input
+                          type="text"
+                          value={this.state.description}
+                          onChange={this.handleChange}
+                          name="description"
+                          className="inp"
+                          id="exampleInputEmail1"
+                          aria-describedby="emailHelp"
+                          placeholder="Enter place and hotel name"
+                        />
+                      </span>
+                    </label>
+                  </div>
+
+                  <div className="col-md-4 sc text-center" >
+                    <div>
+                      <small className="mt-1" style={{marginBottom: 0}}>Check-in  -  Check-out</small>
+                    <DateRangePicker
+                      startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+                      startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
+                      endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+                      endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
+                      onDatesChange={({ startDate, endDate }) =>
+                        this.setState({ startDate, endDate })
+                    
+                      } // PropTypes.func.isRequired,
+                      focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                      onFocusChange={focusedInput =>
+                        this.setState({ focusedInput })
+                      } // PropTypes.func.isRequired,
+                      startDatePlaceholderText={moment().format('MMM Do')}
+                      endDatePlaceholderText={moment(new Date().setDate(new Date().getDate() + 1)).format('MMM Do')}
+                      customArrowIcon='/'
+                      noBorder='true'
+                      startDateAriaLabel='Check-in'
+                      className="desc"
+                    />
+                    </div>
+                  </div>
+
+                  <div className="col-md-4 sc">
+                  <label className="bb">Room and Guest</label>
+
+                      <div className="control bb" data-toggle="modal" data-target="#exampleModal">
+                        <span>Room {this.state.rooms}</span>{" "}
+                        <span> Adult {this.state.adults}</span>{" "}
+                        <span> Children {this.state.children}</span>
+                      </div>
+
+                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Select Room Adult and Children Number</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                
+                            <label>Room</label>
+                              <select
+                                name="rooms"
+                                onChange={this.handleChange}
+                                className="inp"
+                              >
+                                <option value="0">Number of Room</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                              </select>
+
+                              <label>Adults</label>
+                              <select
+                                name="adults"
+                                onChange={this.handleChange}
+                                className="inp"
+                              >
+                                <option value="0"> Number of Adults</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                              </select>
+
+                              <label>Children</label>
+                              <select
+                                name="children"
+                                onChange={this.handleChange}
+                                className="inp"
+                              >
+                                <option value="0">Number of Children</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                              </select>
+
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+                    </div>
+                  <div className="col-md-1 ">
+                    <button
+                      type="submit"
+                      onClick={this.handleSubmit}
+                      className="btn-primary sbtn"
+                    >
+                      <FontAwesomeIcon className="searchicon" icon={faSearch} />
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+
+
+      {/* this is the nav filter*/}
       <div className="mt-2">
         <div class="mobilefilter mb-2">
           <button class="btn btn-light jumbotron2">Filter</button>
@@ -58,32 +271,28 @@ class HotelList extends React.Component {
             </li>
           </ul>
         </div>
+        </div>
 
-        {this.state.HotelL[0] ? this.state.HotelL.map((hotels, i) => (
-            <div className=" jumbotron2 mb-3" key={i}>
+{/* this is the listing */}
+                    {/* {samepage.length <= 0 && (<h1>{this.state.description} is Not Found</h1>)} */}
+        {samepage.length >= 1 ? (
+          samepage.map((hotel, i) => (
+            <Link to={`/singlehotel/${hotel._id}`}>
+            <div className=" jumbotron2 mb-3" onClick={this.handleClick} key={i}>
               <div>
                 <div className="row no-gutters">
                   <div className="col-md-4">
                     <div className="card border-0">
                       <div className="card-body">
-                        <img
-                          src={`https://ota.iniakcomputsoft.com.ng/${hotels.hImages[0]["filePath"]}`}
-                          className="pic"
-                        />
+                      <img src={hotel.imagerUrl[0].url} className="pic" alt="..." />
                       </div>
                     </div>
                   </div>
                   <div className="col-md-5">
                     <div className="card border-0">
                       <div className="card-body">
-                        <h5 className="card-title">{hotels.HName}</h5>
-                        <p className="card-text content-text">
-                          350 m from beach <br />
-                          Booked 3 times for your dates in the last 6 hours <br />
-                          Last booked for your dates 1 hour ago <br />
-                          Double or Twin Room - Max people: 2 <br />
-                          only six rooms left! <br />
-                        </p>
+                        <h5>{hotel.propertyInfo.hotelName}</h5>
+                        <p>{hotel.propertyInfo.hotelDescription}</p>
                         <div className="props">
                           <a className="btn btn-outline-success breakfast">
                             <i className="fa fa-spoon"></i>
@@ -93,8 +302,8 @@ class HotelList extends React.Component {
                           </a>
                         </div>
                         <p className="card-text locate">
-                          <i className="fas fa-map-marker-alt fa-1x logo"></i> Eko
-                          hotels Allaba funke Lagos state Nigeria
+                          <FontAwesomeIcon  className="logo" icon={faMapMarker} />
+                           {hotel.propertyInfo.city} 
                         </p>
                       </div>
                     </div>
@@ -107,7 +316,7 @@ class HotelList extends React.Component {
                         <span className="veiw">v</span>
                         <span>views</span>
   
-                        <p className="card-subtitle price">NGN 5,000</p>
+                        <p className="card-subtitle price">{roomss[0].roomPrice}</p>
   
                         <p className="text-muted pernight">per night</p>
                         <div className="rateing">
@@ -131,9 +340,83 @@ class HotelList extends React.Component {
                 </div>
               </div>
             </div>
-          )) : (<p>Loading....</p>)}
-      </div>
+            </Link>
+            ))
+
+        ):(
+           searchedHotel.map((hotel, i) => (
+            <Link to={`/singlehotel/${hotel._id}`}>
+            <div className=" jumbotron2 mb-3" onClick={this.handleClick} key={hotel.id}>
+              <div>
+                <div className="row no-gutters">
+                  <div className="col-md-4">
+                    <div className="card border-0">
+                      <div className="card-body">
+                      <img src={hotel.imagerUrl[0].url} className="pic" alt="..." />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-5">
+                    <div className="card border-0">
+                      <div className="card-body">
+                        <h5>{hotel.propertyInfo.hotelName}</h5>
+                        <p>{hotel.propertyInfo.hotelDescription}</p>
+                        <div className="props">
+                          <a className="btn btn-outline-success breakfast">
+                            <i className="fa fa-spoon"></i>
+                          </a>
+                          <a className="btn btn-success wifi">
+                            <i className="fa fa-wifi fa-1x"></i>
+                          </a>
+                        </div>
+                        <p className="card-text locate">
+                          <FontAwesomeIcon  className="logo" icon={faMapMarker} />
+                           {hotel.propertyInfo.city} 
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    <div className="card border-0">
+                      <div className="card-body">
+                        <h6 className="mb-2 text-muted veiws">2,098</h6>
+  
+                        <span className="veiw">v</span>
+                        <span>views</span>
+  
+                        <p className="card-subtitle price">{roomss[0].roomPrice}</p>
+  
+                        <p className="text-muted pernight">per night</p>
+                        <div className="rateing">
+                          <p className="">
+                            <i className="fas fa-star rates"></i>
+                            <i className="fas fa-star rates"></i>
+                            <i className="fas fa-star rates"></i>
+                            <i className="fas fa-star rates"></i>
+                            <i className="fas fa-star rates"></i>
+                          </p>
+                        </div>
+                        <a
+                          href="#"
+                          className="card-link btn btn-sm btn-danger cheker"
+                        >
+                          Check this out
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </Link>
+            ))
+      
+        )}
+      </>
     );
   }
+  
+ 
+
 }
 export default HotelList;

@@ -1,8 +1,8 @@
-import CircularProgress from "@material-ui/core/CircularProgress";
 import React from 'react';
-import Files from 'react-files';
+import { CircularProgress } from 'react-bootstrap';
+import { Files } from 'react-files';
 import { connect } from 'react-redux';
-import { ToastContainer } from "react-toastify";
+import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { sendABlog } from '../../redux/actions/userActions';
 import Back from './BlogBackimag/road.jpeg';
@@ -66,7 +66,8 @@ handleForm=(event)=> {
         form.append('image', this.state.image[x]);
       }
       this.setState({loading : true})
-      this.props.sendABlog(form)
+      //console.log('here', form.getAll`('image'))
+      // this.props.sendABlog(form)
   }
     
 

@@ -1,12 +1,12 @@
-import { Redirect, Route } from 'react-router-dom'
-
 import React from 'react'
 import { connect } from 'react-redux'
+import { Route } from 'react-router-dom'
+
 
 const CheckNotAuth = ({component: Component, authenticated, ...rest}) => (
     <Route 
         {...rest}
-        render = {(props) => authenticated === true ? <Redirect to='/dashboard' /> : <Component {...props} />}
+        render = {(props) => authenticated === false && <Component {...props} /> }
     />
 )
 

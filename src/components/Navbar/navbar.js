@@ -14,9 +14,9 @@ import "./nav.css";
 
 class Navbar extends Component {
 
-  componentDidMount() {
-    this.props.getUser()
-  }
+  // componentDidMount() {
+  //   this.props.getUser()
+  // }
 
   signout = () => {
     this.props.logoutUser(history);
@@ -41,7 +41,7 @@ class Navbar extends Component {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
-                <span class="navbar-toggler-icon bg-light"></span>
+                <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <ul className="navbar-nav ml-auto">
@@ -112,15 +112,11 @@ class Navbar extends Component {
                     </div>
                   </li>
 
-                  {authenticated ? (<li className="nav-item mr-1">
-                    <Link to="/login">
+                  (<li className="nav-item mr-1">
+                    <Link to="/listproperty">
                       <button className="botin">Add your property</button>
                     </Link>
-                  </li>) : (<li className="nav-item mr-1">
-                    <Link to="/Uploadhotel">
-                      <button className="botin">Add your property</button>
-                    </Link>
-                  </li>)}
+                  </li>
                   {userData && (<li className="nav-item mr-1">
                     <div>
                     <img src={userData.imageUrl} alt="..." style={{width: 40, height: 40, marginLeft: 10, marginRight: 10}} className="rounded-circle"/> <span style={{color: "white", marginRight: 10}}>{userData.fullName}</span>
@@ -265,7 +261,7 @@ class Navbar extends Component {
                   </li>
 
                   <li className="nav-item mr-1">
-                    <Link to="/uploadhotel">
+                    <Link to="/login">
                       <button className="botin">Add your property</button>
                     </Link>
                   </li>
@@ -329,7 +325,7 @@ class Navbar extends Component {
           </div>
         )}
       </div>
-      {this.props.children}
+      {/* {this.props.children} */}
       </div>
     );
   }

@@ -6,10 +6,14 @@ import jwtDecode from "jwt-decode";
 import React from "react";
 import { Route, Router, Switch } from "react-router-dom";
 import "./App.css";
-import BlogForm from './components/blogForm/blogform';
+import BookingForm from "./components/bookingform/bookingform";
+import Contact from './components/contact/contact';
 import Footer from "./components/Footer/footer";
+import FormWrapper from "./components/HotelUploadForm/FormWrapper";
 import Blogapi from "./components/Multiblog/blogapi";
 import Navbar from "./components/Navbar/navbar";
+import Payment from "./components/payment/payment";
+import RealForm from './components/realform';
 import SingleHotel from "./components/singlehotel/singlehotel";
 import history from './history';
 import Singleblog from "./pages/Blogpages/singleblog";
@@ -50,12 +54,17 @@ function route() {
                 component={Singleblog}
               />
               <Route exact path="/" component={HotelHome} />
+              <Route exact path="/realform" component={RealForm} />
               <Route exact path="/login" component={Login} />
-              <Route exact path="/signup" component={Signup} />
-              <CheckAuth exact path='/Uploadhotel' component={Hsignup} />
-              <CheckAuth exact path="/blogform" component={BlogForm} />
               <Route exact path="/multilisting" component={MultiListing} />
-              <Route exact path="/singlehotel" component={SingleHotel} />
+              <Route exact path="/singlehotel/:hotelId" component={SingleHotel} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/contact" component={Contact} />
+              <Route exact path="/payment" component={Payment} />
+              <Route exact path="/bookingform" component={BookingForm} />
+              <Route exact path="/listproperty" component={FormWrapper} />
+              <CheckAuth exact path='/Uploadhotel' component={Hsignup} />
+              {/* <CheckAuth exact path="/blogform" component={BlogForm} /> */}
           </Switch>
         </div>
         <Footer />
