@@ -1,5 +1,6 @@
 import Axios from "axios";
 import React from "react";
+import { Link } from 'react-router-dom';
 import "./singlehotel.css";
 
 class SingleHotel extends React.Component {
@@ -51,35 +52,27 @@ class SingleHotel extends React.Component {
     return (
       <div>
         <div>
+          {/* <div>
+            {Hh.imagerUrl &&(
+              Hh.imagerUrl.map(IURL =>(
+              
+                  <img src={IURL.url} alt="" />
+              
+
+              ))
+            )
+            }
+          
+          </div> */}
           <div className="scrollercontainer">
-            <div className="box">
-              <img src="" alt="" />
-              <p>testing</p>
-            </div>
-            <div className="box">
-              <img src="" alt="" />
-              <p>testing</p>
-            </div>
-            <div className="box">
-              <img src="" alt="" />
-              <p>testing</p>
-            </div>
-            <div className="box">
-              <img src="" alt="" />
-              <p>testing</p>
-            </div>
-            <div className="box">
-              <img src="" alt="" />
-              <p>testing</p>
-            </div>
-            <div className="box">
-              <img src="" alt="" />
-              <p>testing</p>
-            </div>
-            <div className="box">
-              <img src="" alt="" />
-              <p>testing</p>
-            </div>
+            {/* <div className="box">
+            {Hh.imagerUrl &&(
+              Hh.imagerUrl.map(IURL =>(              
+                  <img src={IURL.url} weidth="90%" height="150"alt="" />           
+              ))
+            )
+            }
+            </div> */}
           </div>
         </div>
 
@@ -94,8 +87,8 @@ class SingleHotel extends React.Component {
              <h5>Hotel Description</h5>   
             {Hh.propertyInfo && (
               <>
-              <p className="text-center"> {Hh.propertyInfo.hotelDescription} </p>
-              <p className="text-center">{Hh.propertyInfo.country}, {Hh.propertyInfo.state}, {Hh.propertyInfo.city}</p>
+              <p className=""> {Hh.propertyInfo.hotelDescription} </p>
+              <p className="">{Hh.propertyInfo.country}, {Hh.propertyInfo.state}, {Hh.propertyInfo.city}</p>
               </>
             )}
           </div>
@@ -106,7 +99,7 @@ class SingleHotel extends React.Component {
               {Hh.hotelPolicy &&
                 Hh.hotelPolicy.hotelAmenities.map(Amenities => (
                   <div className="col-md-4">
-                    <p className="text-center"> {JSON.parse(Amenities)} </p>
+                    <p className=""> {JSON.parse(Amenities)} </p>
                   </div>
                 ))}
             </div>
@@ -139,7 +132,7 @@ class SingleHotel extends React.Component {
                  
                         <p>{room.bedType}</p>
                         <p>{room.bedNumber}</p>
-                        {JSON.parse(room.roomAmenities).map(amenities=>(
+                        {room.roomAmenities.map(amenities=>(
                           <p>{amenities}</p>
                         ))}
                         <p className="card-text locate">
@@ -173,12 +166,14 @@ class SingleHotel extends React.Component {
                         <p className="card-subtitle price">{room.roomPrice}</p>
   
                         <p className="text-muted pernight">per night</p>
+                        <Link to="/bookinform">
                         <a
                           href="#"
                           className="card-link btn btn-sm btn-primary cheker"
                         >
                          Book this room
                         </a>
+                        </Link>
                         <p>Standard Rate: {room.standardRate}</p>
                         <p>Weekend Rate: {room.weekendRate}</p>
                       </div>
