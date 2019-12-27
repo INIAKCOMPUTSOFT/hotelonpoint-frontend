@@ -1,6 +1,7 @@
 import CircularProgress from "@material-ui/core/CircularProgress";
 import React from "react";
 import { connect } from 'react-redux';
+import { Link} from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Input } from "../../components/inputs/input1";
@@ -162,6 +163,7 @@ class SignUp extends React.Component {
                         {loading && <CircularProgress size={30} />}
                       </button>
                       <ToastContainer />
+                      <p>Have an account ? <Link to="/login">Sign In</Link> </p>
                     </div>
                   </div>
                 </div>

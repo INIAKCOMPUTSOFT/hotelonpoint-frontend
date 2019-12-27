@@ -196,7 +196,8 @@ import './bookingform.css';
 
 
                               </div>
-                              <div class="tab-pane fade" id="pills-payonarrival" role="tabpanel" aria-labelledby="pills-payonarrival-tab">last tab</div>
+                              {/* last tab */}
+                              <div class="tab-pane fade" id="pills-payonarrival" role="tabpanel" aria-labelledby="pills-payonarrival-tab">  </div>
                               </div>
                             </div>
                         </div>

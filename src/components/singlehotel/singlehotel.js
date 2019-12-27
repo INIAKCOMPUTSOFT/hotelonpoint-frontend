@@ -166,7 +166,7 @@ class SingleHotel extends React.Component {
                         <p className="card-subtitle price">{room.roomPrice}</p>
   
                         <p className="text-muted pernight">per night</p>
-                        <Link to="/bookinform">
+                        <Link to="/bookingform">
                         <a
                           href="#"
                           className="card-link btn btn-sm btn-primary cheker"
