@@ -1,16 +1,15 @@
-import { faCcVisa, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import { faHotel, faPlaneDeparture, faShip, faTaxi } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import history from '../../history';
-import logo from '../../logo/HOP.svg';
-import { getUser, logoutUser } from "../../redux/actions/userActions";
 import "./nav.css";
 
+import React, { Component } from "react";
+import { faCcVisa, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { faHotel, faPlaneDeparture, faShip, faTaxi } from "@fortawesome/free-solid-svg-icons";
+import { getUser, logoutUser } from "../../redux/actions/userActions";
 
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import history from '../../history';
+import logo from '../../logo/HOP.svg';
 
 class Navbar extends Component {
 
@@ -30,10 +29,10 @@ class Navbar extends Component {
         
         {authenticated ? (
           <div>
-            <nav class="navbar navbar-expand-lg navbar-light">
+            <nav className="navbar navbar-expand-lg navbar-light">
             <Link to="/"><span className='navbar-brand'><img src={logo} width="200" alt=""/></span></Link>
               <button
-                class="navbar-toggler "
+                className="navbar-toggler "
                 type="button"
                 data-toggle="collapse"
                 data-target="#navbarTogglerDemo01"
@@ -41,9 +40,9 @@ class Navbar extends Component {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
-                <span class="navbar-toggler-icon"></span>
+                <span className="navbar-toggler-icon"></span>
               </button>
-              <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+              <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <ul className="navbar-nav ml-auto">
                   <li className="number  mr-1">
                     <div
@@ -64,7 +63,7 @@ class Navbar extends Component {
                         </button>
 
                         <div
-                          class="dropdown-menu"
+                          className="dropdown-menu"
                           aria-labelledby="dropdownMenu2"
                         >
                           <Link to="/language/" className="dropdown-item">
@@ -178,10 +177,10 @@ class Navbar extends Component {
           </div>
         ) : (
           <div>
-            <nav class="navbar navbar-expand-lg navbar-light">
+            <nav className="navbar navbar-expand-lg navbar-light">
             <span className='navbar-brand'><img src={logo} width="200" alt=""/></span>
               <button
-                class="navbar-toggler "
+                className="navbar-toggler "
                 type="button"
                 data-toggle="collapse"
                 data-target="#navbarTogglerDemo01"
@@ -189,9 +188,9 @@ class Navbar extends Component {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
-                <span class="navbar-toggler-icon bg-light"></span>
+                <span className="navbar-toggler-icon bg-light"></span>
               </button>
-              <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+              <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
                 <ul className="navbar-nav ml-auto">
                   <li className="number  mr-1">
                     <div
@@ -212,7 +211,7 @@ class Navbar extends Component {
                         </button>
 
                         <div
-                          class="dropdown-menu"
+                          className="dropdown-menu"
                           aria-labelledby="dropdownMenu2"
                         >
                           <Link to="/language/" className="dropdown-item">

@@ -9,15 +9,15 @@ function Advert(){
 
 return(
   <div className="ag">
-    <div class="card border-0 bg-dark text-white mb-3">
-    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+    <div className="card border-0 bg-dark text-white mb-3">
+    <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel">
+  <ol className="carousel-indicators">
+    <li data-target="#carouselExampleCaptions" data-slide-to="0" className="active"></li>
     <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
     <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
   </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
+  <div className="carousel-inner">
+    <div className="carousel-item active">
       <div className="row no-gutters">
         <div className="col-md-3">
           <div className="card shadow p-4 border-0 rounded-0">
@@ -33,7 +33,7 @@ return(
       </div>
     </div>
 
-    <div class="carousel-item">
+    <div className="carousel-item">
     <div className="row no-gutters">
       <div className="col-md-9">
       <div className="card border-0 rounded-0">
@@ -50,7 +50,7 @@ return(
         </div>
     </div>
 
-    <div class="carousel-item">
+    <div className="carousel-item">
     <div className="row no-gutters">
         <div className="col-md-3">
           <div className="card shadow p-4 border-0 rounded-0">

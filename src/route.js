@@ -1,34 +1,39 @@
 //eslint disable sort import
-import axios from "axios";
+
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import jwtDecode from "jwt-decode";
-import React from "react";
-import { Route, Router, Switch } from "react-router-dom";
 import "./App.css";
+<<<<<<< HEAD
 import BlogForm from './components/blogForm/blogform';
+=======
+
+import { Route, Router, Switch } from "react-router-dom";
+import { getUser, logoutUser } from './redux/actions/userActions';
+
+import BlogForm from "./components/blogForm/blogform";
+import Blogapi from "./components/Multiblog/blogapi";
+>>>>>>> d6ca11ebed30f51d983da51bf604b4045e9e4178
 import BookingForm from "./components/bookingform/bookingform";
+import CheckAuth from './pages/checkAuth';
 import Contact from './components/contact/contact';
 import Footer from "./components/Footer/footer";
 import FormWrapper from "./components/HotelUploadForm/FormWrapper";
-import Blogapi from "./components/Multiblog/blogapi";
-import Navbar from "./components/Navbar/navbar";
-import Payment from "./components/payment/payment";
-import RealForm from './components/realform';
-import SingleHotel from "./components/singlehotel/singlehotel";
-import history from './history';
-import Singleblog from "./pages/Blogpages/singleblog";
-import CheckAuth from './pages/checkAuth';
 import HotelHome from "./pages/Hotelpages/Accomodation";
-import MultiListing from "./pages/Hotelpages/multilisting";
 import Hsignup from "./pages/Hsignup/Hsignup";
 import Login from "./pages/login";
-import Signup from "./pages/signup/signup";
-import { getUser, logoutUser } from './redux/actions/userActions';
-import store from "./redux/store";
+import MultiListing from "./pages/Hotelpages/multilisting";
+import Navbar from "./components/Navbar/navbar";
+import Payment from "./components/payment/payment";
+import React from "react";
+import RealForm from './components/realform';
 import { SET_AUTHENTICATED } from './redux/type';
-
-
+import Signup from "./pages/signup/signup";
+import SingleHotel from "./components/singlehotel/singlehotel";
+import Singleblog from "./pages/Blogpages/singleblog";
+import axios from "axios";
+import history from './history';
+import jwtDecode from "jwt-decode";
+import store from "./redux/store";
 
 function route() {
   const token = localStorage.JWT_TOKEN;
@@ -62,10 +67,14 @@ function route() {
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/contact" component={Contact} />
               <Route exact path="/payment" component={Payment} />
-              <Route exact path="/bookingform" component={BookingForm} />
+              <Route exact path="/bookingform/:roomid" component={BookingForm} />
               <Route exact path="/listproperty" component={FormWrapper} />
               <CheckAuth exact path='/Uploadhotel' component={Hsignup} />
+<<<<<<< HEAD
               <CheckAuth exact path="/blogform" component={BlogForm} />
+=======
+               <CheckAuth exact path="/blogform" component={BlogForm} /> 
+>>>>>>> d6ca11ebed30f51d983da51bf604b4045e9e4178
           </Switch>
         </div>
         <Footer />

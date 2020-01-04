@@ -1,6 +1,7 @@
 import CircularProgress from '@material-ui/core/CircularProgress';
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { Input } from "../../components/inputs/input1";
@@ -100,7 +101,7 @@ class Login extends React.Component {
                       )}
                     </button>
                   </div>
-                  <p>No account sign up </p>
+                  <p>No account <Link to="/signup">SignUp</Link> </p>
                 </div>
               </div>
             </div>
