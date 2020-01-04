@@ -1,7 +1,7 @@
-import React from 'react'
-import {Input2} from '../inputs/input1'
+import { Input2 } from '../inputs/input1';
+import React from 'react';
 
- class Filter extends React.Component{
+class Filter extends React.Component{
     constructor(){
         super();
         this.state={
@@ -12,9 +12,9 @@ import {Input2} from '../inputs/input1'
 
     render(){
         return(
-            <div class="card text-dark mt-2  mb-3 border filter">
-            <div class="card-header">Filter</div>
-            <div class="card-body">
+            <div className="card text-dark mt-2  mb-3 border filter">
+            <div className="card-header">Filter</div>
+            <div className="card-body">
             <p><b>your budget</b></p>
               <Input2
               type="checkbox"

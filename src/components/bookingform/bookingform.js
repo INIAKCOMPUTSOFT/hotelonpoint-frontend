@@ -1,14 +1,13 @@
-import React from 'react';
-import Payment from '../payment/payment';
+import './bookingform.css';
+
 import Access from './bankicons/access.png';
 import Firstbank from './bankicons/firstbank.png';
 import GTB from './bankicons/gtb.png';
+import Payment from '../payment/payment';
+import React from 'react';
 import Zenith from './bankicons/zenith.png';
-import './bookingform.css';
 
-
-
- class BookingForm extends React.Component{
+class BookingForm extends React.Component{
     constructor(props){
         super();
         this.state={
@@ -87,18 +86,55 @@ import './bookingform.css';
                           </div>  
                           </div>                            
                           </div>
+
                           <div class="row no-gutters">
+                                      <div class="col-md-6">
+                                       <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" class="form-control" onChange={this.handlechange} name="email" aria-describedby="emailHelp" placeholder="user@example.com"/>
+                                        <small id="emailHelp" class="form-text text-muted">We will send your booking confirmation (including the hotel's contact information) to this email.
+Please ensure your email is entered correctly.
+                                        </small>
+                                        </div>
+                                      </div>
+                                      <div class="col-md-6"></div>
+                                  </div>
+                                  <div class="row no-gutters">
+                                    <div class="col-md-6">
+                                            <div class="form-group">
+                                                    <label for="exampleInputEmail1">Mobile number</label>
+                                                    <input type="" class="form-control" name="phone" onChange={this.handlechange} aria-describedby="emailHelp" placeholder="Enter mobile number"/>
+                                                    <small id="emailHelp" class="form-text text-muted">We’ll only contact you in an emergency</small>
+                                                  </div>
+                                    </div>
+                                    <div class="col-md-6"></div>
+                                </div>
+
+                          {/* <div class="row no-gutters">
                           <div class="col-md-6"></div>
+                          </div> */}
+                          </div>             
                           </div>
-                          <div class="row no-gutters">
-                          <p>Please include details of your requests (e.g. roll away beds, late check in, accessible bathroom). If they can be met, the property will send you a confirmation email within 24 hours of making this booking. If you don’t hear from the property, please contact them directly. Special requests and accessibility options are not guaranteed and may incur additional charges.</p>
-                          <div class="col-md-6">
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                          <div class="col-sm-12">
+                              <div class="card shadow p-3 mb-2 bg-white rounded">
+                               
+                                  <div class="card-body">
+                                  <h5 className="text-dark">
+                                Special Request
+                                <small class="text-muted"> (optional)</small> 
+                                </h5>
+                                  <div class="row no-gutters">
+                          <p>Your requests will be passed on to the hotel but cannot be guaranteed.</p>
+                          <div class="col-md-12">
                           <div class="form-group">
-                          <label for="exampleFormControlTextarea1"></label>
-                          <textarea class="form-control" name="extra-request" onChange={this.handlechange} rows="3"></textarea>
+                          <label for="exampleFormControlTextarea1">Extra request</label>
+                          <textarea class="form-control txa" id="exampleFormControlTextarea1" name="extra-request" onChange={this.handlechange} ></textarea>
                           </div>
                           </div>
-                          <div class="col-md-6"></div>
+                          {/* <div class="col-md-6"></div> */}
                           </div>
                           <div class="row mb-1">
                           <div class="col-md-6">
@@ -115,35 +151,6 @@ import './bookingform.css';
                           <div class="col-md-6">              
                           </div>
                           </div>
-                          </div>             
-                          </div>
-                        </div>
-                    </div>
-                    <div class="row mb-1">
-                          <div class="col-sm-12">
-                              <div class="card shadow p-3 mb-2 bg-white rounded">
-                                  <div class="card-body">
-                                    <div class="row no-gutters">
-                                      <div class="col-md-6">
-                                       <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" onChange={this.handlechange} name="email" aria-describedby="emailHelp" placeholder="user@example.com"/>
-                                        <small id="emailHelp" class="form-text text-muted">Your confirmation email goes here
-                                        </small>
-                                        </div>
-                                      </div>
-                                      <div class="col-md-6"></div>
-                                  </div>
-                                  <div class="row no-gutters">
-                                    <div class="col-md-6">
-                                            <div class="form-group">
-                                                    <label for="exampleInputEmail1">Mobile number</label>
-                                                    <input type="" class="form-control" name="phone" onChange={this.handlechange} aria-describedby="emailHelp" placeholder="Enter mobile number"/>
-                                                    <small id="emailHelp" class="form-text text-muted">We’ll only contact you in an emergency</small>
-                                                  </div>
-                                    </div>
-                                    <div class="col-md-6"></div>
-                                </div>
                                 <div class="row mb-1">
                                   <div class="col-md-12">
                                           <div class="form-check">
@@ -159,6 +166,22 @@ import './bookingform.css';
                               </div>
                           </div>
                       </div>
+
+                      <div class="row mb-1">
+                              <div class="col-sm-12">
+                                  <div class="card shadow p-3 mb-2 bg-white rounded">
+                                      <div class="card-body">
+                                       <p>The charges below are included in your overall room price:</p>
+                                       <p>New Year's Eve gala dinner fee</p>
+                                       <p>Christmas Eve gala dinner fee</p>
+                                       <br/>
+                                        <h4>Reservation Terms & Conditions of Booking</h4>
+                                        <hr/>
+                                       <p>By clicking "Book", you agree you have read and accept our <a href="">Terms and Conditions</a>  and <a href="">Privacy Policy</a> </p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
       
                       <div class="row mb-1">
                         <div class="col-md-12">
@@ -203,21 +226,7 @@ import './bookingform.css';
                         </div>
                     </div>
       
-                      <div class="row mb-1">
-                              <div class="col-sm-12">
-                                  <div class="card shadow p-3 mb-2 bg-white rounded">
-                                      <div class="card-body">
-                                       <p>The charges below are included in your overall room price:</p>
-                                       <p>New Year's Eve gala dinner fee</p>
-                                       <p>Christmas Eve gala dinner fee</p>
-                                       <br/>
-                                        <h4>Reservation Terms & Conditions of Booking</h4>
-                                        <hr/>
-                                       <p>By clicking "Book", you agree you have read and accept our <a href="">Terms and Conditions</a>  and <a href="">Privacy Policy</a> </p>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
+                      
                           <div className="row">
                             <div className="col-md-12">
                               <button className="btn btn-block btn-primary">Book</button>

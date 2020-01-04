@@ -1,11 +1,11 @@
-import { faCcMastercard, faCcVisa, faFacebook, faInstagram, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import { Link } from 'react-router-dom';
-import logo from '../../logo/HOP.svg';
 import "./footer.css";
 
+import { faCcMastercard, faCcVisa, faFacebook, faInstagram, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from 'react-router-dom';
+import React from "react";
+import logo from '../../logo/HOP.svg';
 
 function Footer() {
   return (
@@ -20,14 +20,14 @@ function Footer() {
             <label className="label text-center">
               Subscribe to get the latest of deals
             </label>
-            <div class="input-group">
+            <div className="input-group">
               <input
                 type="email"
                 name="email"
                 className="form-control"
                 placeholder="youremail@example.com"
               />
-              <div class="input-group-append">
+              <div className="input-group-append">
                 <input
                   type="submit"
                   className=" d-inline btn btn-sm btn-light"
@@ -52,13 +52,19 @@ function Footer() {
           <div className="row">
             <div className="col-3">
               <div className="mb-3">
-              <h5><Link to="/contact" className="link">Contact us:</Link></h5>
+              <h5>Contact us:</h5>
               <p>
-                Website Feedback
+                Chat Support
+                <br />
+                Email Support
                 <br />
                 Whatsapp
                 <br />
                 phone No
+                <br />
+                <Link to="/contact" className="link">
+                  Physical Location
+                </Link>
               </p>
               </div>
             </div>

@@ -1,14 +1,41 @@
-.scrollcontainer {
-    background-color: grey;
-    overflow:auto;
+.flow {
+    background-color:black;
+    overflow:hidden;
     white-space: nowrap;
+    padding-bottom:0px;
   }
-  
-  .box {
-    display: inline-block;
-    text-align: center;
-    padding: 14px;
+  .app-image-gallery{
+    height:px;
+  } 
+  /* .bod{
+    margin-top:250px;
   }
-  .box:hover {
-    background-color: #777;
+
+  @media (max-width:970px){
+    .bod{
+      margin-top:0px;
+    }
   }
+
+  @media (max-width:698px){
+    .bod{
+      margin-top:-100px;
+    }
+  }
+
+  @media (max-width:360px){
+    .bod{
+      margin-top:-200px;
+    }
+  } */
+
+  .pic{
+    height:200px;
+  }
+
+.loadingicon{
+  height:60vh;
+  display:flex;
+  align-items:center;
+  justify-content:center
+}

@@ -1,17 +1,16 @@
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import Axios from "axios";
-import { addDays, format } from "date-fns";
-import moment from 'moment';
-import React from "react";
-import { DateRangePicker } from "react-dates";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
-import { Redirect } from 'react-router-dom';
 import "./searchbar.css";
 
+import { addDays, format } from "date-fns";
 
+import Axios from "axios";
+import { DateRangePicker } from "react-dates";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+import { Redirect } from 'react-router-dom';
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import moment from 'moment';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -93,17 +92,12 @@ class SearchBar extends React.Component {
               <form>
                 <div className="row no-gutters brow ">
                   <div className="col-md-3 sc">
-                  <Autocomplete
-                 id="combo-box-demo"
-                    options={result}
-                     getOptionLabel={option => option.propertyInfo.hotelName}
-                      renderInput={params => (
+                  
                     <label className="lab">
-                      <span classsName="desc">Places, Hotels and Aiports</span>
+                      <span className="desc">Places, Hotels and Aiports</span>
                       <span className="inpSpan">
                         <input
                           type="text"
-                          {...params}
                           value={this.state.description}
                           onChange={this.handleChange}
                           name="description"
@@ -113,9 +107,7 @@ class SearchBar extends React.Component {
                           placeholder="Enter place and hotel name"
                         />
                       </span>
-                    </label>
-                       )}
-                       />
+                    </label>              
                   </div>
 
                   <div className="col-md-4 sc text-center" >
@@ -136,7 +128,7 @@ class SearchBar extends React.Component {
                       startDatePlaceholderText={moment().format('MMM Do')}
                       endDatePlaceholderText={moment(new Date().setDate(new Date().getDate() + 1)).format('MMM Do')}
                       customArrowIcon='/'
-                      noBorder='true'
+                      noBorder={true}
                       startDateAriaLabel='Check-in'
                     />
                     </div>
@@ -151,16 +143,16 @@ class SearchBar extends React.Component {
                         <span> Children {this.state.children}</span>
                       </div>
 
-                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Select Room Adult and Children Number</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <div className="modal fade" id="exampleModal"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Select Room Adult and Children Number</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
-                          <div class="modal-body">
+                          <div className="modal-body">
                 
                             <label>Room</label>
                               <select
@@ -206,8 +198,8 @@ class SearchBar extends React.Component {
 
 
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">Ok</button>
               </div>
             </div>
           </div>

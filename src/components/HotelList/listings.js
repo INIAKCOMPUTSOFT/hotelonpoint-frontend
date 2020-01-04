@@ -1,20 +1,24 @@
-import { faMapMarker, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Axios from "axios";
-import { addDays } from "date-fns";
-import moment from 'moment';
-import React from "react";
-import { DateRangePicker } from "react-dates";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
-import { Link } from 'react-router-dom';
 import "./searchbar.css";
 
+import { faMapMarker, faSearch } from '@fortawesome/free-solid-svg-icons';
+
+import Axios from "axios";
+import { DateRangePicker } from "react-dates";
+import Filter from './filter';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
+import React from "react";
+import { addDays } from "date-fns";
+import moment from 'moment';
+import spin from '../../logo/spinner.gif';
 
 class HotelList extends React.Component {
   constructor() {
     super();
     this.state = {
+      loading:true,
       pagehotel: [],
       result: [],
       description: "",
@@ -44,7 +48,7 @@ class HotelList extends React.Component {
   
     componentDidMount() {
       Axios.get('https://calm-anchorage-14244.herokuapp.com/hotel')
-      .then(result => this.setState({result : result.data.data}))
+      .then(result => this.setState({result : result.data.data, loading:false}))
     }
   
     handleChange(event) {
@@ -88,9 +92,14 @@ class HotelList extends React.Component {
     })
     console.log('new', roomss)
     return (
+    this.state.loading ? (<div className="loadingicon"><img src={spin} alt="laoder"/></div>) :
     <>
       {/* this is the searchbar */}
-
+      <div className="row">
+            <div className="col-md-3">
+            <Filter />
+            </div>
+            <div className="col-md-9">
 <div className="">
     <div>
       <div>
@@ -102,7 +111,7 @@ class HotelList extends React.Component {
                 <div className="row no-gutters brow ">
                   <div className="col-md-3 sc">
                     <label className="lab">
-                      <span classsName="desc">Places, Hotels and Aiports</span>
+                      <span className="desc">Places, Hotels and Aiports</span>
                       <span className="inpSpan">
                         <input
                           type="text"
@@ -137,7 +146,7 @@ class HotelList extends React.Component {
                       startDatePlaceholderText={moment().format('MMM Do')}
                       endDatePlaceholderText={moment(new Date().setDate(new Date().getDate() + 1)).format('MMM Do')}
                       customArrowIcon='/'
-                      noBorder='true'
+                      noBorder={true}
                       startDateAriaLabel='Check-in'
                       className="desc"
                     />
@@ -153,16 +162,16 @@ class HotelList extends React.Component {
                         <span> Children {this.state.children}</span>
                       </div>
 
-                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Select Room Adult and Children Number</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                          <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Select Room Adult and Children Number</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
-                          <div class="modal-body">
+                          <div className="modal-body">
                 
                             <label>Room</label>
                               <select
@@ -208,8 +217,8 @@ class HotelList extends React.Component {
 
 
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">Ok</button>
               </div>
             </div>
           </div>
@@ -237,31 +246,31 @@ class HotelList extends React.Component {
 
       {/* this is the nav filter*/}
       <div className="mt-2">
-        <div class="mobilefilter mb-2">
-          <button class="btn btn-light jumbotron2">Filter</button>
-          <button class="btn btn-light jumbotron2">Sort</button>
-          <button class="btn btn-light jumbotron2">Price</button>
+        <div className="mobilefilter mb-2">
+          <button className="btn btn-light jumbotron2">Filter</button>
+          <button className="btn btn-light jumbotron2">Sort</button>
+          <button className="btn btn-light jumbotron2">Price</button>
         </div>
-        <div class="filternav">
-          <ul class="nav border mb-3 jumbotron2">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">
+        <div className="filternav">
+          <ul className="nav border mb-3 jumbotron2">
+            <li className="nav-item">
+              <a className="nav-link active" href="#">
                 Active
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
+            <li className="nav-item">
+              <a className="nav-link" href="#">
                 Much longer nav link
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
+            <li className="nav-item">
+              <a className="nav-link" href="#">
                 Link
               </a>
             </li>
-            <li class="nav-item">
+            <li className="nav-item">
               <a
-                class="nav-link disabled"
+                className="nav-link disabled"
                 href="#"
                 tabindex="-1"
                 aria-disabled="true"
@@ -412,6 +421,8 @@ class HotelList extends React.Component {
             ))
       
         )}
+        </div>
+        </div>
       </>
     );
   }

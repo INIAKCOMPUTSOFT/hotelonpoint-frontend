@@ -1,4 +1,5 @@
 import React from 'react'
+
 function  Input (props){
 
 return(
@@ -14,10 +15,11 @@ return(
 function Input2(props){
     return(
 <div>
-<input class="form-check-input" type={props.type} value={props.value} onChange={props.onChange} />
-<label class="form-check-label h6">{props.range}</label>
+<input className="form-check-input" type={props.type} value={props.value} onChange={props.onChange} />
+<label className="form-check-label h6">{props.range}</label>
 </div>
     )
 
 }
-export { Input, Input2}
+export { Input, Input2 }
+
