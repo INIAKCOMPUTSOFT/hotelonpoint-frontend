@@ -1,14 +1,14 @@
-import React from 'react';
-import { CircularProgress } from 'react-bootstrap';
-import { Files } from 'react-files';
-import { connect } from 'react-redux';
-import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { sendABlog } from '../../redux/actions/userActions';
-import Back from './BlogBackimag/road.jpeg';
 import './blogform.css';
 import './fileupload.css';
 
+import Back from './BlogBackimag/road.jpeg';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Files from 'react-files';
+import React from 'react';
+import { ToastContainer } from 'react-toastify';
+import { connect } from 'react-redux';
+import { sendABlog } from '../../redux/actions/userActions';
 
 var sectionStyle = {
     width: "100%",

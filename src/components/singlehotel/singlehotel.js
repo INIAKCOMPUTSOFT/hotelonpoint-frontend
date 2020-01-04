@@ -25,7 +25,6 @@ class SingleHotel extends React.Component {
 
   render() {
     const { Hh } = this.state;
-
     //algo to convert to usable arr
     const roomss = [];
     if (Hh.rooms) {
@@ -45,7 +44,7 @@ class SingleHotel extends React.Component {
     console.log("full hotel", Hh);
     console.log("full property hotel", Hh.propertyInfo);
     if (Hh.propertyInfo) {
-      console.log("full property hotel name", Hh.propertyInfo.hotelName);
+      console.log("full property hotel name", roomss[0].roomAmenities[0]);
     }
     //
 

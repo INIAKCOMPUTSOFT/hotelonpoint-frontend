@@ -6,6 +6,7 @@ import jwtDecode from "jwt-decode";
 import React from "react";
 import { Route, Router, Switch } from "react-router-dom";
 import "./App.css";
+import BlogForm from './components/blogForm/blogform';
 import BookingForm from "./components/bookingform/bookingform";
 import Contact from './components/contact/contact';
 import Footer from "./components/Footer/footer";
@@ -64,7 +65,7 @@ function route() {
               <Route exact path="/bookingform" component={BookingForm} />
               <Route exact path="/listproperty" component={FormWrapper} />
               <CheckAuth exact path='/Uploadhotel' component={Hsignup} />
-              {/* <CheckAuth exact path="/blogform" component={BlogForm} /> */}
+              <CheckAuth exact path="/blogform" component={BlogForm} />
           </Switch>
         </div>
         <Footer />

@@ -255,7 +255,8 @@ export default class FormWrapper extends Component {
       form.append("isShuttleAvailable", values.isShuttleAvailable);
       form.append("shuttlePrice", values.shuttlePrice);
 
-        const url = 'https://calm-anchorage-14244.herokuapp.com/hotel'
+      const url = 'http://localhost:3400/hotel'
+        // const url = 'https://calm-anchorage-14244.herokuapp.com/hotel'
       this.setState({ isSubmitting: true });
       try {
         const result = await axios.post(url, form);
