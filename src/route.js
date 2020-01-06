@@ -47,7 +47,6 @@ function route() {
         store.dispatch(getUser());
       }
     }
-    console.log(ssl)
   return (
       <Router history={history}>
         <Navbar />
