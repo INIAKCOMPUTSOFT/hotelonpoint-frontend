@@ -1,14 +1,14 @@
+//import HotelLocationDisplay from "../../components/Location/location";
+
 import "./acc.css";
 
-import React, { lazy } from "react";
-
 import Advert from "../../components/HomeAd/advercard";
+import AwaitAproval from "../../components/awatingaproval/await";
 import Background from "../../components/background/background";
+import CardCarrier from "../../components/cardshadow/cardcarrier";
 import HomeBlog from "../../components/BlogonHome/homeblog";
-import HotelLocationDisplay from "../../components/Location/location";
+import React from "react";
 import { connect } from 'react-redux';
-
-const  AwaitAproval = lazy(() => import("../../components/awatingaproval/await"));
 
 //import {Link} from 'react-router-dom'
 
@@ -19,17 +19,19 @@ const  AwaitAproval = lazy(() => import("../../components/awatingaproval/await")
 
 function HotelHome({ user: { authenticated } }) {
   return (
-    <div>
-      <suspense fallBack={<h1>loading...</h1>}>
+    <div> 
       <Background />
       <div className="container content">
         {authenticated && <AwaitAproval />}
         <Advert />
         {/* <HomeHotelDisplay/> */}
+        
+        {/* <HotelLocationDisplay /> */}
+        <CardCarrier h2="Recommended Hotels"/>
+        <CardCarrier h2="Popular Attractions"/>
+        <CardCarrier h2="Recommended Car Rentals"/>  
         <HomeBlog />
-        <HotelLocationDisplay />
       </div>
-      </suspense>
     </div>
   );
 }

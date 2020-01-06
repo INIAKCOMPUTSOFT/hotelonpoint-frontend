@@ -1,5 +1,6 @@
-import React from 'react'
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import { faVrCardboard } from "@fortawesome/free-solid-svg-icons";
 
 function ContactComponent(props){
 
@@ -27,8 +28,8 @@ return(
     </div>
     <hr/>
     <div class="mb-2 ml-1">
-    <span class="mr-1 btn btn-secondary">Email</span>
-    <span class="mr-1 btn btn-secondary">View Branch Details</span>
+    <span class="mr-1 btn btn-secondary">Email</span>                 
+    <span class="mr-1 btn btn-secondary">Check on VR  <FontAwesomeIcon className="menuicon" icon={faVrCardboard} /></span>
     <span class="mr-1 btn btn-secondary">Get Directions</span>
     </div>
     </div>

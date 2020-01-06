@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
-import PaystackButton from 'react-paystack';
-import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+
+import React, { Component } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+
+import PaystackButton from 'react-paystack';
+
 // import { firebase } from '../../firebase';
 // import { newPayment } from '../../Notifications/slack';
 // import { Menu } from './menu';
@@ -110,16 +113,17 @@ export default class Payment extends Component {
   render(){
       const money = Number (this.props.amount) * 100
     return (
-      <div className='list-body col-sm-12'>
-            <div className='col-sm-8'>
+      <div className={this.props.container}>
+            <div className="row">
+            <div className='col-md-12'>
             <ToastContainer />
             </div>
-            <div className='col-sm-4'>
-                <div>
-                  <div style={{margin:10}} className='row text-center'>
+            </div>
+           
+                
                       <PaystackButton
-                        text="Pay"
-                        className="btn btn-md btn-primary"
+                        text="Make Pay Now"
+                        className={this.props.butin}
                         callback={this.callback}
                         close={this.close}
                         disabled={false}
@@ -130,9 +134,8 @@ export default class Payment extends Component {
                         paystackkey={this.state.key}
                         tag="button"
                       /> &nbsp;
-                </div>
-                </div>
-            </div>
+                
+            
       </div>
 
           )

@@ -2,8 +2,6 @@ import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./searchbar.css";
 
-import { faMapMarker, faSearch } from '@fortawesome/free-solid-svg-icons';
-
 import Axios from "axios";
 import { DateRangePicker } from "react-dates";
 import Filter from './filter';
@@ -11,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import React from "react";
 import { addDays } from "date-fns";
+import { faMapMarker } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
 import spin from '../../logo/spinner.gif';
 
@@ -23,8 +22,8 @@ class HotelList extends React.Component {
       result: [],
       description: "",
       checkin: "",
-      rooms: 0,
-      adults: "",
+      rooms: 1,
+      adults: 1,
       startDate: null,
       endDate: null,
       children: "",
@@ -55,7 +54,7 @@ class HotelList extends React.Component {
       event.preventDefault();
       const { name, value } = event.target;
       this.setState({ [name]: value });
-      console.log(this.state);
+      // console.log(this.state);
     }
   
     handleSubmit(event) {
@@ -66,7 +65,7 @@ class HotelList extends React.Component {
       const filteredHotel = result.filter(robot =>{
         return robot.rooms.length == Number(rooms) || robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase())
       })
-      console.log('123456', filteredHotel)
+      // console.log('123456', filteredHotel)
       this.setState({ pagehotel: filteredHotel})
     }
 
@@ -78,8 +77,8 @@ class HotelList extends React.Component {
     const {result, description, rooms} = this.state;
     const samepage = this.state.pagehotel
     const searchedHotel = this.props.location.state.searchResult
-    console.log('123456789', searchedHotel)
-    console.log('same page',this.state.pagehotel)
+    // console.log('123456789', searchedHotel)
+    // console.log('same page',this.state.pagehotel)
     //algo to convert to usable arr
     const roomss = []
     searchedHotel.map(hotel => {
@@ -90,7 +89,7 @@ class HotelList extends React.Component {
     const filteredHotel = result.filter(robot =>{
       return robot.rooms.length == Number(rooms) || robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase())
     })
-    console.log('new', roomss)
+    // console.log('new', roomss)
     return (
     this.state.loading ? (<div className="loadingicon"><img src={spin} alt="laoder"/></div>) :
     <>
@@ -100,36 +99,34 @@ class HotelList extends React.Component {
             <Filter />
             </div>
             <div className="col-md-9">
-<div className="">
-    <div>
-      <div>
+            <div>
         <div className={this.props.className}>
           <div className=" container digi">
             <div className="search">
-    <h5 className="caption">ulease Greate Hotel Deals</h5>
+              <h5 className="caption">{this.props.title}</h5>
               <form>
                 <div className="row no-gutters brow ">
                   <div className="col-md-3 sc">
+                  
                     <label className="lab">
-                      <span className="desc">Places, Hotels and Aiports</span>
+                      <span className="titleinput hoteltitle">Places and Hotels </span>
                       <span className="inpSpan">
                         <input
                           type="text"
                           value={this.state.description}
                           onChange={this.handleChange}
                           name="description"
-                          className="inp"
-                          id="exampleInputEmail1"
-                          aria-describedby="emailHelp"
+                          className="inp mt-2"
                           placeholder="Enter place and hotel name"
                         />
                       </span>
-                    </label>
+                    </label>              
                   </div>
 
-                  <div className="col-md-4 sc text-center" >
+                  <div className="col-md-3 sc" >
                     <div>
-                      <small className="mt-1" style={{marginBottom: 0}}>Check-in  -  Check-out</small>
+                      <small className="mt-1 titleinput" >Check-in  -  Check-out</small>
+                      <div>
                     <DateRangePicker
                       startDate={this.state.startDate} // momentPropTypes.momentObj or null,
                       startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
@@ -137,7 +134,6 @@ class HotelList extends React.Component {
                       endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
                       onDatesChange={({ startDate, endDate }) =>
                         this.setState({ startDate, endDate })
-                    
                       } // PropTypes.func.isRequired,
                       focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                       onFocusChange={focusedInput =>
@@ -148,21 +144,24 @@ class HotelList extends React.Component {
                       customArrowIcon='/'
                       noBorder={true}
                       startDateAriaLabel='Check-in'
-                      className="desc"
+                      style={{width:'30px'}}
                     />
+                    </div>
                     </div>
                   </div>
 
-                  <div className="col-md-4 sc">
-                  <label className="bb">Room and Guest</label>
+                  <div className="col-md-3 sc">
+                  <label className="bb titleinput">Room and Guest</label>
 
-                      <div className="control bb" data-toggle="modal" data-target="#exampleModal">
+                      <div className="control bb mt-2 text-secondary" data-toggle="modal" data-target="#exampleModal">
                         <span>Room {this.state.rooms}</span>{" "}
-                        <span> Adult {this.state.adults}</span>{" "}
-                        <span> Children {this.state.children}</span>
+                        <span> Adults {this.state.adults}</span>{" "}
+                        {this.state.children && (
+                         <span> Children {this.state.children}</span>
+                        )}
                       </div>
 
-                      <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div className="modal fade" id="exampleModal"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div className="modal-dialog" role="document">
                         <div className="modal-content">
                           <div className="modal-header">
@@ -225,13 +224,15 @@ class HotelList extends React.Component {
         </div>
 
                     </div>
-                  <div className="col-md-1 ">
+                  <div className="col-md-3 ">
                     <button
                       type="submit"
                       onClick={this.handleSubmit}
                       className="btn-primary sbtn"
                     >
-                      <FontAwesomeIcon className="searchicon" icon={faSearch} />
+                      
+                      {/* <FontAwesomeIcon className="searchicon" icon={faSearch} /> */}
+                    <p className="searchicon">Search</p>
                     </button>
                   </div>
                 </div>
@@ -239,8 +240,6 @@ class HotelList extends React.Component {
             </div>
           </div>
         </div>
-      </div>
-      </div>
       </div>
 
 
@@ -254,29 +253,28 @@ class HotelList extends React.Component {
         <div className="filternav">
           <ul className="nav border mb-3 jumbotron2">
             <li className="nav-item">
-              <a className="nav-link active" href="#">
+              <span className="nav-link active" href="#">
                 Active
-              </a>
+              </span>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <span className="nav-link" href="#">
                 Much longer nav link
-              </a>
+              </span>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <span className="nav-link" href="#">
                 Link
-              </a>
+              </span>
             </li>
             <li className="nav-item">
-              <a
+              <span
                 className="nav-link disabled"
                 href="#"
-                tabindex="-1"
                 aria-disabled="true"
               >
                 Disabled
-              </a>
+              </span>
             </li>
           </ul>
         </div>
@@ -303,12 +301,12 @@ class HotelList extends React.Component {
                         <h5>{hotel.propertyInfo.hotelName}</h5>
                         <p>{hotel.propertyInfo.hotelDescription}</p>
                         <div className="props">
-                          <a className="btn btn-outline-success breakfast">
+                          <span className="btn btn-outline-success breakfast">
                             <i className="fa fa-spoon"></i>
-                          </a>
-                          <a className="btn btn-success wifi">
+                          </span>
+                          <span className="btn btn-success wifi">
                             <i className="fa fa-wifi fa-1x"></i>
-                          </a>
+                          </span>
                         </div>
                         <p className="card-text locate">
                           <FontAwesomeIcon  className="logo" icon={faMapMarker} />
@@ -337,12 +335,12 @@ class HotelList extends React.Component {
                             <i className="fas fa-star rates"></i>
                           </p>
                         </div>
-                        <a
+                        <span
                           href="#"
                           className="card-link btn btn-sm btn-danger cheker"
                         >
                           Check this out
-                        </a>
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -354,8 +352,8 @@ class HotelList extends React.Component {
 
         ):(
            searchedHotel.map((hotel, i) => (
-            <Link to={`/singlehotel/${hotel._id}`}>
-            <div className=" jumbotron2 mb-3" onClick={this.handleClick} key={hotel.id}>
+            <Link to={`/singlehotel/${hotel._id}`} key={i}>
+            <div className=" jumbotron2 mb-3" onClick={this.handleClick}>
               <div>
                 <div className="row no-gutters">
                   <div className="col-md-4">
@@ -371,12 +369,12 @@ class HotelList extends React.Component {
                         <h5>{hotel.propertyInfo.hotelName}</h5>
                         <p>{hotel.propertyInfo.hotelDescription}</p>
                         <div className="props">
-                          <a className="btn btn-outline-success breakfast">
+                          <span className="btn btn-outline-success breakfast">
                             <i className="fa fa-spoon"></i>
-                          </a>
-                          <a className="btn btn-success wifi">
+                          </span>
+                          <span className="btn btn-success wifi">
                             <i className="fa fa-wifi fa-1x"></i>
-                          </a>
+                          </span>
                         </div>
                         <p className="card-text locate">
                           <FontAwesomeIcon  className="logo" icon={faMapMarker} />
@@ -405,12 +403,12 @@ class HotelList extends React.Component {
                             <i className="fas fa-star rates"></i>
                           </p>
                         </div>
-                        <a
+                        <span
                           href="#"
                           className="card-link btn btn-sm btn-danger cheker"
                         >
                           Check this out
-                        </a>
+                        </span>
                       </div>
                     </div>
                   </div>

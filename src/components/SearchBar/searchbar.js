@@ -6,11 +6,20 @@ import { addDays, format } from "date-fns";
 
 import Axios from "axios";
 import { DateRangePicker } from "react-dates";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Redirect } from 'react-router-dom';
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import moment from 'moment';
+
+//import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
+
+
+
+
+
+
+
+
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -19,11 +28,11 @@ class SearchBar extends React.Component {
       searchResult:[],
       description: "",
       checkin: "",
-      rooms: 0,
-      adults: "",
+      rooms: 1,
+      adults: 1,
       startDate: null,
       endDate: null,
-      children: "",
+      children: 0,
       dateRangePickerI: {
         selection: {
           startDate: new Date(),
@@ -54,20 +63,22 @@ class SearchBar extends React.Component {
     console.log(this.state);
   }
 
+
+
   handleSubmit(event) {
     event.preventDefault();
     const {result, description, rooms} = this.state;
-    console.log('3213', Number(rooms))
-    console.log('12345', result)
+    // console.log('3213', Number(rooms))
+    // console.log('12345', result)
     const filteredHotel = result.filter(robot =>{
       return robot.rooms.length == Number(rooms) || robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase())
     })
-    console.log('123456', filteredHotel)
+    // console.log('123456', filteredHotel)
     this.setState({ searchResult: filteredHotel})
   }
 
   handleRangeChange = (which, payload) => {
-    console.log(which, payload);
+    // console.log(which, payload);
     this.setState({
       [which]: {
         ...this.state[which],
@@ -82,7 +93,7 @@ class SearchBar extends React.Component {
 
   render() {
     const {result}=this.state
-    console.log('testting result',result)
+    // console.log('testting result',result)
     return (
       <div>
         <div className={this.props.className}>
@@ -94,25 +105,23 @@ class SearchBar extends React.Component {
                   <div className="col-md-3 sc">
                   
                     <label className="lab">
-                      <span className="desc">Places, Hotels and Aiports</span>
+                      <span className="titleinput hoteltitle">Places and Hotels </span>
                       <span className="inpSpan">
                         <input
                           type="text"
                           value={this.state.description}
                           onChange={this.handleChange}
                           name="description"
-                          className="inp"
-                          id="exampleInputEmail1"
-                          aria-describedby="emailHelp"
+                          className="inp mt-2"
                           placeholder="Enter place and hotel name"
                         />
                       </span>
                     </label>              
                   </div>
 
-                  <div className="col-md-4 sc text-center" >
+                  <div className="col-md-3 sc second" >
                     <div>
-                      <small className="mt-1" style={{marginBottom: 0}}>Check-in  -  Check-out</small>
+                      <small className="mt-1 titleinput dater" >Check-in  -  Check-out</small>
                     <DateRangePicker
                       startDate={this.state.startDate} // momentPropTypes.momentObj or null,
                       startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
@@ -134,17 +143,19 @@ class SearchBar extends React.Component {
                     </div>
                   </div>
 
-                  <div className="col-md-4 sc">
-                  <label className="bb">Room and Guest</label>
+                  <div className="col-md-3 sc">
+                  <label className="bb titleinput">Room and Guest</label>
 
-                      <div className="control bb" data-toggle="modal" data-target="#exampleModal">
+                      <div className="control bb mt-2 text-secondary" data-toggle="modal" data-target="#exampleModal">
                         <span>Room {this.state.rooms}</span>{" "}
-                        <span> Adult {this.state.adults}</span>{" "}
-                        <span> Children {this.state.children}</span>
+                        <span> Adults {this.state.adults}</span>{" "}
+                        {this.state.children >= 1  && (
+                         <span> Children {this.state.children}</span>
+                        )}
                       </div>
 
                       <div className="modal fade" id="exampleModal"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div className="modal-dialog" role="document">
+                      <div className="modal-dialog modal-dialog-centered" role="document">
                         <div className="modal-content">
                           <div className="modal-header">
                             <h5 className="modal-title" id="exampleModalLabel">Select Room Adult and Children Number</h5>
@@ -206,13 +217,15 @@ class SearchBar extends React.Component {
         </div>
 
                     </div>
-                  <div className="col-md-1 ">
+                  <div className="col-md-3 ">
                     <button
                       type="submit"
                       onClick={this.handleSubmit}
                       className="btn-primary sbtn"
                     >
-                      <FontAwesomeIcon className="searchicon" icon={faSearch} />
+                      
+                      {/* <FontAwesomeIcon className="searchicon" icon={faSearch} /> */}
+                    <p className="searchicon">Search</p>
                     </button>
                   </div>
                 </div>

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
 import './blogapi.css';
 
+import React, { Component } from 'react';
 
 class Blogapi extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class Blogapi extends Component {
     });
     const data= await response.json();
     this.setState({blogs : data.post, loading:false})
-    console.log(this.state.blogs);
+    // console.log(this.state.blogs);
     }
 
   render(){
@@ -38,7 +38,7 @@ class Blogapi extends Component {
 <div class="card mb-3" key={i}>
 <div class="row no-gutters">
   <div class="col-md-4">
-  <img className="card-img-top" src={blog.image[0].url} alt="Card image cap" height="400"/>
+  <img className="card-img-top" src={blog.image[0].url} alt="blogimg" height="400"/>
   </div>
   <div class="col-md-8">
     <div class="card-body">

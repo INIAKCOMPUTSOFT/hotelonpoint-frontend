@@ -3,6 +3,7 @@ import './bookingform.css';
 import Access from './bankicons/access.png';
 import Firstbank from './bankicons/firstbank.png';
 import GTB from './bankicons/gtb.png';
+import { Link } from 'react-router-dom';
 import Payment from '../payment/payment';
 import React from 'react';
 import Zenith from './bankicons/zenith.png';
@@ -35,112 +36,112 @@ class BookingForm extends React.Component{
     render(){
       const amount = '1300'
             return(
-              <div class="container">
-              <div class="row">
-              <div class="col-sm-9">  
+              <div className="container">
+              <div className="row">
+              <div className="col-sm-9">  
                  <div>
-                <div class="row mb-1">
-                    <div class="col-sm-12">
-                        <div class="card shadow p-3 mb-1 bg-white rounded">
-                          <div class="card-head">
+                <div className="row mb-1">
+                    <div className="col-sm-12">
+                        <div className="card shadow p-3 mb-1 bg-white rounded">
+                          <div className="card-head">
                           <h4 className="ml-3">Traveller information</h4>
                           </div>  
-                          <div class="card-body">     
-                          <div class="row no-gutters">
-                          <div class="col-md-4 chck">           
-                          <div class="form-check radio">
-                          <input class="form-radio-button" checked={this.state.title ==="Mr"} name="title" onChange={this.handlechange} type="radio" value="Mr" id="defaultCheck1"/>
-                          <label class="form-check-label" for="defaultCheck1">
+                          <div className="card-body">     
+                          <div className="row no-gutters">
+                          <div className="col-md-4 chck">           
+                          <div className="form-check radio">
+                          <input className="form-radio-button" checked={this.state.title ==="Mr"} name="title" onChange={this.handlechange} type="radio" value="Mr" id="defaultCheck1"/>
+                          <label className="form-check-label" for="defaultCheck1">
                           Mr                                                     
                           </label>                                          
                           </div>                                             
-                          <div class="form-check radio">
-                          <input class="form-radio-button" checked={this.state.title ==="Mrs"} name="title" onChange={this.handlechange} type="radio" value="Mrs" id="defaultCheck1"/>
-                          <label class="form-check-label" for="defaultCheck1">
+                          <div className="form-check radio">
+                          <input className="form-radio-button" checked={this.state.title ==="Mrs"} name="title" onChange={this.handlechange} type="radio" value="Mrs" id="defaultCheck1"/>
+                          <label className="form-check-label" for="defaultCheck1">
                           Mrs                                                    
                           </label>                                          
                           </div>    
-                          <div class="form-check radio">
-                          <input class="form-radio-button" checked={this.state.title ==="Miss"} name="title" onChange={this.handlechange} type="radio" value="Miss" id="defaultCheck1"/>
-                          <label class="form-check-label" for="defaultCheck1">
+                          <div className="form-check radio">
+                          <input className="form-radio-button" checked={this.state.title ==="Miss"} name="title" onChange={this.handlechange} type="radio" value="Miss" id="defaultCheck1"/>
+                          <label className="form-check-label" for="defaultCheck1">
                           Miss                                                     
                           </label>                                          
                           </div>       
                           </div>                                       
-                          <div class="col-md-6">
+                          <div className="col-md-6">
                           </div>
                           </div>
-                          <div class="row ">
-                          <div class="col-md-6">
-                          <div class="form-group">
-                          <label for="exampleInputEmail1">Firstname</label>
-                          <input type="text" class="form-control" name="firstname" onChange={this.handlechange} aria-describedby="emailHelp" placeholder="Enter firstname"/>
-                          <small id="emailHelp" class="form-text text-muted">Please first letter is capital</small>
+                          <div className="row ">
+                          <div className="col-md-6">
+                          <div className="form-group">
+                          <label>Firstname</label>
+                          <input type="text" className="form-control" name="firstname" onChange={this.handlechange} aria-describedby="emailHelp" placeholder="Enter firstname"/>
+                          <small id="emailHelp" className="form-text text-muted">Please first letter is capital</small>
                           </div>
                           </div>
-                          <div class="col-md-6">
-                          <div class="form-group">
-                          <label for="exampleInputPassword1">Lastname</label>
-                          <input type="text" class="form-control" name="lastname" onChange={this.handlechange} placeholder="Enter lastname"/>
-                          <small id="emailHelp" class="form-text text-muted">Please first letter is capital</small>
+                          <div className="col-md-6">
+                          <div className="form-group">
+                          <label >Lastname</label>
+                          <input type="text" className="form-control" name="lastname" onChange={this.handlechange} placeholder="Enter lastname"/>
+                          <small id="emailHelp" className="form-text text-muted">Please first letter is capital</small>
                           </div>  
                           </div>                            
                           </div>
 
-                          <div class="row no-gutters">
-                                      <div class="col-md-6">
-                                       <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" onChange={this.handlechange} name="email" aria-describedby="emailHelp" placeholder="user@example.com"/>
-                                        <small id="emailHelp" class="form-text text-muted">We will send your booking confirmation (including the hotel's contact information) to this email.
+                          <div className="row no-gutters">
+                                      <div className="col-md-6">
+                                       <div className="form-group">
+                                        <label >Email address</label>
+                                        <input type="email" className="form-control" onChange={this.handlechange} name="email" aria-describedby="emailHelp" placeholder="user@example.com"/>
+                                        <small id="emailHelp" className="form-text text-muted">We will send your booking confirmation (including the hotel's contact information) to this email.
 Please ensure your email is entered correctly.
                                         </small>
                                         </div>
                                       </div>
-                                      <div class="col-md-6"></div>
+                                      <div className="col-md-6"></div>
                                   </div>
-                                  <div class="row no-gutters">
-                                    <div class="col-md-6">
-                                            <div class="form-group">
-                                                    <label for="exampleInputEmail1">Mobile number</label>
-                                                    <input type="" class="form-control" name="phone" onChange={this.handlechange} aria-describedby="emailHelp" placeholder="Enter mobile number"/>
-                                                    <small id="emailHelp" class="form-text text-muted">We’ll only contact you in an emergency</small>
+                                  <div className="row no-gutters">
+                                    <div className="col-md-6">
+                                            <div className="form-group">
+                                                    <label >Mobile number</label>
+                                                    <input type="" className="form-control" name="phone" onChange={this.handlechange} aria-describedby="emailHelp" placeholder="Enter mobile number"/>
+                                                    <small id="emailHelp" className="form-text text-muted">We’ll only contact you in an emergency</small>
                                                   </div>
                                     </div>
-                                    <div class="col-md-6"></div>
+                                    <div className="col-md-6"></div>
                                 </div>
 
-                          {/* <div class="row no-gutters">
-                          <div class="col-md-6"></div>
+                          {/* <div className="row no-gutters">
+                          <div className="col-md-6"></div>
                           </div> */}
                           </div>             
                           </div>
                         </div>
                     </div>
-                    <div class="row mb-1">
-                          <div class="col-sm-12">
-                              <div class="card shadow p-3 mb-2 bg-white rounded">
+                    <div className="row mb-1">
+                          <div className="col-sm-12">
+                              <div className="card shadow p-3 mb-2 bg-white rounded">
                                
-                                  <div class="card-body">
+                                  <div className="card-body">
                                   <h5 className="text-dark">
                                 Special Request
-                                <small class="text-muted"> (optional)</small> 
+                                <small className="text-muted"> (optional)</small> 
                                 </h5>
-                                  <div class="row no-gutters">
+                                  <div className="row no-gutters">
                           <p>Your requests will be passed on to the hotel but cannot be guaranteed.</p>
-                          <div class="col-md-12">
-                          <div class="form-group">
+                          <div className="col-md-12">
+                          <div className="form-group">
                           <label for="exampleFormControlTextarea1">Extra request</label>
-                          <textarea class="form-control txa" id="exampleFormControlTextarea1" name="extra-request" onChange={this.handlechange} ></textarea>
+                          <textarea className="form-control txa" id="exampleFormControlTextarea1" name="extra-request" onChange={this.handlechange} ></textarea>
                           </div>
                           </div>
-                          {/* <div class="col-md-6"></div> */}
+                          {/* <div className="col-md-6"></div> */}
                           </div>
-                          <div class="row mb-1">
-                          <div class="col-md-6">
-                          <div class="form-check">
-                          <input class="form-check-input" name="wantairportshuttle" onChange={this.handlechange} checked={this.state.wantairportshuttle} type="checkbox" value="" id="defaultCheck1"/>
-                          <label class="form-check-label" for="defaultCheck1">
+                          <div className="row mb-1">
+                          <div className="col-md-6">
+                          <div className="form-check">
+                          <input className="form-check-input" name="wantairportshuttle" onChange={this.handlechange} checked={this.state.wantairportshuttle} type="checkbox" value="" id="defaultCheck1"/>
+                          <label className="form-check-label" for="defaultCheck1">
                           <b>Want to book Airport-Shuttle</b>.
                           <br/>Get from the airport to your accomodation without hassles.
                            We will contact you after your booking is guranteed to provide you available
@@ -148,14 +149,14 @@ Please ensure your email is entered correctly.
                           </label>
                           </div>
                           </div>
-                          <div class="col-md-6">              
+                          <div className="col-md-6">              
                           </div>
                           </div>
-                                <div class="row mb-1">
-                                  <div class="col-md-12">
-                                          <div class="form-check">
-                                                  <input class="form-check-input" onChange={this.handlechange} name="getdeals" checcked={this.state.getdeals} type="checkbox" value="" id="defaultCheck1"/>
-                                                  <label class="form-check-label" for="defaultCheck1">
+                                <div className="row mb-1">
+                                  <div className="col-md-12">
+                                          <div className="form-check">
+                                                  <input className="form-check-input" onChange={this.handlechange} name="getdeals" checcked={this.state.getdeals} type="checkbox" value="" id="defaultCheck1"/>
+                                                  <label className="form-check-label" for="defaultCheck1">
                                                     Check this box if you would not like to receive Hotel-on-points.com <b>special deals</b> email newsletter that contains great hotel promotions
                                                    
                                                   </label>
@@ -167,79 +168,90 @@ Please ensure your email is entered correctly.
                           </div>
                       </div>
 
-                      <div class="row mb-1">
-                              <div class="col-sm-12">
-                                  <div class="card shadow p-3 mb-2 bg-white rounded">
-                                      <div class="card-body">
+                      <div className="row mb-1">
+                              <div className="col-sm-12">
+                                  <div className="card shadow p-3 mb-2 bg-white rounded">
+                                      <div className="card-body">
                                        <p>The charges below are included in your overall room price:</p>
                                        <p>New Year's Eve gala dinner fee</p>
                                        <p>Christmas Eve gala dinner fee</p>
                                        <br/>
                                         <h4>Reservation Terms & Conditions of Booking</h4>
                                         <hr/>
-                                       <p>By clicking "Book", you agree you have read and accept our <a href="">Terms and Conditions</a>  and <a href="">Privacy Policy</a> </p>
+                                       <p>By clicking "Book", you agree you have read and accept our <Link>Terms and Conditions</Link>  and <Link>Privacy Policy</Link> </p>
                                       </div>
                                   </div>
                               </div>
                           </div>
       
-                      <div class="row mb-1">
-                        <div class="col-md-12">
-                            <div class="card shadow p-3 mb-2 bg-white rounded">
-                                <div class="card-body">
-                                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                        <li class="nav-item">
-                                          <a class="nav-link active" id="pills-paynow-tab" data-toggle="pill" href="#pills-paynow" role="tab" aria-controls="pills-paynow" aria-selected="true">Pay Now</a>
+                      <div className="row mb-1">
+                        <div className="col-md-12 ">
+                            <div className=" shadow mb-2 mdpd bg-white rounded">
+                                <div className="text-center">
+                                    <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                        <li className="nav-item">
+                                          <a className="nav-link active" id="pills-paynow-tab" data-toggle="pill" href="#pills-paynow" role="tab" aria-controls="pills-paynow" aria-selected="true">Pay Now</a>
                                         </li>
-                                        <li class="nav-item">
-                                          <a class="nav-link" id="pills-paylater-tab" data-toggle="pill" href="#pills-paylater" role="tab" aria-controls="pills-paylater" aria-selected="false">Pay Later</a>
+                                        <li className="nav-item">
+                                          <a className="nav-link" id="pills-paylater-tab" data-toggle="pill" href="#pills-paylater" role="tab" aria-controls="pills-paylater" aria-selected="false">Pay Later</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="pills-payonarrival-tab" data-toggle="pill" href="#pills-payonarrival" role="tab" aria-controls="pills-payonarrival" aria-selected="false">Pay On Arrival</a>
+                                        <li className="nav-item">
+                                            <a className="nav-link" id="pills-payonarrival-tab" data-toggle="pill" href="#pills-payonarrival" role="tab" aria-controls="pills-payonarrival" aria-selected="false">Pay On Arrival</a>
                                           </li>
                                       </ul> 
                                 </div>
-                                <div class="tab-content ml-4" id="pills-tabContent">
-                              <div class="tab-pane fade show active" id="pills-paynow" role="tabpanel" aria-labelledby="pills-paynow-tab">
-                                Amount: ${amount}
-                                <Payment amount={amount}/>
+                                <div className="tab-content " id="pills-tabContent">
+                              <div className="tab-pane fade show active" id="pills-paynow" role="tabpanel" aria-labelledby="pills-paynow-tab">
+                                <h2 className="text-center">Amount: ${amount}</h2>
+                               
+                            
+                            <div className="row">
+                            <div className="col-12">
+                            <Payment amount={amount} container="contain" butin="btn-block btn-primary btn"/>
+                            </div>
+                          </div>
+                                
                               </div>
-                              <div class="tab-pane fade" id="pills-paylater" role="tabpanel" aria-labelledby="pills-paylater-tab">
+                              <div className="tab-pane fade" id="pills-paylater" role="tabpanel" aria-labelledby="pills-paylater-tab">
                              
                                 
-                              <div class="card border-0">
+                              <div className="card border-0 text-center">
                                 <h5> You prefer bank transfer this are our bank details:</h5>
-                              <div class="card-body">
-                              <img src={ Access } class="mr-1" width="100" height="100" alt="..." />
-                              <img src={ Zenith } class="mr-1" width="100" height="100" alt="..." />
-                              <img src={ GTB } class="mr-1" width="100" height="100" alt="..." />
-                              <img src={ Firstbank } class="mr-1" width="100" height="100" alt="..." />
+                              <div className="card-body">
+                              <img src={ Access } className="mr-1" width="100" height="100" alt="..." />
+                              <img src={ Zenith } className="mr-1" width="100" height="100" alt="..." />
+                              <img src={ GTB } className="mr-1" width="100" height="100" alt="..." />
+                              <img src={ Firstbank } className="mr-1" width="100" height="100" alt="..." />
                               </div>
                               </div>
-
+                              <div className="row">
+                            <div className="col-12 ">
+                              <button className="btn btn-block btn-primary ">Book</button>
+                            </div>
+                          </div>
 
                               </div>
                               {/* last tab */}
-                              <div class="tab-pane fade" id="pills-payonarrival" role="tabpanel" aria-labelledby="pills-payonarrival-tab">  </div>
+                              <div className="tab-pane fade" id="pills-payonarrival" role="tabpanel" aria-labelledby="pills-payonarrival-tab">  </div>
                               </div>
                             </div>
                         </div>
                     </div>
       
                       
-                          <div className="row">
+                          {/* <div className="row">
                             <div className="col-md-12">
                               <button className="btn btn-block btn-primary">Book</button>
                             </div>
-                          </div>
+                          </div> */}
               </div>
               </div>
               <div className="col-md-3">
-              <div class="card shadow">
-              <div class="card-body">
-              <h5 class="card-title">Summary of your booking</h5>
-              <p class="card-text">Your Name</p>
-            <p class="card-text">{this.state.firstname} {this.state.lastname}</p>
+              <div className="card shadow">
+              <div className="card-body">
+              <h5 className="card-title">Summary of your booking</h5>
+              <p className="card-text">Your Name</p>
+            <p className="card-text">{this.state.firstname} {this.state.lastname}</p>
 
               
               </div>

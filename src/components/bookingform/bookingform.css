@@ -7,3 +7,11 @@ display:inline;
 .txa{
     height:60px !important;
 }
+.buttin{
+    padding-bottom:10px !important;
+}
+.contain{
+    padding-bottom:none;
+    margin-bottom:-25px;
+   
+}

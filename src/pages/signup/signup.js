@@ -1,15 +1,16 @@
-import CircularProgress from "@material-ui/core/CircularProgress";
-import React from "react";
-import { connect } from 'react-redux';
-import { Link} from 'react-router-dom';
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Input } from "../../components/inputs/input1";
-import { getUser, signupUser } from "../../redux/actions/userActions";
-import background from "./backgimage/blue.jfif";
 import "./signup.css";
 
+import { ToastContainer, toast } from "react-toastify";
+import { getUser, signupUser } from "../../redux/actions/userActions";
 
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { Input } from "../../components/inputs/input1";
+import { Link } from 'react-router-dom';
+import React from "react";
+import background from "./backgimage/blue.jfif";
+import { connect } from 'react-redux';
+import logo from "../../logo/HOP.svg";
 
 var sectionStyle = {
   width: "100%",
@@ -97,7 +98,8 @@ class SignUp extends React.Component {
               <div className="signup-card">
                 <div className="card  mb-3 shadow ">
                   <div className="card-body text-dark ">
-                    <h5 className="card-title text-dark">Hotel-on-points</h5>
+                    {/* <h5 className="card-title text-dark">Hotel-on-points</h5> */}
+                    <img src={logo} width="200" alt="" />
                     <div>
                       <div className="form-group">
                         <Input

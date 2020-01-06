@@ -28,7 +28,7 @@ class SingleHotel extends React.Component {
       match: { params }
     } = this.props;
     var sentid = params.hotelId;
-    console.log("hotelid is", sentid);
+    // console.log("hotelid is", sentid);
 
     Axios.get(
       `https://calm-anchorage-14244.herokuapp.com/hotel/${sentid}`
@@ -44,16 +44,6 @@ class SingleHotel extends React.Component {
   };
 
   render() {
-<<<<<<< HEAD
-    const { Hh } = this.state;
-    //algo to convert to usable arr
-    const roomss = [];
-    if (Hh.rooms) {
-      Hh.rooms.map(room => {
-        roomss.push(JSON.parse(room));
-      });
-    }
-=======
     const { Hh, Rm, photoIndex, isOpen } = this.state;
     // console.log("seperate room", Rm);
     const urls = [];
@@ -76,7 +66,6 @@ class SingleHotel extends React.Component {
     
 
       
->>>>>>> d6ca11ebed30f51d983da51bf604b4045e9e4178
 
 
       // console.log('roomimg', Rm)
@@ -100,15 +89,6 @@ class SingleHotel extends React.Component {
         MoreHpolicies.push(JSON.parse(morehp));
       });
     }
-<<<<<<< HEAD
-    console.log("SINGLE room", roomss)
-    console.log("morehp", MoreHpolicies);
-    console.log("full hotel", Hh);
-    console.log("full property hotel", Hh.propertyInfo);
-    if (Hh.propertyInfo) {
-      console.log("full property hotel name", roomss[0].roomAmenities[0]);
-    }
-=======
     // console.log("SINGLE room", roomss)
     // console.log("morehp", MoreHpolicies);
     // console.log("full hotel", Hh);
@@ -117,7 +97,6 @@ class SingleHotel extends React.Component {
     // if (Hh.propertyInfo) {
     //   console.log("full property hotel name", Hh.propertyInfo.hotelName);
     // }
->>>>>>> d6ca11ebed30f51d983da51bf604b4045e9e4178
     //
 
 
@@ -160,8 +139,8 @@ class SingleHotel extends React.Component {
             <div className="row">
               {Hh.hotelPolicy &&
               
-                Hh.hotelPolicy.hotelAmenities.map(Amenities => (
-                  <div className="col-md-4">
+                Hh.hotelPolicy.hotelAmenities.map((Amenities,i )=> (
+                  <div className="col-md-4" key={i}>
                     {/* <p className=""> {JSON.parse(Amenities)} </p> */}
                     {amenity}
                   </div>
@@ -173,8 +152,8 @@ class SingleHotel extends React.Component {
           <div>
             <h4>Room</h4>
             <div>
-              {Rm.map(room => (
-                <div className=" jumbotron2 p-3 mb-3">
+              {Rm.map((room, i)=> (
+                <div className=" jumbotron2 p-3 mb-3" key={i}>
                   <div className="card border-0">
                     <h5>{room.roomType}</h5>
                     <div className="row no-gutters">
@@ -196,6 +175,7 @@ class SingleHotel extends React.Component {
                                 )}
                             {isOpen &&
                                 <Lightbox
+                             
                                   mainSrc={roomImg[photoIndex]}
                                   nextSrc={
                                     roomImg[(photoIndex + 1) % roomImg.length]
@@ -222,6 +202,9 @@ class SingleHotel extends React.Component {
                                         (photoIndex + 1) % roomImg.length
                                     })
                                   }
+                                  imageTitle= {room.roomAmenities.map((amenities, i) => (
+                                    <p key={i}>{JSON.parse(amenities)}</p>
+                                  ))}
                                 />
                               }
 
@@ -242,8 +225,8 @@ class SingleHotel extends React.Component {
                           <div className="card-body">
                             <p>{room.bedType}</p>
                             <p>{room.bedNumber}</p>
-                            {room.roomAmenities.map(amenities => (
-                              <p>{JSON.parse(amenities)}</p>
+                            {room.roomAmenities.map((amenities, i) => (
+                              <p key={i}>{JSON.parse(amenities)}</p>
                             ))}
                             <p className="card-text locate"></p>
                           </div>
@@ -322,8 +305,8 @@ class SingleHotel extends React.Component {
             <div>
               <p>Payment method</p>
               {Hh.hotelPolicy &&
-                Hh.hotelPolicy.paymentMethod.map(paym => (
-                  <div className="">
+                Hh.hotelPolicy.paymentMethod.map((paym,i) => (
+                  <div className="" key={i}>
                     <span className="text-center h6">{JSON.parse(paym)}</span>
                   </div>
                 ))}
@@ -331,8 +314,8 @@ class SingleHotel extends React.Component {
             <hr />
 
             <h5>More Policies</h5>
-            {MoreHpolicies.map(morehotelp => (
-              <div className="col-md-4">
+            {MoreHpolicies.map((morehotelp,i) => (
+              <div className="col-md-4" key={i}>
                 Policy Title:{" "}
                 <p className="text-center"> {morehotelp.policyTitle} </p>
                 Policy Description:{" "}

@@ -20,24 +20,23 @@ constructor(){
           });
         const data= await response.json();
         this.setState({locations : data['hydra:member'], loading:false})
-        console.log(data);
+        // console.log(data);
 }
 
 render(){
     return(
         <div>
-<h4>Best Locations in the world</h4> 
+<h4 className="text-center">Best Locations in the world</h4> 
 <div className="card-deck mb-3"> 
 {this.state.locations.slice(0,4).map((location,i)=>(
-  <div className="card shadow rounded-bottom"  key={location.id}>
-  
-  <div className="card-body">
-    <h5 className="card-title text-dark">{location.city}</h5>
+  <>
+  <div className="card border-0 text-white"  key={i}>
+  <img src="..." class="card-img" alt="..."  width="200" height="200" />  
     {/* <p className="card-text"> about {location.hotels.lenght}</p> */}
-   
-  </div>
+    <h5 className="card-title text-dark text-left">{location.city}</h5>
 </div>
 
+</>
 ))}      
 </div> 
 <p className="readmoretext">Read more</p>  

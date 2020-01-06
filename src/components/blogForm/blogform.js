@@ -4,11 +4,7 @@ import './fileupload.css';
 
 import Back from './BlogBackimag/road.jpeg';
 import CircularProgress from '@material-ui/core/CircularProgress';
-<<<<<<< HEAD
 import Files from 'react-files';
-=======
-import { Files } from 'react-files';
->>>>>>> d6ca11ebed30f51d983da51bf604b4045e9e4178
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 import { connect } from 'react-redux';

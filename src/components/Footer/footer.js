@@ -1,6 +1,6 @@
 import "./footer.css";
 
-import { faCcMastercard, faCcVisa, faFacebook, faInstagram, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faCcMastercard, faCcVisa, faFacebook, faInstagram, faLinkedinIn, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from 'react-router-dom';
@@ -36,13 +36,16 @@ function Footer() {
               </div>
             </div>
           </div>
-
           <div className="col-md-4">
-            <div className="mt-4">
+          <label className="social">
+              We Are Social:
+            </label>
+            <div className="icos">
               <FontAwesomeIcon className="icon" icon={faFacebook} />
               <FontAwesomeIcon className="icon" icon={faInstagram} />
               <FontAwesomeIcon className="icon" icon={faTwitter} />
               <FontAwesomeIcon className="icon" icon={faYoutube} />
+              <FontAwesomeIcon className="icon" icon={faLinkedinIn} />
             </div>
           </div>
         </div>

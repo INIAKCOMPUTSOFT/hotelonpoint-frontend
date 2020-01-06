@@ -1,15 +1,15 @@
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Axios from "axios";
-import { addDays, format } from "date-fns";
-import moment from 'moment';
-import React from "react";
-import { DateRangePicker } from "react-dates";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./searchbar.css";
 
+import { addDays, format } from "date-fns";
 
+import Axios from "axios";
+import { DateRangePicker } from "react-dates";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import moment from 'moment';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -50,7 +50,7 @@ class SearchBar extends React.Component {
     event.preventDefault();
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   onSe
@@ -58,17 +58,17 @@ class SearchBar extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const {result, description, rooms} = this.state;
-    console.log('3213', Number(rooms))
-    console.log('12345', result)
+    // console.log('3213', Number(rooms))
+    // console.log('12345', result)
     const filteredHotel = result.filter(robot =>{
       return robot.rooms.length == Number(rooms) || robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase())
     })
-    console.log('123456', filteredHotel)
+    // console.log('123456', filteredHotel)
     this.setState({ searchResult: filteredHotel})
   }
 
   handleRangeChange = (which, payload) => {
-    console.log(which, payload);
+    // console.log(which, payload);
     this.setState({
       [which]: {
         ...this.state[which],
@@ -146,7 +146,7 @@ class SearchBar extends React.Component {
                       </div>
 
                       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Select Room Adult and Children Number</h5>

@@ -3,19 +3,17 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./App.css";
-<<<<<<< HEAD
-import BlogForm from './components/blogForm/blogform';
-=======
 
 import { Route, Router, Switch } from "react-router-dom";
 import { getUser, logoutUser } from './redux/actions/userActions';
 
 import BlogForm from "./components/blogForm/blogform";
 import Blogapi from "./components/Multiblog/blogapi";
->>>>>>> d6ca11ebed30f51d983da51bf604b4045e9e4178
 import BookingForm from "./components/bookingform/bookingform";
 import CheckAuth from './pages/checkAuth';
+import CheckNotAuth from './pages/CheckNotAuth';
 import Contact from './components/contact/contact';
+import FORGOTPASS from "./pages/login/forgotpass";
 import Footer from "./components/Footer/footer";
 import FormWrapper from "./components/HotelUploadForm/FormWrapper";
 import HotelHome from "./pages/Hotelpages/Accomodation";
@@ -23,6 +21,7 @@ import Hsignup from "./pages/Hsignup/Hsignup";
 import Login from "./pages/login";
 import MultiListing from "./pages/Hotelpages/multilisting";
 import Navbar from "./components/Navbar/navbar";
+import PassVer from "./pages/login/passverification";
 import Payment from "./components/payment/payment";
 import React from "react";
 import RealForm from './components/realform';
@@ -33,6 +32,7 @@ import Singleblog from "./pages/Blogpages/singleblog";
 import axios from "axios";
 import history from './history';
 import jwtDecode from "jwt-decode";
+import ssl from './7AB685C2B27F1058753188E280108E0A.txt';
 import store from "./redux/store";
 
 function route() {
@@ -48,6 +48,7 @@ function route() {
         store.dispatch(getUser());
       }
     }
+    console.log(ssl)
   return (
       <Router history={history}>
         <Navbar />
@@ -61,7 +62,9 @@ function route() {
               />
               <Route exact path="/" component={HotelHome} />
               <Route exact path="/realform" component={RealForm} />
-              <Route exact path="/login" component={Login} />
+              <CheckNotAuth exact path="/login" component={Login} />
+              <CheckNotAuth exact path="/forgotpass" component={FORGOTPASS} />
+              <CheckNotAuth exact path="/passverification/:id" component={PassVer} />
               <Route exact path="/multilisting" component={MultiListing} />
               <Route exact path="/singlehotel/:hotelId" component={SingleHotel} />
               <Route exact path="/signup" component={Signup} />
@@ -70,11 +73,7 @@ function route() {
               <Route exact path="/bookingform/:roomid" component={BookingForm} />
               <Route exact path="/listproperty" component={FormWrapper} />
               <CheckAuth exact path='/Uploadhotel' component={Hsignup} />
-<<<<<<< HEAD
-              <CheckAuth exact path="/blogform" component={BlogForm} />
-=======
                <CheckAuth exact path="/blogform" component={BlogForm} /> 
->>>>>>> d6ca11ebed30f51d983da51bf604b4045e9e4178
           </Switch>
         </div>
         <Footer />

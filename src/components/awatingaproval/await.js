@@ -1,5 +1,5 @@
-import axios from "axios";
 import React from "react";
+import axios from "axios";
 
 class AwaitAproval extends React.Component {
   constructor() {
@@ -19,7 +19,7 @@ class AwaitAproval extends React.Component {
 
   render() {
     const { hotel } = this.state;
-    console.log(hotel[0])
+    // console.log(hotel[0])
     return (
       hotel[0] ? (
         hotel.map(res => (

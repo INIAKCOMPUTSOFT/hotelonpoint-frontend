@@ -1,9 +1,16 @@
 .sbar {
     margin-top:150px;
 }
-
+.bgcover{
+    margin-bottom:'50px'
+}
 @media(max-width:689px){
     .sbar {
-        margin-top:50px;
+        margin-top:5px;
     } 
+    .bgcover{
+    width: "100%";
+    height: "100vh"; 
+    margin-bottom:'5px'
+    }
 }

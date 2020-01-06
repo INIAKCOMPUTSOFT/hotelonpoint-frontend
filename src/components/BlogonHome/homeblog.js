@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
 import './homeblog.css';
 
+import { Link, Redirect } from 'react-router-dom';
+import React, { Component } from 'react';
 
 class HomeBlog extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class HomeBlog extends Component {
     });
     const data= await response.json();
     this.setState({blogs : data.post, loading:false})
-    console.log(this.state.blogs);
+    // console.log(this.state.blogs);
   }
   handleclick=()=>(
     this.setState({
@@ -49,14 +49,13 @@ class HomeBlog extends Component {
    return(
 
     <div className="mt-3 mb-3">
-    <h5>Get inspired to travel</h5>
+    <h2 className="text-center">Top Round-trip Flight Deals</h2>
     <div className='card-deck'>   
-    {this.state.blogs[0] ? reverse.slice(0,3).map((blog,i)=>(
-    <div className="card bg-dark text-white" onClick={this.handleclick} key={blog.id}>
-    <img src={blog.image[0].url}  className="card-img" alt="..." width="200" height="400" />
-    <div className="card-img-overlay">
-      <div className="titleback p-3"><h5 className="card-title text-light text-center btitle">{blog.title}</h5></div>
-    </div>
+    {this.state.blogs[0] ? reverse.slice(0,4).map((blog,i)=>(
+    <div className="card border-0 text-white"  key={i}>
+    <img src={blog.image[0].url}  className="card-img" alt="..." width="200" height="200" />
+   
+    <div className=""><h5 className="card-title text-dark text-left ">{blog.title}</h5></div>
   </div>
           ))
           :(<p>loading</p>)
