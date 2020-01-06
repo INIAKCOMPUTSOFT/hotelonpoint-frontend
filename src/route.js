@@ -32,7 +32,6 @@ import Singleblog from "./pages/Blogpages/singleblog";
 import axios from "axios";
 import history from './history';
 import jwtDecode from "jwt-decode";
-import ssl from './7AB685C2B27F1058753188E280108E0A.txt';
 import store from "./redux/store";
 
 function route() {
