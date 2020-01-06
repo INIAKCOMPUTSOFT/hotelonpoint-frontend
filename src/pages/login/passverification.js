@@ -1,19 +1,14 @@
 import "react-toastify/dist/ReactToastify.css";
 import "./login.css";
 
-import { getUser, loginUser } from "../../redux/actions/userActions";
+import { getUser, updatePassword } from "../../redux/actions/userActions";
 
 import CircularProgress from '@material-ui/core/CircularProgress';
-import How from '../../components/adds/howitworks';
 import { Input } from "../../components/inputs/input1";
-import { Link } from "react-router-dom";
-import Partnership from '../../components/adds/partnership';
 import React from "react";
 import { ToastContainer } from 'react-toastify';
 import background from "./bacground-pic/blue.jfif";
 import { connect } from "react-redux";
-import history from '../../history';
-import logo from "../../logo/HOP.svg";
 
 //import {Link} from 'react-router-dom'
 
@@ -25,12 +20,12 @@ var sectionStyle = {
   backgroundSize: "cover"
 };
 
-class Login extends React.Component {
+class PassVer extends React.Component {
   constructor() {
     super();
     this.state = {
-      email: "",
-      password: ""
+      password: "",
+      confirmPassword: ""
     };
   }
 
@@ -42,28 +37,25 @@ class Login extends React.Component {
   }
 
   handlesubmit = (event) => {
+    const id = this.props.match.params.id
     event.preventDefault();
     console.log(this.state);
     const data = {
-      email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      confirmPassword: this.state.confirmPassword
     };
 
-    this.props.loginUser(data, history)
+    this.props.updatePassword(data, id)
 
   }
 
   render() {
     const { UI: { loading, errors } } = this.props;
     return (
-      <>
       <div style={sectionStyle}>
         <div className="container mt-3 mb-3">
           <div className="row">
-            <div className="col-md-4 text-white">
-            
-              <h1>List your property and start recieving guest today.</h1><br />
-              <h1>Its free and always be free!!!</h1>
+            <div className="col-md-4">
             </div>
 
             <div className="col-md-4 ">
@@ -73,21 +65,9 @@ class Login extends React.Component {
                     {/* <h5 className="card-title text-dark text-center">
                       Hotel-on-points
                     </h5> */}
-                    <img src={logo} width="200" alt="" />
-                    <div className="form-group">
-                      <Input
-                        type="email"
-                        name="email"
-                        value={this.state.email}
-                        onChange={this.handleForm}
-                        className="form-control"
-                        placeholder="Enter Username"
-                        Label="Email"
-                      />
-                      {errors && errors.email ? (<small className='text-danger'>{errors.email}</small>) : null}
-  
-                    </div>
-
+                    <h5 className="card-title text-dark text-center">
+                      Create new password
+                    </h5>
                     <div className="form-group">
                       <Input
                         type="password"
@@ -96,18 +76,34 @@ class Login extends React.Component {
                         onChange={this.handleForm}
                         className="form-control"
                         placeholder="Enter password"
-                        Label="Password"
-                        small="your details are safe with us."
                       />
-                      {errors && errors.password ?(<small className='text-danger'>{errors.password}</small>)  : null}
+  
                     </div>
-                    <button type='submit' onClick={this.handlesubmit} variant='contained' color='primary' className="btn btn-block btin" disabled=  {loading}>Login
+
+                    <div className="form-group">
+                      <Input
+                        type="password"
+                        name="confirmPassword"
+                        value={this.state.confirmPassword}
+                        onChange={this.handleForm}
+                        className="form-control"
+                        placeholder="Confirm Password"
+                        label="Confirm password"
+                      />
+                      {errors && errors.message ? (
+                    <div class="alert alert-danger" role="alert">
+                      <p>{errors.message}...</p>
+                    </div>
+                      ) : null}
+  
+                    </div>
+
+                    <button type='submit' onClick={this.handlesubmit} variant='contained' color='primary' className="btn btn-block btin" disabled=  {loading}>Create Password Now
                       {loading && (
                         <CircularProgress size={30}  />
                       )}
                     </button>
                   </div>
-                  <p>No account <Link to="/signup">SignUp</Link>      <Link to="/forgotpass">  Forgot Password ?</Link></p>
                 </div>
               </div>
             </div>
@@ -117,9 +113,6 @@ class Login extends React.Component {
           <ToastContainer />
         </div>
       </div>
-        <How/>
-        <Partnership/>
-        </>
     );
   }
 }
@@ -130,8 +123,8 @@ const mapStateToProps = state => ({
 });
 
 const mapActionsToProps = {
-  loginUser,
+  updatePassword,
   getUser
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(Login);
+export default connect(mapStateToProps, mapActionsToProps)(PassVer);
