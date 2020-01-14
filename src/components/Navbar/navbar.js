@@ -2,9 +2,9 @@ import "./nav.css";
 
 import React, { Component } from "react";
 import { faCcVisa, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import { faHotel, faPlaneDeparture, faShip, faShoppingCart, faTaxi } from "@fortawesome/free-solid-svg-icons";
+import { faHotel, faPlaneDeparture, faShip, faShoppingCart, faTaxi, faBars } from "@fortawesome/free-solid-svg-icons";
 import { getUser, logoutUser } from "../../redux/actions/userActions";
-
+import ProfileData from '../dropdown/dropdown'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -40,7 +40,7 @@ class Navbar extends Component {
                   </span>
                 </Link>
                 <button
-                  className="navbar-toggler "
+                  className="navbar-toggler border-0 "
                   type="button"
                   data-toggle="collapse"
                   data-target="#navbarTogglerDemo01"
@@ -48,13 +48,15 @@ class Navbar extends Component {
                   aria-expanded="false"
                   aria-label="Toggle navigation"
                 >
-                  <span className="navbar-toggler-icon"></span>
+                  <span>
+                  <FontAwesomeIcon icon={faBars} style={{color:"white"}} />
+                    </span>
                 </button>
                 <div
                   className="collapse navbar-collapse"
                   id="navbarTogglerDemo01"
                 >
-                  <ul className="navbar-nav ml-auto">
+                  <ul className="navbar-nav ml-auto mt-2">
                     <li className="number  mr-1">
                       <div
                         className="btn-group mr-1 btn-group-sm"
@@ -120,7 +122,6 @@ class Navbar extends Component {
                         </div>
                       </div>
                     </li>
-                    (
                     <li className="nav-item mr-1">
                       <Link to="/listproperty">
                         <button className="botin">Add your property</button>
@@ -128,22 +129,10 @@ class Navbar extends Component {
                     </li>
                     {userData && (
                       <li className="nav-item mr-1">
-                        <div>
-                          <img
-                            src={userData.imageUrl}
-                            alt="..."
-                            style={{
-                              width: 40,
-                              height: 40,
-                              marginLeft: 10,
-                              marginRight: 10
-                            }}
-                            className="rounded-circle"
-                          />{" "}
-                          <span style={{ color: "white", marginRight: 10 }}>
-                            {userData.fullName}
-                          </span>
-                        </div>
+                       <ProfileData
+                         imageurl={userData.imageUrl}
+                         fullname={userData.fullName}
+                       />
                       </li>
                     )}
                     <li className="nav-item mr-1">
@@ -229,7 +218,7 @@ class Navbar extends Component {
                   </span>
                 </Link>
                 <button
-                  className="navbar-toggler "
+                  className="navbar-toggler border-0 "
                   type="button"
                   data-toggle="collapse"
                   data-target="#navbarTogglerDemo01"
@@ -237,7 +226,9 @@ class Navbar extends Component {
                   aria-expanded="false"
                   aria-label="Toggle navigation"
                 >
-                  <span className="navbar-toggler-icon bg-light"></span>
+                  <span>
+                  <FontAwesomeIcon icon={faBars} style={{color:"white"}} />
+                    </span>
                 </button>
                 <div
                   className="collapse navbar-collapse"

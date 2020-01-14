@@ -33,7 +33,7 @@
     margin-bottom: 10px;
 }
 .navbar-toggler-icon{
-    color:white;
+    color:white !important;
 }
 .botin{
     outline: none;
