@@ -31,9 +31,10 @@ function ProfileData (props){
         className="dropdown-menu"
         aria-labelledby="dropdownMenuButton"
       >
-        <a href="https://internal.hotelonpoints.com/" className="dropdown-item">My Dashboard</a>
-        <Link className="dropdown-item">Bookings</Link>
-        <Link className="dropdown-item">My property</Link>
+        {/* <a href="https://internal.hotelonpoints.com/" className="dropdown-item">My Dashboard</a> */}
+        <a href={`https://internal.hotelonpoints.com?id=${localStorage.token}`} className="dropdown-item">My Dashboard</a>
+        <Link className="dropdown-item ">Bookings</Link>
+        <a href={`https://internal.hotelonpoints.com?id=${localStorage.token}`} className="dropdown-item">My Properties</a>
         <Link className="dropdown-item">Reviews</Link>
       </div>
 

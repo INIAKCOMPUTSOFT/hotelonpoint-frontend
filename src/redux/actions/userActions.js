@@ -235,5 +235,6 @@ export const getBlogs = () => dispatch => {
 const setAuthorizationHeader = token => {
   const FBIdToken = `Bearer ${token}`;
   localStorage.setItem("JWT_TOKEN", FBIdToken);
+  localStorage.setItem("token", token);
   axios.defaults.headers.common["Authorization"] = FBIdToken;
 };
