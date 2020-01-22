@@ -63,7 +63,7 @@ function Footer() {
                 <br />
                 Whatsapp
                 <br />
-                phone No
+                Phone No
                 <br />
                 <Link to="/contact" className="link">
                   Physical Location

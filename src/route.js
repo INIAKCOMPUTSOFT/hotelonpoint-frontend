@@ -71,7 +71,7 @@ function route() {
               <Route exact path="/bookingform/:roomid" component={BookingForm} />
               <Route exact path="/listproperty" component={FormWrapper} />
               <CheckAuth exact path='/Uploadhotel' component={Hsignup} />
-               <CheckAuth exact path="/blogform" component={BlogForm} /> 
+              <CheckAuth exact path="/blogform" component={BlogForm} /> 
           </Switch>
         </div>
         <Footer />

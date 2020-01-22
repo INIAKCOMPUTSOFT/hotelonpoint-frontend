@@ -158,7 +158,7 @@ class Navbar extends Component {
                   <li className='nav-item'>
                     <Link to='/' className='nav-link'>
                       <FontAwesomeIcon className='menuicon' icon={faHotel} />
-                      Acommodation
+                      Accommodation
                     </Link>
                   </li>
                   <li className='nav-item'>
@@ -337,7 +337,7 @@ class Navbar extends Component {
                   <li className='nav-item'>
                     <Link to='/' className='nav-link'>
                       <FontAwesomeIcon className='menuicon' icon={faHotel} />
-                      Acommodation
+                      Accommodation
                     </Link>
                   </li>
                   <li className='nav-item'>

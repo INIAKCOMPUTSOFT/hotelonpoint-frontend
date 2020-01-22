@@ -62,9 +62,8 @@ class HotelList extends React.Component {
       const {result, description, rooms} = this.state;
       console.log('3213', Number(rooms))
       console.log('12345', result)
-      const filteredHotel = result.filter(robot =>{
-        return robot.rooms.length == Number(rooms) || robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase())
-      })
+      const filteredHotel = result.filter(robot => robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase())
+      )
       // console.log('123456', filteredHotel)
       this.setState({ pagehotel: filteredHotel})
     }
@@ -86,9 +85,9 @@ class HotelList extends React.Component {
         roomss.push(JSON.parse(room))
       })
     })
-    const filteredHotel = result.filter(robot =>{
-      return robot.rooms.length == Number(rooms) || robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase())
-    })
+    console.log('result to be filtered',result)
+    // const filteredHotel = result.filter(robot => robot.rooms.length == Number(rooms) || robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase())
+    // )
     // console.log('new', roomss)
     return (
     this.state.loading ? (<div className="loadingicon"><img src={spin} alt="laoder"/></div>) :
