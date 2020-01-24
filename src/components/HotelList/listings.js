@@ -94,12 +94,7 @@ class HotelList extends React.Component {
     this.state.loading ? (<div className="loadingicon"><img src={spin} alt="laoder"/></div>) :
     <>
       {/* this is the searchbar */}
-      <div className="row">
-            <div className="col-md-3">
-            <Filter />
-            </div>
-            <div className="col-md-9">
-            <div>
+      <div>
         <div className={this.props.className}>
           <div className=" container digi">
             <div className="search">
@@ -242,43 +237,13 @@ class HotelList extends React.Component {
         </div>
       </div>
 
-
-      {/* this is the nav filter*/}
-      <div className="mt-2">
-        <div className="mobilefilter mb-2">
-          <button className="btn btn-light jumbotron2">Filter</button>
-          <button className="btn btn-light jumbotron2">Sort</button>
-          <button className="btn btn-light jumbotron2">Price</button>
-        </div>
-        <div className="filternav">
-          <ul className="nav border mb-3 jumbotron2">
-            <li className="nav-item">
-              <span className="nav-link active" href="#">
-                Active
-              </span>
-            </li>
-            <li className="nav-item">
-              <span className="nav-link" href="#">
-                Much longer nav link
-              </span>
-            </li>
-            <li className="nav-item">
-              <span className="nav-link" href="#">
-                Link
-              </span>
-            </li>
-            <li className="nav-item">
-              <span
-                className="nav-link disabled"
-                href="#"
-                aria-disabled="true"
-              >
-                Disabled
-              </span>
-            </li>
-          </ul>
-        </div>
-        </div>
+      <div className="row">
+            <div className="col-md-3">
+            <Filter />
+            </div>
+            <div className="col-md-9">
+                  {/* this is the nav filter*/}
+      
 
 {/* this is the listing */}
                     {/* {samepage.length <= 0 && (<h1>{this.state.description} is Not Found</h1>)} */}
@@ -300,14 +265,7 @@ class HotelList extends React.Component {
                       <div className="card-body">
                         <h5>{hotel.propertyInfo.hotelName}</h5>
                         <p>{hotel.propertyInfo.hotelDescription}</p>
-                        <div className="props">
-                          <span className="btn btn-outline-success breakfast">
-                            <i className="fa fa-spoon"></i>
-                          </span>
-                          <span className="btn btn-success wifi">
-                            <i className="fa fa-wifi fa-1x"></i>
-                          </span>
-                        </div>
+                        
                         <p className="card-text locate">
                           <FontAwesomeIcon  className="logo" icon={faMapMarker} />
                            {hotel.propertyInfo.city} 
