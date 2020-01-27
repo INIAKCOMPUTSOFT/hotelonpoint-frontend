@@ -203,7 +203,7 @@ class SingleHotel extends React.Component {
                                     })
                                   }
                                   imageTitle= {room.roomAmenities.map((amenities, i) => (
-                                    <p key={i}>{JSON.parse(amenities)}</p>
+                                    <p key={i}>{amenities}</p>
                                   ))}
                                 />
                               }
@@ -226,7 +226,7 @@ class SingleHotel extends React.Component {
                             <p>{room.bedType}</p>
                             <p>{room.bedNumber}</p>
                             {room.roomAmenities.map((amenities, i) => (
-                              <p key={i}>{JSON.parse(amenities)}</p>
+                              <p key={i}>{amenities}</p>
                             ))}
                             <p className="card-text locate"></p>
                           </div>

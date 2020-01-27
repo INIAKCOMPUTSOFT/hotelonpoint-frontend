@@ -1,5 +1,5 @@
 import './bookingform.css';
-
+import axios from "axios";
 import Access from './bankicons/access.png';
 import Firstbank from './bankicons/firstbank.png';
 import GTB from './bankicons/gtb.png';
@@ -7,34 +7,77 @@ import { Link } from 'react-router-dom';
 import Payment from '../payment/payment';
 import React from 'react';
 import Zenith from './bankicons/zenith.png';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 class BookingForm extends React.Component{
     constructor(props){
         super();
         this.state={
-            title:'',
+          Rm: {},
+          title:'',
           firstname:'',
           lastname:'', 
           otherrequest:'',
           email:'',
           phone:'',
           wantairportshuttle:false,
-          getdeals:false
+          getdeals:false,
+          startDate: new Date(),
+          endDate: new Date()
 
         }
     }
+  
+    componentDidMount(){
+      const {
+        match: { params }
+      } = this.props;
+      var RoomId = params.roomid;
 
-    handlechange=(event)=>{
+      axios
+      .get(`https://calm-anchorage-14244.herokuapp.com/room/${RoomId}/room`)
+      .then(res => {
+        this.setState({  Rm: res.data.data })
+        //console.log('res',res)
+      })
+      //console.log('Rm',this.state.Rm)
+    }
+
+    handlechange=(event,date)=>{
       event.preventDefault();
-      const {name,value,type,checked}= event.target
+      const {name,value,type,checked,}= event.target
       type==="checkbox" ? 
       this.setState({[name]:checked}):
-      this.setState({[name]:value})
+      this.setState({[name]:value});
+      this.setState({startDate: date});
+      this.setState({startDate: date})
       console.log(this.state)
     }
 
+
     render(){
-      const amount = '1300'
+      //console.log('sRm', this.state.Rm)
+      const{Rm}=this.state
+      console.log('rm',Rm.roomPrice)
+      let amount = 0
+      if(Rm.roomPrice){
+        amount = Rm.roomPrice
+      }
+      const data = {
+        email: this.state.email,
+        phone: this.state.phone,
+        firstname:this.state.firstname,
+        lastname:this.state.lastname,
+        getdeals:this.state.getdeals,
+        otherrequest:this.state.otherrequest,
+        title:this.state.title,
+        wantairportshuttle:this.state.wantairportshuttle,
+        roomId: this.props.match.params.roomid,
+        roomType: Rm.roomType,
+        startDate: this.state.startdate,
+        endDate:this.state.enddate,
+      };
             return(
               <div className="container">
               <div className="row">
@@ -168,6 +211,51 @@ Please ensure your email is entered correctly.
                           </div>
                       </div>
 
+
+                    <div className="row mb-1">
+                          <div className="col-sm-12">
+                              <div className="card shadow p-3 mb-2 bg-white rounded">
+                               
+                                  <div className="card-body">
+                                  <h5 className="text-dark">
+                                Check in and Check out
+                                </h5>
+                                  <div className="row no-gutters">
+                          <p>Check in</p>
+                          <div className="col-md-12">
+                          <DatePicker
+                           selected={this.state.startDate}
+                           onChange={this.handleChange}
+                             />
+                          </div>
+                          {/* <div className="col-md-6"></div> */}
+                          </div>
+                          <div className="row mb-1">
+                          <div className="col-md-6">
+                            <DatePicker
+                            selected={this.state.endDate}
+                            onChange={this.handleChange}
+                          />
+                          </div>
+                          <div className="col-md-6">              
+                          </div>
+                          </div>
+                                <div className="row mb-1">
+                                  <div className="col-md-12">
+                                          <div className="form-check">
+                                                  <input className="form-check-input" onChange={this.handlechange} name="getdeals" checcked={this.state.getdeals} type="checkbox" value="" id="defaultCheck1"/>
+                                                  <label className="form-check-label" for="defaultCheck1">
+                                                    Check this box if you would not like to receive Hotel-on-points.com <b>special deals</b> email newsletter that contains great hotel promotions
+                                                   
+                                                  </label>
+                                              </div>
+                                      </div>
+                              </div> 
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
                       <div className="row mb-1">
                               <div className="col-sm-12">
                                   <div className="card shadow p-3 mb-2 bg-white rounded">
@@ -207,7 +295,7 @@ Please ensure your email is entered correctly.
                             
                             <div className="row">
                             <div className="col-12">
-                            <Payment amount={amount} container="contain" butin="btn-block btn-primary btn"/>
+                            <Payment amount={amount} info={data} onclick={this.handlepress} container="contain" butin="btn-block btn-primary btn"/>
                             </div>
                           </div>
                                 
@@ -226,7 +314,7 @@ Please ensure your email is entered correctly.
                               </div>
                               <div className="row">
                             <div className="col-12 ">
-                              <button className="btn btn-block btn-primary ">Book</button>
+                              <button onClick={this.handlepressed} className="btn btn-block btn-primary ">Book</button>
                             </div>
                           </div>
 

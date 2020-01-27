@@ -25,12 +25,13 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      result:[],
       searchResult:[],
       description: "",
-      checkin: "",
-      rooms: 1,
+      checs: 1,
       adults: 1,
-      startDate: null,
+      starkin: "",
+      roomtDate: null,
       endDate: null,
       children: 0,
       dateRangePickerI: {
@@ -69,11 +70,11 @@ class SearchBar extends React.Component {
     event.preventDefault();
     const {result, description, rooms} = this.state;
     // console.log('3213', Number(rooms))
-    // console.log('12345', result)
-    const filteredHotel = result.filter(robot =>{robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase())
-    })
-    // console.log('123456', filteredHotel)
+     console.log('12345', result)
+    const filteredHotel = result.filter(robot => robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase()))
+    console.log('123456', filteredHotel)
     this.setState({ searchResult: filteredHotel})
+    //console.log('filtered hotel', filteredHotel)
   }
 
   handleRangeChange = (which, payload) => {
