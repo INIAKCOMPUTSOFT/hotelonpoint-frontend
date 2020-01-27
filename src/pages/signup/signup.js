@@ -121,7 +121,7 @@ class SignUp extends React.Component {
                           value={this.state.email}
                           onChange={this.handleForm}
                           className="form-control"
-                          placeholder="Enter Username"
+                          placeholder="Enter Email"
                           Label="Email"
                         />
                         {errors && errors.email ? (<small className='text-danger'>{errors.email}</small>) : null}
@@ -161,11 +161,11 @@ class SignUp extends React.Component {
                         className="btn btn-block btin"
                         disabled={loading}
                       >
-                        Sign Up
+                       Agree and sign up
                         {loading && <CircularProgress size={30} />}
                       </button>
                       <ToastContainer />
-                      <p>Have an account ? <Link to="/login">Sign In</Link> </p>
+                      <p>Already have an account?  <Link to="/login">Sign In</Link> </p>
                     </div>
                   </div>
                 </div>
@@ -184,8 +184,8 @@ class SignUp extends React.Component {
               <h1 style={{ textTransform: "capitalize" }}>
                 {this.state.fullname}
               </h1>
-              <h1>Finish filling the form</h1>
-              <h1>To unlock Great Deals</h1>
+              <h1>Sign up to take advantage  </h1>
+              <h1>of our services </h1>
             </div>
           </div>
         </div>

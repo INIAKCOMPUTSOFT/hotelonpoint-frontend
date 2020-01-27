@@ -1,8 +1,9 @@
 import './nav.css'
 
 import React, { Component } from 'react'
-import { faCcVisa, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 import {
+  faPassport,
   faHotel,
   faPlaneDeparture,
   faShip,
@@ -19,7 +20,7 @@ import history from '../../history'
 import logo from '../../logo/HOP.svg'
 
 // npm install --save-dev @iconify/react @iconify/icons-fa-solid
-// import { Icon, InlineIcon } from '@iconify/react';
+// simport { Icon, InlineIcon } from '@iconify/react';
 // import atlasIcon from '@iconify/icons-fa-solid/atlas';
 
 class Navbar extends Component {
@@ -202,7 +203,7 @@ class Navbar extends Component {
 
                   <li className='nav-item'>
                     <Link to='/flight/' className='nav-link'>
-                      <FontAwesomeIcon className='menuicon' icon={faCcVisa} />
+                      <FontAwesomeIcon className='menuicon' icon={faPassport} />
                       Travel Visa
                     </Link>
                   </li>
@@ -312,11 +313,9 @@ class Navbar extends Component {
                     </li>
 
                     <li className='nav-item mr-1'>
-                      <a
-                        href={`https://internal.hotelonpoints.com/add-property?id=${localStorage.token}`}
-                      >
+                    <Link to='/login'>
                         <button className='botin'>Add your property</button>
-                      </a>
+                      </Link>
                     </li>
                     <li className='nav-item mr-1'>
                       <Link to='/signup'>
@@ -381,7 +380,7 @@ class Navbar extends Component {
 
                   <li className='nav-item'>
                     <Link to='/flight/' className='nav-link'>
-                      <FontAwesomeIcon className='menuicon' icon={faCcVisa} />
+                      <FontAwesomeIcon className='menuicon' icon={faPassport} />
                       Travel Visa
                     </Link>
                   </li>

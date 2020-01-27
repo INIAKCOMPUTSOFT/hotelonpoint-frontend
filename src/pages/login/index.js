@@ -68,7 +68,7 @@ class Login extends React.Component {
 
             <div className="col-md-4 ">
               <div className="card  mb-3 shadow login-card">
-                <div className="card-body text-dark ">
+                <div className="card-body text-dark " id="logins">
                   <div>
                     {/* <h5 className="card-title text-dark text-center">
                       Hotel-on-points
@@ -81,7 +81,7 @@ class Login extends React.Component {
                         value={this.state.email}
                         onChange={this.handleForm}
                         className="form-control"
-                        placeholder="Enter Username"
+                        placeholder="Enter Email"
                         Label="Email"
                       />
                       {errors && errors.email ? (<small className='text-danger'>{errors.email}</small>) : null}
@@ -117,7 +117,7 @@ class Login extends React.Component {
           <ToastContainer />
         </div>
       </div>
-        <How/>
+        <How id="#logins"/>
         <Partnership/>
         </>
     );
