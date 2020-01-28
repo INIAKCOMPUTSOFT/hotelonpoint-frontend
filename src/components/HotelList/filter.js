@@ -12,7 +12,7 @@ class Filter extends React.Component{
 
     render(){
         return(
-            <div className="card text-dark mt-2  mb-3 border filter">
+            <div className="card text-dark mt-3  mb-3 border filter">
             <div className="card-header">Filter</div>
             <div className="card-body">
             <p><b>your budget</b></p>
@@ -57,7 +57,60 @@ class Filter extends React.Component{
               onChange={this.handeChange}
               range="0 - 10"
               />
-            <hr/>   
+            <hr/> 
+            PRICE RANGE
+            <hr/> 
+            DISCOUNTS
+            <Input2
+              type="checkbox"
+              value={this.state.value}
+              onChange={this.handeChange}
+              range="Special offer"
+              />
+            <hr/> 
+            MEALS
+            <Input2
+              type="checkbox"
+              value={this.state.value}
+              onChange={this.handeChange}
+              range="Breackfast"
+              />
+            <hr/> 
+            BOOKING POLICY
+            <Input2
+              type="checkbox"
+              value={this.state.value}
+              onChange={this.handeChange}
+              range="Free Cancellation"
+              />
+               <Input2
+              type="checkbox"
+              value={this.state.value}
+              onChange={this.handeChange}
+              range="FInstant Confirmnation"
+              />
+            <hr/> 
+            BED TYPE
+            <Input2
+              type="radio"
+              value={this.state.value}
+              onChange={this.handeChange}
+              range="Queen Bed"
+              />
+               <Input2
+              type="radio"
+              value={this.state.value}
+              onChange={this.handeChange}
+              range="Single Beds"
+              />
+                  <Input2
+              type="radio"
+              value={this.state.value}
+              onChange={this.handeChange}
+              range="Multiple Beds"
+              />
+            <hr/>
+
             </div>
             </div> 
         )
