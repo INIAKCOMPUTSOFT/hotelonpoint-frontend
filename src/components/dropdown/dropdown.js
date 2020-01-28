@@ -1,6 +1,7 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
 import "./dropdown.css"
+
+import { Link } from 'react-router-dom'
+import React from 'react'
 
 function ProfileData (props){
     return(
@@ -32,7 +33,8 @@ function ProfileData (props){
         aria-labelledby="dropdownMenuButton"
       >
         {/* <a href="https://internal.hotelonpoints.com/" className="dropdown-item">My Dashboard</a> */}
-        <a href={`https://internal.hotelonpoints.com?id=${localStorage.token}`} className="dropdown-item">My Dashboard</a>
+        {/* <a href={`https://internal.hotelonpoints.com?id=${localStorage.token}`} className="dropdown-item">My Dashboard</a> */}
+        <Link to="/dashboard" className="dropdown-item ">My Dashboard</Link>
         <Link className="dropdown-item ">Bookings</Link>
         <a href={`https://internal.hotelonpoints.com?id=${localStorage.token}`} className="dropdown-item">My Properties</a>
         <Link className="dropdown-item">Reviews</Link>
