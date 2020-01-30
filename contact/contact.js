@@ -20,6 +20,23 @@ City="Port Harcourt"
 PostalAddress="Postal Address"
 ZipCode="Zip code : 500272"
 
+Href="hostoffice"
+Id="hostoffice"
+
+/>
+
+<ContactComponent
+Header="Branch Office"
+
+PhysicalAddress="Physical Address"
+RoadNo="Cedar House"
+Location="First floor 41 Airport Road"
+City="Warri, Delta State"
+
+PostalAddress="Postal Address"
+ZipCode="Zip code : 500272"
+Href="branchoffice"
+Id="branceoffice"
 />
 </div>
     )

@@ -38,14 +38,13 @@ return(
     <span class="mr-1 btn btn-secondary">Get Directions</span>
     </div>
     <div class="collapse" id={"collapseExample"}>
-    <div class="collapse" id={"collapseExample"}>
   <div class="card card-body">
    <ContactForm/>
   </div>
 </div>
     </div>
     </div>
-</div>
+
 </div>
 )
 
