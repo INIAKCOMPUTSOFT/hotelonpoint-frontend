@@ -31,21 +31,19 @@ return(
     <div class="mb-2 ml-1">
     <span class="mr-1 btn btn-secondary"
      data-toggle="collapse"
-      href={props.href}
+      href={props.Href}
        aria-expanded="false"
         aria-controls="collapseExample">Email</span>                 
     <span class="mr-1 btn btn-secondary">Check on VR  <FontAwesomeIcon className="menuicon" icon={faVrCardboard} /></span>
     <span class="mr-1 btn btn-secondary">Get Directions</span>
     </div>
-    <div class="collapse" id={"collapseExample"}>
-    <div class="collapse" id={"collapseExample"}>
+    <div class="collapse" id={props.Id}>
   <div class="card card-body">
    <ContactForm/>
   </div>
 </div>
     </div>
     </div>
-</div>
 </div>
 )
 

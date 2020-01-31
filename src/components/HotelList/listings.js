@@ -1,6 +1,7 @@
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./searchbar.css";
+import "./list.css";
 
 import Axios from "axios";
 import { DateRangePicker } from "react-dates";
@@ -62,9 +63,8 @@ class HotelList extends React.Component {
       const {result, description, rooms} = this.state;
       console.log('3213', Number(rooms))
       console.log('12345', result)
-      const filteredHotel = result.filter(robot =>{
-        return robot.rooms.length == Number(rooms) || robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase())
-      })
+      const filteredHotel = result.filter(robot => robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase())
+      )
       // console.log('123456', filteredHotel)
       this.setState({ pagehotel: filteredHotel})
     }
@@ -86,9 +86,9 @@ class HotelList extends React.Component {
         roomss.push(JSON.parse(room))
       })
     })
-    const filteredHotel = result.filter(robot =>{
-      return robot.rooms.length == Number(rooms) || robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase())
-    })
+    console.log('result to be filtered',result)
+    // const filteredHotel = result.filter(robot => robot.rooms.length == Number(rooms) || robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase())
+    // )
     // console.log('new', roomss)
     return (
     this.state.loading ? (<div className="loadingicon"><img src={spin} alt="laoder"/></div>) :
@@ -247,10 +247,11 @@ class HotelList extends React.Component {
 
 {/* this is the listing */}
                     {/* {samepage.length <= 0 && (<h1>{this.state.description} is Not Found</h1>)} */}
+        <div className="mt-3">
         {samepage.length >= 1 ? (
           samepage.map((hotel, i) => (
-            <Link to={`/singlehotel/${hotel._id}`}>
-            <div className=" jumbotron2 mb-3" onClick={this.handleClick} key={i}>
+            <Link to={`/singlehotel/${hotel._id}`} className="jumbot">
+            <div className=" jumbotron2  mb-3" onClick={this.handleClick} key={i}>
               <div>
                 <div className="row no-gutters">
                   <div className="col-md-4">
@@ -310,7 +311,7 @@ class HotelList extends React.Component {
 
         ):(
            searchedHotel.map((hotel, i) => (
-            <Link to={`/singlehotel/${hotel._id}`} key={i}>
+            <Link to={`/singlehotel/${hotel._id}`} key={i} className="jumbot">
             <div className=" jumbotron2 mb-3" onClick={this.handleClick}>
               <div>
                 <div className="row no-gutters">
@@ -326,14 +327,7 @@ class HotelList extends React.Component {
                       <div className="card-body">
                         <h5>{hotel.propertyInfo.hotelName}</h5>
                         <p>{hotel.propertyInfo.hotelDescription}</p>
-                        <div className="props">
-                          <span className="btn btn-outline-success breakfast">
-                            <i className="fa fa-spoon"></i>
-                          </span>
-                          <span className="btn btn-success wifi">
-                            <i className="fa fa-wifi fa-1x"></i>
-                          </span>
-                        </div>
+                       
                         <p className="card-text locate">
                           <FontAwesomeIcon  className="logo" icon={faMapMarker} />
                            {hotel.propertyInfo.city} 
@@ -377,6 +371,7 @@ class HotelList extends React.Component {
             ))
       
         )}
+        </div>
         </div>
         </div>
       </>

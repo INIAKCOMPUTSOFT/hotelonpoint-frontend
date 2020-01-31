@@ -1,8 +1,12 @@
-import React from "react";
-import { Provider } from 'react-redux';
 import './App.css';
-import store from './redux/store';
+
+import { Provider } from 'react-redux';
+import React from "react";
 import Router from './route';
+import store from './redux/store';
+
+//import UserRoute from './userroute';
+
 
 
 
@@ -10,6 +14,8 @@ function App() {
   return (
     <Provider store={store}>
       <Router />
+      {/* <UserRoute/> */}
+      {/* <UserRoute/> */}
     </Provider>
   );
 }

@@ -29,6 +29,7 @@ import { SET_AUTHENTICATED } from './redux/type';
 import Signup from "./pages/signup/signup";
 import SingleHotel from "./components/singlehotel/singlehotel";
 import Singleblog from "./pages/Blogpages/singleblog";
+import UserRoute from "./userroute";
 import axios from "axios";
 import history from './history';
 import jwtDecode from "jwt-decode";
@@ -67,6 +68,7 @@ function route() {
               <Route exact path="/singlehotel/:hotelId" component={SingleHotel} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/contact" component={Contact} />
+              <Route exact path="/dashboard" component={UserRoute} />
               <Route exact path="/payment" component={Payment} />
               <Route exact path="/bookingform/:roomid" component={BookingForm} />
               <Route exact path="/listproperty" component={FormWrapper} />

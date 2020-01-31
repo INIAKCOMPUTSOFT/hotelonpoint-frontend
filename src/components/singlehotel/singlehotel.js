@@ -43,7 +43,21 @@ class SingleHotel extends React.Component {
     }));
   };
 
+
   render() {
+
+    function amen(amenities,i){
+      if(amenities.match(/Wifi/)){
+        return(
+          <div className="col-md-4" key={i}>
+          <p className=""> wifi </p>
+          {/* {amenity} */}
+        </div> 
+        )
+      }
+        return(<p>testing</p>)
+      
+    }
     const { Hh, Rm, photoIndex, isOpen } = this.state;
     // console.log("seperate room", Rm);
     const urls = [];
@@ -139,12 +153,11 @@ class SingleHotel extends React.Component {
             <div className="row">
               {Hh.hotelPolicy &&
               
-                Hh.hotelPolicy.hotelAmenities.map((Amenities,i )=> (
-                  <div className="col-md-4" key={i}>
-                    {/* <p className=""> {JSON.parse(Amenities)} </p> */}
-                    {amenity}
-                  </div>
-                ))}
+                Hh.hotelPolicy.hotelAmenities.map((Amenities,a ) => {
+                  //console.log(amen(i));
+                //amen(Amenities,a) 
+              console.log(Amenities) 
+                })}
             </div>
           </div>
 
@@ -203,7 +216,7 @@ class SingleHotel extends React.Component {
                                     })
                                   }
                                   imageTitle= {room.roomAmenities.map((amenities, i) => (
-                                    <p key={i}>{JSON.parse(amenities)}</p>
+                                    <p key={i}>{amenities}</p>
                                   ))}
                                 />
                               }
@@ -226,7 +239,7 @@ class SingleHotel extends React.Component {
                             <p>{room.bedType}</p>
                             <p>{room.bedNumber}</p>
                             {room.roomAmenities.map((amenities, i) => (
-                              <p key={i}>{JSON.parse(amenities)}</p>
+                              <p key={i}>{amenities}</p>
                             ))}
                             <p className="card-text locate"></p>
                           </div>
@@ -307,7 +320,7 @@ class SingleHotel extends React.Component {
               {Hh.hotelPolicy &&
                 Hh.hotelPolicy.paymentMethod.map((paym,i) => (
                   <div className="" key={i}>
-                    <span className="text-center h6">{JSON.parse(paym)}</span>
+                    <span className="text-center h6">{paym}</span>
                   </div>
                 ))}
             </div>

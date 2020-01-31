@@ -8,6 +8,7 @@ import Background from "../../components/background/background";
 import CardCarrier from "../../components/cardshadow/cardcarrier";
 import HomeBlog from "../../components/BlogonHome/homeblog";
 import React from "react";
+import SecondNav from "../../components/Navbar/downnav";
 import { connect } from 'react-redux';
 
 //import {Link} from 'react-router-dom'
@@ -20,6 +21,7 @@ import { connect } from 'react-redux';
 function HotelHome({ user: { authenticated } }) {
   return (
     <div> 
+      <SecondNav />
       <Background />
       <div className="container content">
         {authenticated && <AwaitAproval />}

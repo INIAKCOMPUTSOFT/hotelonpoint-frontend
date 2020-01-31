@@ -20,11 +20,7 @@ City="Port Harcourt"
 PostalAddress="Postal Address"
 ZipCode="Zip code : 500272"
 
-<<<<<<< HEAD:contact/contact.js
 Href="hostoffice"
-=======
-Href="#hostoffice"
->>>>>>> aa05dbb4a89bc5bf32c6d4f90861f61748549b00:src/components/contact/contact.js
 Id="hostoffice"
 
 />
@@ -39,13 +35,8 @@ City="Warri, Delta State"
 
 PostalAddress="Postal Address"
 ZipCode="Zip code : 500272"
-<<<<<<< HEAD:contact/contact.js
 Href="branchoffice"
 Id="branceoffice"
-=======
-Href="#branchoffice"
-Id="branchoffice"
->>>>>>> aa05dbb4a89bc5bf32c6d4f90861f61748549b00:src/components/contact/contact.js
 />
 </div>
     )
