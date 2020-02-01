@@ -1,12 +1,12 @@
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
-import "./searchbar.css";
 import "./list.css";
+import "./searchbar.css";
 
 import Axios from "axios";
 import { DateRangePicker } from "react-dates";
-import Filter from './filter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Input2 } from '../inputs/input1';
 import { Link } from 'react-router-dom';
 import React from "react";
 import { addDays } from "date-fns";
@@ -18,6 +18,13 @@ class HotelList extends React.Component {
   constructor() {
     super();
     this.state = {
+      sideFilter:[],
+      budget:'',
+      bed:'',
+      breakfast:false,
+      Cancellation:false,
+      confirmnation:false,
+      value:[],
       loading:true,
       pagehotel: [],
       result: [],
@@ -44,6 +51,7 @@ class HotelList extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+   
     }
   
     componentDidMount() {
@@ -57,6 +65,31 @@ class HotelList extends React.Component {
       this.setState({ [name]: value });
       // console.log(this.state);
     }
+     
+    handleSideFilterButtonsChange=(eve)=>{
+      const {budget,bed,breakfast,Cancellation,confirmation,result} = this.state;
+      const {name,value,type,checked} = eve.target
+      type === "checkbox"? this.setState({[name]:checked}) :this.setState({[name]:value})
+      console.log(this.state)
+      const sidefilter =result.filter(robot => Number(eve.target.value)  >= Number(robot.averagePrice))
+      this.setState({sideFilter:sidefilter})
+      console.log(sidefilter,' not on state')
+      console.log(budget,'budget')
+      if (result){
+        console.log( result[0].averagePrice,'target price')
+      }
+       
+      console.log(this.state.sideFilter,'side filterd ')
+      }
+      
+      filterthehotels=( filtering)=>{
+        console.log(filtering)
+        const {budget} = this.state;
+        console.log(budget, 'this is the budget')
+        const Filtering = filtering.filter(robot =>Number(budget)  >= Number(robot.averagePrice))
+        console.log(Filtering,'on clicked')
+        this.setState({sideFilter: filtering})
+      }
   
     handleSubmit(event) {
       event.preventDefault();
@@ -69,14 +102,14 @@ class HotelList extends React.Component {
       this.setState({ pagehotel: filteredHotel})
     }
 
-    handleClick=()=>{
-    
-    }
+   
 
   render() {
+    console.log(this.state.sideFilter, 'on state');
     const {result, description, rooms} = this.state;
     const samepage = this.state.pagehotel
     const searchedHotel = this.props.location.state.searchResult
+    
     // console.log('123456789', searchedHotel)
     // console.log('same page',this.state.pagehotel)
     //algo to convert to usable arr
@@ -86,7 +119,7 @@ class HotelList extends React.Component {
         roomss.push(JSON.parse(room))
       })
     })
-    console.log('result to be filtered',result)
+    //console.log('result to be filtered',result)
     // const filteredHotel = result.filter(robot => robot.rooms.length == Number(rooms) || robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase())
     // )
     // console.log('new', roomss)
@@ -239,7 +272,126 @@ class HotelList extends React.Component {
 
       <div className="row">
             <div className="col-md-3">
-            <Filter />
+            <div className="card text-dark mt-3  mb-3 border filter">
+            <div className="card-header">Filter</div>
+            <div className="card-body">
+            <p><b>Your Budget</b></p>
+              <Input2
+              name="budget"
+              type="radio"
+              value="5000"
+              onChange={this.handleSideFilterButtonsChange}
+              range="2000-5000"
+              />
+            
+            <Input2
+              name="budget"
+              type="radio"
+              value="10000"
+              onChange={this.handleSideFilterButtonsChange}
+              range="5000 - 10000"
+              />
+            
+            <Input2
+              name="budget"
+              type="radio"
+              value="5000"
+              onChange={this.handleSideFilterButtonsChange}
+              range="10000-20000"
+              />
+            
+            <Input2
+              name="budget"
+              type="radio"
+              value="20000"
+              onChange={this.handleSideFilterButtonsChange}
+              range="20000-40000"
+              />
+            
+            <Input2
+              name="budget"
+              type="radio"
+              value="80000"
+              onChange={this.handleSideFilterButtonsChange}
+              range="40000-80000"
+              />
+            
+            <Input2
+              name="budget"
+              type="radio"
+              value="200000"
+              onChange={this.handleSideFilterButtonsChange}
+              range="80000-200000"
+              />
+            <hr/> 
+            
+            <b>Breackfast</b>
+            <Input2
+              type="radio"
+              name="breakfast"
+              value='Yes, Free'
+              onChange={this.handleSideFilterButtonsChange}
+              range="Free Breakfast"
+              />
+                 <Input2
+              type="radio"
+              name="breakfast"
+              value='Yes, Paid'
+              onChange={this.handleSideFilterButtonsChange}
+              range="Paid Breakfast"
+              />
+                 <Input2
+              type="radio"
+              name="breakfast"
+              value='No'
+              onChange={this.handleSideFilterButtonsChange}
+              range="No Breakfast"
+              />
+            <hr/> 
+            <b>Booking Policy</b>
+            <Input2
+              type="checkbox"
+              name="Cancellation"
+              value={this.state.Cancellation}
+              onChange={this.handleSideFilterButtonsChange}
+              range="Free Cancellation"
+              />
+               <Input2
+              type="checkbox"
+              value={this.state.confirmnation}
+              onChange={this.handleSideFilterButtonsChange}
+              range="Instant Confirmation"
+              />
+            <hr/> 
+            <b>Bed Type</b>
+            <Input2
+              type="radio"
+              name="bed"
+              value="Queen Bed"
+              onChange={this.handleSideFilterButtonsChange}
+              range="Queen Bed"
+              />
+               <Input2
+              type="radio"
+              name="bed"
+              value="Single Beds"
+              onChange={this.handleSideFilterButtonsChange}
+              range="Single Beds"
+              />
+                  <Input2
+              type="radio"
+              name="bed"
+              value="Multiple Beds"
+              onChange={this.handleSideFilterButtonsChange}
+              range="Multiple Beds"
+              />
+            <hr/>
+
+            </div>
+            <button onClick={() =>this.filterthehotels(searchedHotel)} className="btn btn-primary btn-block"> 
+            Filter
+            </button>
+            </div> 
             </div>
             <div className="col-md-9">
                   {/* this is the nav filter*/}
@@ -282,7 +434,7 @@ class HotelList extends React.Component {
                         <span className="veiw">v</span>
                         <span>views</span>
   
-                        <p className="card-subtitle price">{roomss[0].roomPrice}</p>
+                        <p className="card-subtitle price">{hotel.averagePrice}</p>
   
                         <p className="text-muted pernight">per night</p>
                         <div className="rateing">
@@ -343,7 +495,7 @@ class HotelList extends React.Component {
                         <span className="veiw">v</span>
                         <span>views</span>
   
-                        <p className="card-subtitle price">{roomss[0].roomPrice}</p>
+                        <p className="card-subtitle price">{hotel.averagePrice}</p>
   
                         <p className="text-muted pernight">per night</p>
                         <div className="rateing">
@@ -372,6 +524,7 @@ class HotelList extends React.Component {
       
         )}
         </div>
+        
         </div>
         </div>
       </>
