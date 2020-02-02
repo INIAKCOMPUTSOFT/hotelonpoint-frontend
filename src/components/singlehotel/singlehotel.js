@@ -1,13 +1,15 @@
 import "react-image-gallery/styles/css/image-gallery.css";
 import "react-image-lightbox/style.css";
 import "./singlehotel.css";
-
+import {faWifi,faSwimmer,faSpa,faWater,faBicycle,faGlassCheers,faChild,faHotTub,faMoneyBillAlt, faFilm, faWineGlass, faCrosshairs, faGasPump, faTshirt, faDesktop, faShuttleVan, faDumbbell, faMonument, faFan, faBriefcase, faCamera, faTaxi,} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Axios from "axios";
 import ImageGallery from "react-image-gallery";
 import Lightbox from "react-image-lightbox";
 import { Link } from "react-router-dom";
 import React from "react";
 import spin from '../../logo/spinner.gif';
+import { faServicestack, faShirtsinbulk, faSpeakerDeck } from "@fortawesome/free-brands-svg-icons";
 
 //import ReactBnbGallery from 'react-bnb-gallery';
 
@@ -43,7 +45,19 @@ class SingleHotel extends React.Component {
     }));
   };
 
+  // amen=(amenities,i)=>{
+  //   if(amenities.match(/wifi/)){
+  //     return(
+  //     <p>wifi</p>
+  //     )
+  //   }
+  // }
+
+
   render() {
+//     let rest;
+// const regex =/Wifi/ 
+
     const { Hh, Rm, photoIndex, isOpen } = this.state;
     // console.log("seperate room", Rm);
     const urls = [];
@@ -139,12 +153,324 @@ class SingleHotel extends React.Component {
             <div className="row">
               {Hh.hotelPolicy &&
               
-                Hh.hotelPolicy.hotelAmenities.map((Amenities,i )=> (
-                  <div className="col-md-4" key={i}>
-                    {/* <p className=""> {JSON.parse(Amenities)} </p> */}
-                    {amenity}
-                  </div>
-                ))}
+                Hh.hotelPolicy.hotelAmenities.map((Amenities,a) => {
+                  console.log(Amenities);
+                  let wifi=Amenities.match(/wifi/gi);
+                  let pool=Amenities.match(/Swiming pool/gi);
+                  let spa=Amenities.search('spa')
+                  let park=Amenities.match(/Water Park/gi)
+                  let bycicle=Amenities.match(/Bicycle Rental/gi)
+                  let car=Amenities.match(/Car Rental/gi);
+                  let Cinema=Amenities.match(/cinema/gi);
+                  let Audio=Amenities.match(/Audio System/gi)
+                  let newpaper=Amenities.match(/Newspaper in lobby/gi);
+                  let duty=Amenities.match(/Duty Manager/gi);
+                  let lounge=Amenities.match(/Executive Lounge/gi)
+                  let salon=Amenities.match(/Beauty Salon/gi)
+                  let elevator=Amenities.match(/Elevator/gi)
+                  let currency=Amenities.match(/Currency Exchange/gi)
+                  let Ac=Amenities.match(/Air Condition/gi)
+                  let Roomservice=Amenities.match(/Room Service/gi)
+                  let cctv=Amenities.match(/CCTV in Public Places/gi)
+                  let electric=Amenities.match(/Electric Vechicle Charging Station/gi)
+                  let playground=Amenities.match(/Children Playground/gi)
+                  let ironing=Amenities.match(/Ironing Service/gi)
+                  let desk=Amenities.match(/Fronk Desk Service/gi)
+                  let hot=Amenities.match(/Jacuzzi/gi)
+                  let Airportshuttle=Amenities.match(/Airpot Shuttle/gi)
+                  let fitness=Amenities.match(/Fitnes Center/gi)
+                  let bar=Amenities.match(/Bar/gi)
+                  let terace=Amenities.match(/Terrace/gi)
+                  if(wifi){
+                    
+                    return(
+                      <div>
+                       <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faWifi}
+                    /> wifi</p>
+                    </div>
+                    )
+                    
+                  }
+                  else if(pool){
+
+                    return(
+                      <div>
+                        <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faSwimmer}
+                    /> Swimming Pool</p>
+                    </div>
+                    )
+                  }
+                  else if(spa > -1){
+                    return(
+                      <div>
+                       <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faSpa}
+                    /> Spa</p>
+                    </div>
+                    ) 
+                  }
+                  else if(park){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faWater}
+                    /> Water Park</p>
+                    </div>
+                    ) 
+
+                  }else if(bycicle){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faBicycle}
+                    /> Bycicle Rentals</p>
+                    </div>
+                    ) 
+
+                  }else if(car){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faTaxi}
+                    /> Car Rentals</p>
+                    </div>
+                    ) 
+
+                  }else if(Cinema){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faFilm}
+                    /> Cinema</p>
+                    </div>
+                    ) 
+
+                  }else if(Audio){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faSpeakerDeck}
+                    /> Audio System</p>
+                    </div>
+                    ) 
+
+                  }else if(newpaper){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faBicycle}
+                    /> Newspaper in Lobby</p>
+                    </div>
+                    ) 
+
+                  }else if(duty){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faBriefcase}
+                    /> Duty Manager</p>
+                    </div>
+                    ) 
+
+                  }else if(lounge){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faWineGlass}
+                    /> Executive Lounge</p>
+                    </div>
+                    ) 
+
+                  }else if(salon){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faCrosshairs}
+                    /> Beauty Salon</p>
+                    </div>
+                    ) 
+
+                  }else if(elevator){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                     Elevator</p>
+                    </div>
+                    ) 
+
+                  }else if(currency){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faMoneyBillAlt}
+                    /> Currency Exchange </p>
+                    </div>
+                    ) 
+
+                  }else if(Ac){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faFan}
+                    /> Air Conditioning</p>
+                    </div>
+                    ) 
+
+                  }else if(Roomservice){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faServicestack}
+                    /> Room Service</p>
+                    </div>
+                    ) 
+
+                  }else if(cctv){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faCamera}
+                    /> CCTV in Public Places</p>
+                    </div>
+                    ) 
+
+                  }else if(electric){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faGasPump}
+                    /> Electric Vechicle Charging Station</p>
+                    </div>
+                    ) 
+
+                  }else if(playground){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faChild}
+                    /> Children Playground</p>
+                    </div>
+                    ) 
+
+                  }else if(ironing){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faTshirt}
+                    /> Ironing Service</p>
+                    </div>
+                    ) 
+
+                  }else if(desk){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faDesktop}
+                    /> Front Desk Service</p>
+                    </div>
+                    ) 
+
+                  }else if(hot){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faHotTub}
+                    /> Hot tub/Jacuzzi</p>
+                    </div>
+                    ) 
+
+                  }else if(Airportshuttle){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faShuttleVan}
+                    /> Airport Shuttle</p>
+                    </div>
+                    ) 
+
+                  }else if(fitness){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faDumbbell}
+                    /> Fitness Center</p>
+                    </div>
+                    ) 
+
+                  }else if(bar){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faGlassCheers}
+                    /> Bar</p>
+                    </div>
+                    ) 
+
+                  }else if(terace){
+                    return(
+                      <div>
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faMonument}
+                    /> Terrace</p>
+                    </div>
+                    ) 
+
+                  }
+               //this.amen(Amenities,a) 
+              //console.log(Amenities,'testing amenities') 
+                })}
             </div>
           </div>
 
@@ -307,7 +633,7 @@ class SingleHotel extends React.Component {
               {Hh.hotelPolicy &&
                 Hh.hotelPolicy.paymentMethod.map((paym,i) => (
                   <div className="" key={i}>
-                    <span className="text-center h6">{JSON.parse(paym)}</span>
+                    <span className="text-center h6">{paym}</span>
                   </div>
                 ))}
             </div>

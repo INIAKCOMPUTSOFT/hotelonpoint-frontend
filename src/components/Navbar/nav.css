@@ -35,6 +35,20 @@
 .navbar-toggler-icon{
     color:white !important;
 }
+.botin2{
+    outline: none;
+    border-style:solid;
+    border-radius:5px;
+    border-color:#C4BDA3;
+    color:#C4BDA3;
+    background: none;
+    height:10px;
+}
+.botin2:hover{
+    background-color:#C4BDA3;
+    color:black;
+    font-weight:bold;
+}
 .botin{
     outline: none;
     border-style:solid;

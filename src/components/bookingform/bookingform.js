@@ -1,5 +1,6 @@
+import 'react-datepicker/dist/react-datepicker.css'
 import './bookingform.css'
-import axios from 'axios'
+
 import Access from './bankicons/access.png'
 import Firstbank from './bankicons/firstbank.png'
 import GTB from './bankicons/gtb.png'
@@ -7,8 +8,7 @@ import { Link } from 'react-router-dom'
 import Payment from '../payment/payment'
 import React from 'react'
 import Zenith from './bankicons/zenith.png'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
+import axios from 'axios'
 
 class BookingForm extends React.Component {
   constructor (props) {
@@ -23,8 +23,8 @@ class BookingForm extends React.Component {
       phone: '',
       wantairportshuttle: false,
       getdeals: false,
-      startDate: new Date(),
-      endDate: new Date()
+      startdate: '',
+      enddate:''
     }
   }
 
@@ -49,8 +49,6 @@ class BookingForm extends React.Component {
     type === 'checkbox'
       ? this.setState({ [name]: checked })
       : this.setState({ [name]: value })
-    this.setState({ startDate: date })
-    this.setState({ startDate: date })
     console.log(this.state)
   }
 
@@ -73,8 +71,8 @@ class BookingForm extends React.Component {
       wantairportshuttle: this.state.wantairportshuttle,
       roomId: this.props.match.params.roomid,
       roomType: Rm.roomType,
-      startDate: this.state.startdate,
-      endDate: this.state.enddate
+      checkin: this.state.startdate,
+      checkout: this.state.enddate
     }
     return (
       <div className='container'>
@@ -325,25 +323,26 @@ class BookingForm extends React.Component {
                   <div className='card shadow p-3 mb-2 bg-white rounded'>
                     <div className='card-body'>
                       <h5 className='text-dark'>Check in and Check out</h5>
-                      <div className='row no-gutters'>
-                        <p>Check in</p>
-                        <div className='col-md-12'>
-                          <DatePicker
-                            selected={this.state.startDate}
-                            onChange={this.handleChange}
+                      <div className='row no-gutters'>                        
+                        <div className='col-md-6'>                       
+                          <input
+                           className='form-control'
+                          type="date"
+                          name="startdate"
+                          value={this.state.startdate}                         
+                          onChange={this.handlechange}
                           />
                         </div>
-                        {/* <div className="col-md-6"></div> */}
-                      </div>
-                      <div className='row mb-1'>
-                        <div className='col-md-6'>
-                          <DatePicker
-                            selected={this.state.endDate}
-                            onChange={this.handleChange}
+                        <div className="col-md-6">
+                         <input
+                          className='form-control'
+                         type="date"
+                         name="enddate"
+                          onChange={this.handlechange}
                           />
+                        
                         </div>
-                        <div className='col-md-6'></div>
-                      </div>
+                      </div>                  
                       <div className='row mb-1'>
                         <div className='col-md-12'>
                           <div className='form-check'>
