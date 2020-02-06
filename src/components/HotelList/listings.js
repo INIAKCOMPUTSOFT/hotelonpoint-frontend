@@ -2,7 +2,7 @@ import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./searchbar.css";
 import "./list.css";
-
+import { Input2 } from '../inputs/input1';
 import Axios from "axios";
 import { DateRangePicker } from "react-dates";
 import Filter from './filter';
@@ -18,6 +18,7 @@ class HotelList extends React.Component {
   constructor() {
     super();
     this.state = {
+      value:[],
       loading:true,
       pagehotel: [],
       result: [],
@@ -44,6 +45,7 @@ class HotelList extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+   
     }
   
     componentDidMount() {
@@ -57,6 +59,11 @@ class HotelList extends React.Component {
       this.setState({ [name]: value });
       // console.log(this.state);
     }
+    handleSideFilterButtonsChange=(event)=>{
+      const {name,value,type,checked} = event.target
+      type === "checkbox"? this.setState({[name]:checked}) :this.setState({[name]:value})
+      console.log(this.state)
+      }
   
     handleSubmit(event) {
       event.preventDefault();
@@ -239,7 +246,104 @@ class HotelList extends React.Component {
 
       <div className="row">
             <div className="col-md-3">
-            <Filter />
+            <div className="card text-dark mt-3  mb-3 border filter">
+            <div className="card-header">Filter</div>
+            <div className="card-body">
+            <p><b>Your Budget</b></p>
+              <Input2
+              name="budget"
+              type="radio"
+              value="5000"
+              onChange={this.handleSideFilterButtonsChange}
+              range="2000-5000"
+              />
+            
+            <Input2
+              name="budget"
+              type="radio"
+              value="10000"
+              onChange={this.handleSideFilterButtonsChange}
+              range="5000 - 10000"
+              />
+            
+            <Input2
+              name="budget"
+              type="radio"
+              value=""
+              onChange={this.handleSideFilterButtonsChange}
+              range="10000-20000"
+              />
+            
+            <Input2
+              name="budget"
+              type="radio"
+              value="20000"
+              onChange={this.handleSideFilterButtonsChange}
+              range="20000-40000"
+              />
+            
+            <Input2
+              name="budget"
+              type="radio"
+              value="80000"
+              onChange={this.handleSideFilterButtonsChange}
+              range="40000-80000"
+              />
+            
+            <Input2
+              name="budget"
+              type="radio"
+              value="200000"
+              onChange={this.handleSideFilterButtonsChange}
+              range="80000-200000"
+              />
+            <hr/> 
+            
+            <b>Meals</b>
+            <Input2
+              type="checkbox"
+              value={this.state.value}
+              onChange={this.handleSideFilterButtonsChange}
+              range="Breackfast"
+              />
+            <hr/> 
+            <b>Booking Policy</b>
+            <Input2
+              type="checkbox"
+              value={this.state.value}
+              onChange={this.handleSideFilterButtonsChange}
+              range="Free Cancellation"
+              />
+               <Input2
+              type="checkbox"
+              value={this.state.value}
+              onChange={this.handleSideFilterButtonsChange}
+              range="Instant Confirmation"
+              />
+            <hr/> 
+            <b>Bed Type</b>
+            <Input2
+              type="radio"
+              value="Queen Bed"
+              onChange={this.handleSideFilterButtonsChange}
+              range="Queen Bed"
+              />
+               <Input2
+              type="radio"
+              value="Single Beds"
+              onChange={this.handleSideFilterButtonsChange}
+              range="Single Beds"
+              />
+                  <Input2
+              type="radio"
+              value="Multiple Beds"
+              onChange={this.handleSideFilterButtonsChange}
+              range="Multiple Beds"
+              />
+            <hr/>
+
+            </div>
+            </div> 
             </div>
             <div className="col-md-9">
                   {/* this is the nav filter*/}

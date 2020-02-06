@@ -1,25 +1,26 @@
 import React from "react";
+import Profile from './profileedith'
+import SideList from '../dashboard/sidelist'
+//import About from './about'
 
-class Setting extends React.Component {
+class Mysettings extends React.Component {
   render() {
     return (
       <div>
-        <div class="card">
-          <div class="card-header">Your Account Setup</div>
-          <div class="card-body">
-            <blockquote class="blockquote mb-0">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                posuere erat a ante.
-              </p>
-              <footer class="blockquote-footer">
-                Someone famous in <cite title="Source Title">Source Title</cite>
-              </footer>
-            </blockquote>
-          </div>
-        </div>
+
+<div className="row">
+       <div className="col-sm-4">
+      <SideList />
+       </div>
+       <div className="col-sm-8">
+         <div>
+          <Profile />
+          {/* <About/> */}
+         </div>
+       </div>
+    </div>
       </div>
     );
   }
 }
-export default Setting;
+export default Mysettings;

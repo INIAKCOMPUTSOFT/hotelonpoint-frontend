@@ -8,105 +8,106 @@ class Filter extends React.Component{
             value:[]
         }
     }
-      
+    handleChange=(event)=>{
+      const {name,value,type,checked} = event.target
+      type === "checkbox"? this.setState({[name]:checked}) :this.setState({[name]:value})
+      console.log(this.state)
+      }
 
     render(){
         return(
             <div className="card text-dark mt-3  mb-3 border filter">
             <div className="card-header">Filter</div>
             <div className="card-body">
-            <p><b>your budget</b></p>
+            <p><b>Your Budget</b></p>
               <Input2
-              type="checkbox"
-              value={this.state.value}
-              onChange={this.handeChange}
-              range="0 - 10"
+              name="budget"
+              type="radio"
+              value="5000"
+              onChange={this.handleChange}
+              range="2000-5000"
               />
             
             <Input2
-              type="checkbox"
-              value={this.state.value}
-              onChange={this.handeChange}
-              range="10 - 20"
+              name="budget"
+              type="radio"
+              value="10000"
+              onChange={this.handleChange}
+              range="5000 - 10000"
               />
             
             <Input2
-              type="checkbox"
-              value={this.state.value}
-              onChange={this.handeChange}
-              range="0 - 10"
+              name="budget"
+              type="radio"
+              value=""
+              onChange={this.handleChange}
+              range="10000-20000"
               />
             
             <Input2
-              type="checkbox"
-              value={this.state.value}
-              onChange={this.handeChange}
-              range="0 - 10"
+              name="budget"
+              type="radio"
+              value="20000"
+              onChange={this.handleChange}
+              range="20000-40000"
               />
             
             <Input2
-              type="checkbox"
-              value={this.state.value}
-              onChange={this.handeChange}
-              range="0 - 10"
+              name="budget"
+              type="radio"
+              value="80000"
+              onChange={this.handleChange}
+              range="40000-80000"
               />
             
             <Input2
-              type="checkbox"
-              value={this.state.value}
-              onChange={this.handeChange}
-              range="0 - 10"
+              name="budget"
+              type="radio"
+              value="200000"
+              onChange={this.handleChange}
+              range="80000-200000"
               />
             <hr/> 
-            PRICE RANGE
-            <hr/> 
-            DISCOUNTS
+            
+            <b>Meals</b>
             <Input2
               type="checkbox"
               value={this.state.value}
-              onChange={this.handeChange}
-              range="Special offer"
-              />
-            <hr/> 
-            MEALS
-            <Input2
-              type="checkbox"
-              value={this.state.value}
-              onChange={this.handeChange}
+              onChange={this.handleChange}
               range="Breackfast"
               />
             <hr/> 
-            BOOKING POLICY
+            <b>Booking Policy</b>
             <Input2
               type="checkbox"
               value={this.state.value}
-              onChange={this.handeChange}
+              onChange={this.handleChange}
               range="Free Cancellation"
               />
                <Input2
               type="checkbox"
               value={this.state.value}
-              onChange={this.handeChange}
-              range="FInstant Confirmnation"
+              onChange={this.handleChange}
+              range="Instant Confirmation"
               />
             <hr/> 
-            BED TYPE
+            <b>Bed Type</b>
             <Input2
               type="radio"
-              value={this.state.value}
-              onChange={this.handeChange}
+              value="Queen Bed"
+              onChange={this.handleChange}
               range="Queen Bed"
               />
                <Input2
               type="radio"
-              value={this.state.value}
-              onChange={this.handeChange}
+              value="Single Beds"
+              onChange={this.handleChange}
               range="Single Beds"
               />
                   <Input2
               type="radio"
-              value={this.state.value}
-              onChange={this.handeChange}
+              value="Multiple Beds"
+              onChange={this.handleChange}
               range="Multiple Beds"
               />
             <hr/>

@@ -15,7 +15,7 @@ return(
 function Input2(props){
     return(
 <div>
-<input className="form-check-input" type={props.type} value={props.value} onChange={props.onChange} />
+<input className="form-check-input" name={props.name} type={props.type} value={props.value} onChange={props.onChange} />
 <label className="form-check-label h6">{props.range}</label>
 </div>
     )

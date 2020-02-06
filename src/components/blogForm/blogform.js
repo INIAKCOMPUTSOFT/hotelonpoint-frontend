@@ -95,7 +95,7 @@ handleForm=(event)=> {
                 
                 </div>
                 <div>
-                <Files
+          <Files
           className='files-dropzone'
           onChange={this.onFilesChange}
           onError={this.onFilesError}

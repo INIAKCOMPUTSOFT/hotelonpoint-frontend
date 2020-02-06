@@ -45,17 +45,15 @@ class SingleHotel extends React.Component {
 
 
   render() {
-
-    function amen(amenities,i){
-      if(amenities.match(/Wifi/)){
-        return(
-          <div className="col-md-4" key={i}>
-          <p className=""> wifi </p>
-          {/* {amenity} */}
-        </div> 
-        )
+const regex=/Wifi/
+    function amen(amenities){
+      if(amenities.match(regex)){
+        //console.log(regex,'tested')
+        return<>
+      
+           <p>{regex}</p>
+       </>
       }
-        return(<p>testing</p>)
       
     }
     const { Hh, Rm, photoIndex, isOpen } = this.state;
@@ -153,10 +151,26 @@ class SingleHotel extends React.Component {
             <div className="row">
               {Hh.hotelPolicy &&
               
-                Hh.hotelPolicy.hotelAmenities.map((Amenities,a ) => {
-                  //console.log(amen(i));
-                //amen(Amenities,a) 
-              console.log(Amenities) 
+                Hh.hotelPolicy.hotelAmenities.map((Amenities) => {
+                  let k=Amenities.match(/wifi/gi);
+                  let sw=Amenities.match(/swiming/gi)
+                if(k){
+                  console.log(k[0],'testing amenities')
+                  return(
+                  <div><p>{k[0]}</p></div>
+                    
+                    )
+                    
+                }
+                else if(sw){
+                  return(<div><p>{sw[0]}</p></div>)
+                }
+                else{
+                  return(<div><p>{Amenities}</p></div>)
+                }
+                
+               
+              //console.log(Amenities,'testing amenities') 
                 })}
             </div>
           </div>
