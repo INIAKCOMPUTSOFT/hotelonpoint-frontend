@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import CardCarrier from "../../components/cardshadow/cardcarrier";
+
 class HomeHotelDisplay extends Component {
   constructor(props) {
     super(props);
@@ -25,38 +27,37 @@ class HomeHotelDisplay extends Component {
   }
 
   render() {
-    console.log(this.state.hotels[0])
+    console.log(this.state.hotels, 'HOTELS ON PAGE')
     const reverse=this.state.hotels.reverse();
     return (
       <div>
-        {this.state.loading ? (
-          <div
-            className="spinner-border text-success text-center"
-            role="status"
-          >
-            <span className="sr-only ">Loading...</span>
-          </div>
-        ) : this.state.hotels[0] ? (
+         {this.state.loading ? (
+         <CardCarrier h2="Recommended Hotels"/>
+        ) : this.state.hotels ? (
+          
           <div className="mb-3">
+            <h2 className="text-center">Recommended Hotels</h2>
             <h4>
               More than just hotels… discover pure comfort with homes &
               apartments
             </h4>
             <div className="card-deck mb-3">
               {reverse.slice(0, 4).map((hotel, i) => (
-                <div className="card rounded-bottom" key={i}>
+                <div className="card rounded-bottom border-0 p-0" key={i} style={{width: "18rem"}}>
                   
                   <div className="card-body">
-                  <h5>{hotel.property.propName}</h5>
-                    <p className="card-text">Located at {hotel.location.city} </p>
+                   <img src={hotel.imagerUrl[0].url} style={{backgroundColor:"gainsboro", height: "10rem"}} alt="" />
+                  
+                  <h5>{hotel.propertyInfo.hotelName}</h5>
+              <p className="card-text">Located at {this.state.loading ? <p>waiting for location</p> : <p>{hotel.propertyInfo.city}</p>} </p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
         ) : (
-          <p>Loading...</p>
-        )}
+          <CardCarrier h2="Recommended Hotels"/>
+        )}  
       </div>
     );
   }

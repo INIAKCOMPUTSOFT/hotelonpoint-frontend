@@ -1,44 +1,61 @@
+import Axios from 'axios'
 import React from 'react'
 
-class Bookings extends React.Component{
+export default class Booking extends React.Component{
+    constructor(){
+        super()
+        this.state={
+            Buking:[],
+            loading:true,
 
+        }
+
+    }
+
+componentDidMount() {
+    Axios.get(`https://calm-anchorage-14244.herokuapp.com/booking/userall`)
+    .then(result =>
+      this.setState({Buking : result.data.data.bookings, loading:false})
+        //console.log(result,'bookings')
+
+            )
+  }
 
 
 
 render(){
-
-return(
-<div class="card mb-3" style="max-width:540px;">
-  <div class="row no-gutters">
-    <div class="col-md-4">
+const booking =this.state.Buking
+console.log(booking,'booking')
+    return(
+        <div>
+            <div class="card-group">
+  <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div> 
+      <h5 class="card-title">Card title</h5>
+
     </div>
-    <div class="col-md-4">
-      <div class="card-body">
-        <h5 class="card-title">NGN PRICE</h5>
-        <p class="card-text">Cancelled bookings</p>
-        <p class="card-text">Book Again</p>
-      </div>
+  </div>
+  <div class="card"> 
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+
     </div>
-    <div class="col-md-4">
-      <div class="card-body">
-        <h5 class="card-title">NGN PRICE</h5>
-        <p class="card-text">Cancelled bookings</p>
-        <p class="card-text">Book Again</p>
-      </div>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+
     </div>
   </div>
 </div>
 
-)
+        </div>
+
+    )
+
+
 
 }
-
-
 
 
 

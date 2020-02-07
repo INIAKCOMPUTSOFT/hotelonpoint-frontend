@@ -69,6 +69,9 @@ function route() {
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/contact" component={Contact} />
               <Route exact path="/dashboard" component={UserRoute} />
+              <Route exact path="/settings" component={UserRoute} />
+              <Route exact path="/reviews" component={UserRoute} />
+              <Route exact path="/bookings" component={UserRoute} />
               <Route exact path="/payment" component={Payment} />
               <Route exact path="/bookingform/:roomid" component={BookingForm} />
               <Route exact path="/listproperty" component={FormWrapper} />

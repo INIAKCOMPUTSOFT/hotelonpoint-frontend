@@ -7,13 +7,17 @@ import AwaitAproval from "../../components/awatingaproval/await";
 import Background from "../../components/background/background";
 import CardCarrier from "../../components/cardshadow/cardcarrier";
 import HomeBlog from "../../components/BlogonHome/homeblog";
+import HomeHotelDisplay from '../../components/HomepageHotels/Homehoteldisplay';
 import React from "react";
 import SecondNav from "../../components/Navbar/downnav";
 import { connect } from 'react-redux';
 
 //import {Link} from 'react-router-dom'
-
 //import LocationBar from './locationbar'
+
+
+
+
 
 //import HomeAdvert from '../../components/homeadvert'
 //import Subscription from './subscription'
@@ -26,10 +30,10 @@ function HotelHome({ user: { authenticated } }) {
       <div className="container content">
         {authenticated && <AwaitAproval />}
         <Advert />
-        {/* <HomeHotelDisplay/> */}
+         <HomeHotelDisplay/> 
         
         {/* <HotelLocationDisplay /> */}
-        <CardCarrier h2="Recommended Hotels"/>
+        {/* <CardCarrier h2="Recommended Hotels"/> */}
         <CardCarrier h2="Popular Attractions"/>
         <CardCarrier h2="Recommended Car Rentals"/>  
         <HomeBlog />

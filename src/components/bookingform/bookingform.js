@@ -1,64 +1,66 @@
-import 'react-datepicker/dist/react-datepicker.css'
-import './bookingform.css'
+import "react-datepicker/dist/react-datepicker.css";
+import "./bookingform.css";
 
-import Access from './bankicons/access.png'
-import Firstbank from './bankicons/firstbank.png'
-import GTB from './bankicons/gtb.png'
-import { Link } from 'react-router-dom'
-import Payment from '../payment/payment'
-import React from 'react'
-import Zenith from './bankicons/zenith.png'
-import axios from 'axios'
+import Access from "./bankicons/access.png";
+import Firstbank from "./bankicons/firstbank.png";
+import GTB from "./bankicons/gtb.png";
+import { Link } from "react-router-dom";
+import Payment from "../payment/payment";
+import React from "react";
+import Zenith from "./bankicons/zenith.png";
+import axios from "axios";
+import { connect } from "react-redux";
 
 class BookingForm extends React.Component {
-  constructor (props) {
-    super()
+  constructor(props) {
+    super();
     this.state = {
       Rm: {},
-      title: '',
-      firstname: '',
-      lastname: '',
-      otherrequest: '',
-      email: '',
-      phone: '',
+      title: "",
+      firstname: "",
+      lastname: "",
+      otherrequest: "",
+      email: "",
+      phone: "",
       wantairportshuttle: false,
       getdeals: false,
-      startdate: '',
-      enddate:''
-    }
+      startdate: "",
+      enddate: ""
+    };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const {
       match: { params }
-    } = this.props
-    var RoomId = params.roomid
+    } = this.props;
+    var RoomId = params.roomid;
 
     axios
       .get(`https://calm-anchorage-14244.herokuapp.com/room/${RoomId}/room`)
       .then(res => {
-        this.setState({ Rm: res.data.data })
+        this.setState({ Rm: res.data.data });
         //console.log('res',res)
-      })
+      });
     //console.log('Rm',this.state.Rm)
   }
 
   handlechange = (event, date) => {
-    event.preventDefault()
-    const { name, value, type, checked } = event.target
-    type === 'checkbox'
+    event.preventDefault();
+    const { name, value, type, checked } = event.target;
+    type === "checkbox"
       ? this.setState({ [name]: checked })
-      : this.setState({ [name]: value })
-    console.log(this.state)
-  }
+      : this.setState({ [name]: value });
+    console.log(this.state);
+  };
 
-  render () {
+  render() {
     //console.log('sRm', this.state.Rm)
-    const { Rm } = this.state
-    console.log('rm', Rm.roomPrice)
-    let amount = 0
+    const { Rm } = this.state;
+    const { userData } = this.props.user;
+    console.log("rm", Rm.roomPrice);
+    let amount = 0;
     if (Rm.roomPrice) {
-      amount = Rm.roomPrice
+      amount = Rm.roomPrice;
     }
     const data = {
       email: this.state.email,
@@ -73,108 +75,108 @@ class BookingForm extends React.Component {
       roomType: Rm.roomType,
       checkin: this.state.startdate,
       checkout: this.state.enddate
-    }
+    };
     return (
-      <div className='container'>
-        <div className='row'>
-          <div className='col-sm-9'>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-9">
             <div>
-              <div className='row mb-1'>
-                <div className='col-sm-12'>
-                  <div className='card shadow p-3 mb-1 bg-white rounded'>
-                    <div className='card-head'>
-                      <h4 className='ml-3'>Traveller information</h4>
+              <div className="row mb-1">
+                <div className="col-sm-12">
+                  <div className="card shadow p-3 mb-1 bg-white rounded">
+                    <div className="card-head">
+                      <h4 className="ml-3">Traveller information</h4>
                     </div>
-                    <div className='card-body'>
-                      <div className='row no-gutters'>
-                        <div className='col-md-4 chck'>
-                          <div className='form-check radio'>
+                    <div className="card-body">
+                      <div className="row no-gutters">
+                        <div className="col-md-4 chck">
+                          <div className="form-check radio">
                             <input
-                              className='form-radio-button'
-                              checked={this.state.title === 'Mr'}
-                              name='title'
+                              className="form-radio-button"
+                              checked={this.state.title === "Mr"}
+                              name="title"
                               onChange={this.handlechange}
-                              type='radio'
-                              value='Mr'
-                              id='defaultCheck1'
+                              type="radio"
+                              value="Mr"
+                              id="defaultCheck1"
                             />
                             <label
-                              className='form-check-label'
-                              for='defaultCheck1'
+                              className="form-check-label"
+                              for="defaultCheck1"
                             >
                               Mr
                             </label>
                           </div>
-                          <div className='form-check radio'>
+                          <div className="form-check radio">
                             <input
-                              className='form-radio-button'
-                              checked={this.state.title === 'Mrs'}
-                              name='title'
+                              className="form-radio-button"
+                              checked={this.state.title === "Mrs"}
+                              name="title"
                               onChange={this.handlechange}
-                              type='radio'
-                              value='Mrs'
-                              id='defaultCheck1'
+                              type="radio"
+                              value="Mrs"
+                              id="defaultCheck1"
                             />
                             <label
-                              className='form-check-label'
-                              for='defaultCheck1'
+                              className="form-check-label"
+                              for="defaultCheck1"
                             >
                               Mrs
                             </label>
                           </div>
-                          <div className='form-check radio'>
+                          <div className="form-check radio">
                             <input
-                              className='form-radio-button'
-                              checked={this.state.title === 'Miss'}
-                              name='title'
+                              className="form-radio-button"
+                              checked={this.state.title === "Miss"}
+                              name="title"
                               onChange={this.handlechange}
-                              type='radio'
-                              value='Miss'
-                              id='defaultCheck1'
+                              type="radio"
+                              value="Miss"
+                              id="defaultCheck1"
                             />
                             <label
-                              className='form-check-label'
-                              for='defaultCheck1'
+                              className="form-check-label"
+                              for="defaultCheck1"
                             >
                               Miss
                             </label>
                           </div>
                         </div>
-                        <div className='col-md-6'></div>
+                        <div className="col-md-6"></div>
                       </div>
-                      <div className='row '>
-                        <div className='col-md-6'>
-                          <div className='form-group'>
+                      <div className="row ">
+                        <div className="col-md-6">
+                          <div className="form-group">
                             <label>Firstname</label>
                             <input
-                              type='text'
-                              className='form-control'
-                              name='firstname'
+                              type="text"
+                              className="form-control"
+                              name="firstname"
                               onChange={this.handlechange}
-                              aria-describedby='emailHelp'
-                              placeholder='Enter firstname'
+                              aria-describedby="emailHelp"
+                              placeholder="Enter firstname"
                             />
                             <small
-                              id='emailHelp'
-                              className='form-text text-muted'
+                              id="emailHelp"
+                              className="form-text text-muted"
                             >
                               Please first letter is capital
                             </small>
                           </div>
                         </div>
-                        <div className='col-md-6'>
-                          <div className='form-group'>
+                        <div className="col-md-6">
+                          <div className="form-group">
                             <label>Lastname</label>
                             <input
-                              type='text'
-                              className='form-control'
-                              name='lastname'
+                              type="text"
+                              className="form-control"
+                              name="lastname"
                               onChange={this.handlechange}
-                              placeholder='Enter lastname'
+                              placeholder="Enter lastname"
                             />
                             <small
-                              id='emailHelp'
-                              className='form-text text-muted'
+                              id="emailHelp"
+                              className="form-text text-muted"
                             >
                               Please first letter is capital
                             </small>
@@ -182,21 +184,21 @@ class BookingForm extends React.Component {
                         </div>
                       </div>
 
-                      <div className='row no-gutters'>
-                        <div className='col-md-6'>
-                          <div className='form-group'>
+                      <div className="row no-gutters">
+                        <div className="col-md-6">
+                          <div className="form-group">
                             <label>Email address</label>
                             <input
-                              type='email'
-                              className='form-control'
+                              type="email"
+                              className="form-control"
                               onChange={this.handlechange}
-                              name='email'
-                              aria-describedby='emailHelp'
-                              placeholder='user@example.com'
+                              name="email"
+                              aria-describedby="emailHelp"
+                              placeholder="user@example.com"
                             />
                             <small
-                              id='emailHelp'
-                              className='form-text text-muted'
+                              id="emailHelp"
+                              className="form-text text-muted"
                             >
                               We will send your booking confirmation (including
                               the hotel's contact information) to this email.
@@ -204,29 +206,29 @@ class BookingForm extends React.Component {
                             </small>
                           </div>
                         </div>
-                        <div className='col-md-6'></div>
+                        <div className="col-md-6"></div>
                       </div>
-                      <div className='row no-gutters'>
-                        <div className='col-md-6'>
-                          <div className='form-group'>
+                      <div className="row no-gutters">
+                        <div className="col-md-6">
+                          <div className="form-group">
                             <label>Mobile number</label>
                             <input
-                              type=''
-                              className='form-control'
-                              name='phone'
+                              type=""
+                              className="form-control"
+                              name="phone"
                               onChange={this.handlechange}
-                              aria-describedby='emailHelp'
-                              placeholder='Enter mobile number'
+                              aria-describedby="emailHelp"
+                              placeholder="Enter mobile number"
                             />
                             <small
-                              id='emailHelp'
-                              className='form-text text-muted'
+                              id="emailHelp"
+                              className="form-text text-muted"
                             >
                               We’ll only contact you in an emergency
                             </small>
                           </div>
                         </div>
-                        <div className='col-md-6'></div>
+                        <div className="col-md-6"></div>
                       </div>
 
                       {/* <div className="row no-gutters">
@@ -236,49 +238,49 @@ class BookingForm extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className='row mb-1'>
-                <div className='col-sm-12'>
-                  <div className='card shadow p-3 mb-2 bg-white rounded'>
-                    <div className='card-body'>
-                      <h5 className='text-dark'>
+              <div className="row mb-1">
+                <div className="col-sm-12">
+                  <div className="card shadow p-3 mb-2 bg-white rounded">
+                    <div className="card-body">
+                      <h5 className="text-dark">
                         Special Request
-                        <small className='text-muted'> (optional)</small>
+                        <small className="text-muted"> (optional)</small>
                       </h5>
-                      <div className='row no-gutters'>
+                      <div className="row no-gutters">
                         <p>
                           Your requests will be passed on to the hotel but
                           cannot be guaranteed.
                         </p>
-                        <div className='col-md-12'>
-                          <div className='form-group'>
-                            <label for='exampleFormControlTextarea1'>
+                        <div className="col-md-12">
+                          <div className="form-group">
+                            <label for="exampleFormControlTextarea1">
                               Extra request
                             </label>
                             <textarea
-                              className='form-control txa'
-                              id='exampleFormControlTextarea1'
-                              name='extra-request'
+                              className="form-control txa"
+                              id="exampleFormControlTextarea1"
+                              name="extra-request"
                               onChange={this.handlechange}
                             ></textarea>
                           </div>
                         </div>
                         {/* <div className="col-md-6"></div> */}
                       </div>
-                      <div className='row mb-1'>
-                        <div className='col-md-6'>
-                          <div className='form-check'>
+                      <div className="row mb-1">
+                        <div className="col-md-6">
+                          <div className="form-check">
                             <input
-                              className='form-check-input'
-                              name='wantairportshuttle'
+                              className="form-check-input"
+                              name="wantairportshuttle"
                               onChange={this.handlechange}
                               checked={this.state.wantairportshuttle}
-                              type='checkbox'
-                              value=''
-                              id='defaultCheck1'
+                              type="checkbox"
+                              value=""
+                              id="defaultCheck1"
                             />
                             <label
-                              className='form-check-label'
-                              for='defaultCheck1'
+                              className="form-check-label"
+                              for="defaultCheck1"
                             >
                               <b>Want to book Airport-Shuttle</b>.
                               <br />
@@ -288,23 +290,23 @@ class BookingForm extends React.Component {
                             </label>
                           </div>
                         </div>
-                        <div className='col-md-6'></div>
+                        <div className="col-md-6"></div>
                       </div>
-                      <div className='row mb-1'>
-                        <div className='col-md-12'>
-                          <div className='form-check'>
+                      <div className="row mb-1">
+                        <div className="col-md-12">
+                          <div className="form-check">
                             <input
-                              className='form-check-input'
+                              className="form-check-input"
                               onChange={this.handlechange}
-                              name='getdeals'
+                              name="getdeals"
                               checcked={this.state.getdeals}
-                              type='checkbox'
-                              value=''
-                              id='defaultCheck1'
+                              type="checkbox"
+                              value=""
+                              id="defaultCheck1"
                             />
                             <label
-                              className='form-check-label'
-                              for='defaultCheck1'
+                              className="form-check-label"
+                              for="defaultCheck1"
                             >
                               Check this box if you would not like to receive
                               Hotel-on-points.com <b>special deals</b> email
@@ -318,46 +320,45 @@ class BookingForm extends React.Component {
                 </div>
               </div>
 
-              <div className='row mb-1'>
-                <div className='col-sm-12'>
-                  <div className='card shadow p-3 mb-2 bg-white rounded'>
-                    <div className='card-body'>
-                      <h5 className='text-dark'>Check in and Check out</h5>
-                      <div className='row no-gutters'>                        
-                        <div className='col-md-6'>                       
+              <div className="row mb-1">
+                <div className="col-sm-12">
+                  <div className="card shadow p-3 mb-2 bg-white rounded">
+                    <div className="card-body">
+                      <h5 className="text-dark">Check in and Check out</h5>
+                      <div className="row no-gutters">
+                        <div className="col-md-6">
                           <input
-                           className='form-control'
-                          type="date"
-                          name="startdate"
-                          value={this.state.startdate}                         
-                          onChange={this.handlechange}
+                            className="form-control"
+                            type="date"
+                            name="startdate"
+                            value={this.state.startdate}
+                            onChange={this.handlechange}
                           />
                         </div>
                         <div className="col-md-6">
-                         <input
-                          className='form-control'
-                         type="date"
-                         name="enddate"
-                          onChange={this.handlechange}
+                          <input
+                            className="form-control"
+                            type="date"
+                            name="enddate"
+                            onChange={this.handlechange}
                           />
-                        
                         </div>
-                      </div>                  
-                      <div className='row mb-1'>
-                        <div className='col-md-12'>
-                          <div className='form-check'>
+                      </div>
+                      <div className="row mb-1">
+                        <div className="col-md-12">
+                          <div className="form-check">
                             <input
-                              className='form-check-input'
+                              className="form-check-input"
                               onChange={this.handlechange}
-                              name='getdeals'
+                              name="getdeals"
                               checcked={this.state.getdeals}
-                              type='checkbox'
-                              value=''
-                              id='defaultCheck1'
+                              type="checkbox"
+                              value=""
+                              id="defaultCheck1"
                             />
                             <label
-                              className='form-check-label'
-                              for='defaultCheck1'
+                              className="form-check-label"
+                              for="defaultCheck1"
                             >
                               Check this box if you would not like to receive
                               Hotel-on-points.com <b>special deals</b> email
@@ -371,10 +372,10 @@ class BookingForm extends React.Component {
                 </div>
               </div>
 
-              <div className='row mb-1'>
-                <div className='col-sm-12'>
-                  <div className='card shadow p-3 mb-2 bg-white rounded'>
-                    <div className='card-body'>
+              <div className="row mb-1">
+                <div className="col-sm-12">
+                  <div className="card shadow p-3 mb-2 bg-white rounded">
+                    <div className="card-body">
                       <p>
                         The charges below are included in your overall room
                         price:
@@ -386,132 +387,135 @@ class BookingForm extends React.Component {
                       <hr />
                       <p>
                         By clicking "Book", you agree you have read and accept
-                        our <Link>Terms and Conditions</Link> and{' '}
-                        <Link>Privacy Policy</Link>{' '}
+                        our <Link>Terms and Conditions</Link> and{" "}
+                        <Link>Privacy Policy</Link>{" "}
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className='row mb-1'>
-                <div className='col-md-12 '>
-                  <div className=' shadow mb-2 mdpd bg-white rounded'>
-                    <div className='text-center'>
+              <div className="row mb-1">
+                <div className="col-md-12 ">
+                  <div className=" shadow mb-2 mdpd bg-white rounded">
+                    <div className="text-center">
                       <ul
-                        className='nav nav-pills mb-3'
-                        id='pills-tab'
-                        role='tablist'
+                        className="nav nav-pills mb-3"
+                        id="pills-tab"
+                        role="tablist"
                       >
-                        <li className='nav-item'>
+                        <li className="nav-item">
                           <a
-                            className='nav-link active'
-                            id='pills-paynow-tab'
-                            data-toggle='pill'
-                            href='#pills-paynow'
-                            role='tab'
-                            aria-controls='pills-paynow'
-                            aria-selected='true'
+                            className="nav-link active"
+                            id="pills-paynow-tab"
+                            data-toggle="pill"
+                            href="#pills-paynow"
+                            role="tab"
+                            aria-controls="pills-paynow"
+                            aria-selected="true"
                           >
                             Pay Now
                           </a>
                         </li>
-                        <li className='nav-item'>
+                        <li className="nav-item">
                           <a
-                            className='nav-link'
-                            id='pills-paylater-tab'
-                            data-toggle='pill'
-                            href='#pills-paylater'
-                            role='tab'
-                            aria-controls='pills-paylater'
-                            aria-selected='false'
+                            className="nav-link"
+                            id="pills-paylater-tab"
+                            data-toggle="pill"
+                            href="#pills-paylater"
+                            role="tab"
+                            aria-controls="pills-paylater"
+                            aria-selected="false"
                           >
                             Pay Later
                           </a>
                         </li>
-                        <li className='nav-item'>
+                        <li className="nav-item">
                           <a
-                            className='nav-link'
-                            id='pills-payonarrival-tab'
-                            data-toggle='pill'
-                            href='#pills-payonarrival'
-                            role='tab'
-                            aria-controls='pills-payonarrival'
-                            aria-selected='false'
+                            className="nav-link"
+                            id="pills-payonarrival-tab"
+                            data-toggle="pill"
+                            href="#pills-payonarrival"
+                            role="tab"
+                            aria-controls="pills-payonarrival"
+                            aria-selected="false"
                           >
                             Pay On Arrival
                           </a>
                         </li>
                       </ul>
                     </div>
-                    <div className='tab-content ' id='pills-tabContent'>
+                    <div className="tab-content " id="pills-tabContent">
                       <div
-                        className='tab-pane fade show active'
-                        id='pills-paynow'
-                        role='tabpanel'
-                        aria-labelledby='pills-paynow-tab'
+                        className="tab-pane fade show active"
+                        id="pills-paynow"
+                        role="tabpanel"
+                        aria-labelledby="pills-paynow-tab"
                       >
-                        <h2 className='text-center'>Amount: ${amount}</h2>
+                        <h2 className="text-center">Amount: ${amount}</h2>
 
-                        <div className='row'>
-                          <div className='col-12'>
-                            <Payment
-                              amount={amount}
-                              info={data}
-                              onclick={this.handlepress}
-                              container='contain'
-                              butin='btn-block btn-primary btn'
-                            />
+                        <div className="row">
+                          <div className="col-12">
+                            {userData && (
+                              <Payment
+                                amount={amount}
+                                userId={userData._id}
+                                info={data}
+                                onclick={this.handlepress}
+                                container="contain"
+                                butin="btn-block btn-primary btn"
+                              />
+                            )}
                           </div>
                         </div>
                       </div>
                       <div
-                        className='tab-pane fade'
-                        id='pills-paylater'
-                        role='tabpanel'
-                        aria-labelledby='pills-paylater-tab'
+                        className="tab-pane fade"
+                        id="pills-paylater"
+                        role="tabpanel"
+                        aria-labelledby="pills-paylater-tab"
                       >
-                        <div className='card border-0 text-center'>
+                        <div className="card border-0 text-center">
                           <h5>
-                            {' '}
+                            {" "}
                             You prefer bank transfer this are our bank details:
                           </h5>
-                          <div className='card-body'>
+                          <div className="card-body">
                             <img
                               src={Access}
-                              className='mr-1'
-                              width='100'
-                              height='100'
-                              alt='...'
+                              className="mr-1"
+                              width="100"
+                              height="100"
+                              alt="..."
                             />
                             <img
                               src={Zenith}
-                              className='mr-1'
-                              width='100'
-                              height='100'
-                              alt='...'
+                              className="mr-1"
+                              width="100"
+                              height="100"
+                              alt="..."
                             />
                             <img
                               src={GTB}
-                              className='mr-1'
-                              width='100'
-                              height='100'
-                              alt='...'
+                              className="mr-1"
+                              width="100"
+                              height="100"
+                              alt="..."
                             />
                             <img
                               src={Firstbank}
-                              className='mr-1'
-                              width='100'
-                              height='100'
-                              alt='...'
+                              className="mr-1"
+                              width="100"
+                              height="100"
+                              alt="..."
                             />
                           </div>
                         </div>
-                        <div className='row'>
-                          <div className='col-12 '>
+                        <div className="row">
+                          <div className="col-12 ">
                             <button
                               onClick={this.handlepressed}
-                              className='btn btn-block btn-primary '
+                              className="btn btn-block btn-primary "
                             >
                               Book
                             </button>
@@ -520,12 +524,12 @@ class BookingForm extends React.Component {
                       </div>
                       {/* last tab */}
                       <div
-                        className='tab-pane fade'
-                        id='pills-payonarrival'
-                        role='tabpanel'
-                        aria-labelledby='pills-payonarrival-tab'
+                        className="tab-pane fade"
+                        id="pills-payonarrival"
+                        role="tabpanel"
+                        aria-labelledby="pills-payonarrival-tab"
                       >
-                        {' '}
+                        {" "}
                       </div>
                     </div>
                   </div>
@@ -539,12 +543,12 @@ class BookingForm extends React.Component {
                           </div> */}
             </div>
           </div>
-          <div className='col-md-3'>
-            <div className='card shadow'>
-              <div className='card-body'>
-                <h5 className='card-title'>Summary of your booking</h5>
-                <p className='card-text'>Your Name</p>
-                <p className='card-text'>
+          <div className="col-md-3">
+            <div className="card shadow">
+              <div className="card-body">
+                <h5 className="card-title">Summary of your booking</h5>
+                <p className="card-text">Your Name</p>
+                <p className="card-text">
                   {this.state.firstname} {this.state.lastname}
                 </p>
               </div>
@@ -552,7 +556,10 @@ class BookingForm extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
-export default BookingForm
+
+const mapStateToProps = ({ user }) => ({ user });
+
+export default connect(mapStateToProps)(BookingForm);

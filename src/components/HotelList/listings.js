@@ -1,18 +1,18 @@
+import { faMapMarker } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Axios from "axios";
+import { addDays } from "date-fns";
+import moment from 'moment';
+import React from "react";
+import { DateRangePicker } from "react-dates";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
+import { Link } from 'react-router-dom';
+import spin from '../../logo/spinner.gif';
+import { Input2 } from '../inputs/input1';
 import "./list.css";
 import "./searchbar.css";
 
-import Axios from "axios";
-import { DateRangePicker } from "react-dates";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Input2 } from '../inputs/input1';
-import { Link } from 'react-router-dom';
-import React from "react";
-import { addDays } from "date-fns";
-import { faMapMarker } from '@fortawesome/free-solid-svg-icons';
-import moment from 'moment';
-import spin from '../../logo/spinner.gif';
 
 class HotelList extends React.Component {
   constructor() {
@@ -109,6 +109,7 @@ class HotelList extends React.Component {
     const {result, description, rooms} = this.state;
     const samepage = this.state.pagehotel
     const searchedHotel = this.props.location.state.searchResult
+    const filterdhotels=this.state.sideFilter
     
     // console.log('123456789', searchedHotel)
     // console.log('same page',this.state.pagehotel)
@@ -400,7 +401,68 @@ class HotelList extends React.Component {
 {/* this is the listing */}
                     {/* {samepage.length <= 0 && (<h1>{this.state.description} is Not Found</h1>)} */}
         <div className="mt-3">
-        {samepage.length >= 1 ? (
+        {filteredhotel.length >= 1 ? (
+          filteredhotel.map((hotel, i) => (
+            <Link to={`/singlehotel/${hotel._id}`} className="jumbot">
+            <div className=" jumbotron2  mb-3" onClick={this.handleClick} key={i}>
+              <div>
+                <div className="row no-gutters">
+                  <div className="col-md-4">
+                    <div className="card border-0">
+                      <div className="card-body">
+                      <img src={hotel.imagerUrl[0].url} className="pic" alt="..." />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-5">
+                    <div className="card border-0">
+                      <div className="card-body">
+                        <h5>{hotel.propertyInfo.hotelName}</h5>
+                        <p>{hotel.propertyInfo.hotelDescription}</p>
+                        
+                        <p className="card-text locate">
+                          <FontAwesomeIcon  className="logo" icon={faMapMarker} />
+                           {hotel.propertyInfo.city} 
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    <div className="card border-0">
+                      <div className="card-body">
+                        <h6 className="mb-2 text-muted veiws">2,098</h6>
+  
+                        <span className="veiw">v</span>
+                        <span>views</span>
+  
+                        <p className="card-subtitle price">{hotel.averagePrice}</p>
+  
+                        <p className="text-muted pernight">per night</p>
+                        <div className="rateing">
+                          <p className="">
+                            <i className="fas fa-star rates"></i>
+                            <i className="fas fa-star rates"></i>
+                            <i className="fas fa-star rates"></i>
+                            <i className="fas fa-star rates"></i>
+                            <i className="fas fa-star rates"></i>
+                          </p>
+                        </div>
+                        <span
+                          href="#"
+                          className="card-link btn btn-sm btn-danger cheker"
+                        >
+                          Check this out
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </Link>
+            ))
+        ):(
+          sampage.length >= 1 ( 
           samepage.map((hotel, i) => (
             <Link to={`/singlehotel/${hotel._id}`} className="jumbot">
             <div className=" jumbotron2  mb-3" onClick={this.handleClick} key={i}>

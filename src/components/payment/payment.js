@@ -2,9 +2,9 @@ import 'react-toastify/dist/ReactToastify.min.css'
 
 import React, { Component } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
-import axios from 'axios'
 
 import PaystackButton from 'react-paystack'
+import axios from 'axios'
 
 // import { firebase } from '../../firebase';
 // import { newPayment } from '../../Notifications/slack';
@@ -36,7 +36,8 @@ export default class Payment extends Component {
   callback = response => {
     const data = {
       ref: response.trxref,
-      BookingInfo: this.props.info
+      BookingInfo: this.props.info,
+      userId: this.props.userId
     }
     console.log('hererh', data)
     axios.post('http://localhost:3400/hotel/verify', data)
@@ -49,7 +50,7 @@ export default class Payment extends Component {
           //   this.updateBalance(result);
           //   this.addTransaction(result.data.amount/100);
           //   this.sendSlackNotification(result)
-          console.log(result)
+          console.log('success',result)
         }
       })
       .catch(e => {
