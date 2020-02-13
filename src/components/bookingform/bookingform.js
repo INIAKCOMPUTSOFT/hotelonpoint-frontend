@@ -36,7 +36,7 @@ class BookingForm extends React.Component {
     var RoomId = params.roomid;
 
     axios
-      .get(`https://calm-anchorage-14244.herokuapp.com/room/${RoomId}/room`)
+      .get(`http://localhost:3400/room/${RoomId}/room`)
       .then(res => {
         this.setState({ Rm: res.data.data });
         //console.log('res',res)

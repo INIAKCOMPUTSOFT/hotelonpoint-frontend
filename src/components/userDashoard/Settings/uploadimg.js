@@ -1,15 +1,23 @@
+import Axios from 'axios';
 import Files from 'react-files';
 import { Input } from '../../inputs/input1';
 import React from 'react';
+import { connect } from 'react-redux';
 
-export default class Upload extends React.Component{
+class Upload extends React.Component{
 state={
 
     image: [], 
     displayname:'',
     dateofbirth:'',
     country:'',
+    pictureChange:[],
 
+}
+
+componentDidMount() {
+  Axios.get('https://calm-anchorage-14244.herokuapp.com/user')
+  .then(result => this.setState({pictureChange : result.data.data, loading:false}))
 }
 
 getImage = (img) => {
@@ -50,7 +58,8 @@ handlephotosubmit=(event)=> {
     }
     
 render(){
-
+  const {userData} = this.props.user
+const picture  =this.state.pictureChange
     return(
 <div className="card">
                 <div className="card-body">
@@ -64,11 +73,11 @@ render(){
           maxFileSize={10000000}
           minFileSize={0}
           clickable
-        ><div style={{borderStyle:'dotted', mouse:'pointer'}}>         
+        ><div style={{borderStyle:'solid', height:"10rem", mouse:'pointer'}}>         
           <div className="blogphoto">
         {this.state.image[0]  && (
             this.state.image.map(img => (
-            <img src={img.preview.url} alt="just uploaded" className="imageup" />
+              <img src={img.preview.url} alt="just uploaded" className="imageup" style={{ height:"9rem", }}/>
             ))
         )}
         </div>
@@ -99,3 +108,7 @@ render(){
 
 
 }
+
+const mapStateToProps = ({ user }) => ({ user });
+
+export default connect(mapStateToProps)(Upload)

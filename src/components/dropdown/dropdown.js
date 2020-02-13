@@ -35,9 +35,9 @@ function ProfileData (props){
         {/* <a href="https://internal.hotelonpoints.com/" className="dropdown-item">My Dashboard</a> */}
         {/* <a href={`https://internal.hotelonpoints.com?id=${localStorage.token}`} className="dropdown-item">My Dashboard</a> */}
         <Link to="/dashboard" className="dropdown-item ">My Dashboard</Link>
-        <Link className="dropdown-item ">Bookings</Link>
+        <Link  to="/bookings" className="dropdown-item ">Bookings</Link>
         <a href={`https://internal.hotelonpoints.com?id=${localStorage.token}`} className="dropdown-item">My Properties</a>
-        <Link className="dropdown-item">Reviews</Link>
+        <Link to="/reviews" className="dropdown-item">Reviews</Link>
       </div>
 
 </div>

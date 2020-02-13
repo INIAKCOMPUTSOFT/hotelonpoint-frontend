@@ -106,6 +106,7 @@ export default class Payment extends Component {
   }
 
   render () {
+    console.log(this.props.info, 'info')
     const money = Number(this.props.amount) * 100
     return (
       <div className={this.props.container}>

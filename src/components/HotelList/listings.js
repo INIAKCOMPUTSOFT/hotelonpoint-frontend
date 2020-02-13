@@ -1,18 +1,18 @@
-import { faMapMarker } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Axios from "axios";
-import { addDays } from "date-fns";
-import moment from 'moment';
-import React from "react";
-import { DateRangePicker } from "react-dates";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
-import { Link } from 'react-router-dom';
-import spin from '../../logo/spinner.gif';
-import { Input2 } from '../inputs/input1';
 import "./list.css";
 import "./searchbar.css";
 
+import Axios from "axios";
+import { DateRangePicker } from "react-dates";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Input2 } from '../inputs/input1';
+import { Link } from 'react-router-dom';
+import React from "react";
+import { addDays } from "date-fns";
+import { faMapMarker } from '@fortawesome/free-solid-svg-icons';
+import moment from 'moment';
+import spin from '../../logo/spinner.gif';
 
 class HotelList extends React.Component {
   constructor() {
@@ -401,8 +401,8 @@ class HotelList extends React.Component {
 {/* this is the listing */}
                     {/* {samepage.length <= 0 && (<h1>{this.state.description} is Not Found</h1>)} */}
         <div className="mt-3">
-        {filteredhotel.length >= 1 ? (
-          filteredhotel.map((hotel, i) => (
+        {filterdhotels.length >= 1 ? 
+          filterdhotels.map((hotel, i) => (
             <Link to={`/singlehotel/${hotel._id}`} className="jumbot">
             <div className=" jumbotron2  mb-3" onClick={this.handleClick} key={i}>
               <div>
@@ -461,8 +461,8 @@ class HotelList extends React.Component {
             </div>
             </Link>
             ))
-        ):(
-          sampage.length >= 1 ( 
+        :
+          samepage.length >= 1 ?  
           samepage.map((hotel, i) => (
             <Link to={`/singlehotel/${hotel._id}`} className="jumbot">
             <div className=" jumbotron2  mb-3" onClick={this.handleClick} key={i}>
@@ -523,7 +523,7 @@ class HotelList extends React.Component {
             </Link>
             ))
 
-        ):(
+          :
            searchedHotel.map((hotel, i) => (
             <Link to={`/singlehotel/${hotel._id}`} key={i} className="jumbot">
             <div className=" jumbotron2 mb-3" onClick={this.handleClick}>
@@ -582,9 +582,7 @@ class HotelList extends React.Component {
               </div>
             </div>
             </Link>
-            ))
-      
-        )}
+            ))}
         </div>
         
         </div>

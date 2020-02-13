@@ -1,15 +1,18 @@
 import "react-image-gallery/styles/css/image-gallery.css";
 import "react-image-lightbox/style.css";
 import "./singlehotel.css";
-import {faWifi,faSwimmer,faSpa,faWater,faBicycle,faGlassCheers,faChild,faHotTub,faMoneyBillAlt, faFilm, faWineGlass, faCrosshairs, faGasPump, faTshirt, faDesktop, faShuttleVan, faDumbbell, faMonument, faFan, faBriefcase, faCamera, faTaxi,} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { faBicycle, faBriefcase, faCamera, faChild, faCrosshairs, faDesktop, faDumbbell, faFan, faFilm, faGasPump, faGlassCheers, faHotTub, faMoneyBillAlt, faMonument, faShuttleVan, faSpa, faSwimmer, faTaxi, faTshirt, faWater, faWifi, faWineGlass } from '@fortawesome/free-solid-svg-icons';
+import { faServicestack, faSpeakerDeck } from "@fortawesome/free-brands-svg-icons";
+
 import Axios from "axios";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ImageGallery from "react-image-gallery";
 import Lightbox from "react-image-lightbox";
 import { Link } from "react-router-dom";
 import React from "react";
+import { connect } from 'react-redux';
 import spin from '../../logo/spinner.gif';
-import { faServicestack, faShirtsinbulk, faSpeakerDeck } from "@fortawesome/free-brands-svg-icons";
 
 //import ReactBnbGallery from 'react-bnb-gallery';
 
@@ -57,7 +60,8 @@ class SingleHotel extends React.Component {
   render() {
 //     let rest;
 // const regex =/Wifi/ 
-
+console.log(this.props.user, 'props user')
+const {userData} = this.props.user
     const { Hh, Rm, photoIndex, isOpen } = this.state;
     // console.log("seperate room", Rm);
     const urls = [];
@@ -587,12 +591,17 @@ class SingleHotel extends React.Component {
                             </p>
 
                             <p className="text-muted pernight">per night</p>
-                            <Link
+                            {this.props.user.authenticated ?(
+                              <Link
                               to={`/bookingform/${room._id}`}
                               className="card-link btn btn-sm btn-primary cheker"
                             >
                               Book this room
                             </Link>
+                            ):(
+                             <button className="btn btn-primary" disabled > Login to book rooms</button> 
+                            )}
+                            
                             <p>Standard Rate: {room.standardRate}</p>
                             <p>Weekend Rate: {room.weekendRate}</p>
                           </div>
@@ -655,5 +664,6 @@ class SingleHotel extends React.Component {
     );
   }
 }
+const mapStateToProps = ({ user }) => ({ user });
 
-export default SingleHotel;
+export default connect(mapStateToProps)(SingleHotel)
