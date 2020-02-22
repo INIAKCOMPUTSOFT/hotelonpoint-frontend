@@ -41,7 +41,7 @@ class BookingForm extends React.Component {
         this.setState({ Rm: res.data.data });
         //console.log('res',res)
       });
-    //console.log('Rm',this.state.Rm)
+    console.log('Rm',this.state.Rm)
   }
 
   handlechange = (event, date) => {
@@ -53,55 +53,55 @@ class BookingForm extends React.Component {
     console.log(this.state);
   };
 
-  // payOnArrival=()=>{
-  //   const data = {
-  //     email: this.state.email,
-  //     phone: this.state.phone,
-  //     firstname: this.state.firstname,
-  //     lastname: this.state.lastname,
-  //     getdeals: this.state.getdeals,
-  //     otherrequest: this.state.otherrequest,
-  //     title: this.state.title,
-  //     wantairportshuttle: this.state.wantairportshuttle,
-  //     roomId: this.props.match.params.roomid,
-  //     roomType: Rm.roomType,
-  //     checkin: this.state.startdate,
-  //     checkout: this.state.enddate,
-  //     paymentstatus:"payonarrival"
-  //   };
+  payOnArrival=()=>{
+    const data = {
+      email: this.state.email,
+      phone: this.state.phone,
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      getdeals: this.state.getdeals,
+      otherrequest: this.state.otherrequest,
+      title: this.state.title,
+      wantairportshuttle: this.state.wantairportshuttle,
+      roomId: this.props.match.params.roomid,
+      roomType: this.state.Rm.roomType,
+      checkin: this.state.startdate,
+      checkout: this.state.enddate,
+      paymentstatus:"payonarrival"
+    };
 
-  //   axios
-  //   .post(`http://localhost:3400/room/${RoomId}/bookingform`)
-  //   .then(res => {
+    // axios
+    // .post(`http://localhost:3400/room/${RoomId}/bookingform`)
+    // .then(res => {
     
-  //     console.log('res',res)
-  //   });
-  // }
+    //   console.log('res',res)
+    // });
+  }
 
-  // payByTransfer=()=>{
-  //   const data = {
-  //     email: this.state.email,
-  //     phone: this.state.phone,
-  //     firstname: this.state.firstname,
-  //     lastname: this.state.lastname,
-  //     getdeals: this.state.getdeals,
-  //     otherrequest: this.state.otherrequest,
-  //     title: this.state.title,
-  //     wantairportshuttle: this.state.wantairportshuttle,
-  //     roomId: this.props.match.params.roomid,
-  //     roomType: Rm.roomType,
-  //     checkin: this.state.startdate,
-  //     checkout: this.state.enddate,
-  //     paymentstatus:"Transfer"
-  //   };
+  payByTransfer=()=>{
+    const data = {
+      email: this.state.email,
+      phone: this.state.phone,
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      getdeals: this.state.getdeals,
+      otherrequest: this.state.otherrequest,
+      title: this.state.title,
+      wantairportshuttle: this.state.wantairportshuttle,
+      roomId: this.props.match.params.roomid,
+      roomType: this.state.Rm.roomType,
+      checkin: this.state.startdate,
+      checkout: this.state.enddate,
+      paymentMethod:"Transfer"
+    };
 
-  //   axios
-  //   .post(`http://localhost:3400/room/${RoomId}/bookingform`)
-  //   .then(res => {
+    // axios
+    // .post(`http://localhost:3400/room/${RoomId}/bookingform`)
+    // .then(res => {
     
-  //     console.log('res',res)
-  //   });
-  // }
+    //   console.log('res',res)
+    // });
+  }
 
   render() {
     //console.log('sRm', this.state.Rm)
@@ -125,7 +125,8 @@ class BookingForm extends React.Component {
       roomId: this.props.match.params.roomid,
       roomType: Rm.roomType,
       checkin: this.state.startdate,
-      checkout: this.state.enddate
+      checkout: this.state.enddate,
+      paymentMethod:"paystack"
     };
     return (
       <div className="container">
@@ -566,7 +567,7 @@ class BookingForm extends React.Component {
                         <div className="row">
                           <div className="col-12 ">
                             <button
-                              onClick={this.paybyTransfer}
+                              // onClick={this.paybyTransfer}
                               className="btn btn-block btn-primary "
                             >
                               Book

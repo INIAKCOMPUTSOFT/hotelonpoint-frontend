@@ -5,7 +5,7 @@ import SearchBar from '../SearchBar/searchbar';
 import background from './searchbackgroundimages/hoomage.jpg';
 
 var sectionStyle = {
-    padding:'20px',
+    padding:'30px',
     backgroundImage: `url(${background})`,
     backgroundSize: 'cover',
   };

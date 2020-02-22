@@ -66,9 +66,9 @@ export default class Payment extends Component {
     //you can put any unique reference implementation code here
     let text = ''
     let possible =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.='
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
-    for (let i = 0; i < 15; i++)
+    for (let i = 0; i < 10; i++)
       text += possible.charAt(Math.floor(Math.random() * possible.length))
 
     return text

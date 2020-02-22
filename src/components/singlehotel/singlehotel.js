@@ -25,10 +25,12 @@ class SingleHotel extends React.Component {
       photoIndex: 0,
       isOpen: false,
       loading:true,
+      reviews:[],
     };
   }
 
   async componentDidMount() {
+    window.scrollTo(0,0);
     const {
       match: { params }
     } = this.props;
@@ -36,11 +38,27 @@ class SingleHotel extends React.Component {
     // console.log("hotelid is", sentid);
 
     Axios.get(
-      `https://calm-anchorage-14244.herokuapp.com/hotel/${sentid}`
+      `https://localhost:3400/hotel/${sentid}`
     ).then(result =>
       this.setState({ Hh: result.data.data.hotel, Rm: result.data.data.room, loading:false })
     );
+
+    Axios.get(`http://localhost:3400/review/${sentid}`)
+    .then(res=>
+      //console.log(res,'reviews')
+      this.setState({review:res.data.data.review})
+      )
+      .catch(err=>{
+        if(err.response){
+          this.setState({review : err.response.data.message})
+        }
+      })
+        //console.log(err.response,'error')
+          
+      
   }
+
+ 
 
   toggleGallery = () => {
     this.setState(prevState => ({
@@ -125,7 +143,7 @@ const {userData} = this.props.user
         {this.state.loading ? (<div className="loadingicon"><img src={spin} alt="laoder" c/></div>) :
          ( <ImageGallery
             items={urls}
-            sizes={"20x20"}
+            sizes={"50x50"}
             cassName="app-image-gallery"
             showFullscreenButton={true}
             thumbnailPosition={"left"}
@@ -133,31 +151,21 @@ const {userData} = this.props.user
         </div>
 
         <div className="container bod">
-          <div>
-            {Hh.propertyInfo && (
-              <h2 className="text-center"> {Hh.propertyInfo.hotelName} </h2>
+        {Hh.propertyInfo && (
+              <h2 className=""> {Hh.propertyInfo.hotelName} </h2>
             )}
-          </div>
-          <hr />
-          <div>
-            <h5>Hotel Description</h5>
-            {Hh.propertyInfo && (
-              <>
-                <p className=""> {Hh.propertyInfo.hotelDescription} </p>
-                <p className="">
+            <p className="">
                   {Hh.propertyInfo.country}, {Hh.propertyInfo.state},{" "}
                   {Hh.propertyInfo.city}
-                </p>
-              </>
-            )}
-          </div>
-          <hr />
-          <div>
-            <h5>Hotel Amenities </h5>
-            <div className="row">
+            </p>
+          <div className="row mb-2">
+          <div className="col-md-6">
+          <div className="card mb-2 p-3">
+            
               {Hh.hotelPolicy &&
               
                 Hh.hotelPolicy.hotelAmenities.map((Amenities,a) => {
+                  
                   console.log(Amenities);
                   let wifi=Amenities.match(/wifi/gi);
                   let pool=Amenities.match(/Swiming pool/gi);
@@ -477,8 +485,30 @@ const {userData} = this.props.user
                 })}
             </div>
           </div>
+          <div className="col-md-4">
+          </div>
+          </div>
 
-          <hr />
+
+          <div className="row">
+          <div className="col-md-8">
+          <div className="card shadow p-3">
+            <h5>Hotel Description</h5>
+            {Hh.propertyInfo && (
+              <p> {Hh.propertyInfo.hotelDescription} </p>             
+            )}
+
+          </div>
+          </div>
+          <div className="col-md-4">
+          <div className="card shadow p-3">
+              {this.state.reviews && 
+              (<p>{this.state.reviews}</p>)
+              }
+          </div>
+          </div>
+          </div>
+
           <div>
             <h4>Room</h4>
             <div>
@@ -614,7 +644,7 @@ const {userData} = this.props.user
               ))}
             </div>
           </div>
-          <div>
+          <div className="card p-3 shadow">
             <h5>Hotel Policies</h5>
 
             {Hh.hotelPolicy && (

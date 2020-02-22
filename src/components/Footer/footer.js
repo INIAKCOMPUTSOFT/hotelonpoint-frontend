@@ -29,9 +29,10 @@ function Footer() {
               />
               <div className="input-group-append">
                 <input
+                style={{backgroundColor:"#C4BDA3"}}
                   type="submit"
-                  className=" d-inline btn btn-sm btn-light"
-                  value="subscribe"
+                  className=" d-inline btn btn-sm"
+                  value="Subscribe"
                 />
               </div>
             </div>
@@ -56,7 +57,7 @@ function Footer() {
             <div className="col-3">
               <div className="mb-3">
               <h5>Contact us:</h5>
-              <p>
+              <p className="footerfont">
                 Chat Support
                 <br />
                 Email Support
@@ -73,7 +74,7 @@ function Footer() {
             </div>
             <div className="col-3">
               <h5>Get to know us:</h5>
-              <p>
+              <p className="footerfont">
                 About us
                 <br />
                 Privacy policy
@@ -89,7 +90,7 @@ function Footer() {
             </div>
             <div className="col-3">
               <h5>Other services:</h5>
-              <p>
+              <p className="footerfont">
                 List your property
                 <br />
                 Become an agent

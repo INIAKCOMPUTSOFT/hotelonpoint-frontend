@@ -1,7 +1,7 @@
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import "./list.css";
-import "./searchbar.css";
+import "./listsearchbar.css";
 
 import Axios from "axios";
 import { DateRangePicker } from "react-dates";
@@ -130,7 +130,7 @@ class HotelList extends React.Component {
       {/* this is the searchbar */}
       <div>
         <div className={this.props.className}>
-          <div className=" container digi">
+          <div className=" container ddigi">
             <div className="search">
               <h5 className="caption">{this.props.title}</h5>
               <form>

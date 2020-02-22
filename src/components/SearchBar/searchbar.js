@@ -133,11 +133,11 @@ class SearchBar extends React.Component {
       <div>
         <div className={this.props.className}>
           <div className=" container digi">
-            <div className="search">
+            <div>
               <h5 className="caption">{this.props.title}</h5>
               <form>
-                <div className="row no-gutters brow ">
-                  <div className="col-md-3 sc">
+                <div className="row no-gutters brow">
+                  <div className="col-md-4 sc">
                   
                     <label className="lab">
                       <span className="titleinput hoteltitle">Places and Hotels </span>
@@ -154,7 +154,7 @@ class SearchBar extends React.Component {
                       <div  style={{position:'absolute', zIndex:'3'}}>
                          <ul className="card" >
                          {this.state.typedsearchResult.map(sugges=>(
-                           <li onClick={()=>this.suggestionsselected(sugges.propertyInfo.hotelName)}>{sugges.propertyInfo.hotelName} {sugges.propertyInfo.city}</li>
+                           <li className="droplist" onClick={()=>this.suggestionsselected(sugges.propertyInfo.hotelName)}>{sugges.propertyInfo.hotelName} {sugges.propertyInfo.city}</li>
                          ))}
                        </ul>                       
                       </div>
@@ -162,7 +162,7 @@ class SearchBar extends React.Component {
                     </label>              
                   </div>
 
-                  <div className="col-md-3 sc second" >
+                  <div className="col-md-4 sc second" >
                     <div>
                       <small className="mt-1 titleinput dater" >Check-in  -  Check-out</small>
                     <DateRangePicker
@@ -186,7 +186,7 @@ class SearchBar extends React.Component {
                     </div>
                   </div>
 
-                  <div className="col-md-3 sc">
+                  <div className="col-md-2 sc">
                   <label className="bb titleinput">Room and Guest</label>
 
                       <div className="control bb mt-2 text-secondary" data-toggle="modal" data-target="#exampleModal">
@@ -260,7 +260,7 @@ class SearchBar extends React.Component {
         </div>
 
                     </div>
-                  <div className="col-md-3 ">
+                  <div className="col-md-2 p-0 sc" >
                     <button
                       type="submit"
                       onClick={this.handleSubmit}

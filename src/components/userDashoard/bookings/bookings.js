@@ -59,8 +59,7 @@ checkout=(bookingid)=>{
   Axios
     .put(`https://calm-anchorage-14244.herokuapp.com/booking/user/${bookingid}`, data)
     .then(res=>{ console.log(res)})
-
-    setTimeout(()=> {window.location.href="/bookings"})
+    
 }
 
    canclebooking=(bookingid)=>{
@@ -113,6 +112,7 @@ checkout=(bookingid)=>{
     .put(`https://calm-anchorage-14244.herokuapp.com/review/${hotelid}`, data)
     .then(res=>{ console.log(res)})
     //console.log(this.state);
+    setTimeout(()=> {window.location.href="/bookings"})
   }
 
 

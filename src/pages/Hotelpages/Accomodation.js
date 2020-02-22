@@ -35,8 +35,9 @@ function HotelHome({ user: { authenticated } }) {
         {/* <HotelLocationDisplay /> */}
         {/* <CardCarrier h2="Recommended Hotels"/> */}
         <CardCarrier h2="Popular Attractions"/>
-        <CardCarrier h2="Recommended Car Rentals"/>  
-        <HomeBlog />
+        <CardCarrier h2="Recommended Taxis"/>  
+        <CardCarrier h2="Item Recommended For You"/>  
+        {/* <HomeBlog /> */}
       </div>
     </div>
   );

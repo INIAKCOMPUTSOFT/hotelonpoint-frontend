@@ -3,9 +3,10 @@
     overflow:hidden;
     white-space: nowrap;
     padding-bottom:0px;
+    height:400px;
   }
   .app-image-gallery{
-    height:px;
+    height:100px;
   } 
   /* .bod{
     margin-top:250px;
