@@ -9,7 +9,7 @@ import { DateRangePicker } from "react-dates";
 import React from "react";
 import { Redirect } from 'react-router-dom';
 import moment from 'moment';
-
+//import {AutoComplete} from 'primereact/autocomplete';
 //import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 
@@ -27,8 +27,9 @@ class SearchBar extends React.Component {
     this.state = {
       result:[],
       searchResult:[],
+      typedsearchResult:[],
       description: "",
-      checs: 1,
+      rooms: 1,
       adults: 1,
       starkin: "",
       roomtDate: null,
@@ -65,7 +66,6 @@ class SearchBar extends React.Component {
   }
 
 
-
   handleSubmit(event) {
     event.preventDefault();
     const {result, description, rooms} = this.state;
@@ -77,6 +77,26 @@ class SearchBar extends React.Component {
     //console.log('filtered hotel', filteredHotel)
   }
 
+  handleauto=(event)=>{
+    event.preventDefault();
+    const {result,description} = this.state;
+    const {name,value} = event.target
+    if(value.length === 0){
+      this.setState({ typedsearchResult:[]})
+    }else{
+      this.setState({[name]:value})
+      const filteredHotel = result.filter(robot => robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase()))
+      this.setState({ typedsearchResult: filteredHotel})
+    }
+  }
+
+  suggestionsselected=(value)=>{
+    this.setState({
+      description:value,
+      typedsearchResult:[]
+    })
+  }
+
   handleRangeChange = (which, payload) => {
     // console.log(which, payload);
     this.setState({
@@ -86,13 +106,28 @@ class SearchBar extends React.Component {
       }
     });
   };
+
   formatDateDisplay = (date, defaultText) => {
     if (!date) return defaultText;
     return format(date, "mm/dd/yyyy");
   };
 
+  // suggestions=()=>{
+  //   const sugges=this.state.typedsearchResult
+  //   if(sugges){
+  //     return(
+  //       <>
+  //       {sugges.map(suggested=>(
+  //         <p> {suggested.propertyInfo.hotelName} </p>
+  //       ))}
+  //       </>
+  //     )
+  //   }
+  // }
+
   render() {
     const {result}=this.state
+    console.log(this.state.typedsearchResult,'search result')
     // console.log('testting result',result)
     return (
       <div>
@@ -107,15 +142,23 @@ class SearchBar extends React.Component {
                     <label className="lab">
                       <span className="titleinput hoteltitle">Places and Hotels </span>
                       <span className="inpSpan">
-                        <input
+                         <input
                           type="text"
                           value={this.state.description}
-                          onChange={this.handleChange}
+                          onChange={this.handleauto}
                           name="description"
                           className="inp mt-2"
                           placeholder="Enter place and hotel name"
-                        />
+                        /> 
                       </span>
+                      <div  style={{position:'absolute', zIndex:'3'}}>
+                         <ul className="card" >
+                         {this.state.typedsearchResult.map(sugges=>(
+                           <li onClick={()=>this.suggestionsselected(sugges.propertyInfo.hotelName)}>{sugges.propertyInfo.hotelName} {sugges.propertyInfo.city}</li>
+                         ))}
+                       </ul>                       
+                      </div>
+                     
                     </label>              
                   </div>
 

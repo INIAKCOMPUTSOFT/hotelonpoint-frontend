@@ -114,12 +114,12 @@ class HotelList extends React.Component {
     // console.log('123456789', searchedHotel)
     // console.log('same page',this.state.pagehotel)
     //algo to convert to usable arr
-    const roomss = []
-    searchedHotel.map(hotel => {
-      return hotel.rooms.forEach(room => {
-        roomss.push(JSON.parse(room))
-      })
-    })
+    // const roomss = []
+    // searchedHotel.map(hotel => {
+    //   return hotel.rooms.forEach(room => {
+    //     roomss.push(JSON.parse(room))
+    //   })
+    // })
     //console.log('result to be filtered',result)
     // const filteredHotel = result.filter(robot => robot.rooms.length == Number(rooms) || robot.propertyInfo.hotelName.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.city.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.state.toLowerCase().includes(description.toLowerCase()) || robot.propertyInfo.country.toLowerCase().includes(description.toLowerCase())
     // )
@@ -410,7 +410,7 @@ class HotelList extends React.Component {
                   <div className="col-md-4">
                     <div className="card border-0">
                       <div className="card-body">
-                      <img src={hotel.imagerUrl[0].url} className="pic" alt="..." />
+                      <img src={hotel.imagerUrl[0].url} style={{height:'200px', width:'100%'}}  alt="..." />
                       </div>
                     </div>
                   </div>
@@ -471,7 +471,7 @@ class HotelList extends React.Component {
                   <div className="col-md-4">
                     <div className="card border-0">
                       <div className="card-body">
-                      <img src={hotel.imagerUrl[0].url} className="pic" alt="..." />
+                      <img src={hotel.imagerUrl[0].url} className="" style={{height:'200px', width:'100%'}} alt="..." />
                       </div>
                     </div>
                   </div>
@@ -532,7 +532,7 @@ class HotelList extends React.Component {
                   <div className="col-md-4">
                     <div className="card border-0">
                       <div className="card-body">
-                      <img src={hotel.imagerUrl[0].url} className="pic" alt="..." />
+                      <img src={hotel.imagerUrl[0].url} style={{height:'200px', width:'100%'}} alt="..." />
                       </div>
                     </div>
                   </div>

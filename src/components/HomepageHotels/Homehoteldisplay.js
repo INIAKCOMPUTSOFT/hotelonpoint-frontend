@@ -37,10 +37,7 @@ class HomeHotelDisplay extends Component {
           
           <div className="mb-3">
             <h2 className="text-center">Recommended Hotels</h2>
-            <h4>
-              More than just hotels… discover pure comfort with homes &
-              apartments
-            </h4>
+            
             <div className="card-deck mb-3">
               {reverse.slice(0, 4).map((hotel, i) => (
                 <div className="card rounded-bottom border-0 p-0" key={i} style={{width: "18rem"}}>

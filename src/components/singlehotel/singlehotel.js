@@ -495,8 +495,9 @@ const {userData} = this.props.user
                           <div className="card-body border-right">
                             <img
                               src={room.imageUrl[0].url}
-                              className="pic"
+                              className=""
                               alt="..."
+                              style={{height:'200px', width:'100%'}}
                               onClick={() => this.setState({ isOpen: true })}
                               
                             />
@@ -602,8 +603,8 @@ const {userData} = this.props.user
                              <button className="btn btn-primary" disabled > Login to book rooms</button> 
                             )}
                             
-                            <p>Standard Rate: {room.standardRate}</p>
-                            <p>Weekend Rate: {room.weekendRate}</p>
+                            {/* <p>Standard Rate: {room.standardRate}</p>
+                            <p>Weekend Rate: {room.weekendRate}</p> */}
                           </div>
                         </div>
                       </div>

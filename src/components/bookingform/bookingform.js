@@ -25,7 +25,7 @@ class BookingForm extends React.Component {
       wantairportshuttle: false,
       getdeals: false,
       startdate: "",
-      enddate: ""
+      enddate: "",
     };
   }
 
@@ -36,7 +36,7 @@ class BookingForm extends React.Component {
     var RoomId = params.roomid;
 
     axios
-      .get(`http://localhost:3400/room/${RoomId}/room`)
+      .get(`https://calm-anchorage-14244.herokuapp.com/room/${RoomId}/room`)
       .then(res => {
         this.setState({ Rm: res.data.data });
         //console.log('res',res)
@@ -53,6 +53,56 @@ class BookingForm extends React.Component {
     console.log(this.state);
   };
 
+  // payOnArrival=()=>{
+  //   const data = {
+  //     email: this.state.email,
+  //     phone: this.state.phone,
+  //     firstname: this.state.firstname,
+  //     lastname: this.state.lastname,
+  //     getdeals: this.state.getdeals,
+  //     otherrequest: this.state.otherrequest,
+  //     title: this.state.title,
+  //     wantairportshuttle: this.state.wantairportshuttle,
+  //     roomId: this.props.match.params.roomid,
+  //     roomType: Rm.roomType,
+  //     checkin: this.state.startdate,
+  //     checkout: this.state.enddate,
+  //     paymentstatus:"payonarrival"
+  //   };
+
+  //   axios
+  //   .post(`http://localhost:3400/room/${RoomId}/bookingform`)
+  //   .then(res => {
+    
+  //     console.log('res',res)
+  //   });
+  // }
+
+  // payByTransfer=()=>{
+  //   const data = {
+  //     email: this.state.email,
+  //     phone: this.state.phone,
+  //     firstname: this.state.firstname,
+  //     lastname: this.state.lastname,
+  //     getdeals: this.state.getdeals,
+  //     otherrequest: this.state.otherrequest,
+  //     title: this.state.title,
+  //     wantairportshuttle: this.state.wantairportshuttle,
+  //     roomId: this.props.match.params.roomid,
+  //     roomType: Rm.roomType,
+  //     checkin: this.state.startdate,
+  //     checkout: this.state.enddate,
+  //     paymentstatus:"Transfer"
+  //   };
+
+  //   axios
+  //   .post(`http://localhost:3400/room/${RoomId}/bookingform`)
+  //   .then(res => {
+    
+  //     console.log('res',res)
+  //   });
+  // }
+
   render() {
     //console.log('sRm', this.state.Rm)
     const { Rm } = this.state;
@@ -61,6 +111,7 @@ class BookingForm extends React.Component {
     let amount = 0;
     if (Rm.roomPrice) {
       amount = Rm.roomPrice;
+      console.log(amount,'amount of room')
     }
     const data = {
       email: this.state.email,
@@ -439,6 +490,7 @@ class BookingForm extends React.Component {
                             role="tab"
                             aria-controls="pills-payonarrival"
                             aria-selected="false"
+                            onClick={this.payOnArrival}
                           >
                             Pay On Arrival
                           </a>
@@ -514,7 +566,7 @@ class BookingForm extends React.Component {
                         <div className="row">
                           <div className="col-12 ">
                             <button
-                              onClick={this.handlepressed}
+                              onClick={this.paybyTransfer}
                               className="btn btn-block btn-primary "
                             >
                               Book
@@ -544,15 +596,7 @@ class BookingForm extends React.Component {
             </div>
           </div>
           <div className="col-md-3">
-            <div className="card shadow">
-              <div className="card-body">
-                <h5 className="card-title">Summary of your booking</h5>
-                <p className="card-text">Your Name</p>
-                <p className="card-text">
-                  {this.state.firstname} {this.state.lastname}
-                </p>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
