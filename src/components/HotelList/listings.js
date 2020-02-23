@@ -102,6 +102,27 @@ class HotelList extends React.Component {
       this.setState({ pagehotel: filteredHotel})
     }
 
+    Ratingstarts=(stars)=>{
+
+      if(stars == "1"){
+        return(<> one stars</>)
+      }else    
+      if(stars == "2"){
+        return(<> two stars </>)
+      }else 
+      if(stars == "3"){
+        return(<> three stars</>)
+      }else 
+      if(stars == "4"){
+        return(<>four stars </>)
+      }else 
+      if(stars == "5"){
+        return(<>five stars </>)
+      }else{
+        return(<> no stars </>)
+      }
+    }
+
    
 
   render() {
@@ -133,8 +154,8 @@ class HotelList extends React.Component {
           <div className=" container ddigi">
             <div className="search">
               <h5 className="caption">{this.props.title}</h5>
-              <form>
-                <div className="row no-gutters brow ">
+              <form className="formbox">
+                <div className="row no-gutters">
                   <div className="col-md-3 sc">
                   
                     <label className="lab">
@@ -257,7 +278,7 @@ class HotelList extends React.Component {
                     <button
                       type="submit"
                       onClick={this.handleSubmit}
-                      className="btn-primary sbtn"
+                      className="sbtn"
                     >
                       
                       {/* <FontAwesomeIcon className="searchicon" icon={faSearch} /> */}
@@ -274,15 +295,14 @@ class HotelList extends React.Component {
       <div className="row">
             <div className="col-md-3">
             <div className="card text-dark mt-3  mb-3 border filter">
-            <div className="card-header">Filter</div>
             <div className="card-body">
-            <p><b>Your Budget</b></p>
+            <p><b>Price Range</b></p>
               <Input2
               name="budget"
               type="radio"
               value="5000"
               onChange={this.handleSideFilterButtonsChange}
-              range="2000-5000"
+              range="0-5000"
               />
             
             <Input2
@@ -401,6 +421,9 @@ class HotelList extends React.Component {
 {/* this is the listing */}
                     {/* {samepage.length <= 0 && (<h1>{this.state.description} is Not Found</h1>)} */}
         <div className="mt-3">
+        <div className="mb-2 border" style={{height:'50px', paddingLeft:'10px', paddingTop:'5px', paddingBottom:'5px'}}>
+        <h5>Results Found : {searchedHotel.length}</h5>
+        </div>
         {filterdhotels.length >= 1 ? 
           filterdhotels.map((hotel, i) => (
             <Link to={`/singlehotel/${hotel._id}`} className="jumbot">
@@ -417,7 +440,7 @@ class HotelList extends React.Component {
                   <div className="col-md-5">
                     <div className="card border-0">
                       <div className="card-body">
-                        <h5>{hotel.propertyInfo.hotelName}</h5>
+          <h5>{hotel.propertyInfo.hotelName}{this.Ratingstarts(hotel.propertyInfo.starRating)}</h5>
                         <p>{hotel.propertyInfo.hotelDescription}</p>
                         
                         <p className="card-text locate">
@@ -478,7 +501,7 @@ class HotelList extends React.Component {
                   <div className="col-md-5">
                     <div className="card border-0">
                       <div className="card-body">
-                        <h5>{hotel.propertyInfo.hotelName}</h5>
+                        <h5>{hotel.propertyInfo.hotelName}{this.Ratingstarts(hotel.propertyInfo.starRating)}</h5>
                         <p>{hotel.propertyInfo.hotelDescription}</p>
                         
                         <p className="card-text locate">
@@ -539,7 +562,7 @@ class HotelList extends React.Component {
                   <div className="col-md-5">
                     <div className="card border-0">
                       <div className="card-body">
-                        <h5>{hotel.propertyInfo.hotelName}</h5>
+                        <h5>{hotel.propertyInfo.hotelName}{this.Ratingstarts(hotel.propertyInfo.starRating)}</h5>
                         <p>{hotel.propertyInfo.hotelDescription}</p>
                        
                         <p className="card-text locate">

@@ -9,6 +9,7 @@ import { DateRangePicker } from "react-dates";
 import React from "react";
 import { Redirect } from 'react-router-dom';
 import moment from 'moment';
+
 //import {AutoComplete} from 'primereact/autocomplete';
 //import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -81,7 +82,7 @@ class SearchBar extends React.Component {
     event.preventDefault();
     const {result,description} = this.state;
     const {name,value} = event.target
-    if(value.length === 0){
+    if(value.length < 0){
       this.setState({ typedsearchResult:[]})
     }else{
       this.setState({[name]:value})
@@ -135,8 +136,8 @@ class SearchBar extends React.Component {
           <div className=" container digi">
             <div>
               <h5 className="caption">{this.props.title}</h5>
-              <form>
-                <div className="row no-gutters brow">
+              <form className="formbox">
+                <div className="row no-gutters">
                   <div className="col-md-4 sc">
                   
                     <label className="lab">
@@ -264,7 +265,7 @@ class SearchBar extends React.Component {
                     <button
                       type="submit"
                       onClick={this.handleSubmit}
-                      className="btn-primary sbtn"
+                      className="sbtn"
                     >
                       
                       {/* <FontAwesomeIcon className="searchicon" icon={faSearch} /> */}

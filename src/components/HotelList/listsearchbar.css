@@ -8,12 +8,17 @@
     color:black;
     
 } */
+.formbox{
+    background: #FFFFFF;
+    border-radius: 5px;
+    }
 
 .ddigi{
-    background-color:#C4BDA3;
+    background: rgba(196, 196, 196, 0.81);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    height:200px;
+    height:150px;
     width:100%;
+    border-radius: 5px;
 }
 .searchicon{
     font-size: 20px;
@@ -28,13 +33,14 @@
 .sbtn {
     border-radius: none;
     height: 100%;
-    float: right; 
+    float: right;
+    background-color: black; 
 }
-.brow{
+/* .brow{
     background-color:white;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     margin-top:2%;
-}
+} */
 .unlock{
     color:white;
     font-family:'Anton', sans-serif;

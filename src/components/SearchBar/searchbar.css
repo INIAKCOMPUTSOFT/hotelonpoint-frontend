@@ -3,11 +3,16 @@
     height:40px !important;
 }
 .caption{
-    font-family:'Montserrat';
-    font-size:30px;
-    color:black;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
 }
-
+.formbox{
+background: #FFFFFF;
+border-radius: 5px;
+}
 .droplist{
    list-style-type: none
 }
@@ -15,11 +20,11 @@
     background-color: #C4BDA3;
 }
 .digi{
-    background-color:#C4BDA3;
+    background: rgba(196, 196, 196, 0.81);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     height:200px;
     width:80%;
-    
+    border-radius: 5px;
 }
 .search{
       
@@ -52,6 +57,7 @@
     padding-bottom:1px; 
     display:block;
     margin-left:10px;
+    background-color: black;
 } 
 .brow{
     background-color:green;
@@ -132,6 +138,7 @@
         border-radius: none;
         display:block !important;
         width:100%;
+        background-color: black;
     }
   
 }
