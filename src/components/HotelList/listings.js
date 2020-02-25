@@ -372,7 +372,7 @@ class HotelList extends React.Component {
 
       <div className="row">
             <div className="col-md-3 d-none d-lg-block">
-            <div className="card text-dark mt-3  mb-3 border filter" style={{height: "85%"}}>
+            <div className="card text-dark mt-3 custom-control custom-radio  mb-3 border filter" style={{height: "85%"}}>
             <div className="card-body">
             
             <p><b>Price Range</b></p>

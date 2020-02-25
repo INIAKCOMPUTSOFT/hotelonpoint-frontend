@@ -21,6 +21,26 @@ export default class Review extends React.Component{
 
     return(
       <>
+      <div>
+      <ul class="list-group">
+        <li class="list-group-item active">
+          <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input"/>
+          </li>
+        <li class="list-group-item">
+        <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input"/>
+          </li>
+        <li class="list-group-item">
+        <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input"/>
+          </li>
+        <li class="list-group-item">
+        <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input"/>
+          </li>
+        <li class="list-group-item">
+        <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input"/>
+          </li>
+      </ul>
+
+      </div>
 
       </>
     )
