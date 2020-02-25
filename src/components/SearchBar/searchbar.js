@@ -265,11 +265,12 @@ class SearchBar extends React.Component {
                     <button
                       type="submit"
                       onClick={this.handleSubmit}
-                      className="sbtn"
+                      className="sbtn border-0"
+                      
                     >
                       
                       {/* <FontAwesomeIcon className="searchicon" icon={faSearch} /> */}
-                    <p className="searchicon">Search</p>
+                    <p className="searchicon ">Search</p>
                     </button>
                   </div>
                 </div>

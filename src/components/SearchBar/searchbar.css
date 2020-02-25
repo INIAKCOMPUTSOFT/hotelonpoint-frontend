@@ -14,7 +14,8 @@ background: #FFFFFF;
 border-radius: 5px;
 }
 .droplist{
-   list-style-type: none
+   list-style-type: none;
+   margin : none;
 }
 .droplist:hover{
     background-color: #C4BDA3;

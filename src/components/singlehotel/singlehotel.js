@@ -1,6 +1,7 @@
 import "react-image-gallery/styles/css/image-gallery.css";
 import "react-image-lightbox/style.css";
 import "./singlehotel.css";
+import Swiper from "react-id-swiper";
 
 import { faBicycle, faBriefcase, faCamera, faChild, faCrosshairs, faDesktop, faDumbbell, faFan, faFilm, faGasPump, faGlassCheers, faHotTub, faMoneyBillAlt, faMonument, faShuttleVan, faSpa, faSwimmer, faTaxi, faTshirt, faWater, faWifi, faWineGlass } from '@fortawesome/free-solid-svg-icons';
 import { faServicestack, faSpeakerDeck } from "@fortawesome/free-brands-svg-icons";
@@ -10,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ImageGallery from "react-image-gallery";
 import Lightbox from "react-image-lightbox";
 import { Link } from "react-router-dom";
+import SearchBar from '../SearchBar/searchbar'
 import React from "react";
 import { connect } from 'react-redux';
 import spin from '../../logo/spinner.gif';
@@ -38,7 +40,7 @@ class SingleHotel extends React.Component {
     // console.log("hotelid is", sentid);
 
     Axios.get(
-      `https://localhost:3400/hotel/${sentid}`
+      `https://calm-anchorage-14244.herokuapp.com/hotel/${sentid}`
     ).then(result =>
       this.setState({ Hh: result.data.data.hotel, Rm: result.data.data.room, loading:false })
     );
@@ -76,6 +78,27 @@ class SingleHotel extends React.Component {
 
 
   render() {
+
+    const params = {
+      slidesPerView: 3,
+      spaceBetween: 10,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      },
+      
+      slidesPerGroup: 3,
+      loop: true,
+      loopFillGroupWithBlank: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      }
+      // pagination: {
+      //   el: ".swiper-pagination",
+      //   clickable: true
+      // }
+    };
 //     let rest;
 // const regex =/Wifi/ 
 console.log(this.props.user, 'props user')
@@ -135,11 +158,24 @@ const {userData} = this.props.user
     // }
     //
 
+function gal(Ur,i){
+      if(i===1){
+        return <iframe width="843" height="480" style={{width:'250px',height:'300px'}} src="https://www.youtube.com/embed/pcnq-g1KJTA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      }
+    else {
+      return <img src={Ur.url} style={{width:'250px',height:'300px'}} alt=""/>
+      }
+       
+}
+
 
     return (
       this.state.loading ? (<div className="loadingicon"><img src={spin} alt="laoder"/></div>) :
       <div>
-        <div className=" container flow">
+        <div className="mt-2">
+        <SearchBar title="Unlock Greate Deals"/>
+        </div>
+        {/* <div className="mt-2 container flow">
         {this.state.loading ? (<div className="loadingicon"><img src={spin} alt="laoder" c/></div>) :
          ( <ImageGallery
             items={urls}
@@ -148,7 +184,18 @@ const {userData} = this.props.user
             showFullscreenButton={true}
             thumbnailPosition={"left"}
           />)}
-        </div>
+        </div> */}
+<div className="mt-2 container">
+        <Swiper {...params}>
+        
+             {Hh.imagerUrl.map((Ur,i) =>(
+              
+              gal(Ur,i)
+               
+              ))}
+  
+              </Swiper>
+              </div>
 
         <div className="container bod">
         {Hh.propertyInfo && (
@@ -158,10 +205,8 @@ const {userData} = this.props.user
                   {Hh.propertyInfo.country}, {Hh.propertyInfo.state},{" "}
                   {Hh.propertyInfo.city}
             </p>
-          <div className="row mb-2">
-          <div className="col-md-6">
           <div className="card mb-2 p-3">
-            
+            <div className="row">
               {Hh.hotelPolicy &&
               
                 Hh.hotelPolicy.hotelAmenities.map((Amenities,a) => {
@@ -193,10 +238,12 @@ const {userData} = this.props.user
                   let fitness=Amenities.match(/Fitnes Center/gi)
                   let bar=Amenities.match(/Bar/gi)
                   let terace=Amenities.match(/Terrace/gi)
+                  console.log(wifi,'prop')
+                 
                   if(wifi){
                     
                     return(
-                      <div>
+                      <div className="col-md-4">
                        <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -209,7 +256,7 @@ const {userData} = this.props.user
                   else if(pool){
 
                     return(
-                      <div>
+                      <div className="col-md-4">
                         <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -220,7 +267,7 @@ const {userData} = this.props.user
                   }
                   else if(spa > -1){
                     return(
-                      <div>
+                      <div className="col-md-4">
                        <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -231,7 +278,7 @@ const {userData} = this.props.user
                   }
                   else if(park){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -242,7 +289,7 @@ const {userData} = this.props.user
 
                   }else if(bycicle){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -253,7 +300,7 @@ const {userData} = this.props.user
 
                   }else if(car){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -264,7 +311,7 @@ const {userData} = this.props.user
 
                   }else if(Cinema){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -275,7 +322,7 @@ const {userData} = this.props.user
 
                   }else if(Audio){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -286,7 +333,7 @@ const {userData} = this.props.user
 
                   }else if(newpaper){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -297,7 +344,7 @@ const {userData} = this.props.user
 
                   }else if(duty){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -308,7 +355,7 @@ const {userData} = this.props.user
 
                   }else if(lounge){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -319,7 +366,7 @@ const {userData} = this.props.user
 
                   }else if(salon){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -330,7 +377,7 @@ const {userData} = this.props.user
 
                   }else if(elevator){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                      Elevator</p>
                     </div>
@@ -338,7 +385,7 @@ const {userData} = this.props.user
 
                   }else if(currency){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -349,7 +396,7 @@ const {userData} = this.props.user
 
                   }else if(Ac){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -360,7 +407,7 @@ const {userData} = this.props.user
 
                   }else if(Roomservice){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -371,7 +418,7 @@ const {userData} = this.props.user
 
                   }else if(cctv){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -382,7 +429,7 @@ const {userData} = this.props.user
 
                   }else if(electric){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -393,7 +440,7 @@ const {userData} = this.props.user
 
                   }else if(playground){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -404,7 +451,7 @@ const {userData} = this.props.user
 
                   }else if(ironing){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -415,7 +462,7 @@ const {userData} = this.props.user
 
                   }else if(desk){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -426,7 +473,7 @@ const {userData} = this.props.user
 
                   }else if(hot){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -437,7 +484,7 @@ const {userData} = this.props.user
 
                   }else if(Airportshuttle){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -448,7 +495,7 @@ const {userData} = this.props.user
 
                   }else if(fitness){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -459,7 +506,7 @@ const {userData} = this.props.user
 
                   }else if(bar){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -470,7 +517,7 @@ const {userData} = this.props.user
 
                   }else if(terace){
                     return(
-                      <div>
+                      <div className="col-md-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -480,14 +527,13 @@ const {userData} = this.props.user
                     ) 
 
                   }
+                
                //this.amen(Amenities,a) 
               //console.log(Amenities,'testing amenities') 
                 })}
+                </div>
             </div>
-          </div>
-          <div className="col-md-4">
-          </div>
-          </div>
+          
 
 
           <div className="row">
@@ -609,7 +655,7 @@ const {userData} = this.props.user
                       <div className="col-md-3">
                         <div className="card border-0">
                           <p className="card-header font-weight-bold">
-                            price per room/night
+                            Price Per Room/Night
                           </p>
                           <div className="card-body">
                             {/* <h6 className="mb-2 text-muted veiws">2,098</h6> */}
@@ -622,16 +668,14 @@ const {userData} = this.props.user
                             </p>
 
                             <p className="text-muted pernight">per night</p>
-                            {this.props.user.authenticated ?(
+                            
                               <Link
                               to={`/bookingform/${room._id}`}
                               className="card-link btn btn-sm btn-primary cheker"
                             >
                               Book this room
                             </Link>
-                            ):(
-                             <button className="btn btn-primary" disabled > Login to book rooms</button> 
-                            )}
+                           
                             
                             {/* <p>Standard Rate: {room.standardRate}</p>
                             <p>Weekend Rate: {room.weekendRate}</p> */}

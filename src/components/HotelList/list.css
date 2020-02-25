@@ -8,3 +8,58 @@
     height:1000px;
     width:1000px;
 }
+
+.faq{
+font-family: Montserrat;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 22px;
+list-style-type: none;
+}
+.starrating {
+	direction: rtl;
+	unicode-bidi: bidi-override;
+	color: #ffc107; /* Personal choice */
+}
+
+.checker{
+    background-color:#C4BDA3;
+}
+
+.controll{
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+    border-color:black;
+    border-style:solid;
+    margin-top:90px;
+    margin-right:40px;
+    position:absolute;
+    z-index:3;
+  }
+  
+  .controll:hover {
+    background-color:black;
+    color: white;
+  }
+  
+  .previous {
+    background-color: #f1f1f1;
+    color: black;
+  }
+  
+  .next {
+    background-color:  #f1f1f1;
+    color: black;
+    right: 0;
+  }
+  
+  .round {
+    border-radius: 40%;
+  }
+
+  .active1{
+      background-color: black !important;
+      color:white;
+  }

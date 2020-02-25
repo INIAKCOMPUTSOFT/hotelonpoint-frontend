@@ -8,8 +8,13 @@ import { DateRangePicker } from "react-dates";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Input2 } from '../inputs/input1';
 import { Link } from 'react-router-dom';
+import Swiper from "react-id-swiper";
+import _ from "lodash"
+import {paginate} from './pagination'
 import React from "react";
 import { addDays } from "date-fns";
+import { faStar,faCheck, faBicycle, faBriefcase, faCamera, faChild, faCrosshairs, faDesktop, faDumbbell, faFan, faFilm, faGasPump, faGlassCheers, faHotTub, faMoneyBillAlt, faMonument, faShuttleVan, faSpa, faSwimmer, faTaxi, faTshirt, faWater, faWifi, faWineGlass } from '@fortawesome/free-solid-svg-icons';
+import { faServicestack, faSpeakerDeck } from "@fortawesome/free-brands-svg-icons";
 import { faMapMarker } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
 import spin from '../../logo/spinner.gif';
@@ -18,11 +23,16 @@ class HotelList extends React.Component {
   constructor() {
     super();
     this.state = {
+      currentpage:1,
+      pageSize: 10,
       sideFilter:[],
       budget:'',
+      distance:'',
       bed:'',
-      breakfast:false,
-      Cancellation:false,
+      pamentpolicy:'',
+      starrating:'',
+      breakfast:"",
+      cancellation:false,
       confirmnation:false,
       value:[],
       loading:true,
@@ -82,13 +92,14 @@ class HotelList extends React.Component {
       console.log(this.state.sideFilter,'side filterd ')
       }
       
-      filterthehotels=( filtering)=>{
+      filterthehotels=( filtering, fills)=>{
         console.log(filtering)
-        const {budget} = this.state;
+        const {budget,starrating,breakfast,pamentpolicy,cancellation,distance} = this.state;
         console.log(budget, 'this is the budget')
-        const Filtering = filtering.filter(robot =>Number(budget)  >= Number(robot.averagePrice))
+        const Filtering = filtering.filter(robot =>Number(budget)  >= Number(robot.averagePrice) || robot.propertyInfo.starRating.includes(starrating)||robot.hotelPolicy.isBreakfastAvailable.includes(breakfast))
+        const Filteringed = fills.filter(robot =>Number(budget)  >= Number(robot.averagePrice) || robot.propertyInfo.starRating.includes(starrating)||robot.hotelPolicy.isBreakfastAvailable.includes(breakfast))
         console.log(Filtering,'on clicked')
-        this.setState({sideFilter: filtering})
+        this.setState({sideFilter: Filtering, sideFilter:Filteringed})
       }
   
     handleSubmit(event) {
@@ -102,24 +113,68 @@ class HotelList extends React.Component {
       this.setState({ pagehotel: filteredHotel})
     }
 
+    handlePageChange = page => {
+      this.setState({ currentpage: page });
+    };
+
     Ratingstarts=(stars)=>{
 
-      if(stars == "1"){
-        return(<> one stars</>)
+      if(stars.includes("1")){
+        return(<>  <FontAwesomeIcon className='starrating'  icon={faStar} /> </>)
       }else    
-      if(stars == "2"){
-        return(<> two stars </>)
+      if(stars.includes("2")){
+        return(<> 
+        <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+        <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+        
+         </>)
       }else 
-      if(stars == "3"){
-        return(<> three stars</>)
+      if(stars.includes("3")){
+        return(<> 
+        <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+        <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+        <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+        </>)
       }else 
-      if(stars == "4"){
-        return(<>four stars </>)
+      if(stars.includes("4")){
+        return(<>
+        <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+        <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+        <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+        <FontAwesomeIcon className='starrating'  icon={faStar} />  
+        </>)
       }else 
-      if(stars == "5"){
-        return(<>five stars </>)
+      if(stars.includes("5")){
+        return(<>
+        <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+        <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+        <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+        <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+        <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+        </>)
       }else{
-        return(<> no stars </>)
+        return(<> </>)
+      }
+    }
+
+    boxRatingstarts=(stars)=>{
+
+      if(stars.includes("1")){
+        return(<> <span className="veiw">1.5/5</span></>)
+      }else    
+      if(stars.includes("2")){
+        return(<> <span className="veiw">2.5/5</span></>)
+      }else 
+      if(stars.includes("3")){
+        return(<> <span className="veiw">3.7/5</span></>)
+      }else 
+      if(stars.includes("4")){
+        return(<><span className="veiw">4.5/5</span></>)
+      }else 
+      if(stars.includes("5")){
+        return(<><span className="veiw">5/5</span> </>)
+      }else{
+        return(<></>)
       }
     }
 
@@ -127,11 +182,34 @@ class HotelList extends React.Component {
 
   render() {
     console.log(this.state.sideFilter, 'on state');
-    const {result, description, rooms} = this.state;
+    const {result, description, rooms, pageSize,currentpage} = this.state;
     const samepage = this.state.pagehotel
     const searchedHotel = this.props.location.state.searchResult
     const filterdhotels=this.state.sideFilter
-    
+  //   const indexOfLastPost =  currentpage * postPerPage
+  // const indexOfFirstPost =  indexOfLastPost - postPerPage
+  // const currentpost = samepage.slice(indexOfFirstPost, indexOf)
+  const params = {
+    slidesPerView: 2,
+    spaceBetween: 30,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
+    },
+    // pagination: {
+    //   el: ".swiper-pagination",
+    //   clickable: true
+    // }
+  };
+
+
+  let pageCount = Math.ceil(searchedHotel.length / pageSize);
+  console.log("pagecount", pageCount);
+  if (pageCount === 1) {
+    pageCount = null;
+  }
+  const hotels = paginate(searchedHotel, currentpage, pageSize);
+  const pages = _.range(1, pageCount + 1);
     // console.log('123456789', searchedHotel)
     // console.log('same page',this.state.pagehotel)
     //algo to convert to usable arr
@@ -293,9 +371,10 @@ class HotelList extends React.Component {
       </div>
 
       <div className="row">
-            <div className="col-md-3">
-            <div className="card text-dark mt-3  mb-3 border filter">
+            <div className="col-md-3 d-none d-lg-block">
+            <div className="card text-dark mt-3  mb-3 border filter" style={{height: "85%"}}>
             <div className="card-body">
+            
             <p><b>Price Range</b></p>
               <Input2
               name="budget"
@@ -344,9 +423,48 @@ class HotelList extends React.Component {
               onChange={this.handleSideFilterButtonsChange}
               range="80000-200000"
               />
-            <hr/> 
+            <hr/>
+            <p><b>Star Rating</b></p>
+              <Input2
+              name="starrating"
+              type="radio"
+              value="1"
+              onChange={this.handleSideFilterButtonsChange}
+              range="1 star"
+              />
             
-            <b>Breackfast</b>
+            <Input2
+              name="starrating"
+              type="radio"
+              value="2"
+              onChange={this.handleSideFilterButtonsChange}
+              range="2 star"
+              />
+            
+            <Input2
+              name="starrating"
+              type="radio"
+              value="3"
+              onChange={this.handleSideFilterButtonsChange}
+              range="3 star"
+              />
+              <Input2
+              name="starrating"
+              type="radio"
+              value="4"
+              onChange={this.handleSideFilterButtonsChange}
+              range="4 star"
+              />
+              <Input2
+              name="starrating"
+              type="radio"
+              value="5"
+              onChange={this.handleSideFilterButtonsChange}
+              range="5 star"
+              />
+            <hr/>  
+            
+            <b>Breakfast</b>
             <Input2
               type="radio"
               name="breakfast"
@@ -369,21 +487,53 @@ class HotelList extends React.Component {
               range="No Breakfast"
               />
             <hr/> 
-            <b>Booking Policy</b>
+            <b>Payment & Cancellation</b>
             <Input2
-              type="checkbox"
-              name="Cancellation"
-              value={this.state.Cancellation}
+              type="radio"
+              name="pamentpolicy"
+              value="pay now"
               onChange={this.handleSideFilterButtonsChange}
-              range="Free Cancellation"
+              range="Pay Online"
               />
-               <Input2
+              <Input2
+              type="radio"
+              name="pamentpolicy"
+              value="pay on arrival"
+              onChange={this.handleSideFilterButtonsChange}
+              range="Pay at Hotel"
+              />
+              <Input2
               type="checkbox"
-              value={this.state.confirmnation}
+              name="cancellation"
+              value={this.state.cancellation}
               onChange={this.handleSideFilterButtonsChange}
               range="Instant Confirmation"
               />
             <hr/> 
+
+            <b>Distance to City Center</b>
+            <Input2
+              type="radio"
+              name="distance"
+              value="1km"
+              onChange={this.handleSideFilterButtonsChange}
+              range="Less than 1km"
+              />
+              <Input2
+              type="radio"
+              name="distance"
+              value="2km"
+              onChange={this.handleSideFilterButtonsChange}
+              range="Less than 2km"
+              />
+              <Input2
+              type="radio"
+              name="distance"
+              value="2km"
+              onChange={this.handleSideFilterButtonsChange}
+              range="Less than 3km"
+              />
+            <hr/>
             <b>Bed Type</b>
             <Input2
               type="radio"
@@ -409,10 +559,24 @@ class HotelList extends React.Component {
             <hr/>
 
             </div>
-            <button onClick={() =>this.filterthehotels(searchedHotel)} className="btn btn-primary btn-block"> 
+            <button onClick={() =>this.filterthehotels(searchedHotel, samepage)} className="btn btn-primary btn-block"> 
             Filter
             </button>
             </div> 
+            
+  <div class="card p-2" style={{height:'200px'}}>
+  
+    <h5 className="">Why Book With Us</h5>
+    
+      <p className="faq"> <FontAwesomeIcon className='wicon' icon={faCheck} /> Secured Payment</p>
+      <p className="faq"><FontAwesomeIcon className='wicon' icon={faCheck} /> Dedicated Customer Support</p>
+      <p className="faq"><FontAwesomeIcon className='wicon' icon={faCheck} /> Best Fares</p>
+      <p className="faq"><FontAwesomeIcon className='wicon' icon={faCheck} /> No Cancellation Fees</p>
+      
+    
+ 
+</div>
+
             </div>
             <div className="col-md-9">
                   {/* this is the nav filter*/}
@@ -442,7 +606,330 @@ class HotelList extends React.Component {
                       <div className="card-body">
           <h5>{hotel.propertyInfo.hotelName}{this.Ratingstarts(hotel.propertyInfo.starRating)}</h5>
                         <p>{hotel.propertyInfo.hotelDescription}</p>
-                        
+                        <div className="row">
+              {hotel.hotelPolicy.hotelAmenities.slice(0,6).map((Amenities,a) => {
+                  
+                  console.log(Amenities,'ameni list');
+                  let wifi=Amenities.match(/wifi/gi);
+                  let pool=Amenities.match(/Swiming pool/gi);
+                  let spa=Amenities.search('spa')
+                  let park=Amenities.match(/Water Park/gi)
+                  let bycicle=Amenities.match(/Bicycle Rental/gi)
+                  let car=Amenities.match(/Car Rental/gi);
+                  let Cinema=Amenities.match(/cinema/gi);
+                  let Audio=Amenities.match(/Audio System/gi)
+                  let newpaper=Amenities.match(/Newspaper in lobby/gi);
+                  let duty=Amenities.match(/Duty Manager/gi);
+                  let lounge=Amenities.match(/Executive Lounge/gi)
+                  let salon=Amenities.match(/Beauty Salon/gi)
+                  let elevator=Amenities.match(/Elevator/gi)
+                  let currency=Amenities.match(/Currency Exchange/gi)
+                  let Ac=Amenities.match(/Air Condition/gi)
+                  let Roomservice=Amenities.match(/Room Service/gi)
+                  let cctv=Amenities.match(/CCTV in Public Places/gi)
+                  let electric=Amenities.match(/Electric Vechicle Charging Station/gi)
+                  let playground=Amenities.match(/Children Playground/gi)
+                  let ironing=Amenities.match(/Ironing Service/gi)
+                  let desk=Amenities.match(/Fronk Desk Service/gi)
+                  let hot=Amenities.match(/Jacuzzi/gi)
+                  let Airportshuttle=Amenities.match(/Airpot Shuttle/gi)
+                  let fitness=Amenities.match(/Fitnes Center/gi)
+                  let bar=Amenities.match(/Bar/gi)
+                  let terace=Amenities.match(/Terrace/gi)
+                  console.log(wifi,'prop')
+                 
+                  if(wifi){
+                    
+                    return(
+                      <div className="col-md-2">
+                       <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faWifi}
+                    /> </p>
+                    </div>
+                    )
+                    
+                  }
+                  else if(pool){
+
+                    return(
+                      <div className="col-md-2">
+                        <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faSwimmer}
+                    /> </p>
+                    </div>
+                    )
+                  }
+                  else if(spa > -1){
+                    return(
+                      <div className="col-md-2">
+                       <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faSpa}
+                    /> </p>
+                    </div>
+                    ) 
+                  }
+                  else if(park){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faWater}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(bycicle){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faBicycle}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(car){
+                    return(
+                      <div className="col-md-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faTaxi}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(Cinema){
+                    return(
+                      <div className="col-md-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faFilm}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(Audio){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faSpeakerDeck}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(newpaper){
+                    return(
+                      <div className="col-md-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faBicycle}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(duty){
+                    return(
+                      <div className="col-md-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faBriefcase}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(lounge){
+                    return(
+                      <div className="col-md-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faWineGlass}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(salon){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faCrosshairs}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(elevator){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                     </p>
+                    </div>
+                    ) 
+
+                  }else if(currency){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faMoneyBillAlt}
+                    />  </p>
+                    </div>
+                    ) 
+
+                  }else if(Ac){
+                    return(
+                      <div className="col-md-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faFan}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(Roomservice){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faServicestack}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(cctv){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faCamera}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(electric){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faGasPump}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(playground){
+                    return(
+                      <div className="col-md-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faChild}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(ironing){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faTshirt}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(desk){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faDesktop}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(hot){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faHotTub}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(Airportshuttle){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faShuttleVan}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(fitness){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faDumbbell}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(bar){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faGlassCheers}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(terace){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faMonument}
+                    /></p>
+                    </div>
+                    ) 
+
+                  }
+                
+               //this.amen(Amenities,a) 
+              //console.log(Amenities,'testing amenities') 
+                })}
+                </div>
                         <p className="card-text locate">
                           <FontAwesomeIcon  className="logo" icon={faMapMarker} />
                            {hotel.propertyInfo.city} 
@@ -453,14 +940,14 @@ class HotelList extends React.Component {
                   <div className="col-md-3">
                     <div className="card border-0">
                       <div className="card-body">
-                        <h6 className="mb-2 text-muted veiws">2,098</h6>
+                        <h6 className="mb-2 text-muted veiws">Superb</h6>
   
-                        <span className="veiw">v</span>
-                        <span>views</span>
+                        {this.boxRatingstarts(hotel.propertyInfo.starRating)}
+                        <span>Reviews</span>
   
                         <p className="card-subtitle price">{hotel.averagePrice}</p>
   
-                        <p className="text-muted pernight">per night</p>
+                        <p className="text-muted pernight">Per night</p>
                         <div className="rateing">
                           <p className="">
                             <i className="fas fa-star rates"></i>
@@ -472,9 +959,9 @@ class HotelList extends React.Component {
                         </div>
                         <span
                           href="#"
-                          className="card-link btn btn-sm btn-danger cheker"
+                          className="card-link btn btn-sm  cheker"
                         >
-                          Check this out
+                         Select
                         </span>
                       </div>
                     </div>
@@ -501,8 +988,332 @@ class HotelList extends React.Component {
                   <div className="col-md-5">
                     <div className="card border-0">
                       <div className="card-body">
-                        <h5>{hotel.propertyInfo.hotelName}{this.Ratingstarts(hotel.propertyInfo.starRating)}</h5>
+                        <h5>{hotel.propertyInfo.hotelName} {this.Ratingstarts(hotel.propertyInfo.starRating)}</h5>
                         <p>{hotel.propertyInfo.hotelDescription}</p>
+                        <div className="row">
+              {hotel.hotelPolicy.hotelAmenities.slice(0,6).map((Amenities,a) => {
+                  
+                  console.log(Amenities,'ameni list');
+                  let wifi=Amenities.match(/wifi/gi);
+                  let pool=Amenities.match(/Swiming pool/gi);
+                  let spa=Amenities.search('spa')
+                  let park=Amenities.match(/Water Park/gi)
+                  let bycicle=Amenities.match(/Bicycle Rental/gi)
+                  let car=Amenities.match(/Car Rental/gi);
+                  let Cinema=Amenities.match(/cinema/gi);
+                  let Audio=Amenities.match(/Audio System/gi)
+                  let newpaper=Amenities.match(/Newspaper in lobby/gi);
+                  let duty=Amenities.match(/Duty Manager/gi);
+                  let lounge=Amenities.match(/Executive Lounge/gi)
+                  let salon=Amenities.match(/Beauty Salon/gi)
+                  let elevator=Amenities.match(/Elevator/gi)
+                  let currency=Amenities.match(/Currency Exchange/gi)
+                  let Ac=Amenities.match(/Air Condition/gi)
+                  let Roomservice=Amenities.match(/Room Service/gi)
+                  let cctv=Amenities.match(/CCTV in Public Places/gi)
+                  let electric=Amenities.match(/Electric Vechicle Charging Station/gi)
+                  let playground=Amenities.match(/Children Playground/gi)
+                  let ironing=Amenities.match(/Ironing Service/gi)
+                  let desk=Amenities.match(/Fronk Desk Service/gi)
+                  let hot=Amenities.match(/Jacuzzi/gi)
+                  let Airportshuttle=Amenities.match(/Airpot Shuttle/gi)
+                  let fitness=Amenities.match(/Fitnes Center/gi)
+                  let bar=Amenities.match(/Bar/gi)
+                  let terace=Amenities.match(/Terrace/gi)
+                  console.log(wifi,'prop')
+                 
+                  if(wifi){
+                    
+                    return(
+                      <div className="col-md-2">
+                       <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faWifi}
+                    /> </p>
+                    </div>
+                    )
+                    
+                  }
+                  else if(pool){
+
+                    return(
+                      <div className="col-md-2">
+                        <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faSwimmer}
+                    /> </p>
+                    </div>
+                    )
+                  }
+                  else if(spa > -1){
+                    return(
+                      <div className="col-md-2">
+                       <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faSpa}
+                    /> </p>
+                    </div>
+                    ) 
+                  }
+                  else if(park){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faWater}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(bycicle){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faBicycle}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(car){
+                    return(
+                      <div className="col-md-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faTaxi}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(Cinema){
+                    return(
+                      <div className="col-md-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faFilm}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(Audio){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faSpeakerDeck}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(newpaper){
+                    return(
+                      <div className="col-md-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faBicycle}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(duty){
+                    return(
+                      <div className="col-md-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faBriefcase}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(lounge){
+                    return(
+                      <div className="col-md-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faWineGlass}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(salon){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faCrosshairs}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(elevator){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                     </p>
+                    </div>
+                    ) 
+
+                  }else if(currency){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faMoneyBillAlt}
+                    />  </p>
+                    </div>
+                    ) 
+
+                  }else if(Ac){
+                    return(
+                      <div className="col-md-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faFan}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(Roomservice){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faServicestack}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(cctv){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faCamera}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(electric){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faGasPump}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(playground){
+                    return(
+                      <div className="col-md-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faChild}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(ironing){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faTshirt}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(desk){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faDesktop}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(hot){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faHotTub}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(Airportshuttle){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faShuttleVan}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(fitness){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faDumbbell}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(bar){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faGlassCheers}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(terace){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faMonument}
+                    /></p>
+                    </div>
+                    ) 
+
+                  }
+                
+               //this.amen(Amenities,a) 
+              //console.log(Amenities,'testing amenities') 
+                })}
+                </div>
                         
                         <p className="card-text locate">
                           <FontAwesomeIcon  className="logo" icon={faMapMarker} />
@@ -514,14 +1325,14 @@ class HotelList extends React.Component {
                   <div className="col-md-3">
                     <div className="card border-0">
                       <div className="card-body">
-                        <h6 className="mb-2 text-muted veiws">2,098</h6>
+                        <h6 className="mb-2 text-muted veiws">Superb</h6>
   
-                        <span className="veiw">v</span>
-                        <span>views</span>
+                        {this.boxRatingstarts(hotel.propertyInfo.starRating)}
+                        <span>Reviews</span>
   
                         <p className="card-subtitle price">{hotel.averagePrice}</p>
   
-                        <p className="text-muted pernight">per night</p>
+                        <p className="text-muted pernight">Per night</p>
                         <div className="rateing">
                           <p className="">
                             <i className="fas fa-star rates"></i>
@@ -533,7 +1344,7 @@ class HotelList extends React.Component {
                         </div>
                         <span
                           href="#"
-                          className="card-link btn btn-sm btn-danger cheker"
+                          className="card-link btn btn-sm  cheker"
                         >
                           Check this out
                         </span>
@@ -547,7 +1358,7 @@ class HotelList extends React.Component {
             ))
 
           :
-           searchedHotel.map((hotel, i) => (
+           hotels.map((hotel, i) => (
             <Link to={`/singlehotel/${hotel._id}`} key={i} className="jumbot">
             <div className=" jumbotron2 mb-3" onClick={this.handleClick}>
               <div>
@@ -564,7 +1375,335 @@ class HotelList extends React.Component {
                       <div className="card-body">
                         <h5>{hotel.propertyInfo.hotelName}{this.Ratingstarts(hotel.propertyInfo.starRating)}</h5>
                         <p>{hotel.propertyInfo.hotelDescription}</p>
-                       
+                        <div style={{diplay:'iniline-block'}}>
+                        <span className="row ">
+              {hotel.hotelPolicy.hotelAmenities.slice(0,6).map((Amenities,a) => {
+                  
+                  console.log(Amenities,'ameni list');
+                  let wifi=Amenities.match(/wifi/gi);
+                  let pool=Amenities.match(/Swiming pool/gi);
+                  let spa=Amenities.search('spa')
+                  let park=Amenities.match(/Water Park/gi)
+                  let bycicle=Amenities.match(/Bicycle Rental/gi)
+                  let car=Amenities.match(/Car Rental/gi);
+                  let Cinema=Amenities.match(/cinema/gi);
+                  let Audio=Amenities.match(/Audio System/gi)
+                  let newpaper=Amenities.match(/Newspaper in lobby/gi);
+                  let duty=Amenities.match(/Duty Manager/gi);
+                  let lounge=Amenities.match(/Executive Lounge/gi)
+                  let salon=Amenities.match(/Beauty Salon/gi)
+                  let elevator=Amenities.match(/Elevator/gi)
+                  let currency=Amenities.match(/Currency Exchange/gi)
+                  let Ac=Amenities.match(/Air Condition/gi)
+                  let Roomservice=Amenities.match(/Room Service/gi)
+                  let cctv=Amenities.match(/CCTV in Public Places/gi)
+                  let electric=Amenities.match(/Electric Vechicle Charging Station/gi)
+                  let playground=Amenities.match(/Children Playground/gi)
+                  let ironing=Amenities.match(/Ironing Service/gi)
+                  let desk=Amenities.match(/Fronk Desk Service/gi)
+                  let hot=Amenities.match(/Jacuzzi/gi)
+                  let Airportshuttle=Amenities.match(/Airpot Shuttle/gi)
+                  let fitness=Amenities.match(/Fitnes Center/gi)
+                  let bar=Amenities.match(/Bar/gi)
+                  let terace=Amenities.match(/Terrace/gi)
+                  console.log(wifi,'prop')
+                 
+                  if(wifi){
+                    
+                    return(
+                      <div className="col-md-2">
+                       <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faWifi}
+                    /> </p>
+                    </div>
+                    )
+                    
+                  }
+                  else if(pool){
+
+                    return(
+                      <div className="col-md-2">
+                        <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faSwimmer}
+                    /> </p>
+                    </div>
+                    )
+                  }
+                  else if(spa > -1){
+                    return(
+                      <div className="col-md-2">
+                       <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faSpa}
+                    /> </p>
+                    </div>
+                    ) 
+                  }
+                  else if(park){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faWater}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(bycicle){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faBicycle}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(car){
+                    return(
+                      <div className="col-md-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faTaxi}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(Cinema){
+                    return(
+                      <div className="col-md-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faFilm}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(Audio){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faSpeakerDeck}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(newpaper){
+                    return(
+                      <div className="col-md-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faBicycle}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(duty){
+                    return(
+                      <div className="col-md-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faBriefcase}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(lounge){
+                    return(
+                      <div className="col-md-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faWineGlass}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(salon){
+                    return(
+                      <div className="col-md-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faCrosshairs}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(elevator){
+                    return(
+                      <div className="col-2">
+                      <p className="mr-2" key={a}>
+                     </p>
+                    </div>
+                    ) 
+
+                  }else if(currency){
+                    return(
+                      <div className="col-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faMoneyBillAlt}
+                    />  </p>
+                    </div>
+                    ) 
+
+                  }else if(Ac){
+                    return(
+                      <div className="col-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faFan}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(Roomservice){
+                    return(
+                      <div className="col-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faServicestack}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(cctv){
+                    return(
+                      <div className="col-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faCamera}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(electric){
+                    return(
+                      <div className="col-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faGasPump}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(playground){
+                    return(
+                      <div className="col-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faChild}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(ironing){
+                    return(
+                      <div className="col-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faTshirt}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(desk){
+                    return(
+                      <div className="col-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faDesktop}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(hot){
+                    return(
+                      <div className="col-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faHotTub}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(Airportshuttle){
+                    return(
+                      <div className="col-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faShuttleVan}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(fitness){
+                    return(
+                      <div className="col-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faDumbbell}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(bar){
+                    return(
+                      <div className="col-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faGlassCheers}
+                    /> </p>
+                    </div>
+                    ) 
+
+                  }else if(terace){
+                    return(
+                      <div className="col-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faMonument}
+                    /></p>
+                    </div>
+                    ) 
+
+                  }
+                
+               //this.amen(Amenities,a) 
+              //console.log(Amenities,'testing amenities') 
+                })}
+                </span>
+                <span className="ml-2 card-text">
+                          View all Amenities 
+                        </span>
+                        </div>
                         <p className="card-text locate">
                           <FontAwesomeIcon  className="logo" icon={faMapMarker} />
                            {hotel.propertyInfo.city} 
@@ -575,10 +1714,10 @@ class HotelList extends React.Component {
                   <div className="col-md-3">
                     <div className="card border-0">
                       <div className="card-body">
-                        <h6 className="mb-2 text-muted veiws">2,098</h6>
+                        <h6 className="mb-2 text-muted veiws">Superb</h6>
   
-                        <span className="veiw">v</span>
-                        <span>views</span>
+                        {this.boxRatingstarts(hotel.propertyInfo.starRating)}
+                        <span>Reviews</span>
   
                         <p className="card-subtitle price">{hotel.averagePrice}</p>
   
@@ -594,7 +1733,7 @@ class HotelList extends React.Component {
                         </div>
                         <span
                           href="#"
-                          className="card-link btn btn-sm btn-danger cheker"
+                          className="card-link btn btn-sm  cheker"
                         >
                           Check this out
                         </span>
@@ -607,7 +1746,18 @@ class HotelList extends React.Component {
             </Link>
             ))}
         </div>
-        
+  <nav aria-label="Page navigation example">
+  <ul class="pagination pagination-sm">
+  <Swiper  {...params}>
+  {pages.map(page => (
+    <li className={page === currentpage? "page-item active1  page-link" : "page-item page-link "} onClick={()=>this.handlePageChange(page)}>   
+    {page}
+     </li>
+  ))}
+  </Swiper>
+  </ul>
+  
+</nav>
         </div>
         </div>
       </>

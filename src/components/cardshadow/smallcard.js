@@ -3,7 +3,7 @@ import  React from 'react'
 function SmcardShadow(){
     return(
         
-<div className="card border-0 p-0" style={{width: "18rem"}}>
+<div className="card border-0 p-0" style={{width: "22rem"}}>
     <div style={{backgroundColor:"gainsboro", height: "13rem"}}>
     </div>
   <div className="card-body" style={{paddingLeft:0,}}>

@@ -4,6 +4,8 @@ import React, { Component } from "react";
 
 import CardCarrier from "../../components/cardshadow/cardcarrier";
 import Swiper from "react-id-swiper";
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class HomeHotelDisplay extends Component {
   constructor(props) {
@@ -33,22 +35,41 @@ class HomeHotelDisplay extends Component {
 
   Ratingstarts=(stars)=>{
 
-    if(stars == "1"){
-      return(<> one stars</>)
+    if(stars.includes("1")){
+      return(<>  <FontAwesomeIcon className='starrating'  icon={faStar} /> </>)
     }else    
-    if(stars == "2"){
-      return(<> two stars </>)
+    if(stars.includes("2")){
+      return(<> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      
+       </>)
     }else 
-    if(stars == "3"){
-      return(<> three stars</>)
+    if(stars.includes("3")){
+      return(<> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      </>)
     }else 
-    if(stars == "4"){
-      return(<>four stars </>)
+    if(stars.includes("4")){
+      return(<>
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} />  
+      </>)
     }else 
-    if(stars == "5"){
-      return(<>five stars </>)
+    if(stars.includes("5")){
+      return(<>
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      </>)
     }else{
-      return(<> no stars </>)
+      return(<> </>)
     }
   }
 
@@ -94,13 +115,14 @@ class HomeHotelDisplay extends Component {
 
               <div className="scrolling-wrapper d-lg-none d-xl-none ">
               {reverse.map((hotel, i) => (
-                <div className="card rounded-bottom border-0 p-0" key={i} style={{width: "18rem"}}>
+                <div className="card rounded-bottom border-0 mr-2" key={i} style={{width: "194px",height: "300px"}}>
                   
-                  <div className="card-body">
-                   <img src={hotel.imagerUrl[0].url} style={{backgroundColor:"gainsboro", height: "10rem", width:'100%'}} alt="" />
-                  
+                  <img src={hotel.imagerUrl[0].url} style={{backgroundColor:"gainsboro", height: "75%",width:'100%'}} alt="" />
+                  <div className="card-body p-0">
                   <h5>{hotel.propertyInfo.hotelName}</h5>
-              <p className="card-text">Located at {this.state.loading ? <p>waiting for location</p> : <p>{hotel.propertyInfo.city}</p>} </p>
+                  <span>{this.Ratingstarts(hotel.propertyInfo.starRating)}</span>
+                  <br/>
+                  <span className="card-text">From NGN{hotel.averagePrice} </span>
                   </div>
                 </div>
               ))}
