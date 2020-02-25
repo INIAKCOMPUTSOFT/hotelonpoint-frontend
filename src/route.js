@@ -73,7 +73,7 @@ function route() {
               <Route exact path="/reviews" component={UserRoute} />
               <Route exact path="/bookings" component={UserRoute} />
               <Route exact path="/payment" component={Payment} />
-              <Route exact path="/bookingform/:roomid" component={BookingForm} />
+              <Route exact path="/bookingform/:roomid/:hotelid" component={BookingForm} />
               <Route exact path="/listproperty" component={FormWrapper} />
               <CheckAuth exact path='/Uploadhotel' component={Hsignup} />
                <CheckAuth exact path="/blogform" component={BlogForm} /> 

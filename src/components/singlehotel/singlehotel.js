@@ -2,10 +2,9 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import "react-image-lightbox/style.css";
 import "./singlehotel.css";
 import Swiper from "react-id-swiper";
-
+import TopNav from './topnav'
 import { faBicycle, faBriefcase, faCamera, faChild, faCrosshairs, faDesktop, faDumbbell, faFan, faFilm, faGasPump, faGlassCheers, faHotTub, faMoneyBillAlt, faMonument, faShuttleVan, faSpa, faSwimmer, faTaxi, faTshirt, faWater, faWifi, faWineGlass } from '@fortawesome/free-solid-svg-icons';
 import { faServicestack, faSpeakerDeck } from "@fortawesome/free-brands-svg-icons";
-
 import Axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ImageGallery from "react-image-gallery";
@@ -163,7 +162,7 @@ function gal(Ur,i){
         return <iframe width="843" height="480" style={{width:'250px',height:'300px'}} src="https://www.youtube.com/embed/pcnq-g1KJTA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       }
     else {
-      return <img src={Ur.url} style={{width:'250px',height:'300px'}} alt=""/>
+      return <img src={Ur.url} style={{width:'250px',height:'300px'}} alt="" id="Overview"/>
       }
        
 }
@@ -185,7 +184,10 @@ function gal(Ur,i){
             thumbnailPosition={"left"}
           />)}
         </div> */}
-<div className="mt-2 container">
+  
+ <TopNav Overviewid="#Overview" Roomid="#Room" Hotelid="#Hoteldescription" Amenitiesid="#Amenities" Reviewid="#Reviews"/>
+
+<div className="mt-2">
         <Swiper {...params}>
         
              {Hh.imagerUrl.map((Ur,i) =>(
@@ -197,7 +199,7 @@ function gal(Ur,i){
               </Swiper>
               </div>
 
-        <div className="container bod">
+        <div className="container">
         {Hh.propertyInfo && (
               <h2 className=""> {Hh.propertyInfo.hotelName} </h2>
             )}
@@ -205,8 +207,10 @@ function gal(Ur,i){
                   {Hh.propertyInfo.country}, {Hh.propertyInfo.state},{" "}
                   {Hh.propertyInfo.city}
             </p>
-          <div className="card mb-2 p-3">
-            <div className="row">
+          <div className="row no-gutters">
+            <div clssName="col-12">
+          <div className="card  mb-2 border p-3" id="Amenities">
+            <div className="row no-gutters">
               {Hh.hotelPolicy &&
               
                 Hh.hotelPolicy.hotelAmenities.map((Amenities,a) => {
@@ -243,7 +247,7 @@ function gal(Ur,i){
                   if(wifi){
                     
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                        <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -256,7 +260,7 @@ function gal(Ur,i){
                   else if(pool){
 
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                         <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -267,7 +271,7 @@ function gal(Ur,i){
                   }
                   else if(spa > -1){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                        <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -278,7 +282,7 @@ function gal(Ur,i){
                   }
                   else if(park){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -289,7 +293,7 @@ function gal(Ur,i){
 
                   }else if(bycicle){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -300,7 +304,7 @@ function gal(Ur,i){
 
                   }else if(car){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -311,7 +315,7 @@ function gal(Ur,i){
 
                   }else if(Cinema){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -322,7 +326,7 @@ function gal(Ur,i){
 
                   }else if(Audio){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -333,7 +337,7 @@ function gal(Ur,i){
 
                   }else if(newpaper){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -344,7 +348,7 @@ function gal(Ur,i){
 
                   }else if(duty){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -355,7 +359,7 @@ function gal(Ur,i){
 
                   }else if(lounge){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -366,7 +370,7 @@ function gal(Ur,i){
 
                   }else if(salon){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -377,7 +381,7 @@ function gal(Ur,i){
 
                   }else if(elevator){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                      Elevator</p>
                     </div>
@@ -385,7 +389,7 @@ function gal(Ur,i){
 
                   }else if(currency){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -396,7 +400,7 @@ function gal(Ur,i){
 
                   }else if(Ac){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -407,7 +411,7 @@ function gal(Ur,i){
 
                   }else if(Roomservice){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -418,7 +422,7 @@ function gal(Ur,i){
 
                   }else if(cctv){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -429,7 +433,7 @@ function gal(Ur,i){
 
                   }else if(electric){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -440,7 +444,7 @@ function gal(Ur,i){
 
                   }else if(playground){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -451,7 +455,7 @@ function gal(Ur,i){
 
                   }else if(ironing){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -462,7 +466,7 @@ function gal(Ur,i){
 
                   }else if(desk){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -473,7 +477,7 @@ function gal(Ur,i){
 
                   }else if(hot){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -484,7 +488,7 @@ function gal(Ur,i){
 
                   }else if(Airportshuttle){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -495,7 +499,7 @@ function gal(Ur,i){
 
                   }else if(fitness){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -506,7 +510,7 @@ function gal(Ur,i){
 
                   }else if(bar){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -517,7 +521,7 @@ function gal(Ur,i){
 
                   }else if(terace){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -533,6 +537,8 @@ function gal(Ur,i){
                 })}
                 </div>
             </div>
+            </div>
+            </div>
           
 
 
@@ -541,7 +547,7 @@ function gal(Ur,i){
           <div className="card shadow p-3">
             <h5>Hotel Description</h5>
             {Hh.propertyInfo && (
-              <p> {Hh.propertyInfo.hotelDescription} </p>             
+              <p id="Hoteldescription"> {Hh.propertyInfo.hotelDescription} </p>             
             )}
 
           </div>
@@ -549,7 +555,7 @@ function gal(Ur,i){
           <div className="col-md-4">
           <div className="card shadow p-3">
               {this.state.reviews && 
-              (<p>{this.state.reviews}</p>)
+              (<p id="Reviews">{this.state.reviews}</p>)
               }
           </div>
           </div>
@@ -560,7 +566,7 @@ function gal(Ur,i){
             <div>
               {Rm.map((room, i)=> (
                 <div className=" jumbotron2 p-3 mb-3" key={i}>
-                  <div className="card border-0">
+                  <div className="card border-0" id="Room">
                     <h5>{room.roomType}</h5>
                     <div className="row no-gutters">
                       <div className="col-md-3">
@@ -632,9 +638,328 @@ function gal(Ur,i){
                           <div className="card-body">
                             <p>{room.bedType}</p>
                             <p>{room.bedNumber}</p>
-                            {room.roomAmenities.map((amenities, i) => (
-                              <p key={i}>{amenities}</p>
-                            ))}
+                            {room.roomAmenities.map((Amenities,a) => {
+                  
+                  console.log(Amenities);
+                  let wifi=Amenities.match(/wifi/gi);
+                  let pool=Amenities.match(/Swiming pool/gi);
+                  let spa=Amenities.search('spa')
+                  let park=Amenities.match(/Water Park/gi)
+                  let bycicle=Amenities.match(/Bicycle Rental/gi)
+                  let car=Amenities.match(/Car Rental/gi);
+                  let Cinema=Amenities.match(/cinema/gi);
+                  let Audio=Amenities.match(/Audio System/gi)
+                  let newpaper=Amenities.match(/Newspaper in lobby/gi);
+                  let duty=Amenities.match(/Duty Manager/gi);
+                  let lounge=Amenities.match(/Executive Lounge/gi)
+                  let salon=Amenities.match(/Beauty Salon/gi)
+                  let elevator=Amenities.match(/Elevator/gi)
+                  let currency=Amenities.match(/Currency Exchange/gi)
+                  let Ac=Amenities.match(/Air Condition/gi)
+                  let Roomservice=Amenities.match(/Room Service/gi)
+                  let cctv=Amenities.match(/CCTV in Public Places/gi)
+                  let electric=Amenities.match(/Electric Vechicle Charging Station/gi)
+                  let playground=Amenities.match(/Children Playground/gi)
+                  let ironing=Amenities.match(/Ironing Service/gi)
+                  let desk=Amenities.match(/Fronk Desk Service/gi)
+                  let hot=Amenities.match(/Jacuzzi/gi)
+                  let Airportshuttle=Amenities.match(/Airpot Shuttle/gi)
+                  let fitness=Amenities.match(/Fitnes Center/gi)
+                  let bar=Amenities.match(/Bar/gi)
+                  let terace=Amenities.match(/Terrace/gi)
+                  console.log(wifi,'prop')
+                 
+                  if(wifi){
+                    
+                    return(
+                      <div className="col-4">
+                       <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faWifi}
+                    /> wifi</p>
+                    </div>
+                    )
+                    
+                  }
+                  else if(pool){
+
+                    return(
+                      <div className="col-4">
+                        <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faSwimmer}
+                    /> Swimming Pool</p>
+                    </div>
+                    )
+                  }
+                  else if(spa > -1){
+                    return(
+                      <div className="col-4">
+                       <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faSpa}
+                    /> Spa</p>
+                    </div>
+                    ) 
+                  }
+                  else if(park){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faWater}
+                    /> Water Park</p>
+                    </div>
+                    ) 
+
+                  }else if(bycicle){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faBicycle}
+                    /> Bycicle Rentals</p>
+                    </div>
+                    ) 
+
+                  }else if(car){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faTaxi}
+                    /> Car Rentals</p>
+                    </div>
+                    ) 
+
+                  }else if(Cinema){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faFilm}
+                    /> Cinema</p>
+                    </div>
+                    ) 
+
+                  }else if(Audio){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faSpeakerDeck}
+                    /> Audio System</p>
+                    </div>
+                    ) 
+
+                  }else if(newpaper){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faBicycle}
+                    /> Newspaper in Lobby</p>
+                    </div>
+                    ) 
+
+                  }else if(duty){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faBriefcase}
+                    /> Duty Manager</p>
+                    </div>
+                    ) 
+
+                  }else if(lounge){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faWineGlass}
+                    /> Executive Lounge</p>
+                    </div>
+                    ) 
+
+                  }else if(salon){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faCrosshairs}
+                    /> Beauty Salon</p>
+                    </div>
+                    ) 
+
+                  }else if(elevator){
+                    return(
+                      <div className="col-2">
+                      <p className="mr-2" key={a}>
+                     Elevator</p>
+                    </div>
+                    ) 
+
+                  }else if(currency){
+                    return(
+                      <div className="col-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faMoneyBillAlt}
+                    /> Currency Exchange </p>
+                    </div>
+                    ) 
+
+                  }else if(Ac){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faFan}
+                    /> Air Conditioning</p>
+                    </div>
+                    ) 
+
+                  }else if(Roomservice){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faServicestack}
+                    /> Room Service</p>
+                    </div>
+                    ) 
+
+                  }else if(cctv){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faCamera}
+                    /> CCTV in Public Places</p>
+                    </div>
+                    ) 
+
+                  }else if(electric){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faGasPump}
+                    /> Electric Vechicle Charging Station</p>
+                    </div>
+                    ) 
+
+                  }else if(playground){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faChild}
+                    /> Children Playground</p>
+                    </div>
+                    ) 
+
+                  }else if(ironing){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faTshirt}
+                    /> Ironing Service</p>
+                    </div>
+                    ) 
+
+                  }else if(desk){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faDesktop}
+                    /> Front Desk Service</p>
+                    </div>
+                    ) 
+
+                  }else if(hot){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faHotTub}
+                    /> Hot tub/Jacuzzi</p>
+                    </div>
+                    ) 
+
+                  }else if(Airportshuttle){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faShuttleVan}
+                    /> Airport Shuttle</p>
+                    </div>
+                    ) 
+
+                  }else if(fitness){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faDumbbell}
+                    /> Fitness Center</p>
+                    </div>
+                    ) 
+
+                  }else if(bar){
+                    return(
+                      <div className="col-4">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faGlassCheers}
+                    /> Bar</p>
+                    </div>
+                    ) 
+
+                  }else if(terace){
+                    return(
+                      <div className="col-2">
+                      <p className="mr-2" key={a}>
+                      <FontAwesomeIcon
+                      className='wicon'
+                      icon={faMonument}
+                    /> Terrace</p>
+                    </div>
+                    ) 
+
+                  }
+                
+               //this.amen(Amenities,a) 
+              //console.log(Amenities,'testing amenities') 
+                })}
                             <p className="card-text locate"></p>
                           </div>
                         </div>
@@ -670,7 +995,7 @@ function gal(Ur,i){
                             <p className="text-muted pernight">per night</p>
                             
                               <Link
-                              to={`/bookingform/${room._id}`}
+                              to={`/bookingform/${room._id}/${Hh._id}`}
                               className="card-link btn btn-sm btn-primary cheker"
                             >
                               Book this room
