@@ -9,7 +9,7 @@ render(){
 
 return(
     <>
-    <div>
+    <div className="container">
         <h5>Changes to our Notice </h5>
         <p>This Notice replaces all previous versions. We may change the Notice at any time so please check it regularly on our website(s) for any updates. If the changes are significant, we will provide a prominent notice on our website(s) including, if we believe it is appropriate, electronic notification of Privacy Notice changes </p>
         <h5>Personal data we collect </h5>

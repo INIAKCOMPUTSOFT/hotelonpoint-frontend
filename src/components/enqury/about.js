@@ -3,7 +3,7 @@ import React from 'react'
 
 
 
-export default class Aboutus extends React.components{
+export default class Aboutus extends React.Component{
 
 
 
@@ -12,7 +12,7 @@ render(){
 
 return(
     <>
-    <div>
+    <div className="container">
     <h5>ABOUT US</h5>
     <p>
     Hotel On Points is one of Nigeria’s online marketplaces for authentic places to stay, 

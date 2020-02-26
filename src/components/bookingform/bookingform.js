@@ -80,11 +80,13 @@ class BookingForm extends React.Component {
       wantairportshuttle: this.state.wantairportshuttle,
       roomId: this.props.match.params.roomid,
       roomType: this.state.Rm.roomType,
-      checkin: this.state.startdate,
-      checkout: this.state.enddate,
-      paymentstatus:"payonarrival"
+      checkin: this.toISOString(this.state.startdate),
+      checkout: this.toISOString(this.state.enddate),
+      paymentMethod:"payonarrival",
+      paymentstatus:"false"
     };
 
+    console.log(data,'data')
     // axios
     // .post(`http://localhost:3400/room/${RoomId}/bookingform`)
     // .then(res => {
@@ -105,11 +107,15 @@ class BookingForm extends React.Component {
       wantairportshuttle: this.state.wantairportshuttle,
       roomId: this.props.match.params.roomid,
       roomType: this.state.Rm.roomType,
-      checkin: this.state.startdate,
-      checkout: this.state.enddate,
-      paymentMethod:"Transfer"
+      checkin: this.toISOString(this.state.startdate),
+      checkout: this.toISOString(this.state.enddate),
+      paymentMethod:"Transfer",
+      AcctNo:"0175100070",
+      AcctName:"Hotel on points Ltd",
+      BankName: "GTB",
+      paymentstatus:"false",
     };
-
+console.log(data,'data')
     // axios
     // .post(`http://localhost:3400/room/${RoomId}/bookingform`)
     // .then(res => {
@@ -179,7 +185,13 @@ class BookingForm extends React.Component {
     }
   }
 
+  convDate=(dateString)=>{
+    return new Date(dateString).toISOString();
+}
+
   render() {
+
+
     //console.log('sRm', this.state.Rm)
     const { Rm, Hh } = this.state;
     const { userData } = this.props.user;
@@ -201,8 +213,8 @@ class BookingForm extends React.Component {
       wantairportshuttle: this.state.wantairportshuttle,
       roomId: this.props.match.params.roomid,
       roomType: Rm.roomType,
-      checkin: this.state.startdate,
-      checkout: this.state.enddate,
+      checkin: this.convDate(this.state.startdate),
+      checkout: this.convDate(this.state.enddate),
       paymentMethod:"paystack"
     };
     return (
@@ -611,20 +623,7 @@ class BookingForm extends React.Component {
                             You prefer bank transfer this are our bank details:
                           </h5>
                           <div className="card-body">
-                            <img
-                              src={Access}
-                              className="mr-1"
-                              width="100"
-                              height="100"
-                              alt="..."
-                            />
-                            <img
-                              src={Zenith}
-                              className="mr-1"
-                              width="100"
-                              height="100"
-                              alt="..."
-                            />
+                                                      
                             <img
                               src={GTB}
                               className="mr-1"
@@ -632,19 +631,13 @@ class BookingForm extends React.Component {
                               height="100"
                               alt="..."
                             />
-                            <img
-                              src={Firstbank}
-                              className="mr-1"
-                              width="100"
-                              height="100"
-                              alt="..."
-                            />
+
                           </div>
                         </div>
                         <div className="row">
                           <div className="col-12 ">
                             <button
-                              // onClick={this.paybyTransfer}
+                               onClick={this.paybyTransfer}
                               className="btn btn-block btn-primary "
                             >
                               Book
@@ -701,7 +694,7 @@ class BookingForm extends React.Component {
 
               <hr/>
             <h6 className="ml-4">{Rm.roomType} {amount}</h6>
-            <p className="ml-4 h-3">Total   {amount}</p>
+            <p className="ml-4 h-3">Total      {amount}</p>
               </div> 
             </div>
 

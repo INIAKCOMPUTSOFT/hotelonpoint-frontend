@@ -25,10 +25,15 @@ import PassVer from "./pages/login/passverification";
 import Payment from "./components/payment/payment";
 import React from "react";
 import RealForm from './components/realform';
+import Review from './components/userDashoard/reviews/reviews';
 import { SET_AUTHENTICATED } from './redux/type';
 import Signup from "./pages/signup/signup";
 import SingleHotel from "./components/singlehotel/singlehotel";
 import Singleblog from "./pages/Blogpages/singleblog";
+import Terms from './components/enqury/terms'
+import Aboutus from './components/enqury/about'
+import Proposal from './components/enqury/proposal'
+import ConfirmBooking from './components/confirmnation/confirmnation'
 import UserRoute from "./userroute";
 import axios from "axios";
 import history from './history';
@@ -73,6 +78,11 @@ function route() {
               <Route exact path="/reviews" component={UserRoute} />
               <Route exact path="/bookings" component={UserRoute} />
               <Route exact path="/payment" component={Payment} />
+              <Route exact path="/about" component={Aboutus} />
+              <Route exact path="/terms" component={Terms} />
+              <Route exact path="/reviews" component={Review} />
+              <Route exact path="/confirmnation" component={ConfirmBooking} />
+              <Route exact path="/proposal" component={Proposal} />
               <Route exact path="/bookingform/:roomid/:hotelid" component={BookingForm} />
               <Route exact path="/listproperty" component={FormWrapper} />
               <CheckAuth exact path='/Uploadhotel' component={Hsignup} />

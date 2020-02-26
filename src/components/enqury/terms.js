@@ -3,8 +3,13 @@ import React from 'react'
 
 
 
-export default class Terms extends React.components{
-
+export default class Terms extends React.Component{
+constructor(){
+    super();
+    this.state={
+        
+    }
+}
 
 
 
@@ -12,7 +17,7 @@ render(){
 
 return(
     <>
-    <div>
+    <div className="container">
     <h5> GENERAL TERMS AND CONDITION WHO WE ARE </h5>
     <p>
     HotelOnPoints.com is a site operated by Hotel on Points  (Nigeria) 

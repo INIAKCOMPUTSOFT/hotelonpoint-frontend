@@ -3,7 +3,7 @@ import "react-image-lightbox/style.css";
 import "./singlehotel.css";
 import Swiper from "react-id-swiper";
 import TopNav from './topnav'
-import { faBicycle, faBriefcase, faCamera, faChild, faCrosshairs, faDesktop, faDumbbell, faFan, faFilm, faGasPump, faGlassCheers, faHotTub, faMoneyBillAlt, faMonument, faShuttleVan, faSpa, faSwimmer, faTaxi, faTshirt, faWater, faWifi, faWineGlass } from '@fortawesome/free-solid-svg-icons';
+import {faStar, faBicycle, faBriefcase, faCamera, faChild, faCrosshairs, faDesktop, faDumbbell, faFan, faFilm, faGasPump, faGlassCheers, faHotTub, faMoneyBillAlt, faMonument, faShuttleVan, faSpa, faSwimmer, faTaxi, faTshirt, faWater, faWifi, faWineGlass } from '@fortawesome/free-solid-svg-icons';
 import { faServicestack, faSpeakerDeck } from "@fortawesome/free-brands-svg-icons";
 import Axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -74,6 +74,46 @@ class SingleHotel extends React.Component {
   //     )
   //   }
   // }
+
+  Ratingstarts=(stars)=>{
+
+    if(stars.includes("1")){
+      return(<>  <FontAwesomeIcon className='starrating'  icon={faStar} /> </>)
+    }else    
+    if(stars.includes("2")){
+      return(<> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      
+       </>)
+    }else 
+    if(stars.includes("3")){
+      return(<> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      </>)
+    }else 
+    if(stars.includes("4")){
+      return(<>
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} />  
+      </>)
+    }else 
+    if(stars.includes("5")){
+      return(<>
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      <FontAwesomeIcon className='starrating'  icon={faStar} /> 
+      </>)
+    }else{
+      return(<> </>)
+    }
+  }
 
 
   render() {
@@ -201,7 +241,7 @@ function gal(Ur,i){
 
         <div className="container">
         {Hh.propertyInfo && (
-              <h2 className=""> {Hh.propertyInfo.hotelName} </h2>
+              <h2 className=""> {Hh.propertyInfo.hotelName}{this.Ratingstarts(Hh.propertyInfo.starRating)} </h2>
             )}
             <p className="">
                   {Hh.propertyInfo.country}, {Hh.propertyInfo.state},{" "}

@@ -75,11 +75,15 @@ function Footer() {
             <div className="col-3">
               <h5>Get to know us:</h5>
               <p className="footerfont">
+              <Link to="/about" className="link">
                 About us
+                </Link>
                 <br />
                 Privacy policy
                 <br />
+                <Link to="/terms" className="link">
                 Term of use
+                </Link>
                 <br />
                 Payment policy
                 <br />
