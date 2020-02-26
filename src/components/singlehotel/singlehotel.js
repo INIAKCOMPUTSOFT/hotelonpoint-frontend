@@ -241,7 +241,7 @@ function gal(Ur,i){
 
         <div className="container">
         {Hh.propertyInfo && (
-              <h2 className=""> {Hh.propertyInfo.hotelName}{this.Ratingstarts(Hh.propertyInfo.starRating)} </h2>
+              <p><span className="h2">{Hh.propertyInfo.hotelName}</span><span className="h5">{this.Ratingstarts(Hh.propertyInfo.starRating)}</span> </p>
             )}
             <p className="">
                   {Hh.propertyInfo.country}, {Hh.propertyInfo.state},{" "}

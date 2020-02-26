@@ -83,7 +83,8 @@ class BookingForm extends React.Component {
       checkin: this.toISOString(this.state.startdate),
       checkout: this.toISOString(this.state.enddate),
       paymentMethod:"payonarrival",
-      paymentstatus:"false"
+      paymentstatus:"false",
+      confirmbooking:"false'"
     };
 
     console.log(data,'data')
@@ -114,6 +115,7 @@ class BookingForm extends React.Component {
       AcctName:"Hotel on points Ltd",
       BankName: "GTB",
       paymentstatus:"false",
+      confirmbooking:"false"
     };
 console.log(data,'data')
     // axios

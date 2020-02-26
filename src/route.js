@@ -80,7 +80,7 @@ function route() {
               <Route exact path="/payment" component={Payment} />
               <Route exact path="/about" component={Aboutus} />
               <Route exact path="/terms" component={Terms} />
-              <Route exact path="/reviews" component={Review} />
+              <Route exact path="/reviews/:hotelId" component={Review} />
               <Route exact path="/confirmnation" component={ConfirmBooking} />
               <Route exact path="/proposal" component={Proposal} />
               <Route exact path="/bookingform/:roomid/:hotelid" component={BookingForm} />

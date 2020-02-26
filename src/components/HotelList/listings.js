@@ -27,6 +27,7 @@ class HotelList extends React.Component {
       pageSize: 10,
       sideFilter:[],
       budget:'',
+      amenities:'',
       distance:'',
       bed:'',
       pamentpolicy:'',
@@ -356,7 +357,7 @@ class HotelList extends React.Component {
                     <button
                       type="submit"
                       onClick={this.handleSubmit}
-                      className="sbtn"
+                      className="sbtn border"
                     >
                       
                       {/* <FontAwesomeIcon className="searchicon" icon={faSearch} /> */}
@@ -371,12 +372,14 @@ class HotelList extends React.Component {
       </div>
 
       <div className="row">
-            <div className="col-md-3 d-none d-lg-block">
-            <div className="card text-dark mt-3 custom-control custom-radio  mb-3 border filter" style={{height: "85%"}}>
+            <div className="col-md-3 d-none d-lg-block position-sticky">
+            <div className="card text-dark mt-3 custom-control custom-radio  mb-3 border filter" style={{height: "1010px"}}>
             <div className="card-body">
             
             <p><b>Price Range</b></p>
               <Input2
+              Id='customRadio1'
+              For="customRadio1"
               name="budget"
               type="radio"
               value="5000"
@@ -385,6 +388,8 @@ class HotelList extends React.Component {
               />
             
             <Input2
+            Id='customRadio2'
+            For="customRadio2"
               name="budget"
               type="radio"
               value="10000"
@@ -393,6 +398,8 @@ class HotelList extends React.Component {
               />
             
             <Input2
+            Id='customRadio3'
+            For="customRadio3"
               name="budget"
               type="radio"
               value="5000"
@@ -401,6 +408,8 @@ class HotelList extends React.Component {
               />
             
             <Input2
+            Id='customRadio4'
+            For="customRadio4"
               name="budget"
               type="radio"
               value="20000"
@@ -409,6 +418,8 @@ class HotelList extends React.Component {
               />
             
             <Input2
+            Id='customRadio5'
+            For="customRadio5"
               name="budget"
               type="radio"
               value="80000"
@@ -417,6 +428,8 @@ class HotelList extends React.Component {
               />
             
             <Input2
+            Id='customRadio6'
+            For="customRadio6"
               name="budget"
               type="radio"
               value="200000"
@@ -426,46 +439,100 @@ class HotelList extends React.Component {
             <hr/>
             <p><b>Star Rating</b></p>
               <Input2
+              Id='customRadio7'
+              For="customRadio7"
               name="starrating"
               type="radio"
               value="1"
               onChange={this.handleSideFilterButtonsChange}
-              range="1 star"
+              range={(<FontAwesomeIcon className='starrating'  icon={faStar} />)}
               />
             
             <Input2
+            Id='customRadio8'
+            For="customRadio8"
               name="starrating"
               type="radio"
               value="2"
               onChange={this.handleSideFilterButtonsChange}
-              range="2 star"
+              range={(<>
+                      <FontAwesomeIcon className='starrating'  icon={faStar} />
+                      <FontAwesomeIcon className='starrating'  icon={faStar} />
+                  </>)}
               />
             
             <Input2
+            Id='customRadio9'
+            For="customRadio9"
               name="starrating"
               type="radio"
               value="3"
               onChange={this.handleSideFilterButtonsChange}
-              range="3 star"
+              range={(<>
+                <FontAwesomeIcon className='starrating'  icon={faStar} />
+                <FontAwesomeIcon className='starrating'  icon={faStar} />
+                <FontAwesomeIcon className='starrating'  icon={faStar} />
+            </>)}
               />
               <Input2
+              Id='customRadio10'
+              For="customRadio10"
               name="starrating"
               type="radio"
               value="4"
               onChange={this.handleSideFilterButtonsChange}
-              range="4 star"
+              range={(<>
+                <FontAwesomeIcon className='starrating'  icon={faStar} />
+                <FontAwesomeIcon className='starrating'  icon={faStar} />
+                <FontAwesomeIcon className='starrating'  icon={faStar} />
+                <FontAwesomeIcon className='starrating'  icon={faStar} />
+            </>)}
               />
               <Input2
+              Id='customRadio11'
+              For="customRadio11"
               name="starrating"
               type="radio"
               value="5"
               onChange={this.handleSideFilterButtonsChange}
-              range="5 star"
+              range={(<>
+                <FontAwesomeIcon className='starrating'  icon={faStar} />
+                <FontAwesomeIcon className='starrating'  icon={faStar} />
+                <FontAwesomeIcon className='starrating'  icon={faStar} />
+                <FontAwesomeIcon className='starrating'  icon={faStar} />
+                <FontAwesomeIcon className='starrating'  icon={faStar} />
+            </>)}
               />
             <hr/>  
-            
+            <button data-toggle="modal" data-target="#exampleModalScrollable">Amenities</button>
+            {/* modal start */}
+
+            <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+            {/* modal end */}
+            <hr/>
             <b>Breakfast</b>
             <Input2
+            Id='customRadio12'
+            For="customRadio12"
               type="radio"
               name="breakfast"
               value='Yes, Free'
@@ -473,6 +540,8 @@ class HotelList extends React.Component {
               range="Free Breakfast"
               />
                  <Input2
+                 Id='customRadio13'
+                 For="customRadio13"
               type="radio"
               name="breakfast"
               value='Yes, Paid'
@@ -480,6 +549,8 @@ class HotelList extends React.Component {
               range="Paid Breakfast"
               />
                  <Input2
+                 Id='customRadio14'
+                 For="customRadio14"
               type="radio"
               name="breakfast"
               value='No'
@@ -489,6 +560,8 @@ class HotelList extends React.Component {
             <hr/> 
             <b>Payment & Cancellation</b>
             <Input2
+            Id='customRadio15'
+            For="customRadio15"
               type="radio"
               name="pamentpolicy"
               value="pay now"
@@ -496,6 +569,8 @@ class HotelList extends React.Component {
               range="Pay Online"
               />
               <Input2
+              Id='customRadio16'
+              For="customRadio16"
               type="radio"
               name="pamentpolicy"
               value="pay on arrival"
@@ -503,6 +578,8 @@ class HotelList extends React.Component {
               range="Pay at Hotel"
               />
               <Input2
+              Id='customRadio17'
+              For="customRadio17"
               type="checkbox"
               name="cancellation"
               value={this.state.cancellation}
@@ -513,6 +590,8 @@ class HotelList extends React.Component {
 
             <b>Distance to City Center</b>
             <Input2
+            Id='customRadio18'
+            For="customRadio18"
               type="radio"
               name="distance"
               value="1km"
@@ -520,6 +599,8 @@ class HotelList extends React.Component {
               range="Less than 1km"
               />
               <Input2
+              Id='customRadio19'
+              For="customRadio19"
               type="radio"
               name="distance"
               value="2km"
@@ -527,6 +608,8 @@ class HotelList extends React.Component {
               range="Less than 2km"
               />
               <Input2
+              Id='customRadio20'
+              For="customRadio20"
               type="radio"
               name="distance"
               value="2km"
@@ -536,6 +619,8 @@ class HotelList extends React.Component {
             <hr/>
             <b>Bed Type</b>
             <Input2
+            Id='customRadio21'
+            For="customRadio21"
               type="radio"
               name="bed"
               value="Queen Bed"
@@ -543,6 +628,8 @@ class HotelList extends React.Component {
               range="Queen Bed"
               />
                <Input2
+               Id='customRadio23'
+               For="customRadio23"
               type="radio"
               name="bed"
               value="Single Beds"
@@ -550,6 +637,8 @@ class HotelList extends React.Component {
               range="Single Beds"
               />
                   <Input2
+                  Id='customRadio24'
+                  For="customRadio24"
               type="radio"
               name="bed"
               value="Multiple Beds"

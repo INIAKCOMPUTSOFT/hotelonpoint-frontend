@@ -14,9 +14,9 @@ return(
 
 function Input2(props){
     return(
-<div>
-<input className="custom-control-input" id="customRadio1" name={props.name}type={props.type} value={props.value} onChange={props.onChange} />
-<label className="form-check-label h6">{props.range}</label>
+<div class="custom-control custom-radio">
+<input className="custom-control-input" id={props.Id} name={props.name}type={props.type} value={props.value} onChange={props.onChange} />
+<label className="custom-control-label h6" for={props.For}>{props.range}</label>
 </div>
     )
 

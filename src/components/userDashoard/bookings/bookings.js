@@ -7,13 +7,14 @@ class Booking extends React.Component {
     this.state = {
       Buking: [],
       hotelinfo:[],
-      showModal: false,
       loading: true,
       checkin:true,
       checkout:true,
       canclebook:true,
       remark: "",
       rating:0,
+      checkoutstatus:'',
+      checkouthotelid:[],
     };
   }
 
@@ -45,10 +46,7 @@ setTimeout(()=> {window.location.href="/bookings"})
   }
 
 
-checkout=(bookingid)=>{
-      
-  this.setState({ showModal:true});
-
+checkout=(bookingid,hotelId)=>{
   const data = [
     {
       propName: 'checkOutStatus',
@@ -58,8 +56,16 @@ checkout=(bookingid)=>{
 
   Axios
     .put(`https://calm-anchorage-14244.herokuapp.com/booking/user/${bookingid}`, data)
-    .then(res=>{ console.log(res)})
-    
+    .then(res=>{ console.log(res,'res')
+    this.setState({ checkoutstatus: res.statusText})
+  })
+
+
+    if(this.state.checkoutstatus && this.state.Buking && this.state.checkoutstatus === "OK"){
+       setTimeout(()=> {window.location.href=`/reviews/${hotelId}`}, 3000)
+      console.log(this.state.checkoutstatus,'status')
+      console.log(hotelId,'id')
+    }
 }
 
    canclebooking=(bookingid)=>{
@@ -181,79 +187,12 @@ checkout=(bookingid)=>{
 
 
     return(
-          
+
 <>
 
       { booking.length >= 1 ? (
       booking.map((books, i) => (
         <>
-{this.state.showModal === false ? 
-<>
-</>
-:
-<>
-<div className="booking-div">
-<div className={showModal ? "modal-container" : "close-modal"}>
-  <div className="modal-inner">
-    <h5>Hi, Give a review of the Hotel</h5>
-
-    <textarea
-      type="text"
-      name="remark"
-      value={this.state.remark}
-      className="remark"
-      placeholder="Leave a remark"
-      onChange={this.handleChange}
-    ></textarea>
-
-    <div className="star-div">
-      <p className="mb-1 mt-2">Rate Us</p>
-      <i
-        className="fas fa-star star"
-        style={star1}
-        onClick={() => this.handleStarRating1()}
-      ></i>{" "}
-      <i
-        className="fas fa-star star"
-        style={star2}
-        onClick={() => this.handleStarRating2()}
-      ></i>{" "}
-      <i
-        className="fas fa-star star"
-        style={star3}
-        onClick={() => this.handleStarRating3()}
-      ></i>{" "}
-      <i
-        className="fas fa-star star"
-        style={star4}
-        onClick={() => this.handleStarRating4()}
-      ></i>{" "}
-      <i
-        className="fas fa-star star"
-        style={star5}
-        onClick={() => this.handleStarRating5()}
-      ></i>
-    </div>
-
-    <div className="btn-div">
-      <button
-        className="btn btn-dark"
-        onClick={() => {
-          this.handleCloseModal();
-        }}
-      >
-        Not Now
-      </button>
-      <button className="btn btn-primary" onClick={()=>this.Rateit(books.hotelId)}>Rate</button>
-    </div>
-    <div></div>
-  </div>
-</div>
-</div>
-</>
-}
- 
-
         <div className="card">
           <div className="row no-guttters mb-1">
             <div class="col-md-4">
@@ -274,46 +213,46 @@ checkout=(bookingid)=>{
               </p>
             </div>
             <div class="col-md-4">
-          
-            {books.checkInStatus === true ? 
+
+            {books.checkInStatus === true ?
                   <button className="btn btn-primary" disabled >
-                  
+
                   Checked in
                 </button>
                 :
-                 
+
               <button className="btn btn-primary" onClick={()=> this.checkin(books._id)}>
-                
+
                 Check in
               </button>
               }
-              
+
               <div className="mt-2">
-            {books.checkOutStatus === true ? 
+            {books.checkOutStatus === true ?
                   <button className="btn btn-primary" disabled >
-                  
+
                   Checked Out
                 </button>
                 :
                  <>
-              <button className="btn btn-primary" onClick={()=> this.checkout(books._id)}>
-                
+              <button className="btn btn-primary" onClick={()=> this.checkout(books._id,books.hotelId)}>
+
                 Check Out
               </button>
-              {books.canclebooking === true ? 
-                <button className="btn btn-primary">  
-                      Book again 
+              {books.canclebooking === true ?
+                <button className="btn btn-primary">
+                      Book again
                     </button>
                     :
                     <>
-                    <button className="btn btn-primary"  onClick={()=>this.canclebooking(books._id)}>   
+                    <button className="btn btn-primary"  onClick={()=>this.canclebooking(books._id)}>
                           Cancel Booking
                         </button>
-                        </>           
+                        </>
               }
               </>
-             
-        }    </div>         
+
+        }    </div>
             </div>
           </div>
         </div>
