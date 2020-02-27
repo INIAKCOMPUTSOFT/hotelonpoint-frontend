@@ -161,7 +161,7 @@ const {userData} = this.props.user
         }
         // console.log('amenity', amenity)
         
-    
+    console.log(Hh)
 
       
 
@@ -227,7 +227,7 @@ function gal(Ur,i){
   
  <TopNav Overviewid="#Overview" Roomid="#Room" Hotelid="#Hoteldescription" Amenitiesid="#Amenities" Reviewid="#Reviews"/>
 
-<div className="mt-2">
+<div className="mt-2 d-none d-lg-block">
         <Swiper {...params}>
         
              {Hh.imagerUrl.map((Ur,i) =>(
@@ -237,6 +237,17 @@ function gal(Ur,i){
               ))}
   
               </Swiper>
+              </div>
+
+              <div className="scrolling-wrapper mt-2">
+              {Hh.imageUrl &&(
+              Hh.imagerUrl.map((url, i) => (
+
+                  <img src={url.url} style={{backgroundColor:"gainsboro", height: "100%",width:'100%'}} alt="" />
+                
+              ))
+              )}
+
               </div>
 
         <div className="container">
@@ -986,7 +997,7 @@ function gal(Ur,i){
 
                   }else if(terace){
                     return(
-                      <div className="col-2">
+                      <div className="col-4">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'

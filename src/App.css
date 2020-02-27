@@ -104,21 +104,8 @@ padding-left:0px;
 padding-right:0px;
 margin-right:0px;
 }
-.jumbotron2{
--moz-box-shadow: 0 0 10px #9c9a9a;
--webkit-box-shadow: 0 0 10px #9c9a9a;
-box-shadow: 0 0 10px #9c9a9a;
-}
-.jumbotron2:hover{
-  border-width: 2px;
-  border-style:solid;
-  border-color: rgb(60, 163, 247);
-  transition: 0.2s;
-}
-.pic{
-  width:100%;
-  height:100%;
-}
+
+
 
 .jumbp{    
 margin-left:2.5%;
@@ -131,27 +118,10 @@ background-color: white;
   height:100%;
   width:100%;
 }
-.breakfast{
-  background-color:rgb(24, 192, 60);
-  border-color: rgb(24, 192, 60);
-  margin-top: -5%;
-}
-.locate{
-  margin-top:3%;
-}
-a.wifi{
-  margin-left:2%;
-  background-color:rgb(24, 192, 60);
-  border-color: rgb(24, 192, 60);
-  margin-top:-5%;
-}
 .reserve{
   background-color:red;
 }
-h6.veiws{
-  font-size:23px;
-  margin-top: -8%;
-}
+
 .vie{
   margin-top:-5%;
 }
@@ -165,18 +135,12 @@ h6.veiws{
 i.logo{
   color:rgb(243, 22, 22);
 }
-.price{
-  margin-top: -5%;
-  font-size: 30px;
-  font-weight:20%;
-}
+
 .price2{
   margin-top: -20%;
   font-size: 15px;
 }
-.pernight{
-  margin-top:-5%;
-}
+
 .pprice{
   margin-top: -30%;
   margin-left:1%;
@@ -186,7 +150,7 @@ i.logo{
   color:gold;
 }
 .cheker{
-  margin-top:-9%;
+  margin-top:-50%;
 }
 .title2{
   font-size:30px;
@@ -276,19 +240,9 @@ i.logo{
  .cheker{
   display:none; 
  }
- .price{
-     margin-left:60%;
-     font-size:25px;
-   margin-top:-20%;
-   margin-bottom:2%;
- }  
- .pernight{
-   margin-left:60%; 
- }
- .veiws{
-     margin-top:-10%;
-     color:red;
- }
+
+
+
  .rateing{
   margin-left:60%;
   margin-top:-5%; 
@@ -297,20 +251,6 @@ i.logo{
  .locate{
      margin-top:0%;
  }
- .filter{
-     display:none;
- }
- .filternav{
-     display:none;
- }
- .mobilefilter{
-     display:block;
-   position:fixed;
-   z-index:3;
-   margin-left:25%;
-   margin-top:80%;
- }
-
 }
 
 

@@ -4,10 +4,35 @@
 .jumbot:hover{
     text-decoration:none;
 }
-.pic{
+/* .pic{
     height:1000px;
     width:1000px;
+} */
+.pic{
+  width:100%;
+  height:100%;
 }
+.cheker{
+  margin-top:5px;
+
+}
+
+h6.veiws{
+  font-size:25px;
+  margin-top: -8%;
+}
+
+.jumbotron2{
+  -moz-box-shadow: 0 0 10px #9c9a9a;
+  -webkit-box-shadow: 0 0 10px #9c9a9a;
+  box-shadow: 0 0 10px #9c9a9a;
+  }
+  .jumbotron2:hover{
+    border-width: 2px;
+    border-style:solid;
+    border-color: rgb(60, 163, 247);
+    transition: 0.2s;
+  }
 
 .faq{
 font-family: Montserrat;
@@ -25,6 +50,9 @@ list-style-type: none;
 
 .checker{
     background-color:#C4BDA3;
+}
+.smalllocate{
+  display:none;
 }
 
 .controll{
@@ -54,12 +82,62 @@ list-style-type: none;
     color: black;
     right: 0;
   }
+  .locate{
+    margin-top:3%;
+  }
   
   .round {
     border-radius: 40%;
+  }
+
+  .price{
+    margin-top: -5%;
+    font-size: 30px;
+    font-weight:20%;
   }
 
   .active1{
       background-color: black !important;
       color:white;
   }
+  .pernight{
+    margin-top:-5%;
+    /* margin-left:10%;  */
+  }
+
+  @media screen and (max-width:689px){
+.jumbofontsize{
+  font-size: 13px;
+}
+.mcard{
+  padding-top:10px;
+  padding-bottom:10px;
+  padding-right: 5px;
+  padding-left:8px;
+}
+.starrating {
+	direction: rtl;
+	unicode-bidi: bidi-override;
+  color: #ffc107; /* Personal choice */
+  font-size:10px;
+}
+
+h6.veiws{
+  font-size:16px;
+  margin-top: -8%;
+}
+.rates{
+  display:block;
+}
+.cheker{
+  display:none;
+}
+.price{
+  margin-top: -5%;
+  font-size: 20px;
+  font-weight:20%;
+}
+.biglocate{
+  display:none;
+}
+}

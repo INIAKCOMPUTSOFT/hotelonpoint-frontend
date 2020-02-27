@@ -29,6 +29,7 @@ class BookingForm extends React.Component {
       getdeals: false,
       startdate: "",
       enddate: "",
+      status:'',
     };
   }
 
@@ -68,7 +69,7 @@ class BookingForm extends React.Component {
     console.log(this.state);
   };
 
-  payOnArrival=()=>{
+  payOnArrival=(Data)=>{
     const data = {
       email: this.state.email,
       phone: this.state.phone,
@@ -80,23 +81,31 @@ class BookingForm extends React.Component {
       wantairportshuttle: this.state.wantairportshuttle,
       roomId: this.props.match.params.roomid,
       roomType: this.state.Rm.roomType,
-      checkin: this.toISOString(this.state.startdate),
-      checkout: this.toISOString(this.state.enddate),
+      checkin: this.state.startdate,
+      checkout: this.state.enddate,
       paymentMethod:"payonarrival",
       paymentstatus:"false",
       confirmbooking:"false'"
     };
 
     console.log(data,'data')
-    // axios
-    // .post(`http://localhost:3400/room/${RoomId}/bookingform`)
-    // .then(res => {
+  //    axios
+  //    .post(`http://localhost:3400/room/${RoomId}/bookingform`)
+  //   // .then(res => {
     
-    //   console.log('res',res)
-    // });
+  //   //  console.log('res',res)
+  //   // this.setState({status:res.statusText})
+  //   // });
+
+  //   if(this.state.status && this.state.Hh && this.state.status === "OK"){
+  //     setTimeout(()=> {window.location.href=`/confirmnation/${Data}`}, 3000)
+  //    console.log(this.state.status,'status')
+  //    console.log(Data,'id')
+  //  }
+
   }
 
-  payByTransfer=()=>{
+  payByTransfer=(Data)=>{
     const data = {
       email: this.state.email,
       phone: this.state.phone,
@@ -108,8 +117,8 @@ class BookingForm extends React.Component {
       wantairportshuttle: this.state.wantairportshuttle,
       roomId: this.props.match.params.roomid,
       roomType: this.state.Rm.roomType,
-      checkin: this.toISOString(this.state.startdate),
-      checkout: this.toISOString(this.state.enddate),
+      checkin: this.state.startdate,
+      checkout: this.state.enddate,
       paymentMethod:"Transfer",
       AcctNo:"0175100070",
       AcctName:"Hotel on points Ltd",
@@ -118,12 +127,19 @@ class BookingForm extends React.Component {
       confirmbooking:"false"
     };
 console.log(data,'data')
-    // axios
-    // .post(`http://localhost:3400/room/${RoomId}/bookingform`)
-    // .then(res => {
-    
-    //   console.log('res',res)
-    // });
+// axios
+// .post(`http://localhost:3400/room/${RoomId}/bookingform`)
+// // .then(res => {
+
+// //  console.log('res',res)
+// // this.setState({status:res.statusText})
+// // });
+
+// if(this.state.status && this.state.Hh && this.state.status === "OK"){
+//  setTimeout(()=> {window.location.href=`/confirmnation/${Data}`}, 3000)
+// console.log(this.state.status,'status')
+// console.log(Data,'id')
+// }
   }
 
   Ratingstarts=(stars)=>{
@@ -187,9 +203,9 @@ console.log(data,'data')
     }
   }
 
-  convDate=(dateString)=>{
-    return new Date(dateString).toISOString();
-}
+//   convDate=(dateString)=>{
+//     return new Date(dateString).toISOString();
+// }
 
   render() {
 
@@ -215,8 +231,8 @@ console.log(data,'data')
       wantairportshuttle: this.state.wantairportshuttle,
       roomId: this.props.match.params.roomid,
       roomType: Rm.roomType,
-      checkin: this.convDate(this.state.startdate),
-      checkout: this.convDate(this.state.enddate),
+      checkin: this.state.startdate,
+      checkout: this.state.enddate,
       paymentMethod:"paystack"
     };
     return (
@@ -582,7 +598,7 @@ console.log(data,'data')
                             role="tab"
                             aria-controls="pills-payonarrival"
                             aria-selected="false"
-                            onClick={this.payOnArrival}
+                            onClick={this.payOnArrival(Hh._id)}
                           >
                             Pay On Arrival
                           </a>
@@ -596,7 +612,7 @@ console.log(data,'data')
                         role="tabpanel"
                         aria-labelledby="pills-paynow-tab"
                       >
-                        <h2 className="text-center">Amount: ${amount}</h2>
+                        <h2 className="text-center">Amount: NGN{amount}</h2>
 
                         <div className="row">
                           <div className="col-12">
@@ -695,8 +711,8 @@ console.log(data,'data')
               <p className="ml-4">{this.state.enddate}</p>
 
               <hr/>
-            <h6 className="ml-4">{Rm.roomType} {amount}</h6>
-            <p className="ml-4 h-3">Total      {amount}</p>
+            <h6 className="ml-4">{Rm.roomType}  NGN{amount}</h6>
+            <p className="ml-4 h-3">Total  NGN{amount}</p>
               </div> 
             </div>
 

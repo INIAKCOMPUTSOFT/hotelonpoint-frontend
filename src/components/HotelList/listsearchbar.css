@@ -8,6 +8,15 @@
     color:black;
     
 } */
+.mtitleinput{
+    font-size: 14px;
+    margin-left:12px;
+}
+
+.dater{
+    margin-left:12px;
+}
+
 .formbox{
     background: #FFFFFF;
     border-radius: 5px;
@@ -100,8 +109,8 @@
 
 
 @media screen and (max-width:689px){
-    .digi{
-        height:400px;
+    .ddigi{
+        height:320px;
         z-index: inherit 2;
         
     }
@@ -110,6 +119,13 @@
     }
     .sc{
         border:2px solid #C4BDA3;
+    }
+    .dater{
+        margin-left:13px;
+    }
+    .mtitleinput{
+        font-size: 14px;
+        margin-left:13px;
     }
 
 }
