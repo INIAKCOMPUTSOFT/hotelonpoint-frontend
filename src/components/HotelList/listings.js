@@ -313,18 +313,16 @@ var head = document.getElementById("collapse");
                     </div>
                   </div>
 
-                  <div className="col-md-3 sc">
-                  <label className="bb titleinput">Room and Guest</label>
-
-                      <div className="control bb mt-2 text-secondary"  data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
-                        <span>Room {this.state.rooms}</span>{" "}
-                        <span> Adults {this.state.adults}</span>{" "}
-                        {this.state.children > 0 && (
-                         <span> Children {this.state.children}</span>
-                        )}
-                      </div>
-
-                      <div class="row position-absolute" style={{zIndex:3}}>
+<div className="col-md-3 sc">
+<label className="bb titleinput">Room and Guest</label>
+<div className="control bb mt-2 text-secondary"  data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
+  <span>Room {this.state.rooms}</span>{" "}
+  <span> Adults {this.state.adults}</span>{" "}
+  {this.state.children > 0 && (
+   <span> Children {this.state.children}</span>
+  )}
+</div>
+<div class="row position-absolute" style={{zIndex:3}}>
   <div class="col">
     <div class="collapse multi-collapse" id="multiCollapseExample1">
       <div class="card card-body">
@@ -349,70 +347,7 @@ var head = document.getElementById("collapse");
     </div>
   </div>
   </div>
-
-                      {/* <div className="modal fade" id="realexampleModal"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div className="modal-dialog" role="document">
-                        <div className="modal-content">
-                          <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Select Room Adult and Children Number</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div className="modal-body">
-                
-                            <label>Room</label>
-                              <select
-                                name="rooms"
-                                onChange={this.handleChange}
-                                className="inp"
-                              >
-                                <option value="0">Number of Room</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                              </select>
-
-                              <label>Adults</label>
-                              <select
-                                name="adults"
-                                onChange={this.handleChange}
-                                className="inp"
-                              >
-                                <option value="0"> Number of Adults</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                              </select>
-
-                              <label>Children</label>
-                              <select
-                                name="children"
-                                onChange={this.handleChange}
-                                className="inp"
-                              >
-                                <option value="0">Number of Children</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                              </select>
-
-
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Ok</button>
-              </div>
-            </div>
-          </div>
-        </div> */}
-
-                    </div>
+ </div>
                   <div className="col-md-3 ">
                     <button
                       type="submit"

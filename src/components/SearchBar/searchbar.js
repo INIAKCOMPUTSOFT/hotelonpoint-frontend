@@ -113,6 +113,33 @@ class SearchBar extends React.Component {
     return format(date, "mm/dd/yyyy");
   };
 
+  onAdultChange=()=>{
+    this.setState({adults:this.state.adults+1})
+  }
+  offAdultChange=()=>{
+    if(this.state.adults > 1){
+      this.setState({adults:this.state.adults-1})
+    }
+  }
+  onRoomChange=()=>{
+    this.setState({rooms:this.state.rooms+1})
+  }
+  offRoomChange=()=>{
+    if(this.state.rooms > 1){
+      this.setState({rooms:this.state.rooms-1})
+    }
+  }
+
+  onChildrenChange=()=>{
+    this.setState({children:this.state.children+1})
+  }
+  offChildrenChange=()=>{
+    if(this.state.children >= 0){
+      this.setState({children:this.state.children-1})
+    }
+  }
+
+
   // suggestions=()=>{
   //   const sugges=this.state.typedsearchResult
   //   if(sugges){
@@ -138,7 +165,7 @@ class SearchBar extends React.Component {
               <h5 className="caption">{this.props.title}</h5>
               <form className="formbox">
                 <div className="row no-gutters">
-                  <div className="col-md-4 sc">
+                  <div className="col-md-3 sc">
                   
                     <label className="lab">
                       <span className="titleinput hoteltitle">Places and Hotels </span>
@@ -183,14 +210,15 @@ class SearchBar extends React.Component {
                       customArrowIcon='/'
                       noBorder={true}
                       startDateAriaLabel='Check-in'
+                      style={{zIndex:3}}
                     />
                     </div>
                   </div>
 
-                  <div className="col-md-2 sc">
+                  <div className="col-md-3 sc">
                   <label className="bb titleinput">Room and Guest</label>
 
-                      <div className="control bb mt-2 text-secondary" data-toggle="modal" data-target="#exampleModal">
+                      <div className="control bb mt-2 text-secondary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">
                         <span>Room {this.state.rooms}</span>{" "}
                         <span> Adults {this.state.adults}</span>{" "}
                         {this.state.children >= 1  && (
@@ -198,68 +226,31 @@ class SearchBar extends React.Component {
                         )}
                       </div>
 
-                      <div className="modal fade" id="exampleModal"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div className="modal-dialog modal-dialog-centered" role="document">
-                        <div className="modal-content">
-                          <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Select Room Adult and Children Number</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div className="modal-body">
-                
-                            <label>Room</label>
-                              <select
-                                name="rooms"
-                                onChange={this.handleChange}
-                                className="inp"
-                              >
-                                <option value="0">Number of Room</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                              </select>
+                      <div class="row position-absolute" style={{zIndex:3}}>
+  <div class="col">
+    <div class="collapse multi-collapse" id="multiCollapseExample1">
+      <div class="card card-body">
+        <p>Rooms  
+    <button type="button" onClick={this.offRoomChange} class="btn btn-sm btn-dark" style={{marginLeft:"38px"}}>-</button>
+  <span className="ml-1">{this.state.rooms}</span>
+    <button type="button" onClick={this.onRoomChange} class="btn btn-sm btn-dark" style={{marginLeft:"5px"}}>+</button>
+  </p>
 
-                              <label>Adults</label>
-                              <select
-                                name="adults"
-                                onChange={this.handleChange}
-                                className="inp"
-                              >
-                                <option value="0"> Number of Adults</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                              </select>
+  <p>Adults 
+    <button type="button" onClick={this.offAdultChange} class="btn btn-sm btn-dark" style={{marginLeft:"40px"}}>-</button>
+  <span className="ml-1">{this.state.adults}</span>
+    <button type="button" onClick={this.onAdultChange} class="btn btn-sm btn-dark " style={{marginLeft:"5px"}}>+</button>
+  </p>
 
-                              <label>Children</label>
-                              <select
-                                name="children"
-                                onChange={this.handleChange}
-                                className="inp"
-                              >
-                                <option value="0">Number of Children</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                              </select>
-
-
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Ok</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
+  <p>Children 
+    <button type="button" onClick={this.offChildrenChange} class="btn btn-sm btn-dark ml-4">-</button>
+  <span className="ml-2">{this.state.children}</span>
+    <button type="button" onClick={this.onChildrenChange} class="btn btn-sm btn-dark ml-1">+</button>
+  </p>
+      </div>
+    </div>
+  </div>
+  </div>
                     </div>
                   <div className="col-md-2 p-0 sc" >
                     <button
