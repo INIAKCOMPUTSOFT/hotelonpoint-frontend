@@ -712,7 +712,7 @@ console.log(data,'data')
 
               <hr/>
             <h6 className="ml-4">{Rm.roomType}  NGN{amount}</h6>
-            <p className="ml-4 h-3">Total  NGN{amount}</p>
+            <p className="ml-4 h-3">Total       <span className="ml-2">NGN{amount}</span></p>
               </div> 
             </div>
 

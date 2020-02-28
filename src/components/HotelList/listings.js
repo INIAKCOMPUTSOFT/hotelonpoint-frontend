@@ -108,7 +108,7 @@ class HotelList extends React.Component {
       const {name,value,type,checked} = eve.target
       type === "checkbox"? this.setState({[name]:checked}) :this.setState({[name]:value})
       console.log(this.state)
-      const sidefilter =result.filter(robot => Number(eve.target.value)  >= Number(robot.averagePrice)|| robot.propertyInfo.starRating.includes(starrating)||robot.hotelPolicy.isBreakfastAvailable.includes(breakfast)||robot.hotelPolicy.hotelAmenities.includes(amenities))
+      const sidefilter =result.filter(robot => Number(eve.target.value)  >= Number(robot.averagePrice))
       this.setState({sideFilter:sidefilter})
       console.log(sidefilter,' not on state')
       console.log(budget,'budget')
@@ -124,7 +124,7 @@ class HotelList extends React.Component {
         const {budget,starrating,breakfast,pamentpolicy,cancellation,distance,amenities} = this.state;
         console.log(budget, 'this is the budget')
         const Filtering = filtering.filter(robot =>Number(budget)  >= Number(robot.averagePrice) || robot.propertyInfo.starRating.includes(starrating)||robot.hotelPolicy.isBreakfastAvailable.includes(breakfast)||robot.hotelPolicy.hotelAmenities.includes(amenities))
-        const Filteringed = fills.filter(robot =>Number(budget)  >= Number(robot.averagePrice) || robot.propertyInfo.starRating.includes(starrating)||robot.hotelPolicy.isBreakfastAvailable.includes(breakfast)||robot.hotelPolicy.hotelAmenities.includes(amenities))
+        const Filteringed = fills.filter(robot =>Number(budget)  >= Number(robot.averagePrice) || robot.hotelPolicy.isBreakfastAvailable.includes(breakfast)||robot.propertyInfo.starRating.includes(starrating)||robot.hotelPolicy.hotelAmenities.includes(amenities))
         console.log(Filtering,'on clicked')
         this.setState({sideFilter: Filtering, sideFilter:Filteringed})
       }
@@ -216,6 +216,14 @@ class HotelList extends React.Component {
   //   const indexOfLastPost =  currentpage * postPerPage
   // const indexOfFirstPost =  indexOfLastPost - postPerPage
   // const currentpost = samepage.slice(indexOfFirstPost, indexOf)
+// var stick={position: "fixed",  top: 0, width: "100%"}
+var head = document.getElementById("collapse");
+//   if (window.onscroll(header )) {
+//     stick
+//   } 
+
+
+
   const params = {
     slidesPerView: 2,
     spaceBetween: 30,
@@ -422,8 +430,8 @@ class HotelList extends React.Component {
           </div>
         </div>
       </div>
-<div className="d-lg-none d-xl-none" align="center" >
-<button className="btn btn-lg  btn-block shadow position-fixed btn-light" style={{zIndex:3}} data-toggle="modal" data-target="#exampleModalLong">Filter</button>
+<div className="d-lg-none d-xl-none" align="center"  >
+<button className="btn btn-md btn-primary  shadow position-fixed" style={{zIndex:3}} data-toggle="modal" data-target="#exampleModalLong">Filter</button>
 </div>
       <div className="row">
             <div className="col-md-3 d-none d-lg-block position-sticky">
@@ -558,7 +566,7 @@ class HotelList extends React.Component {
             </>)}
               />
             <hr/>  
-            <button className="btn btn-outline-secondary btn-block" data-toggle="modal" data-target="#exampleModalCenter">Amenities</button>
+            <button className="btn btn-outline-secondary btn-block"  data-toggle="modal" data-target="#exampleModalCenter">Amenities</button>
             {/* modal start */}
 
             
@@ -714,23 +722,24 @@ class HotelList extends React.Component {
         </div>
         {filterdhotels.length >= 1 ? 
           filterdhotels.map((hotel, i) => (
-            <Link to={`/singlehotel/${hotel._id}`} className="jumbot">
-            <div className=" jumbotron2  mb-3" onClick={this.handleClick} key={i}>
+            <Link to={`/singlehotel/${hotel._id}`} key={i} className="jumbot">
+            <div className="jumbotron2 mb-3" onClick={this.handleClick}>
               <div>
                 <div className="row no-gutters">
-                  <div className="col-md-4">
+                  <div className="col-4">
                     <div className="card border-0">
-                      <div className="card-body">
-                      <img src={hotel.imagerUrl[0].url} style={{height:'200px', width:'100%'}}  alt="..." />
+                      <div className="card-body mcard">
+                      <img src={hotel.imagerUrl[0].url} style={{height:'100%', width:'100%'}} alt="..." />
                       </div>
                     </div>
                   </div>
-                  <div className="col-md-5">
+                  <div className="col-5">
                     <div className="card border-0">
-                      <div className="card-body">
-          <h5>{hotel.propertyInfo.hotelName}{this.Ratingstarts(hotel.propertyInfo.starRating)}</h5>
+                      <div className="card-body mcard">
+                        <h5>{hotel.propertyInfo.hotelName}<span className="rates">{this.Ratingstarts(hotel.propertyInfo.starRating)}</span></h5>
                         <p>{hotel.propertyInfo.hotelDescription}</p>
-                        <div className="row">
+                        <div style={{diplay:'iniline-block'}}>
+                        <span className="row ">
               {hotel.hotelPolicy.hotelAmenities.slice(0,6).map((Amenities,a) => {
                   
                   console.log(Amenities,'ameni list');
@@ -765,7 +774,7 @@ class HotelList extends React.Component {
                   if(wifi){
                     
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                        <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -778,7 +787,7 @@ class HotelList extends React.Component {
                   else if(pool){
 
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                         <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -789,7 +798,7 @@ class HotelList extends React.Component {
                   }
                   else if(spa > -1){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                        <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -800,7 +809,7 @@ class HotelList extends React.Component {
                   }
                   else if(park){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -811,7 +820,7 @@ class HotelList extends React.Component {
 
                   }else if(bycicle){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -822,7 +831,7 @@ class HotelList extends React.Component {
 
                   }else if(car){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -833,7 +842,7 @@ class HotelList extends React.Component {
 
                   }else if(Cinema){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -844,7 +853,7 @@ class HotelList extends React.Component {
 
                   }else if(Audio){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -855,7 +864,7 @@ class HotelList extends React.Component {
 
                   }else if(newpaper){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -866,7 +875,7 @@ class HotelList extends React.Component {
 
                   }else if(duty){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -877,7 +886,7 @@ class HotelList extends React.Component {
 
                   }else if(lounge){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -888,7 +897,7 @@ class HotelList extends React.Component {
 
                   }else if(salon){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -899,7 +908,7 @@ class HotelList extends React.Component {
 
                   }else if(elevator){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                      </p>
                     </div>
@@ -907,7 +916,7 @@ class HotelList extends React.Component {
 
                   }else if(currency){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -918,7 +927,7 @@ class HotelList extends React.Component {
 
                   }else if(Ac){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -929,7 +938,7 @@ class HotelList extends React.Component {
 
                   }else if(Roomservice){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -940,7 +949,7 @@ class HotelList extends React.Component {
 
                   }else if(cctv){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -951,7 +960,7 @@ class HotelList extends React.Component {
 
                   }else if(electric){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -962,7 +971,7 @@ class HotelList extends React.Component {
 
                   }else if(playground){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -973,7 +982,7 @@ class HotelList extends React.Component {
 
                   }else if(ironing){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -984,7 +993,7 @@ class HotelList extends React.Component {
 
                   }else if(desk){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -995,7 +1004,7 @@ class HotelList extends React.Component {
 
                   }else if(hot){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1006,7 +1015,7 @@ class HotelList extends React.Component {
 
                   }else if(Airportshuttle){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1017,7 +1026,7 @@ class HotelList extends React.Component {
 
                   }else if(fitness){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1028,7 +1037,7 @@ class HotelList extends React.Component {
 
                   }else if(bar){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1039,7 +1048,7 @@ class HotelList extends React.Component {
 
                   }else if(terace){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1053,40 +1062,39 @@ class HotelList extends React.Component {
                //this.amen(Amenities,a) 
               //console.log(Amenities,'testing amenities') 
                 })}
-                </div>
-                        <p className="card-text locate">
+                </span>
+                <span className="ml-2 card-text d-none d-lg-block">
+                          View all Amenities 
+                        </span>
+                        </div>
+                        <p className="card-text biglocate">
                           <FontAwesomeIcon  className="logo" icon={faMapMarker} />
                            {hotel.propertyInfo.city} 
                         </p>
                       </div>
                     </div>
                   </div>
-                  <div className="col-md-3">
+                  <div className="col-3">
                     <div className="card border-0">
-                      <div className="card-body">
+                      <div className="card-body mcard">
                         <h6 className="mb-2 text-muted veiws">Superb</h6>
   
                         {this.boxRatingstarts(hotel.propertyInfo.starRating)}
                         <span>Reviews</span>
   
-                        <p className="card-subtitle price">{hotel.averagePrice}</p>
+                        <p className="card-subtitle price pricefont">NGN {hotel.averagePrice}</p>
   
-                        <p className="text-muted pernight">Per night</p>
-                        <div className="rateing">
-                          <p className="">
-                            <i className="fas fa-star rates"></i>
-                            <i className="fas fa-star rates"></i>
-                            <i className="fas fa-star rates"></i>
-                            <i className="fas fa-star rates"></i>
-                            <i className="fas fa-star rates"></i>
-                          </p>
-                        </div>
+                        <p className="text-muted pernight pricefont">Per Night</p>
                         <span
                           href="#"
-                          className="card-link btn btn-sm  cheker"
+                          className="card-link btn btn-sm btn-primary cheker"
                         >
-                         Select
+                          Check this out
                         </span>
+                        <p className="card-text smalllocate">
+                          <FontAwesomeIcon  className="logo" icon={faMapMarker} />
+                           {hotel.propertyInfo.city} 
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -1098,23 +1106,24 @@ class HotelList extends React.Component {
         :
           samepage.length >= 1 ?  
           samepage.map((hotel, i) => (
-            <Link to={`/singlehotel/${hotel._id}`} className="jumbot">
-            <div className=" jumbotron2  mb-3" onClick={this.handleClick} key={i}>
+            <Link to={`/singlehotel/${hotel._id}`} key={i} className="jumbot">
+            <div className="jumbotron2 mb-3" onClick={this.handleClick}>
               <div>
                 <div className="row no-gutters">
-                  <div className="col-md-4">
+                  <div className="col-4">
                     <div className="card border-0">
-                      <div className="card-body">
-                      <img src={hotel.imagerUrl[0].url} className="" style={{height:'200px', width:'100%'}} alt="..." />
+                      <div className="card-body mcard">
+                      <img src={hotel.imagerUrl[0].url} style={{height:'100%', width:'100%'}} alt="..." />
                       </div>
                     </div>
                   </div>
-                  <div className="col-md-5">
+                  <div className="col-5">
                     <div className="card border-0">
-                      <div className="card-body">
-                        <h5>{hotel.propertyInfo.hotelName} {this.Ratingstarts(hotel.propertyInfo.starRating)}</h5>
-                        <p className="jumbofontsize">{hotel.propertyInfo.hotelDescription}</p>
-                        <div className="row">
+                      <div className="card-body mcard">
+                        <h5>{hotel.propertyInfo.hotelName}<span className="rates">{this.Ratingstarts(hotel.propertyInfo.starRating)}</span></h5>
+                        <p>{hotel.propertyInfo.hotelDescription}</p>
+                        <div style={{diplay:'iniline-block'}}>
+                        <span className="row ">
               {hotel.hotelPolicy.hotelAmenities.slice(0,6).map((Amenities,a) => {
                   
                   console.log(Amenities,'ameni list');
@@ -1149,7 +1158,7 @@ class HotelList extends React.Component {
                   if(wifi){
                     
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                        <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1162,7 +1171,7 @@ class HotelList extends React.Component {
                   else if(pool){
 
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                         <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1173,7 +1182,7 @@ class HotelList extends React.Component {
                   }
                   else if(spa > -1){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                        <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1184,7 +1193,7 @@ class HotelList extends React.Component {
                   }
                   else if(park){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1195,7 +1204,7 @@ class HotelList extends React.Component {
 
                   }else if(bycicle){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1206,7 +1215,7 @@ class HotelList extends React.Component {
 
                   }else if(car){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1217,7 +1226,7 @@ class HotelList extends React.Component {
 
                   }else if(Cinema){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1228,7 +1237,7 @@ class HotelList extends React.Component {
 
                   }else if(Audio){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1239,7 +1248,7 @@ class HotelList extends React.Component {
 
                   }else if(newpaper){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1250,7 +1259,7 @@ class HotelList extends React.Component {
 
                   }else if(duty){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1261,7 +1270,7 @@ class HotelList extends React.Component {
 
                   }else if(lounge){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1272,7 +1281,7 @@ class HotelList extends React.Component {
 
                   }else if(salon){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1283,7 +1292,7 @@ class HotelList extends React.Component {
 
                   }else if(elevator){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                      </p>
                     </div>
@@ -1291,7 +1300,7 @@ class HotelList extends React.Component {
 
                   }else if(currency){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1302,7 +1311,7 @@ class HotelList extends React.Component {
 
                   }else if(Ac){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1313,7 +1322,7 @@ class HotelList extends React.Component {
 
                   }else if(Roomservice){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1324,7 +1333,7 @@ class HotelList extends React.Component {
 
                   }else if(cctv){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1335,7 +1344,7 @@ class HotelList extends React.Component {
 
                   }else if(electric){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1346,7 +1355,7 @@ class HotelList extends React.Component {
 
                   }else if(playground){
                     return(
-                      <div className="col-md-4">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1357,7 +1366,7 @@ class HotelList extends React.Component {
 
                   }else if(ironing){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1368,7 +1377,7 @@ class HotelList extends React.Component {
 
                   }else if(desk){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1379,7 +1388,7 @@ class HotelList extends React.Component {
 
                   }else if(hot){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1390,7 +1399,7 @@ class HotelList extends React.Component {
 
                   }else if(Airportshuttle){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1401,7 +1410,7 @@ class HotelList extends React.Component {
 
                   }else if(fitness){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1412,7 +1421,7 @@ class HotelList extends React.Component {
 
                   }else if(bar){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1423,7 +1432,7 @@ class HotelList extends React.Component {
 
                   }else if(terace){
                     return(
-                      <div className="col-md-2">
+                      <div className="col-2">
                       <p className="mr-2" key={a}>
                       <FontAwesomeIcon
                       className='wicon'
@@ -1437,41 +1446,39 @@ class HotelList extends React.Component {
                //this.amen(Amenities,a) 
               //console.log(Amenities,'testing amenities') 
                 })}
-                </div>
-                        
-                        <p className="card-text locate">
+                </span>
+                <span className="ml-2 card-text d-none d-lg-block">
+                          View all Amenities 
+                        </span>
+                        </div>
+                        <p className="card-text biglocate">
                           <FontAwesomeIcon  className="logo" icon={faMapMarker} />
                            {hotel.propertyInfo.city} 
                         </p>
                       </div>
                     </div>
                   </div>
-                  <div className="col-md-3">
+                  <div className="col-3">
                     <div className="card border-0">
-                      <div className="card-body">
+                      <div className="card-body mcard">
                         <h6 className="mb-2 text-muted veiws">Superb</h6>
   
                         {this.boxRatingstarts(hotel.propertyInfo.starRating)}
                         <span>Reviews</span>
   
-                        <p className="card-subtitle price">{hotel.averagePrice}</p>
+                        <p className="card-subtitle price pricefont">NGN {hotel.averagePrice}</p>
   
-                        <p className="text-muted pernight">Per night</p>
-                        <div className="rateing">
-                          <p className="">
-                            <i className="fas fa-star rates"></i>
-                            <i className="fas fa-star rates"></i>
-                            <i className="fas fa-star rates"></i>
-                            <i className="fas fa-star rates"></i>
-                            <i className="fas fa-star rates"></i>
-                          </p>
-                        </div>
+                        <p className="text-muted pernight pricefont">Per Night</p>
                         <span
                           href="#"
-                          className="card-link btn btn-sm  cheker"
+                          className="card-link btn btn-sm btn-primary cheker"
                         >
                           Check this out
                         </span>
+                        <p className="card-text smalllocate">
+                          <FontAwesomeIcon  className="logo" icon={faMapMarker} />
+                           {hotel.propertyInfo.city} 
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -1843,9 +1850,9 @@ class HotelList extends React.Component {
                         {this.boxRatingstarts(hotel.propertyInfo.starRating)}
                         <span>Reviews</span>
   
-                        <p className="card-subtitle price pricefont">{hotel.averagePrice}</p>
+                        <p className="card-subtitle price pricefont">NGN {hotel.averagePrice}</p>
   
-                        <p className="text-muted pernight pricefont">per night</p>
+                        <p className="text-muted pernight pricefont">Per Night</p>
                         <span
                           href="#"
                           className="card-link btn btn-sm btn-primary cheker"
@@ -1896,8 +1903,8 @@ class HotelList extends React.Component {
             
             <p><b>Price Range</b></p>
               <Input2
-              Id='customRadio1'
-              For="customRadio1"
+              Id='customRadio31'
+              For="customRadio31"
               name="budget"
               type="radio"
               value="5000"
@@ -1906,8 +1913,8 @@ class HotelList extends React.Component {
               />
             
             <Input2
-            Id='customRadio2'
-            For="customRadio2"
+            Id='customRadio32'
+            For="customRadio32"
               name="budget"
               type="radio"
               value="10000"
@@ -1916,8 +1923,8 @@ class HotelList extends React.Component {
               />
             
             <Input2
-            Id='customRadio3'
-            For="customRadio3"
+            Id='customRadio33'
+            For="customRadio33"
               name="budget"
               type="radio"
               value="5000"
@@ -1926,8 +1933,8 @@ class HotelList extends React.Component {
               />
             
             <Input2
-            Id='customRadio4'
-            For="customRadio4"
+            Id='customRadio34'
+            For="customRadio34"
               name="budget"
               type="radio"
               value="20000"
@@ -1936,8 +1943,8 @@ class HotelList extends React.Component {
               />
             
             <Input2
-            Id='customRadio5'
-            For="customRadio5"
+            Id='customRadio35'
+            For="customRadio35"
               name="budget"
               type="radio"
               value="80000"
@@ -1946,8 +1953,8 @@ class HotelList extends React.Component {
               />
             
             <Input2
-            Id='customRadio6'
-            For="customRadio6"
+            Id='customRadio36'
+            For="customRadio36"
               name="budget"
               type="radio"
               value="200000"
@@ -1957,8 +1964,8 @@ class HotelList extends React.Component {
             <hr/>
             <p><b>Star Rating</b></p>
               <Input2
-              Id='customRadio7'
-              For="customRadio7"
+              Id='customRadio37'
+              For="customRadio37"
               name="starrating"
               type="radio"
               value="1"
@@ -1967,8 +1974,8 @@ class HotelList extends React.Component {
               />
             
             <Input2
-            Id='customRadio8'
-            For="customRadio8"
+            Id='customRadio38'
+            For="customRadio38"
               name="starrating"
               type="radio"
               value="2"
@@ -1980,8 +1987,8 @@ class HotelList extends React.Component {
               />
             
             <Input2
-            Id='customRadio9'
-            For="customRadio9"
+            Id='customRadio39'
+            For="customRadio39"
               name="starrating"
               type="radio"
               value="3"
@@ -1993,8 +2000,8 @@ class HotelList extends React.Component {
             </>)}
               />
               <Input2
-              Id='customRadio10'
-              For="customRadio10"
+              Id='customRadio310'
+              For="customRadio310"
               name="starrating"
               type="radio"
               value="4"
@@ -2007,8 +2014,8 @@ class HotelList extends React.Component {
             </>)}
               />
               <Input2
-              Id='customRadio11'
-              For="customRadio11"
+              Id='customRadio311'
+              For="customRadio311"
               name="starrating"
               type="radio"
               value="5"
@@ -2022,16 +2029,111 @@ class HotelList extends React.Component {
             </>)}
               />
             <hr/>  
-            <button className="btn btn-outline-secondary btn-block" data-toggle="modal" data-target="#exampleModalCenter">Amenities</button>
+            <button className="btn btn-outline-secondary btn-block" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Amenities</button>
             {/* modal start */}
+      <div class="collapse multi-collapse" id="multiCollapseExample2">
+      <div class="card card-body">
+      <div className="row">
+         <div className="col">
+      <Input2
+              Id='customRadio3a'
+              For="customRadio3a"
+              name="amenities"
+              type="radio"
+              value="wifi"
+              onChange={this.handleSideFilterButtonsChange}
+              range={(<>Wifi <FontAwesomeIcon className='starrating'  icon={faWifi} /></>)}
+              />
 
+            <Input2
+              Id='customRadio3d'
+              For="customRadio3d"
+              name="amenities"
+              type="radio"
+              value="1"
+              onChange={this.handleSideFilterButtonsChange}
+              range={(<FontAwesomeIcon className='starrating'  icon={faWater} />)}
+              />
+              <Input2
+              Id='customRadio3g'
+              For="customRadio3g"
+              name="amenities"
+              type="radio"
+              value="1"
+              onChange={this.handleSideFilterButtonsChange}
+              range={(<FontAwesomeIcon className='starrating'  icon={faTshirt} />)}
+              />
+           
+           <Input2
+              Id='customRadio3b'
+              For="customRadio3b"
+              name="amenities"
+              type="radio"
+              value="1"
+              onChange={this.handleSideFilterButtonsChange}
+              range={(<FontAwesomeIcon className='starrating'  icon={faTaxi} />)}
+              />
+
+            <Input2
+              Id='customRadio3e'
+              For="customRadio3e"
+              name="amenities"
+              type="radio"
+              value="1"
+              onChange={this.handleSideFilterButtonsChange}
+              range={(<FontAwesomeIcon className='starrating'  icon={faWineGlass} />)}
+              />
+           </div>
+           <Input2
+              Id='customRadio3h'
+              For="customRadio3h"
+              name="amenities"
+              type="radio"
+              value="1"
+              onChange={this.handleSideFilterButtonsChange}
+              range={(<FontAwesomeIcon className='starrating'  icon={faSwimmer} />)}
+              />
+           <div className="col">
+           <Input2
+              Id='customRadio3c'
+              For="customRadio3c"
+              name="amenities"
+              type="radio"
+              value="1"
+              onChange={this.handleSideFilterButtonsChange}
+              range={(<>Spa <FontAwesomeIcon className='starrating'  icon={faSpa} /></>)}
+              />
+              <Input2
+              Id='customRadio3f'
+              For="customRadio3f"
+              name="amenities"
+              type="radio"
+              value="1"
+              onChange={this.handleSideFilterButtonsChange}
+              range={( <> Airportshuttle <FontAwesomeIcon className='starrating'  icon={faShuttleVan} /></>)}
+              />
+
+              <Input2
+              Id='customRadio3i'
+              For="customRadio3i"
+              name="amenities"
+              type="radio"
+              value="1"
+              onChange={this.handleSideFilterButtonsChange}
+              range={(<FontAwesomeIcon className='starrating'  icon={faMonument} />)}
+              />
+</div>
+</div>
+      </div>
+      </div>
+ 
             
             {/* modal end */}
             <hr/>
             <b>Breakfast</b>
             <Input2
-            Id='customRadio12'
-            For="customRadio12"
+            Id='customRadio312'
+            For="customRadio312"
               type="radio"
               name="breakfast"
               value='Yes, Free'
@@ -2039,8 +2141,8 @@ class HotelList extends React.Component {
               range="Free Breakfast"
               />
                  <Input2
-                 Id='customRadio13'
-                 For="customRadio13"
+                 Id='customRadio313'
+                 For="customRadio313"
               type="radio"
               name="breakfast"
               value='Yes, Paid'
@@ -2048,8 +2150,8 @@ class HotelList extends React.Component {
               range="Paid Breakfast"
               />
                  <Input2
-                 Id='customRadio14'
-                 For="customRadio14"
+                 Id='customRadio314'
+                 For="customRadio314"
               type="radio"
               name="breakfast"
               value='No'
@@ -2059,8 +2161,8 @@ class HotelList extends React.Component {
             <hr/> 
             <b>Payment & Cancellation</b>
             <Input2
-            Id='customRadio15'
-            For="customRadio15"
+            Id='customRadio315'
+            For="customRadio315"
               type="radio"
               name="pamentpolicy"
               value="pay now"
@@ -2068,8 +2170,8 @@ class HotelList extends React.Component {
               range="Pay Online"
               />
               <Input2
-              Id='customRadio16'
-              For="customRadio16"
+              Id='customRadio316'
+              For="customRadio316"
               type="radio"
               name="pamentpolicy"
               value="pay on arrival"
@@ -2077,8 +2179,8 @@ class HotelList extends React.Component {
               range="Pay at Hotel"
               />
               <Input2
-              Id='customRadio17'
-              For="customRadio17"
+              Id='customRadio317'
+              For="customRadio317"
               type="checkbox"
               name="cancellation"
               value={this.state.cancellation}
@@ -2089,8 +2191,8 @@ class HotelList extends React.Component {
 
             <b>Distance to City Center</b>
             <Input2
-            Id='customRadio18'
-            For="customRadio18"
+            Id='customRadio318'
+            For="customRadio318"
               type="radio"
               name="distance"
               value="1km"
@@ -2098,8 +2200,8 @@ class HotelList extends React.Component {
               range="Less than 1km"
               />
               <Input2
-              Id='customRadio19'
-              For="customRadio19"
+              Id='customRadio319'
+              For="customRadio319"
               type="radio"
               name="distance"
               value="2km"
@@ -2107,8 +2209,8 @@ class HotelList extends React.Component {
               range="Less than 2km"
               />
               <Input2
-              Id='customRadio20'
-              For="customRadio20"
+              Id='customRadio320'
+              For="customRadio320"
               type="radio"
               name="distance"
               value="2km"
@@ -2118,8 +2220,8 @@ class HotelList extends React.Component {
             <hr/>
             <b>Bed Type</b>
             <Input2
-            Id='customRadio21'
-            For="customRadio21"
+            Id='customRadio321'
+            For="customRadio321"
               type="radio"
               name="bed"
               value="Queen Bed"
@@ -2127,8 +2229,8 @@ class HotelList extends React.Component {
               range="Queen Bed"
               />
                <Input2
-               Id='customRadio23'
-               For="customRadio23"
+               Id='customRadio323'
+               For="customRadio323"
               type="radio"
               name="bed"
               value="Single Beds"
@@ -2136,8 +2238,8 @@ class HotelList extends React.Component {
               range="Single Beds"
               />
                   <Input2
-                  Id='customRadio24'
-                  For="customRadio24"
+                  Id='customRadio324'
+                  For="customRadio324"
               type="radio"
               name="bed"
               value="Multiple Beds"
@@ -2167,7 +2269,7 @@ class HotelList extends React.Component {
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class='modal-body'>
         
        <div className="row">
          <div className="col">

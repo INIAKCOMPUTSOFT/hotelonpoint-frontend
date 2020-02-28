@@ -19,6 +19,8 @@ import FormWrapper from "./components/HotelUploadForm/FormWrapper";
 import HotelHome from "./pages/Hotelpages/Accomodation";
 import Hsignup from "./pages/Hsignup/Hsignup";
 import Login from "./pages/login";
+import LoginToBookings from "./pages/login/logintobookings";
+import LoginToReviews from "./pages/login/logintoreview";
 import MultiListing from "./pages/Hotelpages/multilisting";
 import Navbar from "./components/Navbar/navbar";
 import PassVer from "./pages/login/passverification";
@@ -67,6 +69,8 @@ function route() {
               <Route exact path="/" component={HotelHome} />
               <Route exact path="/realform" component={RealForm} />
               <CheckNotAuth exact path="/login" component={Login} />
+              <CheckNotAuth exact path="/logintobookings" component={LoginToBookings} />
+              <CheckNotAuth exact path="/logintoreview" component={LoginToReviews} />
               <CheckNotAuth exact path="/forgotpass" component={FORGOTPASS} />
               <CheckNotAuth exact path="/passverification/:id" component={PassVer} />
               <Route exact path="/multilisting" component={MultiListing} />

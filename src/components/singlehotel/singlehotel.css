@@ -30,6 +30,60 @@
     }
   } */
 
+
+
+  .scrolling-wrapperb {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    transition: width 2s;
+    
+  }
+
+ 
+     .scrolling-wrapperb::-webkit-scrollbar {
+    display: none;
+  }   
+
+  .controll{
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+    border-color:black;
+    border-style:solid;
+    margin-top:90px;
+    margin-right:40px;
+    position:absolute;
+    z-index:3;
+  }
+  
+  .controll:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .previous {
+    background-color: #f1f1f1;
+    color: black;
+  }
+  
+  .next {
+    background-color:  #f1f1f1;
+    color: black;
+    right: 0;
+    margin-right: 10% !important;
+  }
+  
+  .round {
+    border-radius: 40%;
+  }
+  .ifont{
+    font-size:16px;
+  }
+
+
+
   .pic{
     height:200px;
   }

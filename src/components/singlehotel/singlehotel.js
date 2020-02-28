@@ -239,16 +239,17 @@ function gal(Ur,i){
               </Swiper>
               </div>
 
-              <div className="scrolling-wrapper mt-2">
-              {Hh.imageUrl &&(
-              Hh.imagerUrl.map((url, i) => (
+              
+              <div className="scrolling-wrapperb mt-5 d-lg-none d-xl-none ">
+                <button className="controll previous round ml-3"><span className=''>&#8592;</span></button>
+              {Hh.imagerUrl.map((url, i) => (
 
-                  <img src={url.url} style={{backgroundColor:"gainsboro", height: "100%",width:'100%'}} alt="" />
+                  <img src={url.url} style={{backgroundColor:"gainsboro", height: "300px",width:'100%'}} alt="" />
                 
-              ))
-              )}
-
+              ))}
+               <button className="controll next round"><span >&#8594;</span></button>
               </div>
+            
 
         <div className="container">
         {Hh.propertyInfo && (

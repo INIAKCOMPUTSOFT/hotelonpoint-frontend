@@ -28,6 +28,52 @@ export const loginUser = (data, history) => dispatch => {
     });
 };
 
+export const loginUserToBooks = (data, history) => dispatch => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`${url}/user/logins`, data)
+    .then(res => {
+      console.log(res);
+      setAuthorizationHeader(res.data.message);
+      dispatch(getUser(history));
+      dispatch({ type: CLEAR_ERRORS });
+      window.location.href = "/bookings";
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      });
+      toast.error(err.response.data.message, {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    });
+};
+
+export const loginUserToReviews = (data, history) => dispatch => {
+  dispatch({ type: LOADING_UI });
+  axios
+    .post(`${url}/user/logins`, data)
+    .then(res => {
+      console.log(res);
+      setAuthorizationHeader(res.data.message);
+      dispatch(getUser(history));
+      dispatch({ type: CLEAR_ERRORS });
+      window.location.href = "/reviews/:hotelId";
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
+      });
+      toast.error(err.response.data.message, {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
+    });
+};
+
 export const validateUser = (data) => dispatch => {
   dispatch({ type: LOADING_UI });
   axios

@@ -5,6 +5,7 @@ class Booking extends React.Component {
   constructor() {
     super();
     this.state = {
+      hotel:'',
       Buking: [],
       hotelinfo:[],
       loading: true,
@@ -21,12 +22,20 @@ class Booking extends React.Component {
   componentDidMount() {
     Axios.get(`https://calm-anchorage-14244.herokuapp.com/booking/userall`)
       .then(result => {
-        console.log("result", result);
+        //console.log("result", result);
         this.setState({ Buking: result.data.data.bookings,  loading: false });
       })
       .catch(err => {
         console.log(err, "error");
       });
+
+      // let hotelid 
+      // if(this.state.Buking){
+      //   console.log(this.state.Buking.hotelId,'tgh gfd')
+      // }
+      
+
+
   }
 
   checkin=(bookingid)=>{
@@ -123,10 +132,31 @@ checkout=(bookingid,hotelId)=>{
 
 
   render() {
+
+
     const booking = this.state.Buking;
+
     console.log(booking, "booking");
 
-    const { loading, rating, showModal } = this.state;
+    const { loading, rating, showModal} = this.state;
+    
+    // function getimgURL(urlD){
+    //   let ur=urlD;
+    //   console.log(ur, "YEA....");
+    //   console.log(typeof ur)
+    //    return (<img src={ur} alt='p'/>)
+    //  }
+    // function gethotelimg(hotelid){
+    // let hotel=''
+    //   Axios.get(`https://calm-anchorage-14244.herokuapp.com/hotel/${hotelid}`)
+    //   .then(res => {
+    //     //console.log("result hotel", res, "123");
+    //     hotel= res.data.data.hotel.imagerUrl[3].url;
+    //     getimgURL(hotel)
+    //   })
+  
+    // }
+    
 
     let star1, star2, star3, star4, star5;
 
@@ -184,21 +214,26 @@ checkout=(bookingid,hotelId)=>{
         cursor: "pointer"
       };
     console.log("state values", this.state);
+    console.log("state values", this.state.hotel);
 
 
     return(
-
-<>
-
+      <>
       { booking.length >= 1 ? (
-      booking.map((books, i) => (
-        <>
+        <div className="row">
+      {booking.map((books, i) => (
+        <div class="col-md-4">
         <div className="card">
-          <div className="row no-guttters mb-1">
-            <div class="col-md-4">
-              <h4>{books.hotelName}</h4>
-            </div>
-            <div class="col-md-4">
+       {/* {getimgURL(gethotelimg(books.hotelId))} */}
+         {/* {console.log(getimgURL(gethotelimg(books.hotelId)),'the')}                   
+{(<img src={gethotelimg(books.hotelId)} alt="pis"/>)}
+           
+             */}
+            <div class="card-body">
+ 
+              <h5 class="card-title text-dark">{books.hotelName}</h5>
+           
+            
               <p>
                 <b>Room Type: {books.roomType}</b>
               </p>
@@ -211,60 +246,64 @@ checkout=(bookingid,hotelId)=>{
               <p>
                 <b>check out Date: {books.checkOut}</b>
               </p>
-            </div>
-            <div class="col-md-4">
+              {/* {gethotelimg(books.hotelId)} */}
+              </div>
+              
+            
+            <div className="card-footer">
 
             {books.checkInStatus === true ?
-                  <button className="btn btn-primary" disabled >
-
+                  <button className="btn btn-primary " disabled >
                   Checked in
                 </button>
                 :
-
               <button className="btn btn-primary" onClick={()=> this.checkin(books._id)}>
-
                 Check in
               </button>
               }
 
-              <div className="mt-2">
+              
             {books.checkOutStatus === true ?
-                  <button className="btn btn-primary" disabled >
+                  <button className="btn btn-primary ml-2" disabled >
 
                   Checked Out
                 </button>
                 :
-                 <>
-              <button className="btn btn-primary" onClick={()=> this.checkout(books._id,books.hotelId)}>
-
+                 
+              <button className="btn btn-primary ml-2" onClick={()=> this.checkout(books._id,books.hotelId)}>
                 Check Out
-              </button>
-              {books.canclebooking === true ?
-                <button className="btn btn-primary">
+              </button>      
+        } 
+
+        {books.canclebooking === true && books.checkOutStatus === false && books.checkInStatus === false ?
+                <button className="btn btn-primary ">
                       Book again
                     </button>
                     :
-                    <>
-                    <button className="btn btn-primary"  onClick={()=>this.canclebooking(books._id)}>
+       books.canclebooking === false && books.checkOutStatus === false && books.checkInStatus === false ?
+                    <button className="btn btn-primary ml-3"  onClick={()=>this.canclebooking(books._id)}>
                           Cancel Booking
-                        </button>
-                        </>
-              }
-              </>
-
-        }    </div>
-            </div>
+                        </button> 
+                      :
+                      <>
+                      </>  
+              } 
           </div>
-        </div>
-        </>
-      ))
+          </div>
+            </div>        
+            
+      ))}
+      </div>
+      
     ) : (
-      <div className="card">
+      
+      <div className="card p-5 justify-content-center">
         <p>No booking found yet</p>
       </div>
+      
     )}
-    </>
-    )
+    
+    </>)
   }
 }
 
