@@ -17,7 +17,7 @@ export default class Payment extends Component {
       op: false,
       open: false,
       shown: true,
-      key: 'pk_test_09001e1bd785eacacc95aa27fcc5321b6d05f55b', //PAYSTACK PUBLIC KEY
+      key: 'pk_test_c9901fe1df9d82daa2b3f646e3c84af784d3961c', //PAYSTACK PUBLIC KEY
       email: 'oyinkuromosesvictor@gmail.com', // customer email
       amount: 50000, //equals NGN100,
       userId: '',
@@ -52,7 +52,7 @@ export default class Payment extends Component {
           //   this.sendSlackNotification(result)
           console.log(result.data.message._id)
           // if(result){
-             setTimeout(()=> {window.location.href=`/confirmnation/${result.data.message._id}/${result.data.message.Room}/${result.data.message.hotelId}`}, 3000)
+             window.location.href=`/confirmnation/${result.data.message._id}/${result.data.message.Room}/${result.data.message.hotelId}`
           // }
           console.log('success',result)
         }
