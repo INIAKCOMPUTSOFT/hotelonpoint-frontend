@@ -102,7 +102,6 @@ class BookingForm extends React.Component {
   //    console.log(this.state.status,'status')
   //    console.log(Data,'id')
   //  }
-
   }
 
   payByTransfer=(Data)=>{
@@ -124,7 +123,7 @@ class BookingForm extends React.Component {
       AcctName:"Hotel on points Ltd",
       BankName: "GTB",
       paymentstatus:"false",
-      confirmbooking:"false"
+      confirmbooking:"false",
     };
 console.log(data,'data')
 // axios
@@ -616,10 +615,18 @@ console.log(data,'data')
 
                         <div className="row">
                           <div className="col-12">
-                            {userData && (
+                            {userData ? (
                               <Payment
                                 amount={amount}
                                 userId={userData._id}
+                                info={data}
+                                onclick={this.handlepress}
+                                container="contain"
+                                butin="btn-block btn-primary btn"
+                              />
+                            ): (
+                              <Payment
+                                amount={amount}
                                 info={data}
                                 onclick={this.handlepress}
                                 container="contain"
@@ -684,7 +691,7 @@ console.log(data,'data')
                           </div> */}
             </div>
           </div>
-          <div className="col-md-3">
+          <div className="col-md-3 d-none d-lg-none">
             <div className="card " style={{padding:"5px, 5px, 5px, 5px"}}>
               <h5 className="ml-4">Reservation Details</h5>
                <div>{Hh.imagerUrl &&

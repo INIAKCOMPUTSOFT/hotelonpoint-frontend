@@ -50,6 +50,10 @@ export default class Payment extends Component {
           //   this.updateBalance(result);
           //   this.addTransaction(result.data.amount/100);
           //   this.sendSlackNotification(result)
+          console.log(result.data.message._id)
+          // if(result){
+             setTimeout(()=> {window.location.href=`/confirmnation/${result.data.message._id}/${result.data.message.Room}/${result.data.message.hotelId}`}, 3000)
+          // }
           console.log('success',result)
         }
       })
@@ -107,7 +111,8 @@ export default class Payment extends Component {
 
   render () {
     console.log(this.props.info, 'info')
-    const money = Number(this.props.amount) * 100
+    const money = 859 * 100
+    console.log(money)
     return (
       <div className={this.props.container}>
         <div className='row'>
@@ -121,14 +126,12 @@ export default class Payment extends Component {
           callback={this.callback}
           close={this.close}
           disabled={false}
-          embed={false}
+          embed={true}
           reference={this.getReference()}
-          firstName={this.props.info.firstname}
-          email={this.props.info.email}
+          email={this.state.email}
           amount={money}
           paystackkey={this.state.key}
           tag='button'
-          onClick={this.props.onclick}
         />{' '}
         &nbsp;
       </div>
