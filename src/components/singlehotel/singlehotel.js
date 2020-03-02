@@ -45,10 +45,10 @@ class SingleHotel extends React.Component {
     );
 
     Axios.get(`http://localhost:3400/review/${sentid}`)
-    .then(res=>
-      //console.log(res,'reviews')
-      this.setState({review:res.data.data.review})
-      )
+    .then(res=>{
+      console.log(res.data.data.reviews,'reviews')
+        this.setState({reviews:res.data.data.reviews})
+     } )
       .catch(err=>{
         if(err.response){
           this.setState({review : err.response.data.message})
@@ -138,11 +138,32 @@ class SingleHotel extends React.Component {
       //   clickable: true
       // }
     };
+
+    const param = {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      // navigation: {
+      //   nextEl: ".swiper-button-next",
+      //   prevEl: ".swiper-button-prev"
+      // },
+      
+      slidesPerGroup: 3,
+      loop: true,
+      loopFillGroupWithBlank: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      }
+      // pagination: {
+      //   el: ".swiper-pagination",
+      //   clickable: true
+      // }
+    };
 //     let rest;
 // const regex =/Wifi/ 
 console.log(this.props.user, 'props user')
 const {userData} = this.props.user
-    const { Hh, Rm, photoIndex, isOpen } = this.state;
+    const { Hh, Rm, reviews, photoIndex, isOpen } = this.state;
     // console.log("seperate room", Rm);
     const urls = [];
     const roomImg = []
@@ -605,14 +626,26 @@ function gal(Ur,i){
           </div>
           </div>
           <div className="col-md-4">
+          <Swiper {...param}>
+          {reviews && 
+           
+              reviews.map(review =>(
           <div className="card shadow p-3">
-              {this.state.reviews && 
-              (<p id="Reviews">{this.state.reviews}</p>)
-              }
+                <>
+                 {/* <img src={review.imgurl}  style={{ width: 40,height: 40, }} className="rounded-circle" alt="user pic"/> */}
+                <p>{review.customerName}</p>
+                <span className="veiw mr-auto bg-success text-light">{review.totalRating}</span>
+                
+                <p className="">{review.review}</p>
+                </>
+              
+          </div>
+          ))
+          
+          }
+          </Swiper>
           </div>
           </div>
-          </div>
-
           <div>
             <h4>Room</h4>
             <div>

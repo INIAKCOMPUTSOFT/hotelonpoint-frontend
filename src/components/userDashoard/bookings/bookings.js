@@ -43,15 +43,20 @@ class Booking extends React.Component {
     // const data = {
     //   checkin:this.state.checkin
     // }
-setTimeout(()=> {window.location.href="/bookings"})
     const data = [
       {
         propName: 'checkInStatus',
-        value: this.state.checkin
+        value: true
       }
     ]
     Axios
     .put(`https://calm-anchorage-14244.herokuapp.com/booking/user/${bookingid}`, data)
+    .then(res=>{ console.log(res,'res')
+    if(res.statusText === "OK"){
+       setTimeout(()=> {window.location.href=`/bookings`}, 3000)
+    }
+    this.setState({ checkoutstatus: res.statusText})
+  })
   }
 
 
@@ -59,22 +64,19 @@ checkout=(bookingid,hotelId)=>{
   const data = [
     {
       propName: 'checkOutStatus',
-      value: this.state.checkout
+      value: true
     }
   ]
 
   Axios
     .put(`https://calm-anchorage-14244.herokuapp.com/booking/user/${bookingid}`, data)
     .then(res=>{ console.log(res,'res')
+    if(res.statusText === "OK"){
+       setTimeout(()=> {window.location.href=`/reviews/${hotelId}`}, 3000)
+    }
     this.setState({ checkoutstatus: res.statusText})
   })
 
-
-    if(this.state.checkoutstatus && this.state.Buking && this.state.checkoutstatus === "OK"){
-       setTimeout(()=> {window.location.href=`/reviews/${hotelId}`}, 3000)
-      console.log(this.state.checkoutstatus,'status')
-      console.log(hotelId,'id')
-    }
 }
 
    canclebooking=(bookingid)=>{

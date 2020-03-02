@@ -13,14 +13,14 @@ class Review extends React.Component{
       travellpurpose:'',
       travellertype:'',
       travellpet:'',
-      staff: "",
+      staff: 0,
       facilities:0,
       cleanlines:0,
       comfort:0,
       valueofmoney:0,
       location:0,
-      likes:"",
-      dislikes:'',
+      like:"",
+      dislike:'',
       totalRating:"",
       review:0,
       country:'',
@@ -61,9 +61,9 @@ class Review extends React.Component{
 
     Axios.get(
       `https://calm-anchorage-14244.herokuapp.com/hotel/${sentid}`
-    ).then(result =>
+    ).then(result =>{
       this.setState({ Hh: result.data.data.hotel })
-    )      .catch(err=>{
+    })      .catch(err=>{
         if(err.response){
           this.setState({review : err.response.data.message})
         }
@@ -87,10 +87,28 @@ submitreviews=(Rate,user)=>{
   const data={
     previewer:user,
     totalRating:Rate,
-    Hotelid:this.state.Hh._id
+    Hotelid:this.state.Hh._id,
+    travellpurpose:this.state.travellpurpose,
+    travellertype:this.state.travellertype,
+    travellpet:this.state.travellpet,
+    staff:this.state.staff,
+    facilities:this.state.facilities,
+    cleanlines:this.state.cleanlines,
+    comfort:this.state.comfort,
+    valueofmoney:this.state.valueofmoney,
+    location:this.state.location,
+    like:this.state.like,
+    dislike:this.state.dislike,
+    review:this.state.review,
+    country:this.state.country
   }
-
-  console.log(data,'data')
+  Axios.post(
+    `http://localhost:3400/review/${this.state.Hh._id}`, data
+  ).then(result =>{
+    if(result.statusText === "OK"){
+      setTimeout(()=> {window.location.href=`/`}, 3000)
+   }
+  console.log(data,'reviewss')})
 }
 
   render(){
@@ -327,7 +345,7 @@ submitreviews=(Rate,user)=>{
 </div>
 </div>
 <div>
-<button onClick={this.submitreviews(rate,fullname)} className="btn btn-primary btn-block mb-4">Submit Review</button>
+<button onClick={()=>this.submitreviews(rate,fullname)} className="btn btn-primary btn-block mb-4">Submit Review</button>
 </div>
 </div>
       </>
