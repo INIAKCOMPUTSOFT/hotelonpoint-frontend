@@ -159,7 +159,19 @@ class ConfirmBooking extends React.Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-md-6">
+        <div className="col-md-6">
+          {Bk.customer &&(
+          <>
+          <p>Title: {Bk.customer.title}</p>
+          <p>Firstname: {Bk.customer.firstName}</p>
+          <p>Lastname: {Bk.customer.lastName}</p>
+          {Bk.customer.wantAirportShuttle === true &&(
+            <p>Extra Request: Airport Shuttle</p>
+          )}
+          </>
+          )}
+         
+          
          
                 </div>
           
@@ -167,7 +179,7 @@ class ConfirmBooking extends React.Component {
             <div className="card shadow" style={{padding:"5px, 5px, 5px, 5px"}}>
               <h5 className="ml-4">Reservation Details</h5>
                <div>{Hh.imagerUrl &&
-              (<img src={Hh.imagerUrl[0].url} className="" style={{width:"100%",height:"200px"}} alt="hotel picture"/>)
+              (<img src={Hh.imagerUrl[0].url} className="" style={{width:"100%",height:"400px"}} alt="hotel picture"/>)
               }
               {Hh.propertyInfo &&
               (<p className="ml-4">{Hh.propertyInfo.hotelName}{this.Ratingstarts(Hh.propertyInfo.starRating)} </p>)

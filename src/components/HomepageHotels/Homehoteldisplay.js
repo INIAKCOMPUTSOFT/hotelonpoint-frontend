@@ -141,6 +141,7 @@ class HomeHotelDisplay extends Component {
 
               <div className="scrolling-wrapper d-lg-none d-xl-none ">
               {reverse.map((hotel, i) => (
+                <Link to={`/singlehotel/${hotel._id}`}  style={{margin:'0', border:'none', color:'black', textDecoration:"none"}} >
                 <div className="card rounded-bottom border-0 mr-2" key={i} style={{width: "194px",height: "300px"}}>
                   
                   <img src={hotel.imagerUrl[0].url} style={{backgroundColor:"gainsboro", height: "75%",width:'100%'}} alt="" />
@@ -153,6 +154,7 @@ class HomeHotelDisplay extends Component {
                   <span className="card-text">From NGN{hotel.averagePrice} </span>
                   </div>
                 </div>
+                </Link>
               ))}
               </div>
               

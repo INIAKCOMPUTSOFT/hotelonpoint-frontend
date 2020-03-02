@@ -60,7 +60,7 @@ class Login extends React.Component {
       <div style={sectionStyle}>
         <div className="container mt-3 mb-3">
           <div className="row">
-            <div className="col-md-4 text-white">
+            <div className="col-md-4 text-white d-none d-lg-block">
             
               <h1>List your property and start recieving guest today.</h1><br />
               <h1>Its free and always be free!!!</h1>

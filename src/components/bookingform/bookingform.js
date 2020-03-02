@@ -691,7 +691,7 @@ console.log(data,'data')
                           </div> */}
             </div>
           </div>
-          <div className="col-md-3 d-none d-lg-none">
+          <div className="col-md-3 d-none d-lg-block">
             <div className="card " style={{padding:"5px, 5px, 5px, 5px"}}>
               <h5 className="ml-4">Reservation Details</h5>
                <div>{Hh.imagerUrl &&

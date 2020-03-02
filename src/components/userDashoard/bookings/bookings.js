@@ -263,16 +263,17 @@ checkout=(bookingid,hotelId)=>{
               }
 
               
-            {books.checkOutStatus === true ?
-                  <button className="btn btn-primary ml-2" disabled >
-
-                  Checked Out
-                </button>
+            {books.checkOutStatus === false && books.checkInStatus === true ?
+                  
+                 <button className="btn btn-primary ml-2" onClick={()=> this.checkout(books._id,books.hotelId)}>
+                 Check Out
+               </button> 
                 :
-                 
-              <button className="btn btn-primary ml-2" onClick={()=> this.checkout(books._id,books.hotelId)}>
-                Check Out
-              </button>      
+                <button className="btn btn-primary ml-2" disabled >
+
+                Checked Out
+              </button>
+                  
         } 
 
         {books.canclebooking === true && books.checkOutStatus === false && books.checkInStatus === false ?

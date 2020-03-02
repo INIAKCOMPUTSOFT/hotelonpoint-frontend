@@ -617,6 +617,7 @@ function gal(Ur,i){
             <h4>Room</h4>
             <div>
               {Rm.map((room, i)=> (
+                <Link to={`/bookingform/${room._id}/${Hh._id}`}  style={{textDecoration:"none"}} >
                 <div className=" jumbotron2 p-3 mb-3" key={i}>
                   <div className="card border-0" id="Room">
                     <h5>{room.roomType}</h5>
@@ -1062,6 +1063,7 @@ function gal(Ur,i){
                     </div>
                   </div>
                 </div>
+                </Link>
               ))}
             </div>
           </div>
