@@ -1,7 +1,7 @@
 import './nav.css'
 
 import React, { Component } from 'react'
-import { faBars, faHotel, faPassport, faPlaneDeparture, faShip, faShoppingCart, faTaxi } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faHotel, faPassport, faPlaneDeparture, faShip, faShoppingCart, faTaxi, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { getUser, logoutUser } from '../../redux/actions/userActions'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -21,16 +21,86 @@ class Navbar extends Component {
   //   this.props.getUser()
   // }
 
+  state={
+    sidenav:false,
+  }
+
   signout = () => {
     this.props.logoutUser(history)
   }
 
+  sideNav=()=>{
+    this.setState({sidenav:true})
+    console.log(this.state)
+  }
+  sideBar=()=>{
+    this.setState({sidenav:false})
+    console.log(this.state)
+  }
+
+     
+
   render () {
+    const {sidenav}=this.state
     const {
       user: { authenticated, userData }
     } = this.props
     return (
       <div>
+  {sidenav === true &&(
+ <div class="card d-block d-lg-none" style={{position:"absolute", zIndex:"3", display:"block",width:"70%",height:"700px", position:"fixed"}}>
+ 
+ {authenticated &&  (
+   <>
+<button type="button" class="list-group-item list-group-item-action active">
+ {userData && (
+<li className='nav-item mr-1' style={{listStyle:"none"}}>
+  <ProfileData
+    imageurl={userData.imageUrl}
+    fullname={userData.fullName}
+  />
+</li>
+ )}
+ </button>
+ <Link to="/dashboard">
+          <button type="button" onClick={this.sideBar} class="list-group-item list-group-item-action">My Dashboard</button>
+        </Link>
+ <Link  to="/bookings">
+ <button type="button" onClick={this.sideBar} class="list-group-item list-group-item-action">Bookings</button>
+ </Link>
+ 
+ <a href={`https://internal.hotelonpoints.com?id=${localStorage.token}`}>
+ <button type="button" onClick={this.sideBar} class="list-group-item list-group-item-action" disabled>My Properties</button>
+ </a>
+  <Link to="/reviews">
+    <button type="button" onClick={this.sideBar} class="list-group-item list-group-item-action"> Reviews</button>
+  </Link>
+ </> )}
+ <a href={`https://internal.hotelonpoints.com/add-property?id=${localStorage.token}`}>
+ <button type="button"  class="list-group-item list-group-item-action">Add your property</button>
+</a>
+ <button type="button" class="list-group-item list-group-item-action">
+  <div  id="google_translate_element">                       
+</div>
+ </button>
+ {authenticated ? (
+     <button type="button" onClick={this.sideBar,this.signout} class="list-group-item list-group-item-action">Logout
+     </button>
+):(
+  <>
+  <Link to='/login'>
+  <button type="button" onClick={this.sideBar} class="list-group-item list-group-item-action">Login
+ </button>
+ </Link>
+
+ <Link to='/signup'>
+ <button type="button" onClick={this.sideBar} class="list-group-item list-group-item-action">Sign up</button>
+ </Link>
+ </>
+  )}
+ </div>
+  )}
+ 
         <div>
           {authenticated ? (
             <div>
@@ -40,19 +110,30 @@ class Navbar extends Component {
                     <img src={logo} width='200' alt='' />
                   </span>
                 </Link>
+                {sidenav === true ?
                 <button
                   className='navbar-toggler border-0 '
                   type='button'
-                  data-toggle='collapse'
-                  data-target='#navbarTogglerDemo01'
-                  aria-controls='navbarTogglerDemo01'
-                  aria-expanded='false'
-                  aria-label='Toggle navigation'
+                  
+                  onClick={this.sideBar}
                 >
                   <span>
-                    <FontAwesomeIcon icon={faBars} style={{ color: 'white' }} />
+                    <FontAwesomeIcon icon={faTimes} style={{ color: 'white' }} />
                   </span>
                 </button>
+                
+                :
+                  <button
+                  className='navbar-toggler border-0 '
+                  type='button'
+                  onClick={this.sideNav}
+                >
+                  <span>
+                  <FontAwesomeIcon icon={faBars} style={{ color: 'white' }} />
+                  </span>
+                </button>
+                
+                }
                 <div
                   className='collapse navbar-collapse'
                   id='navbarTogglerDemo01'
@@ -97,13 +178,10 @@ class Navbar extends Component {
                         role='group'
                         aria-label='Button group with nested dropdown'
                       >
-                        <div className='btn-group' id="google_translate_element" role='group'>
-                        
-                            
+                        <div className='btn-group' id="google_translate_element" role='group'>                      
+                          
                                                     
-                          {/* <button type='button' className='botin'>
-                            NGN
-                          </button> */}
+                         
                         </div>
                       </div>
                     </li>
@@ -141,19 +219,30 @@ class Navbar extends Component {
                     <img src={logo} width='200' alt='' />
                   </span>
                 </Link>
+                {sidenav === true ?
                 <button
                   className='navbar-toggler border-0 '
                   type='button'
-                  data-toggle='collapse'
-                  data-target='#navbarTogglerDemo01'
-                  aria-controls='navbarTogglerDemo01'
-                  aria-expanded='false'
-                  aria-label='Toggle navigation'
+                  
+                  onClick={this.sideBar}
                 >
                   <span>
-                    <FontAwesomeIcon icon={faBars} style={{ color: 'white' }} />
+                    <FontAwesomeIcon icon={faTimes} style={{ color: 'white' }} />
                   </span>
                 </button>
+                
+                :
+                  <button
+                  className='navbar-toggler border-0 '
+                  type='button'
+                  onClick={this.sideNav}
+                >
+                  <span>
+                  <FontAwesomeIcon icon={faBars} style={{ color: 'white' }} />
+                  </span>
+                </button>
+                
+                }
                 <div
                   className='collapse navbar-collapse'
                   id='navbarTogglerDemo01'

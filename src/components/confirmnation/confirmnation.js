@@ -159,7 +159,7 @@ class ConfirmBooking extends React.Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-md-6">
+        <div className="col-md-6">
           {Bk.customer &&(
           <>
           <p>Title: {Bk.customer.title}</p>

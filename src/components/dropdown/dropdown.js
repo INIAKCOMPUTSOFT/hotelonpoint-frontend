@@ -31,13 +31,16 @@ function ProfileData (props){
         <div
         className="dropdown-menu"
         aria-labelledby="dropdownMenuButton"
+        
       >
+        <div  className="d-none d-lg-block">
         {/* <a href="https://internal.hotelonpoints.com/" className="dropdown-item">My Dashboard</a> */}
         {/* <a href={`https://internal.hotelonpoints.com?id=${localStorage.token}`} className="dropdown-item">My Dashboard</a> */}
         <Link to="/dashboard" className="dropdown-item ">My Dashboard</Link>
         <Link  to="/bookings" className="dropdown-item ">Bookings</Link>
         <a href={`https://internal.hotelonpoints.com?id=${localStorage.token}`} className="dropdown-item">My Properties</a>
         <Link to="/reviews" className="dropdown-item">Reviews</Link>
+      </div>
       </div>
 
 </div>

@@ -40,7 +40,7 @@ export default class Payment extends Component {
       userId: this.props.userId
     }
     console.log('hererh', data)
-    axios.post('http://localhost:3400/hotel/verify', data)
+    axios.post('https://calm-anchorage-14244.herokuapp.com/hotel/verify', data)
       .then(result => {
         if (result.code === 'ECONNRESET') {
           this.error('Network error occurred. Please try again')

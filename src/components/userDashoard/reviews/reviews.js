@@ -14,15 +14,15 @@ class Review extends React.Component{
       travellertype:'',
       travellpet:'',
       staff: "",
-      facilities:"",
-      cleanlines:"",
-      comfort:"",
-      valueofmoney:"",
-      location:'',
+      facilities:0,
+      cleanlines:0,
+      comfort:0,
+      valueofmoney:0,
+      location:0,
       likes:"",
       dislikes:'',
       totalRating:"",
-      review:'',
+      review:0,
       country:'',
       Hh:[],
 
@@ -269,7 +269,6 @@ submitreviews=(Rate,user)=>{
 <h4 className="mb-5"><span className="veiw">3</span> Could you tell us a little more?</h4>  
 
 <div class="alert alert-info" role="alert">
-  A simple info alert—check it out!
 </div>
   <div className="row">
     <div className="col-md-4">
