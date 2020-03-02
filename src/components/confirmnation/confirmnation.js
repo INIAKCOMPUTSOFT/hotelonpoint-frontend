@@ -28,8 +28,8 @@ class ConfirmBooking extends React.Component {
     console.log(HotelId, 'hotel id')
     axios
       .get(`https://calm-anchorage-14244.herokuapp.com/booking/${BookingId}`)
-      .then(res => {
-        this.setState({ Bk: res.data.data });
+      .then(resu => {
+        this.setState({ Bk: resu.data.data });
         //console.log('res',res)
       });
 
@@ -195,11 +195,11 @@ class ConfirmBooking extends React.Component {
 
               <hr/>
                 <p className="text-secondary ml-4">Checkin</p>
-                <p className="ml-4">{this.state.startdate}</p>
+                <p className="ml-4">{Bk.checkIn}</p>
             
                 <hr/>
               <p className="text-secondary ml-4">Checkout</p>
-              <p className="ml-4">{this.state.enddate}</p>
+              <p className="ml-4">{Bk.checkOut}</p>
 
               <hr/>
             <h6 className="ml-4">{Rm.roomType} {amount}</h6>
