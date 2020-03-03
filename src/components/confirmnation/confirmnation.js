@@ -55,30 +55,6 @@ class ConfirmBooking extends React.Component {
   
 
 
-  // handlechange = (event, date) => {
-  //   event.preventDefault();
-  //   const { name, value, type, checked } = event.target;
-  //   type === "checkbox"
-  //     ? this.setState({ [name]: checked })
-  //     : this.setState({ [name]: value });
-  //   console.log(this.state);
-  // };
-
-  // bookingconfirm=()=>{
-  //   const data = {
-  //     email: this.state.email,
-  //     confirmemail: this.state.confirmemail,
-  //     fullname: this.state.fullname,
-  //     otherrequest: this.state.otherrequest,
-  //     title: this.state.title,
-  //   };
-
-    // axios
-    // .post(`http://localhost:3400/room/${RoomId}/bookingform`)
-    // .then(res => {
-    
-    //   console.log('res',res)
-    // });
   
 
   Ratingstarts=(stars)=>{

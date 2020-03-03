@@ -10,36 +10,8 @@ import React from 'react'
 import Zenith from './bankicons/zenith.png'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import {
-  faStar,
-  faCheck,
-  faBicycle,
-  faBriefcase,
-  faCamera,
-  faChild,
-  faCrosshairs,
-  faDesktop,
-  faDumbbell,
-  faFan,
-  faFilm,
-  faGasPump,
-  faGlassCheers,
-  faHotTub,
-  faMoneyBillAlt,
-  faMonument,
-  faShuttleVan,
-  faSpa,
-  faSwimmer,
-  faTaxi,
-  faTshirt,
-  faWater,
-  faWifi,
-  faWineGlass
-} from '@fortawesome/free-solid-svg-icons'
-import {
-  faServicestack,
-  faSpeakerDeck
-} from '@fortawesome/free-brands-svg-icons'
+import CircularProgress from '@material-ui/core/CircularProgress';
+import {  faStar} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 class BookingForm extends React.Component {
   constructor (props) {
@@ -47,6 +19,8 @@ class BookingForm extends React.Component {
     this.state = {
       Rm: {},
       Hh: [],
+      loading:false,
+      load:false,
       title: '',
       firstname: '',
       lastname: '',
@@ -132,9 +106,9 @@ class BookingForm extends React.Component {
     // hotelId, hotelName, author, amount, cancellationStatus, createdAt, false
 
     console.log(data, 'data')
-    axios.post(`http://localhost:3400/booking/payOnArrival`, data).then(res => {
+    axios.post(`https://calm-anchorage-14244.herokuapp.com/booking/payOnArrival`, data).then(res => {
       console.log('res', res)
-      this.setState({ status: res.statusText })
+      this.setState({ status: res.statusText, load:true })
     })
       if(this.state.status && this.state.Hh && this.state.status === "OK"){
         setTimeout(()=> {window.location.href=`/confirmnation/${Data}`}, 3000)
@@ -179,11 +153,11 @@ class BookingForm extends React.Component {
     }
     console.log(data, 'data transfer')
     axios
-    .post(`http://localhost:3400/booking/paylater`, data)
+    .post(`https://calm-anchorage-14244.herokuapp.com/booking/paylater`, data)
     .then(res => {
 
      console.log('res',res)
-    this.setState({status:res.statusText})
+    this.setState({status:res.statusText,loading:true})
     });
 
     if(this.state.status && this.state.Hh && this.state.status === "OK"){
@@ -285,7 +259,7 @@ class BookingForm extends React.Component {
 
   render () {
     //console.log('sRm', this.state.Rm)
-    const { Rm, Hh } = this.state
+    const { Rm, Hh,loading,load } = this.state
     const { userData } = this.props.user
     console.log('rm', Rm.roomPrice)
     console.log(Hh, 'the hotel details')
@@ -676,10 +650,10 @@ class BookingForm extends React.Component {
                             role='tab'
                             aria-controls='pills-payonarrival'
                             aria-selected='false'
-                            onClick={this.payOnArrival}
+                            
                           >
                             Pay On Arrival
-                          </a>
+                            </a>
                         </li>
                       </ul>
                     </div>
@@ -743,6 +717,9 @@ class BookingForm extends React.Component {
                               className='btn btn-block btn-primary '
                             >
                               Book
+                              {loading && (
+                                 <CircularProgress size={30}  />
+                               )}
                             </button>
                           </div>
                         </div>
@@ -754,7 +731,19 @@ class BookingForm extends React.Component {
                         role='tabpanel'
                         aria-labelledby='pills-payonarrival-tab'
                       >
-                        {' '}
+                         <h5 className="text-center">
+                            {' '}
+                            You prefer To pay At The Hotel
+                          </h5>
+                         <button
+                              onClick={this.payOnArrival}
+                              className='btn btn-block btn-primary '
+                            >
+                              Book
+                              {load && (
+                                 <CircularProgress size={30}  />
+                               )}
+                            </button>
                       </div>
                     </div>
                   </div>
