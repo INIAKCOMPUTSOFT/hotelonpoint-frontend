@@ -44,7 +44,7 @@ class SingleHotel extends React.Component {
       this.setState({ Hh: result.data.data.hotel, Rm: result.data.data.room, loading:false })
     );
 
-    Axios.get(`http://localhost:3400/review/${sentid}`)
+    Axios.get(`https://calm-anchorage-14244.herokuapp.com/review/${sentid}`)
     .then(res=>{
       console.log(res.data.data.reviews,'reviews')
         this.setState({reviews:res.data.data.reviews})
