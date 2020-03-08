@@ -103,7 +103,7 @@ submitreviews=(Rate,user)=>{
     country:this.state.country
   }
   Axios.post(
-    `http://localhost:3400/review/${this.state.Hh._id}`, data
+    `https://calm-anchorage-14244.herokuapp.com/review/${this.state.Hh._id}`, data
   ).then(result =>{
     if(result.statusText === "OK"){
       setTimeout(()=> {window.location.href=`/`}, 3000)
