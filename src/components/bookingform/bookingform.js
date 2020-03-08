@@ -713,7 +713,7 @@ class BookingForm extends React.Component {
                         <div className='row'>
                           <div className='col-12 '>
                             <button
-                              onClick={this.payByTransfer}
+                              onClick={this.payByTransfer(Hh._id)}
                               className='btn btn-block btn-primary '
                               disabled={loading}
                             >
@@ -737,7 +737,7 @@ class BookingForm extends React.Component {
                             You prefer To pay At The Hotel
                           </h5>
                          <button
-                              onClick={this.payOnArrival}
+                              onClick={this.payOnArrival(Hh._id)}
                               className='btn btn-block btn-primary '
                               disabled={loading}
                             >
