@@ -100,7 +100,8 @@ submitreviews=(Rate,user)=>{
     like:this.state.like,
     dislike:this.state.dislike,
     review:this.state.review,
-    country:this.state.country
+    country:this.state.country,
+    approve:false,
   }
   Axios.post(
     `https://calm-anchorage-14244.herokuapp.com/review/${this.state.Hh._id}`, data
