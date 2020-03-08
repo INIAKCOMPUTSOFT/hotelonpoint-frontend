@@ -22,7 +22,7 @@ class Booking extends React.Component {
   componentDidMount() {
     Axios.get(`https://calm-anchorage-14244.herokuapp.com/booking/userall`)
       .then(result => {
-        //console.log("result", result);
+        console.log("result", result);
         this.setState({ Buking: result.data.data.bookings,  loading: false });
       })
       .catch(err => {

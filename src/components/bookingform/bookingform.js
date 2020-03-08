@@ -106,7 +106,7 @@ class BookingForm extends React.Component {
     // hotelId, hotelName, author, amount, cancellationStatus, createdAt, false
 
     console.log(data, 'data')
-    axios.post(`https://calm-anchorage-14244.herokuapp.com/booking/payOnArrival`, data).then(res => {
+    axios.post(`http://localhost:3400/booking/payOnArrival`, data).then(res => {
       console.log('res', res)
       this.setState({ status: res.statusText, load:true })
     })
@@ -153,7 +153,7 @@ class BookingForm extends React.Component {
     }
     console.log(data, 'data transfer')
     axios
-    .post(`https://calm-anchorage-14244.herokuapp.com/booking/paylater`, data)
+    .post(`http://localhost:3400/booking/paylater`, data)
     .then(res => {
 
      console.log('res',res)
@@ -715,6 +715,7 @@ class BookingForm extends React.Component {
                             <button
                               onClick={this.payByTransfer}
                               className='btn btn-block btn-primary '
+                              disabled={loading}
                             >
                               Book
                               {loading && (
@@ -738,6 +739,7 @@ class BookingForm extends React.Component {
                          <button
                               onClick={this.payOnArrival}
                               className='btn btn-block btn-primary '
+                              disabled={loading}
                             >
                               Book
                               {load && (
