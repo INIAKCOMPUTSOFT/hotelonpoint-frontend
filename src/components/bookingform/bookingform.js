@@ -10,8 +10,8 @@ import React from 'react'
 import Zenith from './bankicons/zenith.png'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import CircularProgress from '@material-ui/core/CircularProgress';
-import {  faStar} from '@fortawesome/free-solid-svg-icons'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 class BookingForm extends React.Component {
   constructor (props) {
@@ -19,8 +19,8 @@ class BookingForm extends React.Component {
     this.state = {
       Rm: {},
       Hh: [],
-      loading:false,
-      load:false,
+      loading: false,
+      load: false,
       title: '',
       firstname: '',
       lastname: '',
@@ -71,16 +71,19 @@ class BookingForm extends React.Component {
     console.log(this.state)
   }
 
-  payOnArrival = Data => {
+  payOnArrival = () => {
+    this.setState({ load: true })
+    console.log('load', this.state.load)
+    console.log('working pay on arrival')
     const getReference = () => {
       //you can put any unique reference implementation code here
       let text = ''
       let possible =
         'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-  
+
       for (let i = 0; i < 10; i++)
         text += possible.charAt(Math.floor(Math.random() * possible.length))
-  
+
       return text
     }
     const data = {
@@ -106,27 +109,44 @@ class BookingForm extends React.Component {
     // hotelId, hotelName, author, amount, cancellationStatus, createdAt, false
 
     console.log(data, 'data')
-    axios.post(`https://calm-anchorage-14244.herokuapp.com/booking/payOnArrival`, data).then(res => {
-      console.log('res', res)
-      this.setState({ status: res.statusText, load:true })
-    })
-      if(this.state.status && this.state.Hh && this.state.status === "OK"){
-        setTimeout(()=> {window.location.href=`/confirmnation/${Data}`}, 3000)
-       console.log(this.state.status,'status')
-       console.log(Data,'id')
-     }
+    axios
+      .post(`https://calm-anchorage-14244.herokuapp.com/booking/payOnArrival`, data)
+      .then(result => {
+        if (result.code === 'ECONNRESET') {
+          this.error('Network error occurred. Please try again')
+        } else if (!result.status) {
+          this.error(result.message)
+        } else {
+          //   this.updateBalance(result);
+          //   this.addTransaction(result.data.amount/100);
+          //   this.sendSlackNotification(result)
+          console.log(result.data.message._id)
+          // if(result){
+          setTimeout(
+            (window.location.href = `/confirmnation/${result.data.message._id}/${result.data.message.Room}/${result.data.message.hotelId}`),
+            1000
+          )
+          // }
+          console.log('success', result)
+        }
+      }).catch(err => {
+        this.setState({ load: false })
+      })
   }
 
-  payByTransfer = Data => {
+  payByTransfer = () => {
+
+    this.setState({ loading: true })
+    console.log('working pay on arrival')
     const getReference = () => {
       //you can put any unique reference implementation code here
       let text = ''
       let possible =
         'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-  
+
       for (let i = 0; i < 10; i++)
         text += possible.charAt(Math.floor(Math.random() * possible.length))
-  
+
       return text
     }
     const data = {
@@ -152,19 +172,27 @@ class BookingForm extends React.Component {
       amount: this.state.Rm.roomPrice
     }
     console.log(data, 'data transfer')
-    axios
-    .post(`https://calm-anchorage-14244.herokuapp.com/booking/paylater`, data)
-    .then(res => {
-
-     console.log('res',res)
-    this.setState({status:res.statusText,loading:true})
-    });
-
-    if(this.state.status && this.state.Hh && this.state.status === "OK"){
-     setTimeout(()=> {window.location.href=`/confirmnation/${Data}`}, 3000)
-    console.log(this.state.status,'status')
-    console.log(Data,'id')
-    }
+    axios.post(`https://calm-anchorage-14244.herokuapp.com/booking/paylater`, data).then(result => {
+      if (result.code === 'ECONNRESET') {
+        this.error('Network error occurred. Please try again')
+      } else if (!result.status) {
+        this.error(result.message)
+      } else {
+        //   this.updateBalance(result);
+        //   this.addTransaction(result.data.amount/100);
+        //   this.sendSlackNotification(result)
+        console.log(result.data.message._id)
+        // if(result){
+        setTimeout(
+          (window.location.href = `/confirmnation/${result.data.message._id}/${result.data.message.Room}/${result.data.message.hotelId}`),
+          1000
+        )
+        // }
+        console.log('success', result)
+      }
+    }).catch(err => {
+      this.setState({ loading: false })
+    })
   }
 
   Ratingstarts = stars => {
@@ -259,7 +287,8 @@ class BookingForm extends React.Component {
 
   render () {
     //console.log('sRm', this.state.Rm)
-    const { Rm, Hh,loading,load } = this.state
+    const { Rm, Hh, loading, load } = this.state
+    console.log(load)
     const { userData } = this.props.user
     console.log('rm', Rm.roomPrice)
     console.log(Hh, 'the hotel details')
@@ -650,10 +679,9 @@ class BookingForm extends React.Component {
                             role='tab'
                             aria-controls='pills-payonarrival'
                             aria-selected='false'
-                            
                           >
                             Pay On Arrival
-                            </a>
+                          </a>
                         </li>
                       </ul>
                     </div>
@@ -713,14 +741,12 @@ class BookingForm extends React.Component {
                         <div className='row'>
                           <div className='col-12 '>
                             <button
-                              onClick={this.payByTransfer(Hh._id)}
+                              onClick={() => this.payByTransfer()}
                               className='btn btn-block btn-primary '
                               disabled={loading}
                             >
                               Book
-                              {loading && (
-                                 <CircularProgress size={30}  />
-                               )}
+                              {loading && <CircularProgress size={30} />}
                             </button>
                           </div>
                         </div>
@@ -732,20 +758,18 @@ class BookingForm extends React.Component {
                         role='tabpanel'
                         aria-labelledby='pills-payonarrival-tab'
                       >
-                         <h5 className="text-center">
-                            {' '}
-                            You prefer To pay At The Hotel
-                          </h5>
-                         <button
-                              onClick={this.payOnArrival(Hh._id)}
-                              className='btn btn-block btn-primary '
-                              disabled={loading}
-                            >
-                              Book
-                              {load && (
-                                 <CircularProgress size={30}  />
-                               )}
-                            </button>
+                        <h5 className='text-center'>
+                          {' '}
+                          You prefer To pay At The Hotel
+                        </h5>
+                        <button
+                          onClick={() => this.payOnArrival()}
+                          className='btn btn-block btn-primary '
+                          disabled={load}
+                        >
+                          Book
+                          {load && <CircularProgress size={30} />}
+                        </button>
                       </div>
                     </div>
                   </div>
