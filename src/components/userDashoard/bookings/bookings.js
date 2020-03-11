@@ -278,12 +278,12 @@ checkout=(bookingid,hotelId)=>{
                   
         } 
 
-        {books.canclebooking === true && books.checkOutStatus === false && books.checkInStatus === false ?
+        {books.cancellationStatus === true && books.checkOutStatus === false && books.checkInStatus === false ?
                 <button className="btn btn-primary ">
                       Book again
                     </button>
                     :
-       books.canclebooking === false && books.checkOutStatus === false && books.checkInStatus === false ?
+       books.cancellationStatus === false && books.checkOutStatus === false && books.checkInStatus === false ?
                     <button className="btn btn-primary ml-3"  onClick={()=>this.canclebooking(books._id)}>
                           Cancel Booking
                         </button> 
