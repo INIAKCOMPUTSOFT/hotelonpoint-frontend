@@ -83,7 +83,7 @@ checkout=(bookingid,hotelId)=>{
      //this.setState({cancelbook:true})
     const data = {
       propName:'cancellationStatus',
-      value:this.state.cancelbook
+      value:true
     }
     Axios
     .put(`https://calm-anchorage-14244.herokuapp.com/booking/user/${bookingid}`, data)
@@ -92,46 +92,7 @@ checkout=(bookingid,hotelId)=>{
     setTimeout(()=> {window.location.href="/bookings"})
    }
 
-  handleCloseModal = () => {
-    this.setState({ showModal: false });
-  };
-
-  handleStarRating1 = e => {
-    this.setState({ rating: 1 });
-  };
-
-  handleStarRating2 = e => {
-    this.setState({ rating: 2 });
-  };
-  handleStarRating3 = e => {
-    this.setState({ rating: 3 });
-  };
-  handleStarRating4 = e => {
-    this.setState({ rating: 4 });
-  };
-  handleStarRating5 = e => {
-    this.setState({ rating: 5 });
-  };
-  handleChange=(event)=> {
-    event.preventDefault();
-    const { name, value } = event.target;
-    this.setState({[name]: value });
-    console.log(this.state.remark,'remark');
-  }
-
-  Rateit=(hotelid)=> {
-    const data = {
-      remark :this.state.remark,
-      rating:this.state.rating
-    }
-    console.log(hotelid)
-    Axios
-    .put(`https://calm-anchorage-14244.herokuapp.com/review/${hotelid}`, data)
-    .then(res=>{ console.log(res)})
-    //console.log(this.state);
-    setTimeout(()=> {window.location.href="/bookings"})
-  }
-
+  
 
   render() {
 
@@ -160,61 +121,7 @@ checkout=(bookingid,hotelId)=>{
     // }
     
 
-    let star1, star2, star3, star4, star5;
-
-    if (rating >= 1) {
-      star1 = {
-        color: "#f8ce0b",
-        cursor: "pointer"
-      };
-    } else
-      star1 = {
-        color: "#7e7878",
-        cursor: "pointer"
-      };
-
-    if (rating >= 2) {
-      star2 = {
-        color: "#f8ce0b",
-        cursor: "pointer"
-      };
-    } else
-      star2 = {
-        color: "#7e7878",
-        cursor: "pointer"
-      };
-
-    if (rating >= 3) {
-      star3 = {
-        color: "#f8ce0b",
-        cursor: "pointer"
-      };
-    } else
-      star3 = {
-        color: "#7e7878",
-        cursor: "pointer"
-      };
-    if (rating >= 4) {
-      star4 = {
-        color: "#f8ce0b",
-        cursor: "pointer"
-      };
-    } else
-      star4 = {
-        color: "#7e7878",
-        cursor: "pointer"
-      };
-
-    if (rating >= 5) {
-      star5 = {
-        color: "#f8ce0b",
-        cursor: "pointer"
-      };
-    } else
-      star5 = {
-        color: "#7e7878",
-        cursor: "pointer"
-      };
+ 
     console.log("state values", this.state);
     console.log("state values", this.state.hotel);
 
@@ -276,18 +183,19 @@ checkout=(bookingid,hotelId)=>{
                 Checked Out
               </button>
                   
-        } 
+        }
+<br/>
 
-        {books.cancellationStatus === true && books.checkOutStatus === false && books.checkInStatus === false ?
+        {books.cancellationStatus === false && books.checkOutStatus === false && books.checkInStatus === false ?
+                    <button className="btn btn-primary ml-3"  onClick={()=>this.canclebooking(books._id)}>
+                          Cancel Booking
+                        </button> 
+                      :  
+  books.cancellationStatus === true && books.checkOutStatus === false && books.checkInStatus === false ?
                 <button className="btn btn-primary ">
                       Book again
                     </button>
                     :
-       books.cancellationStatus === false && books.checkOutStatus === false && books.checkInStatus === false ?
-                    <button className="btn btn-primary ml-3"  onClick={()=>this.canclebooking(books._id)}>
-                          Cancel Booking
-                        </button> 
-                      :
                       <>
                       </>  
               } 
